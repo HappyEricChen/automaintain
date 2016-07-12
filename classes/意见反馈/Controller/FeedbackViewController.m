@@ -1,0 +1,196 @@
+//
+//  FeedbackViewController.m
+//  automaintain
+//
+//  Created by eric on 16/7/4.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "FeedbackViewController.h"
+#import "FeedbackDataViewController.h"
+#import "FeedbackFirstCollectionViewCell.h"
+#import "FeedbackSecondCollectionViewCell.h"
+#import "FeedbackThirdCollectionViewCell.h"
+
+@interface FeedbackViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,FeedbackFirstCollectionViewCellDelegate>
+
+@property (nonatomic, strong) FeedbackDataViewController* feedbackDataViewController;
+
+@property (nonatomic, strong) NSArray* listArr;
+
+@property (nonatomic, strong) NSString* feedbackTypeStr;//选择的反馈类型
+@end
+
+@implementation FeedbackViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.feedbackDataViewController = [[FeedbackDataViewController alloc]init];
+    [self configureNavigationView];
+    [self configureCollectionView];
+    [self configureTableView];
+    
+    self.listArr = @[@"功能建议",@"页面展示",@"商品反馈",@"售后服务",@"相关活动",@"其他"];
+    self.feedbackTypeStr = @"功能建议";
+}
+
+
+-(void)configureNavigationView
+{
+    [self.view addSubview:self.feedbackDataViewController.customNavigationView];
+    self.feedbackDataViewController.customNavigationView.delegate = self;
+    self.feedbackDataViewController.customNavigationView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topEqualToView(self.view).heightIs(ScreenHeight*0.1);
+}
+
+-(void)configureCollectionView
+{
+    [self.view addSubview:self.feedbackDataViewController.collectionView];
+    
+    self.feedbackDataViewController.collectionView.delegate = self;
+    self.feedbackDataViewController.collectionView.dataSource = self;
+    
+    self.feedbackDataViewController.collectionView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.feedbackDataViewController.customNavigationView,0).bottomEqualToView(self.view);
+    
+}
+
+/**
+ *  反馈类型下拉菜单
+ */
+-(void)configureTableView
+{
+    [self.view addSubview:self.feedbackDataViewController.listTableView];
+    self.feedbackDataViewController.listTableView.delegate = self;
+    self.feedbackDataViewController.listTableView.dataSource = self;
+    self.feedbackDataViewController.listTableView.rowHeight = 35;
+    self.feedbackDataViewController.listTableView.hidden = YES;
+    self.feedbackDataViewController.listTableView.frame = CGRectMake(ScreenWidth*0.24, ScreenHeight*0.167, ScreenWidth*0.520, ScreenHeight*0.2);
+}
+
+#pragma mark - CustomNavigationViewDelegate
+-(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UICollectionViewDataSource
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 3;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell * cell = nil;
+    
+    if (indexPath.section == 0)
+    {
+        FeedbackFirstCollectionViewCell * firstCell = [FeedbackFirstCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackFirstCollectionViewCellId forIndexPath:indexPath];
+        [firstCell layoutWithObject:self.feedbackTypeStr];
+        firstCell.delegate = self;
+        cell = firstCell;
+    }
+    else if (indexPath.section == 1)
+    {
+        FeedbackSecondCollectionViewCell * secondCell = [FeedbackSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackSecondCollectionViewCellId forIndexPath:indexPath];
+        cell =secondCell;
+    }
+    else if (indexPath.section == 2)
+    {
+        FeedbackThirdCollectionViewCell * secondCell = [FeedbackThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackThirdCollectionViewCellId forIndexPath:indexPath];
+        cell =secondCell;
+    }
+    
+    return cell;
+}
+
+#pragma mark - UICollectionViewFlowLayoutDelegate
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.08);
+    }
+    else if (indexPath.section == 1)
+    {
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.2);
+    }
+    else if (indexPath.section == 2)
+    {
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.05);
+    }
+    return CGSizeZero;
+}
+
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return UIEdgeInsetsMake(ScreenHeight*0.01, 0, 0, 0);
+    }
+    else if (section == 1)
+    {
+        return UIEdgeInsetsMake(ScreenHeight*0.022, 0, 0, 0);
+    }
+    else if (section == 2)
+    {
+        return UIEdgeInsetsMake(ScreenHeight*0.042, 0, 0, 0);
+    }
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma mark - UICollectionViewDelegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+
+
+#pragma mark -UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+// 返回每一组有多少行
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.listArr.count;
+}
+// 返回哪一组的哪一行显示什么内容
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 1.创建CELL
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    // 2.设置数据
+    // 2.1取出对应行的模型
+    NSString *name = self.listArr[indexPath.row];
+    // 2.2赋值对应的数据
+    cell.textLabel.text = name;
+    cell.textLabel.font = [UIFont systemFontOfSize:11];
+    // 3.返回cell
+    return cell;
+}
+#pragma mark -UITableViewDataSource
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        self.feedbackTypeStr = self.listArr[indexPath.row];
+        [self.feedbackDataViewController.collectionView reloadData];
+        self.feedbackDataViewController.listTableView.hidden = YES;
+    }
+}
+
+#pragma mark - FeedbackFirstCollectionViewCellDelegate
+-(void)didClickListButtonWithFeedbackFirstCollectionViewCell:(FeedbackFirstCollectionViewCell *)feedbackFirstCollectionViewCell
+{
+    
+    self.feedbackDataViewController.listTableView.hidden = ! self.feedbackDataViewController.listTableView.isHidden;
+}
+@end

@@ -1,0 +1,17 @@
+//
+//  SignUpViewController.h
+//  一号车库
+//
+//  Created by eric on 16/6/24.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "BaseViewController.h"
+
+@interface SignUpViewController : BaseViewController
+
+/**
+ *  type:会员注册或者找回密码
+ */
+@property (nonatomic, strong) NSString* type;
+@end

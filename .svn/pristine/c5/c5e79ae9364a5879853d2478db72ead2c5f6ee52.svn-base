@@ -1,0 +1,47 @@
+//
+//  WashCarFourCollectionViewCell.m
+//  automaintain
+//
+//  Created by eric on 16/7/4.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "WashCarFourCollectionViewCell.h"
+
+@implementation WashCarFourCollectionViewCell
+
+NSString* const WashCarFourCollectionViewCellId = @"WashCarFourCollectionViewCellId";
+
++(WashCarFourCollectionViewCell *)collectionView:(UICollectionView *)collectionView
+           dequeueReusableCellWithReuseIdentifier:(NSString *)reuseIdentifier
+                                     forIndexPath:(NSIndexPath *)indexPath
+{
+    WashCarFourCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                                                                                     forIndexPath:indexPath];
+    return cell;
+}
+
+
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        
+        /**
+         *  提交预约按钮
+         */
+        UIButton* submitButton = [[UIButton alloc]init];
+        [submitButton setTitle:@"提交预约" forState:UIControlStateNormal];
+        submitButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [submitButton setBackgroundImage:ImageNamed(@"order_wx_commit") forState:UIControlStateNormal];
+        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:submitButton];
+        
+        submitButton.sd_layout.centerXEqualToView(self).topSpaceToView(self,ScreenHeight*0.027).widthIs(ScreenWidth*0.917).heightIs(ScreenHeight*0.05);
+        
+    }
+    return self;
+}
+
+@end

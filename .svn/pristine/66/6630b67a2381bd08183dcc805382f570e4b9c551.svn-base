@@ -1,0 +1,63 @@
+//
+//  NSObject+Helper.m
+//  automaintain
+//
+//  Created by eric on 16/6/27.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "NSObject+Helper.h"
+
+@implementation NSObject (Helper)
+
+-(CGSize)calculateSizeWithLabelContent:(NSString *)labelContent
+                            WithFontName:(NSString *)fontName
+                                WithFontSize:(CGFloat)fontSize
+{
+    UIFont* font = nil;
+    if (fontName)
+    {
+        font = [UIFont fontWithName:fontName size:fontSize];
+    }
+    else
+    {
+        font = [UIFont systemFontOfSize:fontSize];
+    }
+    UILabel* label = [[UILabel alloc]init];
+    label.text = labelContent;
+    label.font = font;
+    CGSize size = [label.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    
+    return size;
+}
+
+-(CGFloat)calculateWidthWithLabelContent:(NSString *)labelContent
+                           WithFontName:(NSString *)fontName
+                           WithFontSize:(CGFloat)fontSize
+                                WithBold:(BOOL)isBold
+{
+    UIFont* font = nil;
+    if (fontName)
+    {
+        font = [UIFont fontWithName:fontName size:fontSize];
+    }
+    else
+    {
+        if (isBold)
+        {
+            font = [UIFont boldSystemFontOfSize:fontSize];
+        }
+        else
+        {
+            font = [UIFont systemFontOfSize:fontSize];
+        }
+        
+    }
+    UILabel* label = [[UILabel alloc]init];
+    label.text = labelContent;
+    label.font = font;
+    CGSize size = [label.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    
+    return size.width;
+}
+@end

@@ -1,0 +1,24 @@
+//
+//  LoginDataViewController.m
+//  一号车库
+//
+//  Created by eric on 16/6/23.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "LoginDataViewController.h"
+
+@implementation LoginDataViewController
+
+
+-(LoginView *)loginView
+{
+    if (!_loginView)
+    {
+        _loginView = [[LoginView alloc]init];
+        _loginView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+    }
+    return _loginView;
+}
+@end

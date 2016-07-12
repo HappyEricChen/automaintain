@@ -1,0 +1,61 @@
+//
+//  SiginUpViewController.m
+//  automaintain
+//
+//  Created by eric on 16/6/24.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "SignUpViewController.h"
+#import "SignUpView.h"
+#import "SignUpDataViewController.h"
+
+@interface SignUpViewController ()<CustomNavigationViewDelegate>
+@property (nonatomic, strong) SignUpDataViewController* signUpDataViewController;
+@end
+
+@implementation SignUpViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.signUpDataViewController = [[SignUpDataViewController alloc]initWithType:self.type];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_bg")];
+    [self configureNavigationView];
+    [self configureSignUpView];
+    
+}
+
+-(void)configureNavigationView
+{
+    [self.view addSubview:self.signUpDataViewController.customNavigationView];
+    self.signUpDataViewController.customNavigationView.delegate = self;
+    self.signUpDataViewController.customNavigationView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.signUpDataViewController.customNavigationView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topEqualToView(self.view).heightIs(ScreenHeight*0.1);
+    
+    
+}
+
+-(void)configureSignUpView
+{
+    [self.view addSubview:self.signUpDataViewController.signUpView];
+    
+    self.signUpDataViewController.signUpView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.signUpDataViewController.signUpView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.signUpDataViewController.customNavigationView,0).bottomEqualToView(self.view);
+    
+    
+}
+
+-(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+@end

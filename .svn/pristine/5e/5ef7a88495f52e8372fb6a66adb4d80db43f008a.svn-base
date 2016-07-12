@@ -1,0 +1,22 @@
+//
+//  WashCarFirstCollectionViewCell.h
+//  一号车库
+//
+//  Created by eric on 16/6/28.
+//  Copyright © 2016年 eric. All rights reserved.
+//  上一天／下一天／日期选择
+
+#import "BaseCollectionViewCell.h"
+
+@interface WashCarFirstCollectionViewCell : BaseCollectionViewCell
+
+/**
+ *  重用id
+ */
+extern NSString* const washCarFirstId;
+/**
+ *  cell创建方法
+ */
++(WashCarFirstCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
+
+@end

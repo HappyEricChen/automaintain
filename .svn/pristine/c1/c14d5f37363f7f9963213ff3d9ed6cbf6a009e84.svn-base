@@ -1,0 +1,45 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "db9a122b-8f40-7544-8173-e909a427172a++9721",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "db9a122b-8f40-7544-8173-e909a427172a++9721" : {
+
+    },
+    "db9a122b-8f40-7544-8173-e909a427172a++5431" : {
+
+    },
+    "db9a122b-8f40-7544-8173-e909a427172a" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "db9a122b-8f40-7544-8173-e909a427172a++9721" : 0,
+    "db9a122b-8f40-7544-8173-e909a427172a++5431" : 0,
+    "db9a122b-8f40-7544-8173-e909a427172a" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CFF6DAFE-E9E8-4D77-9AE9-20ED430616FB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "db9a122b-8f40-7544-8173-e909a427172a++9721" : "ios2\/",
+    "db9a122b-8f40-7544-8173-e909a427172a++5431" : "..",
+    "db9a122b-8f40-7544-8173-e909a427172a" : "..\/.."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "automaintain",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "automaintain.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/112.64.131.222\/svn\/AutoMaintain",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "db9a122b-8f40-7544-8173-e909a427172a"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/112.64.131.222\/svn\/AutoMaintain",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "db9a122b-8f40-7544-8173-e909a427172a++5431"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/112.64.131.222\/svn\/AutoMaintain",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "db9a122b-8f40-7544-8173-e909a427172a++9721"
+    }
+  ]
+}

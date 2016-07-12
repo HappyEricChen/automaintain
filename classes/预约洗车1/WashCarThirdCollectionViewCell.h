@@ -1,0 +1,26 @@
+//
+//  WashCarThirdCollectionViewCell.h
+//  一号车库
+//
+//  Created by eric on 16/6/28.
+//  Copyright © 2016年 eric. All rights reserved.
+// 用户评论详情
+
+#import "BaseCollectionViewCell.h"
+
+@interface WashCarThirdCollectionViewCell : BaseCollectionViewCell
+
+/**
+ *  重用id
+ */
+extern NSString* const WashCarThirdCollectionViewCellId;
+/**
+ *  cell创建方法
+ */
++(WashCarThirdCollectionViewCell*)collectionView:(UICollectionView*)collectionView
+          dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier
+                                    forIndexPath:(NSIndexPath*)indexPath;
+
+
+
+@end

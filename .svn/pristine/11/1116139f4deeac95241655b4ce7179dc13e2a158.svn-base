@@ -1,0 +1,16 @@
+//
+//  SignUpView.h
+//  automaintain
+//
+//  Created by eric on 16/6/24.
+//  Copyright © 2016年 eric. All rights reserved.
+//  会员注册／找回密码
+
+#import <UIKit/UIKit.h>
+
+@interface SignUpView : UIView
+/**
+ *  传类型，会员注册或者找回密码
+ */
+-(instancetype)initWithType:(NSString*)type;
+@end

@@ -1,0 +1,16 @@
+//
+//  ImageAmplificationViewController.h
+//  一号车库
+//
+//  Created by eric on 16/7/6.
+//  Copyright © 2016年 eric. All rights reserved.
+//  图片放大展示控制器
+
+#import "BaseViewController.h"
+@interface ImageAmplificationViewController : BaseViewController
+
+/**
+ *  要放大的图片
+ */
+@property (nonatomic, strong) UIImage* image;
+@end

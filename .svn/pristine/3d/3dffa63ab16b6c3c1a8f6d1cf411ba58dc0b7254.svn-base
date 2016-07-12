@@ -1,0 +1,48 @@
+//
+//  SignUpDataViewController.m
+//  一号车库
+//
+//  Created by eric on 16/6/24.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "SignUpDataViewController.h"
+
+@implementation SignUpDataViewController
+
+-(instancetype)initWithType:(NSString *)type
+{
+    self = [super init];
+    if (self)
+    {
+        _type = type;
+    }
+    return self;
+}
+
+-(CustomNavigationView *)customNavigationView
+{
+    if (!_customNavigationView)
+    {
+        if ([_type isEqualToString:@"立即注册"])
+        {
+            _customNavigationView = [CustomNavigationView customNavigationViewWithLeftBtnImage:ImageNamed(@"register_back") withRightBtnImage:nil withTitle:@"会员注册"];
+        }
+        else
+        {
+            _customNavigationView = [CustomNavigationView customNavigationViewWithLeftBtnImage:ImageNamed(@"register_back") withRightBtnImage:nil withTitle:@"找回密码"];
+        }
+        
+    }
+    return _customNavigationView;
+}
+
+-(SignUpView *)signUpView
+{
+    if (!_signUpView)
+    {
+        _signUpView = [[SignUpView alloc]initWithType:self.type];
+    }
+    return _signUpView;
+}
+@end

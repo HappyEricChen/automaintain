@@ -1,0 +1,10 @@
+:
+platform:ios, '8.0'
+
+target:'automaintain' do
+
+   pod 'SDAutoLayout', '~> 2.1.1'
+   pod 'SDCycleScrollView','~> 1.64'
+   pod 'MJExtension'
+   pod 'SVProgressHUD'
+end

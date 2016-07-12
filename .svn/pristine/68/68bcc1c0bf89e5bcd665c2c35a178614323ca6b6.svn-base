@@ -1,0 +1,88 @@
+//
+//  OrderCarDataViewController.m
+//  automaintain
+//
+//  Created by eric on 16/6/28.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "OrderCarDataViewController.h"
+#import "WashCarFirstCollectionViewCell.h"
+#import "WashCarSecondCollectionViewCell.h"
+#import "WashCarThirdCollectionViewCell.h"
+#import "WashCarFourCollectionViewCell.h"
+#import "WashCarFiveCollectionViewCell.h"
+#import "CommentHeaderView.h"
+#import "MyCommentModel.h"
+
+@implementation OrderCarDataViewController
+
+-(CustomNavigationView *)customNavigationView
+{
+    if (!_customNavigationView)
+    {
+        _customNavigationView = [CustomNavigationView customNavigationViewWithLeftBtnImage:ImageNamed(@"register_back") withRightBtnImage:nil withTitle:@"预约洗车"];
+    }
+    return _customNavigationView;
+}
+
+-(UICollectionView *)collectionView
+{
+    if (!_collectionView)
+    {
+        UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _collectionView.backgroundColor = [UIColor clearColor];
+        
+        [_collectionView registerClass:[WashCarFirstCollectionViewCell class] forCellWithReuseIdentifier:washCarFirstId];
+        [_collectionView registerClass:[WashCarSecondCollectionViewCell class] forCellWithReuseIdentifier:WashCarSecondId];
+        [_collectionView registerClass:[WashCarThirdCollectionViewCell class] forCellWithReuseIdentifier:WashCarThirdCollectionViewCellId];
+        [_collectionView registerClass:[WashCarFourCollectionViewCell class] forCellWithReuseIdentifier:WashCarFourCollectionViewCellId];
+        [_collectionView registerClass:[WashCarFiveCollectionViewCell class] forCellWithReuseIdentifier:WashCarFiveCollectionViewCellId];
+        
+        [_collectionView registerClass:[CommentHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
+        
+        
+    }
+    return _collectionView;
+}
+
+-(void)loadWashCarOrderTimeArr
+{
+    
+    self.totalTimeOrderArr = @[@"7:00-7:30",
+                      @"7:30-8:00",
+                      @"8:00-8:30",
+                      @"8:30-9:00",
+                      @"9:00-9:30",
+                      @"9:30-10:00",
+                      @"10:00-10:30",
+                      @"10:30-11:00",
+                      @"11:00-11:30",
+                      @"11:30-12:00",
+                      @"12:00-12:30",
+                      @"12:30-13:00",
+                      @"13:00-13:30",
+                      @"13:30-14:00",
+                      @"14:00-14:30",
+                      @"14:30-15:00",
+                      @"15:00-15:30",
+                      @"15:30-16:00",
+                      @"16:00-16:30",
+                      @"17:30-18:00",
+                      @"17:00-17:30",
+                      @"17:30-18:00",
+                      @"18:00-18:30",
+                      @"18:30-19:00"];
+}
+
+-(NSArray *)myCommentModelArr
+{
+    if (!_myCommentModelArr)
+    {
+        _myCommentModelArr = [NSArray array];
+        
+    }
+    return _myCommentModelArr;
+}
+@end

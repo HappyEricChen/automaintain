@@ -1,0 +1,68 @@
+//
+//  AutomaintainAPI.m
+//  一号车库
+//
+//  Created by eric on 16/7/11.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import "AutomaintainAPI.h"
+
+#ifdef DEBUG
+static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
+#else
+
+#endif
+
+@implementation AutomaintainAPI
+#pragma mark - 获取短信验证码
++(void)SMSVerificationCodeWithPhoneNum:(NSString *)phoneNum
+                          withCallback:(Callback )callback
+{
+    NSString* urlStr =[urlPath stringByAppendingString:@"Sms/SendAndGetPhoneValidateCode"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"phoneNo"]=phoneNum;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         if ([responseObject isKindOfClass:[NSDictionary class]])
+         {
+             NSDictionary* tempDic = (NSDictionary*)responseObject;
+             NSString* verificationCode = [tempDic objectForKey:@"ReturnObject"];
+             
+             callback(YES,nil,verificationCode);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+    
+}
+#pragma mark - 注册/登入
++(void)signupWithUsername:(NSString *)username withPassword:(NSString *)password withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"Customer/CustomerRegister"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"username"]=username;
+    dic[@"password"]=password;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+    {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+        NSLog(@"success%@",responseObject);
+         
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+    {
+         NSLog(@"error%@",error);
+    }];
+
+}
+@end

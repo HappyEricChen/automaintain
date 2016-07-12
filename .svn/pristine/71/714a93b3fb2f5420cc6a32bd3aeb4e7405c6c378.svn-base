@@ -1,0 +1,24 @@
+//
+//  SignUpDataViewController.h
+//  一号车库
+//
+//  Created by eric on 16/6/24.
+//  Copyright © 2016年 eric. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "CustomNavigationView.h"
+#import "SignUpView.h"
+
+@interface SignUpDataViewController : NSObject
+
+@property (nonatomic, strong) CustomNavigationView* customNavigationView;
+
+@property (nonatomic, strong) SignUpView* signUpView;
+/**
+ *  “注册” 或者 “找回密码”
+ */
+@property (nonatomic, strong) NSString* type;
+
+-(instancetype)initWithType:(NSString*)type;
+@end

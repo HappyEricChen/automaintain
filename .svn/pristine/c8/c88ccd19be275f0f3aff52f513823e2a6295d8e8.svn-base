@@ -1,0 +1,20 @@
+PODS:
+  - SDAutoLayout (2.1.1)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+
+DEPENDENCIES:
+  - SDAutoLayout (~> 2.1.1)
+  - SDCycleScrollView (~> 1.64)
+
+SPEC CHECKSUMS:
+  SDAutoLayout: c18678b6ae28c67d89cb132e770cfbac9ee20d25
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+
+PODFILE CHECKSUM: 6e6184e24c281836eb10d3721174c25d847b4921
+
+COCOAPODS: 1.0.1
