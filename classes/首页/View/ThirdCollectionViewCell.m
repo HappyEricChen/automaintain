@@ -91,7 +91,7 @@ NSString* const thirdCellId = @"thirdCellId";
         {
             [totalArr addObject:convenienceServiceModel.ServiceName];
         }
-        
+        [self.commonCollectionView.totalArr removeAllObjects];
         [self.commonCollectionView.totalArr addObjectsFromArray:totalArr];
         
         [self.commonCollectionView.collectionView reloadData];
