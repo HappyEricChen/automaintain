@@ -10,6 +10,8 @@
 
 @interface AutomaintainAPI : NSObject
 
+//extern const NSString* urlPath;
+
 #pragma mark - 注册/登录/找回密码
 /**
  *  获取短信验证码/ post请求
@@ -52,4 +54,10 @@
  */
 +(void)postListofConvenienceServiceWithAccessCode:(NSString*)accessCode
                                      withCallback:(Callback )callback;
+
+/**
+ 首页最下面的广告图/POST 请求
+ */
++(void)postListofBottomAdsWithAccessCode:(NSString*)accessCode
+                            withCallback:(Callback )callback;
 @end

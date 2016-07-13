@@ -20,5 +20,6 @@
 #import "AutomaintainAPI.h"
 #import <SVProgressHUD.h>
 #import <MJExtension.h>
+#import <UIImageView+WebCache.h>
 
 #endif /* PrefixHeader_pch */

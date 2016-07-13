@@ -32,9 +32,9 @@ NSString* const thirdCellId = @"thirdCellId";
         self.backgroundColor = [UIColor whiteColor];
         
         UILabel* label1 = [[UILabel alloc]init];
-        label1.text = @"便民服务区";
+        label1.text = @"免费便民服务区";
         label1.textAlignment = NSTextAlignmentCenter;
-        label1.font = [UIFont boldSystemFontOfSize:12];
+        label1.font = FONT_FZZYJW(12);
         label1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label1];
         
@@ -50,7 +50,8 @@ NSString* const thirdCellId = @"thirdCellId";
         UILabel* label2 = [[UILabel alloc]init];
         label2.text = @"Convenience service";
         label2.textAlignment = NSTextAlignmentCenter;
-        label2.font = [UIFont systemFontOfSize:8];
+        label2.font = FONT_Aparajita(12);
+        
         label2.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:label2];
         
@@ -61,7 +62,7 @@ NSString* const thirdCellId = @"thirdCellId";
         
         CommonCollectionView* collectionView = [[CommonCollectionView alloc]init];
         collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-//        collectionView.totalArr = @[@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎"];
+//        [collectionView.totalArr addObjectsFromArray:@[@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎",@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎"]];
         collectionView.fontSize = 8;
         collectionView.pageName = @"home";
         collectionView.textColor = UIColorFromRGB(0x7b7b7b);
@@ -69,13 +70,12 @@ NSString* const thirdCellId = @"thirdCellId";
         self.commonCollectionView = collectionView;
         
         label1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(self,11).autoHeightRatio(0);
-        baseView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(label1,7).heightIs(7);
+        baseView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(label1,7).heightIs(ScreenHeight*0.017);
         label2.sd_layout.centerXEqualToView(baseView).centerYEqualToView(baseView).heightRatioToView(baseView,1).widthIs(ScreenWidth*0.3);
-        imageView1.sd_layout.leftSpaceToView(baseView,18).centerYEqualToView(label2).widthIs((ScreenWidth-36-label2.width-20)*0.5).heightIs(0.5);
-        imageView2.sd_layout.rightSpaceToView(baseView,18).centerYEqualToView(label2).widthIs((ScreenWidth-36-label2.width-20)*0.5).heightIs(0.5);
+        imageView1.sd_layout.leftSpaceToView(baseView,ScreenWidth*0.048).centerYEqualToView(label2).widthIs((ScreenWidth-36-label2.width-20)*0.5).heightIs(0.5);
+        imageView2.sd_layout.rightSpaceToView(baseView,ScreenWidth*0.048).centerYEqualToView(label2).widthIs((ScreenWidth-36-label2.width-20)*0.5).heightIs(0.5);
         
         collectionView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseView,ScreenHeight*0.22*0.1).bottomSpaceToView(self,0);
-        
         
     }
     return self;
@@ -86,9 +86,9 @@ NSString* const thirdCellId = @"thirdCellId";
     if ([object isKindOfClass:[NSArray class]])
     {
         NSMutableArray* totalArr = [NSMutableArray array];
+        [totalArr removeAllObjects];
         for (ConvenienceServiceModel* convenienceServiceModel in (NSArray*)object)
         {
-            NSLog(@"%@",convenienceServiceModel.ServiceName);
             [totalArr addObject:convenienceServiceModel.ServiceName];
         }
         

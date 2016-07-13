@@ -7,7 +7,11 @@
 //
 
 #import "FourCollectionViewCell.h"
+#import "BottomAdsModel.h"
 
+@interface FourCollectionViewCell()
+@property (nonatomic, weak) UIImageView* imageView;
+@end
 @implementation FourCollectionViewCell
 
 NSString* const fourCellId = @"fourCellId";
@@ -25,13 +29,26 @@ NSString* const fourCellId = @"fourCellId";
     self = [super initWithFrame:frame];
     if (self)
     {
-        UIImageView* imageView = [[UIImageView alloc]initWithImage:ImageNamed(@"home_buttomimg")];
+        UIImageView* imageView = [[UIImageView alloc]init];
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView];
+        self.imageView = imageView;
         
         imageView.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).bottomEqualToView(self);
     }
     return self;
 }
 
+-(void)layoutWithObject:(id)object
+{
+    if ([object isKindOfClass:[BottomAdsModel class]])
+    {
+        BottomAdsModel* bottomAdsModel = (BottomAdsModel*)object;
+        
+        NSString* completedImageStr = [@"http://112.64.131.222/NoOne" stringByAppendingString:bottomAdsModel.PicUrl];
+        NSURL* completedImageUrl = [NSURL URLWithString:completedImageStr];
+        [self.imageView sd_setImageWithURL:completedImageUrl];
+        
+    }
+}
 @end

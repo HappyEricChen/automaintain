@@ -58,6 +58,18 @@
                  
              }
          }];
+        
+        [self.homeDataViewController postListofBottomAdsWithAccessCode:self.accessCode withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
+             {
+                 [self.homeDataViewController.collectionView reloadData];
+             }
+             else
+             {
+                 
+             }
+         }];
     }
 }
 -(void)configureNavigationView
@@ -86,6 +98,10 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (section == 3)
+    {
+        return self.homeDataViewController.bottomAdsArr.count>0?self.homeDataViewController.bottomAdsArr.count:1;
+    }
     return 1;
 }
 
@@ -114,6 +130,7 @@
     else if (indexPath.section == 3)
     {
         FourCollectionViewCell * fourCell = [FourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:fourCellId forIndexPath:indexPath];
+        object = self.homeDataViewController.bottomAdsArr[indexPath.row];
         cell = fourCell;
     }
    

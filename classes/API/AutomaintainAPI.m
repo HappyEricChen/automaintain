@@ -10,7 +10,7 @@
 #import "LoginModel.h"
 #import "AdsCarouselModel.h"
 #import "ConvenienceServiceModel.h"
-
+#import "BottomAdsModel.h"
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #else
@@ -174,10 +174,43 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          NSLog(@"注册error%@",error);
      }];
 }
-
+#pragma mark - 首页免费便民服务
 +(void)postListofConvenienceServiceWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetConvenienceService"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [[tempDic objectForKey:@"IsSuccessed"]boolValue];
+         if (IsSuccessed)
+         {
+             NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* convenienceServiceModelArr = [ConvenienceServiceModel mj_objectArrayWithKeyValuesArray:ReturnObjectDic];
+             callback(YES,nil,convenienceServiceModelArr);
+         }
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"注册error%@",error);
+     }];
+}
+#pragma mark - 首页底部广告图片
++(void)postListofBottomAdsWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetAds"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"accessCode"]=accessCode;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
@@ -192,8 +225,8 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          if (IsSuccessed)
          {
              NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
-             NSArray* adsCarouselModelArr = [ConvenienceServiceModel mj_objectArrayWithKeyValuesArray:ReturnObjectDic];
-             callback(YES,nil,adsCarouselModelArr);
+             NSArray* bottomAdsModelArr = [BottomAdsModel mj_objectArrayWithKeyValuesArray:ReturnObjectDic];
+             callback(YES,nil,bottomAdsModelArr);
          }
          else
          {

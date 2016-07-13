@@ -8,8 +8,9 @@
 
 #import "CommonCollectionView.h"
 #import "CommonCollectionViewCell.h"
+#import "BaseCollectionViewFlowLayout.h"
 
-@interface CommonCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface CommonCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource,BaseCollectionViewFlowLayoutDelegate>
 
 @end
 @implementation CommonCollectionView
@@ -29,9 +30,10 @@
     self = [super init];
     if (self)
     {
-        UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        flowLayout.minimumLineSpacing = 5.0f;
-        flowLayout.minimumInteritemSpacing = 5.0f;
+        
+        BaseCollectionViewFlowLayout* flowLayout = [[BaseCollectionViewFlowLayout alloc]init];
+        flowLayout.delegate = self;
+        
         
         UICollectionView* collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         collectionView.delegate = self;
@@ -107,15 +109,16 @@
     {
         return CGSizeMake(90, 25);
     }
-//    CGSize size = [self calculateSizeWithLabelContent:self.titleArr[indexPath.row] WithFontName:nil WithFontSize:self.fontSize];
+    else if ([self.pageName isEqualToString:@"home"])
+    {
+        CGSize size = [self calculateSizeWithLabelContent:self.totalArr[indexPath.row] WithFontName:nil WithFontSize:self.fontSize];
+        
+        return CGSizeMake(size.width+30, size.height+15);
+    }
     
-//    return CGSizeMake(size.width+30, size.height+15);
     return CGSizeMake(110, 25);
     
 }
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-}
+
 
 @end

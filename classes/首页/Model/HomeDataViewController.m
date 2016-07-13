@@ -48,7 +48,8 @@
 -(void)postListofAdsCarouselWithAccessCode:(NSString*)accessCode
                               withCallback:(Callback )callback
 {
-    [AutomaintainAPI postListofAdsCarouselWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result) {
+    [AutomaintainAPI postListofAdsCarouselWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
+    {
         if (success)
         {
             callback(YES,nil,result);
@@ -67,16 +68,43 @@
 /**
  便民服务列表/POST 请求
  */
--(void)postListofConvenienceServiceWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+-(void)postListofConvenienceServiceWithAccessCode:(NSString *)accessCode
+                                     withCallback:(Callback)callback
 {
-    [AutomaintainAPI postListofConvenienceServiceWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result) {
+    [AutomaintainAPI postListofConvenienceServiceWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             if ([result isKindOfClass:[NSArray class]])
+             {
+                 self.convenienceServiceArr = (NSArray*)result;
+             }
+             
+             callback(YES,nil,result);
+             
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+}
+
+/**
+ 最下边的广告位/POST 请求
+ */
+-(void)postListofBottomAdsWithAccessCode:(NSString*)accessCode
+                            withCallback:(Callback )callback
+{
+    [AutomaintainAPI postListofBottomAdsWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
+    {
         if (success)
         {
             callback(YES,nil,result);
             
             if ([result isKindOfClass:[NSArray class]])
             {
-                self.convenienceServiceArr = (NSArray*)result;
+                self.bottomAdsArr = (NSArray*)result;
             }
         }
         else

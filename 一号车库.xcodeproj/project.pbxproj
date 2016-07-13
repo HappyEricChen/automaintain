@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */; };
 		070F74751D1A7F5F0041F293 /* automaintainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F74741D1A7F5F0041F293 /* automaintainTests.m */; };
 		070F74801D1A7F5F0041F293 /* automaintainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F747F1D1A7F5F0041F293 /* automaintainUITests.m */; };
 		072F80481D348F66002CECC4 /* AutomaintainAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F731D348F66002CECC4 /* AutomaintainAPI.m */; };
@@ -99,6 +100,7 @@
 		074945D41D35E87200A46AE6 /* AdsCarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D31D35E87200A46AE6 /* AdsCarouselModel.m */; };
 		074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */; };
 		074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */; };
+		074945DD1D36271300A46AE6 /* BottomAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945DC1D36271300A46AE6 /* BottomAdsModel.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
 /* End PBXBuildFile section */
@@ -121,6 +123,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070A8CD21D36409300D81463 /* BaseCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		070F74571D1A7F5F0041F293 /* 一号车库.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "一号车库.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070F74701D1A7F5F0041F293 /* 一号车库.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "一号车库.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070F74741D1A7F5F0041F293 /* automaintainTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = automaintainTests.m; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 		074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewController.m; sourceTree = "<group>"; };
 		074945D81D36148B00A46AE6 /* ConvenienceServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvenienceServiceModel.h; sourceTree = "<group>"; };
 		074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvenienceServiceModel.m; sourceTree = "<group>"; };
+		074945DB1D36271300A46AE6 /* BottomAdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomAdsModel.h; sourceTree = "<group>"; };
+		074945DC1D36271300A46AE6 /* BottomAdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomAdsModel.m; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
 		830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-一号车库.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -875,6 +881,8 @@
 				072F80B01D3491EA002CECC4 /* CustomNavigationView.m */,
 				072F80B11D3491EA002CECC4 /* ImageAmplificationViewController.h */,
 				072F80B21D3491EA002CECC4 /* ImageAmplificationViewController.m */,
+				070A8CD21D36409300D81463 /* BaseCollectionViewFlowLayout.h */,
+				070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -965,6 +973,8 @@
 				074945D31D35E87200A46AE6 /* AdsCarouselModel.m */,
 				074945D81D36148B00A46AE6 /* ConvenienceServiceModel.h */,
 				074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */,
+				074945DB1D36271300A46AE6 /* BottomAdsModel.h */,
+				074945DC1D36271300A46AE6 /* BottomAdsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1217,6 +1227,7 @@
 				074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */,
 				072F808B1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m in Sources */,
 				072F810A1D3499FF002CECC4 /* LoginView.m in Sources */,
+				070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */,
 				072F80601D348F66002CECC4 /* FeedbackSecondCollectionViewCell.m in Sources */,
 				072F80851D348F66002CECC4 /* SecondTimeCollectionViewCell.m in Sources */,
 				072F80521D348F66002CECC4 /* PersonalModel.m in Sources */,
@@ -1251,6 +1262,7 @@
 				072F80561D348F66002CECC4 /* PersonalSecondCollectionViewCell.m in Sources */,
 				072F80651D348F66002CECC4 /* MyCommentFirstCollectionViewCell.m in Sources */,
 				072F80821D348F66002CECC4 /* TimeSelectedViewController.m in Sources */,
+				074945DD1D36271300A46AE6 /* BottomAdsModel.m in Sources */,
 				072F80931D348F66002CECC4 /* MaintenanceViewController.m in Sources */,
 				072F80661D348F66002CECC4 /* MyCommentSecondCollectionViewCell.m in Sources */,
 				072F80B71D3491EA002CECC4 /* CommonCollectionViewCell.m in Sources */,
