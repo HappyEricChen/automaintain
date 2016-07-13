@@ -17,6 +17,7 @@
 #import "MaintenanceViewController.h"
 #import "MyOrderViewController.h"
 
+
 @interface HomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SecondCollectionViewCellDelegate>
 @property (nonatomic, strong) HomeDataViewController* homeDataViewController;
 @end
@@ -30,6 +31,35 @@
     [self configureCollectionView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (self.accessCode)
+    {
+        [self.homeDataViewController postListofAdsCarouselWithAccessCode:self.accessCode withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
+             {
+                 [self.homeDataViewController.collectionView reloadData];
+             }
+             else
+             {
+                 
+             }
+        }];
+        
+        [self.homeDataViewController postListofConvenienceServiceWithAccessCode:self.accessCode withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
+             {
+                 [self.homeDataViewController.collectionView reloadData];
+             }
+             else
+             {
+                 
+             }
+         }];
+    }
+}
 -(void)configureNavigationView
 {
     [self.view addSubview:self.homeDataViewController.customNavigationView];
@@ -61,11 +91,12 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
-    
+    BaseCollectionViewCell * cell = nil;
+    id object = nil;
     if (indexPath.section == 0)
     {
          FirstCollectionViewCell * firstCell = [FirstCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:firstCellId forIndexPath:indexPath];
+        object = self.homeDataViewController.adsCarouselArr;
         cell = firstCell;
     }
     else if (indexPath.section == 1)
@@ -77,6 +108,7 @@
     else if (indexPath.section == 2)
     {
         ThirdCollectionViewCell * thirdCell = [ThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:thirdCellId forIndexPath:indexPath];
+        object = self.homeDataViewController.convenienceServiceArr;
         cell = thirdCell;
     }
     else if (indexPath.section == 3)
@@ -85,6 +117,7 @@
         cell = fourCell;
     }
    
+    [cell layoutWithObject:object];
     return cell;
 }
 

@@ -19,5 +19,6 @@
 #import <AFNetworking.h>
 #import "AutomaintainAPI.h"
 #import <SVProgressHUD.h>
+#import <MJExtension.h>
 
 #endif /* PrefixHeader_pch */

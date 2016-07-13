@@ -10,6 +10,7 @@
 
 @interface AutomaintainAPI : NSObject
 
+#pragma mark - 注册/登录/找回密码
 /**
  *  获取短信验证码/ post请求
  */
@@ -37,4 +38,18 @@
 +(void)loginWithUsername:(NSString*)username
          withpassword:(NSString*)password
             withCallback:(Callback )callback;
+
+#pragma mark - 首页
+
+/**
+ 首页轮播广告图/POST 请求
+ */
++(void)postListofAdsCarouselWithAccessCode:(NSString*)accessCode
+                              withCallback:(Callback )callback;
+
+/**
+ 便民服务列表/POST 请求
+ */
++(void)postListofConvenienceServiceWithAccessCode:(NSString*)accessCode
+                                     withCallback:(Callback )callback;
 @end

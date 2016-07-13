@@ -7,9 +7,12 @@
 //
 
 #import "AutomaintainAPI.h"
+#import "LoginModel.h"
+#import "AdsCarouselModel.h"
+#import "ConvenienceServiceModel.h"
 
 #ifdef DEBUG
-static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
+static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #else
 
 #endif
@@ -19,7 +22,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
 +(void)SMSVerificationCodeWithPhoneNum:(NSString *)phoneNum
                           withCallback:(Callback )callback
 {
-    NSString* urlStr =[urlPath stringByAppendingString:@"Sms/SendAndGetPhoneValidateCode"];
+    NSString* urlStr =[urlPath stringByAppendingString:@"/api/Sms/SendAndGetPhoneValidateCode"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"phoneNo"]=phoneNum;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
@@ -55,7 +58,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
 #pragma mark - 用户注册
 +(void)signupWithUsername:(NSString *)username withPassword:(NSString *)password withCallback:(Callback)callback
 {
-    NSString* urlStr = [urlPath stringByAppendingString:@"Customer/CustomerRegister"];
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerRegister"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"username"]=username;
     dic[@"password"]=password;
@@ -80,7 +83,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
 #pragma mark - 找回密码
 +(void)changePasswordWithUsername:(NSString *)username withNewPassword:(NSString *)newPassword withCallback:(Callback)callback
 {
-    NSString* urlStr = [urlPath stringByAppendingString:@"Customer/SetCustomerPassword"];
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/SetCustomerPassword"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"username"]=username;
     dic[@"password"]=newPassword;
@@ -106,7 +109,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
 #pragma mark - 用户登录
 +(void)loginWithUsername:(NSString *)username withpassword:(NSString *)password withCallback:(Callback)callback
 {
-    NSString* urlStr = [urlPath stringByAppendingString:@"Customer/CustomerLogin"];
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerLogin"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"username"]=username;
     dic[@"password"]=password;
@@ -121,7 +124,9 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
          BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
          if (IsSuccessed)
          {
-             callback(YES,nil,responseObject);
+             NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             LoginModel* loginModel = [LoginModel mj_objectWithKeyValues:ReturnObjectDic];
+             callback(YES,nil,loginModel);
          }
          else
          {
@@ -135,5 +140,71 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne/api/";
          NSLog(@"注册error%@",error);
      }];
     
+}
+#pragma mark - 首页轮播图请求
++(void)postListofAdsCarouselWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetCarousel"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+            NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* adsCarouselModelArr = [AdsCarouselModel mj_objectArrayWithKeyValuesArray:ReturnObjectDic];
+             callback(YES,nil,adsCarouselModelArr);
+         }
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"注册error%@",error);
+     }];
+}
+
++(void)postListofConvenienceServiceWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetConvenienceService"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* adsCarouselModelArr = [ConvenienceServiceModel mj_objectArrayWithKeyValuesArray:ReturnObjectDic];
+             callback(YES,nil,adsCarouselModelArr);
+         }
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"注册error%@",error);
+     }];
 }
 @end

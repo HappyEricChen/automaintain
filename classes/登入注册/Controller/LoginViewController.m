@@ -11,6 +11,7 @@
 #import "LoginView.h"
 #import "SignUpViewController.h"
 #import "HomeViewController.h"
+#import "LoginModel.h"
 
 @interface LoginViewController ()<LoginViewDelegate,UITextFieldDelegate>
 
@@ -108,7 +109,11 @@
          if (success)
          {
              //登录成功
+             LoginModel* loginModel = (LoginModel*)result;
+             
              HomeViewController * homeViewController = [[HomeViewController alloc]init];
+             
+             homeViewController.accessCode = loginModel.AccessCode;
              [self.navigationController pushViewController:homeViewController animated:YES];
              
          }

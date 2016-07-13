@@ -18,7 +18,6 @@
 		072F80501D348F66002CECC4 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F861D348F66002CECC4 /* PersonalViewController.m */; };
 		072F80511D348F66002CECC4 /* PersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F891D348F66002CECC4 /* PersonalDataViewController.m */; };
 		072F80521D348F66002CECC4 /* PersonalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F8B1D348F66002CECC4 /* PersonalModel.m */; };
-		072F80531D348F66002CECC4 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F8E1D348F66002CECC4 /* CustomAlertViewController.m */; };
 		072F80541D348F66002CECC4 /* PersonalFirstCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F901D348F66002CECC4 /* PersonalFirstCollectionViewCell.m */; };
 		072F80551D348F66002CECC4 /* PersonalFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F921D348F66002CECC4 /* PersonalFourCollectionViewCell.m */; };
 		072F80561D348F66002CECC4 /* PersonalSecondCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F941D348F66002CECC4 /* PersonalSecondCollectionViewCell.m */; };
@@ -72,13 +71,6 @@
 		072F80931D348F66002CECC4 /* MaintenanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80321D348F66002CECC4 /* MaintenanceViewController.m */; };
 		072F80941D348F66002CECC4 /* MaintenanceDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80351D348F66002CECC4 /* MaintenanceDataViewController.m */; };
 		072F80951D348F66002CECC4 /* MaintenanceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80381D348F66002CECC4 /* MaintenanceHeaderView.m */; };
-		072F80961D348F66002CECC4 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F803B1D348F66002CECC4 /* CustomButton.m */; };
-		072F80971D348F66002CECC4 /* FirstCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F803D1D348F66002CECC4 /* FirstCollectionViewCell.m */; };
-		072F80981D348F66002CECC4 /* FourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F803F1D348F66002CECC4 /* FourCollectionViewCell.m */; };
-		072F80991D348F66002CECC4 /* HomeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80411D348F66002CECC4 /* HomeDataViewController.m */; };
-		072F809A1D348F66002CECC4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80431D348F66002CECC4 /* HomeViewController.m */; };
-		072F809B1D348F66002CECC4 /* SecondCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80451D348F66002CECC4 /* SecondCollectionViewCell.m */; };
-		072F809C1D348F66002CECC4 /* ThirdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80471D348F66002CECC4 /* ThirdCollectionViewCell.m */; };
 		072F80A31D3490A5002CECC4 /* NSObject+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80A11D3490A5002CECC4 /* NSObject+Helper.m */; };
 		072F80B31D3491EA002CECC4 /* BaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80A61D3491EA002CECC4 /* BaseCollectionViewCell.m */; };
 		072F80B41D3491EA002CECC4 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80A81D3491EA002CECC4 /* BaseTableViewCell.m */; };
@@ -96,6 +88,17 @@
 		072F81091D3499FF002CECC4 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81001D3499FF002CECC4 /* LoginTextField.m */; };
 		072F810A1D3499FF002CECC4 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81021D3499FF002CECC4 /* LoginView.m */; };
 		072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81041D3499FF002CECC4 /* SignUpView.m */; };
+		074945C81D35D6EA00A46AE6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945B91D35D6EA00A46AE6 /* HomeViewController.m */; };
+		074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945BC1D35D6EA00A46AE6 /* HomeDataViewController.m */; };
+		074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945BF1D35D6EA00A46AE6 /* CustomButton.m */; };
+		074945CB1D35D6EA00A46AE6 /* FirstCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945C11D35D6EA00A46AE6 /* FirstCollectionViewCell.m */; };
+		074945CC1D35D6EA00A46AE6 /* FourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945C31D35D6EA00A46AE6 /* FourCollectionViewCell.m */; };
+		074945CD1D35D6EA00A46AE6 /* SecondCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945C51D35D6EA00A46AE6 /* SecondCollectionViewCell.m */; };
+		074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945C71D35D6EA00A46AE6 /* ThirdCollectionViewCell.m */; };
+		074945D11D35E1E400A46AE6 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D01D35E1E400A46AE6 /* LoginModel.m */; };
+		074945D41D35E87200A46AE6 /* AdsCarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D31D35E87200A46AE6 /* AdsCarouselModel.m */; };
+		074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */; };
+		074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
 /* End PBXBuildFile section */
@@ -138,8 +141,6 @@
 		072F7F891D348F66002CECC4 /* PersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalDataViewController.m; sourceTree = "<group>"; };
 		072F7F8A1D348F66002CECC4 /* PersonalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalModel.h; sourceTree = "<group>"; };
 		072F7F8B1D348F66002CECC4 /* PersonalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalModel.m; sourceTree = "<group>"; };
-		072F7F8D1D348F66002CECC4 /* CustomAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertViewController.h; sourceTree = "<group>"; };
-		072F7F8E1D348F66002CECC4 /* CustomAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewController.m; sourceTree = "<group>"; };
 		072F7F8F1D348F66002CECC4 /* PersonalFirstCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalFirstCollectionViewCell.h; sourceTree = "<group>"; };
 		072F7F901D348F66002CECC4 /* PersonalFirstCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalFirstCollectionViewCell.m; sourceTree = "<group>"; };
 		072F7F911D348F66002CECC4 /* PersonalFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalFourCollectionViewCell.h; sourceTree = "<group>"; };
@@ -247,20 +248,6 @@
 		072F80351D348F66002CECC4 /* MaintenanceDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDataViewController.m; sourceTree = "<group>"; };
 		072F80371D348F66002CECC4 /* MaintenanceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceHeaderView.h; sourceTree = "<group>"; };
 		072F80381D348F66002CECC4 /* MaintenanceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceHeaderView.m; sourceTree = "<group>"; };
-		072F803A1D348F66002CECC4 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
-		072F803B1D348F66002CECC4 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
-		072F803C1D348F66002CECC4 /* FirstCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCollectionViewCell.h; sourceTree = "<group>"; };
-		072F803D1D348F66002CECC4 /* FirstCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstCollectionViewCell.m; sourceTree = "<group>"; };
-		072F803E1D348F66002CECC4 /* FourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourCollectionViewCell.h; sourceTree = "<group>"; };
-		072F803F1D348F66002CECC4 /* FourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourCollectionViewCell.m; sourceTree = "<group>"; };
-		072F80401D348F66002CECC4 /* HomeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataViewController.h; sourceTree = "<group>"; };
-		072F80411D348F66002CECC4 /* HomeDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDataViewController.m; sourceTree = "<group>"; };
-		072F80421D348F66002CECC4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		072F80431D348F66002CECC4 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		072F80441D348F66002CECC4 /* SecondCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondCollectionViewCell.h; sourceTree = "<group>"; };
-		072F80451D348F66002CECC4 /* SecondCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondCollectionViewCell.m; sourceTree = "<group>"; };
-		072F80461D348F66002CECC4 /* ThirdCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdCollectionViewCell.h; sourceTree = "<group>"; };
-		072F80471D348F66002CECC4 /* ThirdCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdCollectionViewCell.m; sourceTree = "<group>"; };
 		072F809E1D3490A5002CECC4 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 		072F809F1D3490A5002CECC4 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		072F80A01D3490A5002CECC4 /* NSObject+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Helper.h"; sourceTree = "<group>"; };
@@ -298,6 +285,28 @@
 		072F81021D3499FF002CECC4 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		072F81031D3499FF002CECC4 /* SignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpView.h; sourceTree = "<group>"; };
 		072F81041D3499FF002CECC4 /* SignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpView.m; sourceTree = "<group>"; };
+		074945B81D35D6EA00A46AE6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		074945B91D35D6EA00A46AE6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		074945BB1D35D6EA00A46AE6 /* HomeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataViewController.h; sourceTree = "<group>"; };
+		074945BC1D35D6EA00A46AE6 /* HomeDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDataViewController.m; sourceTree = "<group>"; };
+		074945BE1D35D6EA00A46AE6 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		074945BF1D35D6EA00A46AE6 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
+		074945C01D35D6EA00A46AE6 /* FirstCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCollectionViewCell.h; sourceTree = "<group>"; };
+		074945C11D35D6EA00A46AE6 /* FirstCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstCollectionViewCell.m; sourceTree = "<group>"; };
+		074945C21D35D6EA00A46AE6 /* FourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourCollectionViewCell.h; sourceTree = "<group>"; };
+		074945C31D35D6EA00A46AE6 /* FourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourCollectionViewCell.m; sourceTree = "<group>"; };
+		074945C41D35D6EA00A46AE6 /* SecondCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondCollectionViewCell.h; sourceTree = "<group>"; };
+		074945C51D35D6EA00A46AE6 /* SecondCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondCollectionViewCell.m; sourceTree = "<group>"; };
+		074945C61D35D6EA00A46AE6 /* ThirdCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdCollectionViewCell.h; sourceTree = "<group>"; };
+		074945C71D35D6EA00A46AE6 /* ThirdCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdCollectionViewCell.m; sourceTree = "<group>"; };
+		074945CF1D35E1E400A46AE6 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		074945D01D35E1E400A46AE6 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		074945D21D35E87200A46AE6 /* AdsCarouselModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsCarouselModel.h; sourceTree = "<group>"; };
+		074945D31D35E87200A46AE6 /* AdsCarouselModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsCarouselModel.m; sourceTree = "<group>"; };
+		074945D51D35EACD00A46AE6 /* CustomAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertViewController.h; sourceTree = "<group>"; };
+		074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewController.m; sourceTree = "<group>"; };
+		074945D81D36148B00A46AE6 /* ConvenienceServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvenienceServiceModel.h; sourceTree = "<group>"; };
+		074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvenienceServiceModel.m; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
 		830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-一号车库.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,8 +398,8 @@
 				072F80231D348F66002CECC4 /* 预约类型 */,
 				072F802F1D348F66002CECC4 /* 预约维修2 */,
 				072F80F31D3499FF002CECC4 /* 登入注册 */,
-				072F80391D348F66002CECC4 /* 首页 */,
 				072F80A41D3491EA002CECC4 /* Base */,
+				074945B61D35D6EA00A46AE6 /* 首页 */,
 				072F809D1D3490A5002CECC4 /* Helper */,
 				072F80BA1D349495002CECC4 /* main */,
 				072F7F7F1D348F66002CECC4 /* Supporting Files */,
@@ -440,6 +449,8 @@
 		072F7F841D348F66002CECC4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				074945D51D35EACD00A46AE6 /* CustomAlertViewController.h */,
+				074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */,
 				072F7F851D348F66002CECC4 /* PersonalViewController.h */,
 				072F7F861D348F66002CECC4 /* PersonalViewController.m */,
 			);
@@ -460,8 +471,6 @@
 		072F7F8C1D348F66002CECC4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				072F7F8D1D348F66002CECC4 /* CustomAlertViewController.h */,
-				072F7F8E1D348F66002CECC4 /* CustomAlertViewController.m */,
 				072F7F8F1D348F66002CECC4 /* PersonalFirstCollectionViewCell.h */,
 				072F7F901D348F66002CECC4 /* PersonalFirstCollectionViewCell.m */,
 				072F7F911D348F66002CECC4 /* PersonalFourCollectionViewCell.h */,
@@ -837,27 +846,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		072F80391D348F66002CECC4 /* 首页 */ = {
-			isa = PBXGroup;
-			children = (
-				072F803A1D348F66002CECC4 /* CustomButton.h */,
-				072F803B1D348F66002CECC4 /* CustomButton.m */,
-				072F803C1D348F66002CECC4 /* FirstCollectionViewCell.h */,
-				072F803D1D348F66002CECC4 /* FirstCollectionViewCell.m */,
-				072F803E1D348F66002CECC4 /* FourCollectionViewCell.h */,
-				072F803F1D348F66002CECC4 /* FourCollectionViewCell.m */,
-				072F80401D348F66002CECC4 /* HomeDataViewController.h */,
-				072F80411D348F66002CECC4 /* HomeDataViewController.m */,
-				072F80421D348F66002CECC4 /* HomeViewController.h */,
-				072F80431D348F66002CECC4 /* HomeViewController.m */,
-				072F80441D348F66002CECC4 /* SecondCollectionViewCell.h */,
-				072F80451D348F66002CECC4 /* SecondCollectionViewCell.m */,
-				072F80461D348F66002CECC4 /* ThirdCollectionViewCell.h */,
-				072F80471D348F66002CECC4 /* ThirdCollectionViewCell.m */,
-			);
-			path = "首页";
-			sourceTree = "<group>";
-		};
 		072F809D1D3490A5002CECC4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +918,8 @@
 				072F80FB1D3499FF002CECC4 /* LoginDataViewController.m */,
 				072F80FC1D3499FF002CECC4 /* SignUpDataViewController.h */,
 				072F80FD1D3499FF002CECC4 /* SignUpDataViewController.m */,
+				074945CF1D35E1E400A46AE6 /* LoginModel.h */,
+				074945D01D35E1E400A46AE6 /* LoginModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -943,6 +933,55 @@
 				072F81021D3499FF002CECC4 /* LoginView.m */,
 				072F81031D3499FF002CECC4 /* SignUpView.h */,
 				072F81041D3499FF002CECC4 /* SignUpView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		074945B61D35D6EA00A46AE6 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				074945B71D35D6EA00A46AE6 /* Controller */,
+				074945BA1D35D6EA00A46AE6 /* Model */,
+				074945BD1D35D6EA00A46AE6 /* View */,
+			);
+			path = "首页";
+			sourceTree = "<group>";
+		};
+		074945B71D35D6EA00A46AE6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				074945B81D35D6EA00A46AE6 /* HomeViewController.h */,
+				074945B91D35D6EA00A46AE6 /* HomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		074945BA1D35D6EA00A46AE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				074945BB1D35D6EA00A46AE6 /* HomeDataViewController.h */,
+				074945BC1D35D6EA00A46AE6 /* HomeDataViewController.m */,
+				074945D21D35E87200A46AE6 /* AdsCarouselModel.h */,
+				074945D31D35E87200A46AE6 /* AdsCarouselModel.m */,
+				074945D81D36148B00A46AE6 /* ConvenienceServiceModel.h */,
+				074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		074945BD1D35D6EA00A46AE6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				074945BE1D35D6EA00A46AE6 /* CustomButton.h */,
+				074945BF1D35D6EA00A46AE6 /* CustomButton.m */,
+				074945C01D35D6EA00A46AE6 /* FirstCollectionViewCell.h */,
+				074945C11D35D6EA00A46AE6 /* FirstCollectionViewCell.m */,
+				074945C21D35D6EA00A46AE6 /* FourCollectionViewCell.h */,
+				074945C31D35D6EA00A46AE6 /* FourCollectionViewCell.m */,
+				074945C41D35D6EA00A46AE6 /* SecondCollectionViewCell.h */,
+				074945C51D35D6EA00A46AE6 /* SecondCollectionViewCell.m */,
+				074945C61D35D6EA00A46AE6 /* ThirdCollectionViewCell.h */,
+				074945C71D35D6EA00A46AE6 /* ThirdCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1147,24 +1186,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074945CC1D35D6EA00A46AE6 /* FourCollectionViewCell.m in Sources */,
 				072F80941D348F66002CECC4 /* MaintenanceDataViewController.m in Sources */,
 				072F80901D348F66002CECC4 /* TypeSelectedDataViewController.m in Sources */,
 				072F805F1D348F66002CECC4 /* FeedbackFirstCollectionViewCell.m in Sources */,
+				074945D11D35E1E400A46AE6 /* LoginModel.m in Sources */,
 				072F80611D348F66002CECC4 /* FeedbackThirdCollectionViewCell.m in Sources */,
 				072F807B1D348F66002CECC4 /* ModifyPasswordViewController.m in Sources */,
+				074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */,
 				072F80631D348F66002CECC4 /* MyCommentDataViewController.m in Sources */,
 				072F80641D348F66002CECC4 /* MyCommentModel.m in Sources */,
 				072F80891D348F66002CECC4 /* OrderCarViewController.m in Sources */,
 				072F80B31D3491EA002CECC4 /* BaseCollectionViewCell.m in Sources */,
 				072F80811D348F66002CECC4 /* SettingSecondCollectionViewCell.m in Sources */,
-				072F80991D348F66002CECC4 /* HomeDataViewController.m in Sources */,
 				072F808F1D348F66002CECC4 /* TypeSelectedViewController.m in Sources */,
-				072F809A1D348F66002CECC4 /* HomeViewController.m in Sources */,
-				072F80531D348F66002CECC4 /* CustomAlertViewController.m in Sources */,
 				072F80691D348F66002CECC4 /* MyOrderDataViewController.m in Sources */,
 				072F807C1D348F66002CECC4 /* SettingViewController.m in Sources */,
+				074945CB1D35D6EA00A46AE6 /* FirstCollectionViewCell.m in Sources */,
 				072F80911D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m in Sources */,
 				072F80541D348F66002CECC4 /* PersonalFirstCollectionViewCell.m in Sources */,
+				074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */,
+				074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */,
 				072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */,
 				072F807D1D348F66002CECC4 /* ModifyPasswordDataViewController.m in Sources */,
 				072F80B81D3491EA002CECC4 /* CustomNavigationView.m in Sources */,
@@ -1172,21 +1214,18 @@
 				072F808E1D348F66002CECC4 /* WashCarThirdCollectionViewCell.m in Sources */,
 				072F80791D348F66002CECC4 /* NSDate+Extend.m in Sources */,
 				072F81091D3499FF002CECC4 /* LoginTextField.m in Sources */,
+				074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */,
 				072F808B1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m in Sources */,
 				072F810A1D3499FF002CECC4 /* LoginView.m in Sources */,
 				072F80601D348F66002CECC4 /* FeedbackSecondCollectionViewCell.m in Sources */,
 				072F80851D348F66002CECC4 /* SecondTimeCollectionViewCell.m in Sources */,
 				072F80521D348F66002CECC4 /* PersonalModel.m in Sources */,
 				072F805C1D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m in Sources */,
-				072F809C1D348F66002CECC4 /* ThirdCollectionViewCell.m in Sources */,
 				072F80781D348F66002CECC4 /* LDCalendarView.m in Sources */,
 				072F807A1D348F66002CECC4 /* UIColor+Extend.m in Sources */,
 				072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */,
-				072F80981D348F66002CECC4 /* FourCollectionViewCell.m in Sources */,
 				072F80671D348F66002CECC4 /* MyCommentThirdCollectionViewCell.m in Sources */,
 				072F80841D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m in Sources */,
-				072F80961D348F66002CECC4 /* CustomButton.m in Sources */,
-				072F809B1D348F66002CECC4 /* SecondCollectionViewCell.m in Sources */,
 				072F80BF1D349495002CECC4 /* AppDelegate.m in Sources */,
 				072F80871D348F66002CECC4 /* CommentHeaderView.m in Sources */,
 				072F80681D348F66002CECC4 /* MyOrderViewController.m in Sources */,
@@ -1199,6 +1238,7 @@
 				072F81071D3499FF002CECC4 /* LoginDataViewController.m in Sources */,
 				072F807F1D348F66002CECC4 /* ModifyPasswordView.m in Sources */,
 				072F80551D348F66002CECC4 /* PersonalFourCollectionViewCell.m in Sources */,
+				074945CD1D35D6EA00A46AE6 /* SecondCollectionViewCell.m in Sources */,
 				072F80951D348F66002CECC4 /* MaintenanceHeaderView.m in Sources */,
 				072F80861D348F66002CECC4 /* TimeSelectedHeaderView.m in Sources */,
 				072F81061D3499FF002CECC4 /* SignUpViewController.m in Sources */,
@@ -1209,7 +1249,6 @@
 				072F81051D3499FF002CECC4 /* LoginViewController.m in Sources */,
 				072F808C1D348F66002CECC4 /* WashCarFourCollectionViewCell.m in Sources */,
 				072F80561D348F66002CECC4 /* PersonalSecondCollectionViewCell.m in Sources */,
-				072F80971D348F66002CECC4 /* FirstCollectionViewCell.m in Sources */,
 				072F80651D348F66002CECC4 /* MyCommentFirstCollectionViewCell.m in Sources */,
 				072F80821D348F66002CECC4 /* TimeSelectedViewController.m in Sources */,
 				072F80931D348F66002CECC4 /* MaintenanceViewController.m in Sources */,
@@ -1225,12 +1264,15 @@
 				072F80511D348F66002CECC4 /* PersonalDataViewController.m in Sources */,
 				072F80621D348F66002CECC4 /* MyCommentViewController.m in Sources */,
 				072F80B91D3491EA002CECC4 /* ImageAmplificationViewController.m in Sources */,
+				074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */,
 				072F808D1D348F66002CECC4 /* WashCarSecondCollectionViewCell.m in Sources */,
 				072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */,
 				072F80B41D3491EA002CECC4 /* BaseTableViewCell.m in Sources */,
 				072F80591D348F66002CECC4 /* OnlineMessageDataViewController.m in Sources */,
 				072F808A1D348F66002CECC4 /* WashCarFirstCollectionViewCell.m in Sources */,
 				072F805D1D348F66002CECC4 /* FeedbackViewController.m in Sources */,
+				074945D41D35E87200A46AE6 /* AdsCarouselModel.m in Sources */,
+				074945C81D35D6EA00A46AE6 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

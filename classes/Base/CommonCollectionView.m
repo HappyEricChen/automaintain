@@ -14,6 +14,16 @@
 @end
 @implementation CommonCollectionView
 
+-(NSMutableArray *)totalArr
+{
+    if (!_totalArr)
+    {
+        _totalArr = [NSMutableArray array];
+    }
+    return _totalArr;
+}
+
+
 - (instancetype)init
 {
     self = [super init];
@@ -31,11 +41,36 @@
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:collectionView];
+        self.collectionView = collectionView;
         
         collectionView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+        
+//        [self addObserver:self forKeyPath:@"totalArr" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
+
+
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+//{
+//    if (object == self && [keyPath isEqualToString:@"totalArr"])
+//    {
+//        [self.collectionView reloadData];
+//    }
+//    else
+//    {
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//    }
+//    
+//}
+
+//-(void)dealloc
+//{
+//    if (self ! = nil)
+//    {
+//        [self removeObserver:self forKeyPath:<#(nonnull NSString *)#>];
+//    }
+//}
 
 #pragma mark - UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

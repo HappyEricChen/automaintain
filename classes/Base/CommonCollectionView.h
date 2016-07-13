@@ -13,7 +13,7 @@
 /**
  *  label上文字的内容，在数组中遍历
  */
-@property (nonatomic, strong) NSArray* totalArr;
+@property (nonatomic, strong) NSMutableArray* totalArr;
 
 /**
  *  label上文字的字体大小
@@ -34,5 +34,8 @@
  *  框框的颜色
  */
 @property (nonatomic, strong) UIColor* backgroundColor;
+
+
+@property (nonatomic, weak) UICollectionView* collectionView;
 
 @end

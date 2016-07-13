@@ -10,4 +10,8 @@
 
 @interface HomeViewController : BaseViewController
 
+/**
+ *  token/用户登录后获取，会过期
+ */
+@property (nonatomic, strong) NSString* accessCode;
 @end

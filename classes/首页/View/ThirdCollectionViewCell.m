@@ -8,7 +8,11 @@
 
 #import "ThirdCollectionViewCell.h"
 #import "CommonCollectionView.h"
+#import "ConvenienceServiceModel.h"
 
+@interface ThirdCollectionViewCell()
+@property (nonatomic, weak) CommonCollectionView* commonCollectionView;
+@end
 @implementation ThirdCollectionViewCell
 
 NSString* const thirdCellId = @"thirdCellId";
@@ -57,11 +61,12 @@ NSString* const thirdCellId = @"thirdCellId";
         
         CommonCollectionView* collectionView = [[CommonCollectionView alloc]init];
         collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-        collectionView.totalArr = @[@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎"];
+//        collectionView.totalArr = @[@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎"];
         collectionView.fontSize = 8;
         collectionView.pageName = @"home";
         collectionView.textColor = UIColorFromRGB(0x7b7b7b);
         [self addSubview:collectionView];
+        self.commonCollectionView = collectionView;
         
         label1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(self,11).autoHeightRatio(0);
         baseView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(label1,7).heightIs(7);
@@ -74,5 +79,22 @@ NSString* const thirdCellId = @"thirdCellId";
         
     }
     return self;
+}
+
+-(void)layoutWithObject:(id)object
+{
+    if ([object isKindOfClass:[NSArray class]])
+    {
+        NSMutableArray* totalArr = [NSMutableArray array];
+        for (ConvenienceServiceModel* convenienceServiceModel in (NSArray*)object)
+        {
+            NSLog(@"%@",convenienceServiceModel.ServiceName);
+            [totalArr addObject:convenienceServiceModel.ServiceName];
+        }
+        
+        [self.commonCollectionView.totalArr addObjectsFromArray:totalArr];
+        
+        [self.commonCollectionView.collectionView reloadData];
+    }
 }
 @end

@@ -11,6 +11,7 @@
 #import "SecondCollectionViewCell.h"
 #import "ThirdCollectionViewCell.h"
 #import "FourCollectionViewCell.h"
+#import "AdsCarouselModel.h"
 
 @implementation HomeDataViewController
 
@@ -41,5 +42,47 @@
     return _collectionView;
 }
 
-
+/**
+ 首页轮播广告图/POST 请求
+ */
+-(void)postListofAdsCarouselWithAccessCode:(NSString*)accessCode
+                              withCallback:(Callback )callback
+{
+    [AutomaintainAPI postListofAdsCarouselWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result) {
+        if (success)
+        {
+            callback(YES,nil,result);
+            
+            if ([result isKindOfClass:[NSArray class]])
+            {
+                self.adsCarouselArr = (NSArray*)result;
+            }
+        }
+        else
+        {
+            callback(NO,nil,result);
+        }
+    }];
+}
+/**
+ 便民服务列表/POST 请求
+ */
+-(void)postListofConvenienceServiceWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    [AutomaintainAPI postListofConvenienceServiceWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result) {
+        if (success)
+        {
+            callback(YES,nil,result);
+            
+            if ([result isKindOfClass:[NSArray class]])
+            {
+                self.convenienceServiceArr = (NSArray*)result;
+            }
+        }
+        else
+        {
+            callback(NO,nil,result);
+        }
+    }];
+}
 @end
