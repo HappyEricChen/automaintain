@@ -7,7 +7,6 @@
 //
 
 #import "SecondTimeCollectionViewCell.h"
-#import "CommonCollectionView.h"
 
 @interface SecondTimeCollectionViewCell()
 

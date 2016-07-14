@@ -60,4 +60,18 @@
  */
 +(void)postListofBottomAdsWithAccessCode:(NSString*)accessCode
                             withCallback:(Callback )callback;
+
+#pragma mark - 预约洗车
+/**
+ *   预约洗车/获取车位指定日期的预订表/POST 请求
+ *
+ *  @param accessCode   唯一标示
+ *  @param currentDate 当前日期
+ *  @param subjectGuid 预约类型/洗车或者维修
+ *  @param callback    回调
+ */
++(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
+                                withCurrentDate:(NSString*)currentDate
+                                withSubjectGuid:(NSString*)subjectGuid
+                                   withCallback:(Callback )callback;
 @end

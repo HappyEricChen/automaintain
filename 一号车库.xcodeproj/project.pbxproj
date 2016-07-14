@@ -57,14 +57,6 @@
 		072F80841D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F800D1D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m */; };
 		072F80851D348F66002CECC4 /* SecondTimeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F800F1D348F66002CECC4 /* SecondTimeCollectionViewCell.m */; };
 		072F80861D348F66002CECC4 /* TimeSelectedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80111D348F66002CECC4 /* TimeSelectedHeaderView.m */; };
-		072F80871D348F66002CECC4 /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80141D348F66002CECC4 /* CommentHeaderView.m */; };
-		072F80881D348F66002CECC4 /* OrderCarDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80161D348F66002CECC4 /* OrderCarDataViewController.m */; };
-		072F80891D348F66002CECC4 /* OrderCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80181D348F66002CECC4 /* OrderCarViewController.m */; };
-		072F808A1D348F66002CECC4 /* WashCarFirstCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F801A1D348F66002CECC4 /* WashCarFirstCollectionViewCell.m */; };
-		072F808B1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F801C1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m */; };
-		072F808C1D348F66002CECC4 /* WashCarFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F801E1D348F66002CECC4 /* WashCarFourCollectionViewCell.m */; };
-		072F808D1D348F66002CECC4 /* WashCarSecondCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80201D348F66002CECC4 /* WashCarSecondCollectionViewCell.m */; };
-		072F808E1D348F66002CECC4 /* WashCarThirdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80221D348F66002CECC4 /* WashCarThirdCollectionViewCell.m */; };
 		072F808F1D348F66002CECC4 /* TypeSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80261D348F66002CECC4 /* TypeSelectedViewController.m */; };
 		072F80901D348F66002CECC4 /* TypeSelectedDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F80291D348F66002CECC4 /* TypeSelectedDataViewController.m */; };
 		072F80911D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F802C1D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m */; };
@@ -101,6 +93,19 @@
 		074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */; };
 		074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */; };
 		074945DD1D36271300A46AE6 /* BottomAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945DC1D36271300A46AE6 /* BottomAdsModel.m */; };
+		07576FD01D372319000D5E20 /* OrderCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FBF1D372319000D5E20 /* OrderCarViewController.m */; };
+		07576FD11D372319000D5E20 /* OrderCarDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC21D372319000D5E20 /* OrderCarDataViewController.m */; };
+		07576FD21D372319000D5E20 /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC51D372319000D5E20 /* CommentHeaderView.m */; };
+		07576FD31D372319000D5E20 /* WashCarFirstCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC71D372319000D5E20 /* WashCarFirstCollectionViewCell.m */; };
+		07576FD41D372319000D5E20 /* WashCarFiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC91D372319000D5E20 /* WashCarFiveCollectionViewCell.m */; };
+		07576FD51D372319000D5E20 /* WashCarFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FCB1D372319000D5E20 /* WashCarFourCollectionViewCell.m */; };
+		07576FD61D372319000D5E20 /* WashCarSecondCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FCD1D372319000D5E20 /* WashCarSecondCollectionViewCell.m */; };
+		07576FD71D372319000D5E20 /* WashCarThirdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FCF1D372319000D5E20 /* WashCarThirdCollectionViewCell.m */; };
+		07576FDB1D373527000D5E20 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FDA1D373527000D5E20 /* AppManager.m */; };
+		07576FDE1D373E1F000D5E20 /* WashCarDateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FDD1D373E1F000D5E20 /* WashCarDateListModel.m */; };
+		07576FE31D376919000D5E20 /* WashCarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FE21D376919000D5E20 /* WashCarCollectionView.m */; };
+		07576FE61D376931000D5E20 /* WashCarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FE51D376931000D5E20 /* WashCarCollectionViewCell.m */; };
+		07576FE91D37BDB5000D5E20 /* MyScheldue.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FE81D37BDB5000D5E20 /* MyScheldue.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
 /* End PBXBuildFile section */
@@ -222,22 +227,6 @@
 		072F800F1D348F66002CECC4 /* SecondTimeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondTimeCollectionViewCell.m; sourceTree = "<group>"; };
 		072F80101D348F66002CECC4 /* TimeSelectedHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSelectedHeaderView.h; sourceTree = "<group>"; };
 		072F80111D348F66002CECC4 /* TimeSelectedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSelectedHeaderView.m; sourceTree = "<group>"; };
-		072F80131D348F66002CECC4 /* CommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeaderView.h; sourceTree = "<group>"; };
-		072F80141D348F66002CECC4 /* CommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeaderView.m; sourceTree = "<group>"; };
-		072F80151D348F66002CECC4 /* OrderCarDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarDataViewController.h; sourceTree = "<group>"; };
-		072F80161D348F66002CECC4 /* OrderCarDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCarDataViewController.m; sourceTree = "<group>"; };
-		072F80171D348F66002CECC4 /* OrderCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarViewController.h; sourceTree = "<group>"; };
-		072F80181D348F66002CECC4 /* OrderCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCarViewController.m; sourceTree = "<group>"; };
-		072F80191D348F66002CECC4 /* WashCarFirstCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarFirstCollectionViewCell.h; sourceTree = "<group>"; };
-		072F801A1D348F66002CECC4 /* WashCarFirstCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarFirstCollectionViewCell.m; sourceTree = "<group>"; };
-		072F801B1D348F66002CECC4 /* WashCarFiveCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarFiveCollectionViewCell.h; sourceTree = "<group>"; };
-		072F801C1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarFiveCollectionViewCell.m; sourceTree = "<group>"; };
-		072F801D1D348F66002CECC4 /* WashCarFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarFourCollectionViewCell.h; sourceTree = "<group>"; };
-		072F801E1D348F66002CECC4 /* WashCarFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarFourCollectionViewCell.m; sourceTree = "<group>"; };
-		072F801F1D348F66002CECC4 /* WashCarSecondCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarSecondCollectionViewCell.h; sourceTree = "<group>"; };
-		072F80201D348F66002CECC4 /* WashCarSecondCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarSecondCollectionViewCell.m; sourceTree = "<group>"; };
-		072F80211D348F66002CECC4 /* WashCarThirdCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarThirdCollectionViewCell.h; sourceTree = "<group>"; };
-		072F80221D348F66002CECC4 /* WashCarThirdCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarThirdCollectionViewCell.m; sourceTree = "<group>"; };
 		072F80251D348F66002CECC4 /* TypeSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSelectedViewController.h; sourceTree = "<group>"; };
 		072F80261D348F66002CECC4 /* TypeSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeSelectedViewController.m; sourceTree = "<group>"; };
 		072F80281D348F66002CECC4 /* TypeSelectedDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSelectedDataViewController.h; sourceTree = "<group>"; };
@@ -313,6 +302,32 @@
 		074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvenienceServiceModel.m; sourceTree = "<group>"; };
 		074945DB1D36271300A46AE6 /* BottomAdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomAdsModel.h; sourceTree = "<group>"; };
 		074945DC1D36271300A46AE6 /* BottomAdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomAdsModel.m; sourceTree = "<group>"; };
+		07576FBE1D372319000D5E20 /* OrderCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarViewController.h; sourceTree = "<group>"; };
+		07576FBF1D372319000D5E20 /* OrderCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCarViewController.m; sourceTree = "<group>"; };
+		07576FC11D372319000D5E20 /* OrderCarDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarDataViewController.h; sourceTree = "<group>"; };
+		07576FC21D372319000D5E20 /* OrderCarDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCarDataViewController.m; sourceTree = "<group>"; };
+		07576FC41D372319000D5E20 /* CommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeaderView.h; sourceTree = "<group>"; };
+		07576FC51D372319000D5E20 /* CommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeaderView.m; sourceTree = "<group>"; };
+		07576FC61D372319000D5E20 /* WashCarFirstCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarFirstCollectionViewCell.h; sourceTree = "<group>"; };
+		07576FC71D372319000D5E20 /* WashCarFirstCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarFirstCollectionViewCell.m; sourceTree = "<group>"; };
+		07576FC81D372319000D5E20 /* WashCarFiveCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarFiveCollectionViewCell.h; sourceTree = "<group>"; };
+		07576FC91D372319000D5E20 /* WashCarFiveCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarFiveCollectionViewCell.m; sourceTree = "<group>"; };
+		07576FCA1D372319000D5E20 /* WashCarFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarFourCollectionViewCell.h; sourceTree = "<group>"; };
+		07576FCB1D372319000D5E20 /* WashCarFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarFourCollectionViewCell.m; sourceTree = "<group>"; };
+		07576FCC1D372319000D5E20 /* WashCarSecondCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarSecondCollectionViewCell.h; sourceTree = "<group>"; };
+		07576FCD1D372319000D5E20 /* WashCarSecondCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarSecondCollectionViewCell.m; sourceTree = "<group>"; };
+		07576FCE1D372319000D5E20 /* WashCarThirdCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarThirdCollectionViewCell.h; sourceTree = "<group>"; };
+		07576FCF1D372319000D5E20 /* WashCarThirdCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarThirdCollectionViewCell.m; sourceTree = "<group>"; };
+		07576FD91D373527000D5E20 /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
+		07576FDA1D373527000D5E20 /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
+		07576FDC1D373E1F000D5E20 /* WashCarDateListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarDateListModel.h; sourceTree = "<group>"; };
+		07576FDD1D373E1F000D5E20 /* WashCarDateListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarDateListModel.m; sourceTree = "<group>"; };
+		07576FE11D376919000D5E20 /* WashCarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarCollectionView.h; sourceTree = "<group>"; };
+		07576FE21D376919000D5E20 /* WashCarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarCollectionView.m; sourceTree = "<group>"; };
+		07576FE41D376931000D5E20 /* WashCarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashCarCollectionViewCell.h; sourceTree = "<group>"; };
+		07576FE51D376931000D5E20 /* WashCarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashCarCollectionViewCell.m; sourceTree = "<group>"; };
+		07576FE71D37BDB5000D5E20 /* MyScheldue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScheldue.h; sourceTree = "<group>"; };
+		07576FE81D37BDB5000D5E20 /* MyScheldue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScheldue.m; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
 		830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-一号车库.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -400,10 +415,10 @@
 				072F7FDC1D348F66002CECC4 /* 第三方库 */,
 				072F7FF21D348F66002CECC4 /* 设置 */,
 				072F80041D348F66002CECC4 /* 预约时间 */,
-				072F80121D348F66002CECC4 /* 预约洗车1 */,
 				072F80231D348F66002CECC4 /* 预约类型 */,
 				072F802F1D348F66002CECC4 /* 预约维修2 */,
 				072F80F31D3499FF002CECC4 /* 登入注册 */,
+				07576FBC1D372319000D5E20 /* 预约洗车1 */,
 				072F80A41D3491EA002CECC4 /* Base */,
 				074945B61D35D6EA00A46AE6 /* 首页 */,
 				072F809D1D3490A5002CECC4 /* Helper */,
@@ -753,29 +768,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		072F80121D348F66002CECC4 /* 预约洗车1 */ = {
-			isa = PBXGroup;
-			children = (
-				072F80131D348F66002CECC4 /* CommentHeaderView.h */,
-				072F80141D348F66002CECC4 /* CommentHeaderView.m */,
-				072F80151D348F66002CECC4 /* OrderCarDataViewController.h */,
-				072F80161D348F66002CECC4 /* OrderCarDataViewController.m */,
-				072F80171D348F66002CECC4 /* OrderCarViewController.h */,
-				072F80181D348F66002CECC4 /* OrderCarViewController.m */,
-				072F80191D348F66002CECC4 /* WashCarFirstCollectionViewCell.h */,
-				072F801A1D348F66002CECC4 /* WashCarFirstCollectionViewCell.m */,
-				072F801B1D348F66002CECC4 /* WashCarFiveCollectionViewCell.h */,
-				072F801C1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m */,
-				072F801D1D348F66002CECC4 /* WashCarFourCollectionViewCell.h */,
-				072F801E1D348F66002CECC4 /* WashCarFourCollectionViewCell.m */,
-				072F801F1D348F66002CECC4 /* WashCarSecondCollectionViewCell.h */,
-				072F80201D348F66002CECC4 /* WashCarSecondCollectionViewCell.m */,
-				072F80211D348F66002CECC4 /* WashCarThirdCollectionViewCell.h */,
-				072F80221D348F66002CECC4 /* WashCarThirdCollectionViewCell.m */,
-			);
-			path = "预约洗车1";
-			sourceTree = "<group>";
-		};
 		072F80231D348F66002CECC4 /* 预约类型 */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,6 +847,7 @@
 		072F809D1D3490A5002CECC4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				07576FD81D3734DD000D5E20 /* Singleton */,
 				072F809E1D3490A5002CECC4 /* Block.h */,
 				072F809F1D3490A5002CECC4 /* Header.h */,
 				072F80A01D3490A5002CECC4 /* NSObject+Helper.h */,
@@ -994,6 +987,78 @@
 				074945C71D35D6EA00A46AE6 /* ThirdCollectionViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		07576FBC1D372319000D5E20 /* 预约洗车1 */ = {
+			isa = PBXGroup;
+			children = (
+				07576FBD1D372319000D5E20 /* Controller */,
+				07576FC01D372319000D5E20 /* Model */,
+				07576FC31D372319000D5E20 /* View */,
+			);
+			path = "预约洗车1";
+			sourceTree = "<group>";
+		};
+		07576FBD1D372319000D5E20 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				07576FBE1D372319000D5E20 /* OrderCarViewController.h */,
+				07576FBF1D372319000D5E20 /* OrderCarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		07576FC01D372319000D5E20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07576FC11D372319000D5E20 /* OrderCarDataViewController.h */,
+				07576FC21D372319000D5E20 /* OrderCarDataViewController.m */,
+				07576FDC1D373E1F000D5E20 /* WashCarDateListModel.h */,
+				07576FDD1D373E1F000D5E20 /* WashCarDateListModel.m */,
+				07576FE71D37BDB5000D5E20 /* MyScheldue.h */,
+				07576FE81D37BDB5000D5E20 /* MyScheldue.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		07576FC31D372319000D5E20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07576FE01D3768D0000D5E20 /* WashCarCollectionView */,
+				07576FC41D372319000D5E20 /* CommentHeaderView.h */,
+				07576FC51D372319000D5E20 /* CommentHeaderView.m */,
+				07576FC61D372319000D5E20 /* WashCarFirstCollectionViewCell.h */,
+				07576FC71D372319000D5E20 /* WashCarFirstCollectionViewCell.m */,
+				07576FC81D372319000D5E20 /* WashCarFiveCollectionViewCell.h */,
+				07576FC91D372319000D5E20 /* WashCarFiveCollectionViewCell.m */,
+				07576FCA1D372319000D5E20 /* WashCarFourCollectionViewCell.h */,
+				07576FCB1D372319000D5E20 /* WashCarFourCollectionViewCell.m */,
+				07576FCC1D372319000D5E20 /* WashCarSecondCollectionViewCell.h */,
+				07576FCD1D372319000D5E20 /* WashCarSecondCollectionViewCell.m */,
+				07576FCE1D372319000D5E20 /* WashCarThirdCollectionViewCell.h */,
+				07576FCF1D372319000D5E20 /* WashCarThirdCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		07576FD81D3734DD000D5E20 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				07576FD91D373527000D5E20 /* AppManager.h */,
+				07576FDA1D373527000D5E20 /* AppManager.m */,
+			);
+			name = Singleton;
+			sourceTree = "<group>";
+		};
+		07576FE01D3768D0000D5E20 /* WashCarCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				07576FE11D376919000D5E20 /* WashCarCollectionView.h */,
+				07576FE21D376919000D5E20 /* WashCarCollectionView.m */,
+				07576FE41D376931000D5E20 /* WashCarCollectionViewCell.h */,
+				07576FE51D376931000D5E20 /* WashCarCollectionViewCell.m */,
+			);
+			path = WashCarCollectionView;
 			sourceTree = "<group>";
 		};
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
@@ -1199,16 +1264,19 @@
 				074945CC1D35D6EA00A46AE6 /* FourCollectionViewCell.m in Sources */,
 				072F80941D348F66002CECC4 /* MaintenanceDataViewController.m in Sources */,
 				072F80901D348F66002CECC4 /* TypeSelectedDataViewController.m in Sources */,
+				07576FD71D372319000D5E20 /* WashCarThirdCollectionViewCell.m in Sources */,
 				072F805F1D348F66002CECC4 /* FeedbackFirstCollectionViewCell.m in Sources */,
 				074945D11D35E1E400A46AE6 /* LoginModel.m in Sources */,
+				07576FE31D376919000D5E20 /* WashCarCollectionView.m in Sources */,
 				072F80611D348F66002CECC4 /* FeedbackThirdCollectionViewCell.m in Sources */,
 				072F807B1D348F66002CECC4 /* ModifyPasswordViewController.m in Sources */,
 				074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */,
 				072F80631D348F66002CECC4 /* MyCommentDataViewController.m in Sources */,
 				072F80641D348F66002CECC4 /* MyCommentModel.m in Sources */,
-				072F80891D348F66002CECC4 /* OrderCarViewController.m in Sources */,
+				07576FD11D372319000D5E20 /* OrderCarDataViewController.m in Sources */,
 				072F80B31D3491EA002CECC4 /* BaseCollectionViewCell.m in Sources */,
 				072F80811D348F66002CECC4 /* SettingSecondCollectionViewCell.m in Sources */,
+				07576FD01D372319000D5E20 /* OrderCarViewController.m in Sources */,
 				072F808F1D348F66002CECC4 /* TypeSelectedViewController.m in Sources */,
 				072F80691D348F66002CECC4 /* MyOrderDataViewController.m in Sources */,
 				072F807C1D348F66002CECC4 /* SettingViewController.m in Sources */,
@@ -1221,11 +1289,9 @@
 				072F807D1D348F66002CECC4 /* ModifyPasswordDataViewController.m in Sources */,
 				072F80B81D3491EA002CECC4 /* CustomNavigationView.m in Sources */,
 				072F80B61D3491EA002CECC4 /* CommonCollectionView.m in Sources */,
-				072F808E1D348F66002CECC4 /* WashCarThirdCollectionViewCell.m in Sources */,
 				072F80791D348F66002CECC4 /* NSDate+Extend.m in Sources */,
 				072F81091D3499FF002CECC4 /* LoginTextField.m in Sources */,
 				074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */,
-				072F808B1D348F66002CECC4 /* WashCarFiveCollectionViewCell.m in Sources */,
 				072F810A1D3499FF002CECC4 /* LoginView.m in Sources */,
 				070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */,
 				072F80601D348F66002CECC4 /* FeedbackSecondCollectionViewCell.m in Sources */,
@@ -1237,8 +1303,11 @@
 				072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */,
 				072F80671D348F66002CECC4 /* MyCommentThirdCollectionViewCell.m in Sources */,
 				072F80841D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m in Sources */,
+				07576FE91D37BDB5000D5E20 /* MyScheldue.m in Sources */,
+				07576FD61D372319000D5E20 /* WashCarSecondCollectionViewCell.m in Sources */,
 				072F80BF1D349495002CECC4 /* AppDelegate.m in Sources */,
-				072F80871D348F66002CECC4 /* CommentHeaderView.m in Sources */,
+				07576FD21D372319000D5E20 /* CommentHeaderView.m in Sources */,
+				07576FD31D372319000D5E20 /* WashCarFirstCollectionViewCell.m in Sources */,
 				072F80681D348F66002CECC4 /* MyOrderViewController.m in Sources */,
 				072F805E1D348F66002CECC4 /* FeedbackDataViewController.m in Sources */,
 				072F806A1D348F66002CECC4 /* MyOrderTableViewCell.m in Sources */,
@@ -1248,17 +1317,17 @@
 				072F807E1D348F66002CECC4 /* SettingDataViewController.m in Sources */,
 				072F81071D3499FF002CECC4 /* LoginDataViewController.m in Sources */,
 				072F807F1D348F66002CECC4 /* ModifyPasswordView.m in Sources */,
+				07576FD41D372319000D5E20 /* WashCarFiveCollectionViewCell.m in Sources */,
 				072F80551D348F66002CECC4 /* PersonalFourCollectionViewCell.m in Sources */,
 				074945CD1D35D6EA00A46AE6 /* SecondCollectionViewCell.m in Sources */,
 				072F80951D348F66002CECC4 /* MaintenanceHeaderView.m in Sources */,
+				07576FD51D372319000D5E20 /* WashCarFourCollectionViewCell.m in Sources */,
 				072F80861D348F66002CECC4 /* TimeSelectedHeaderView.m in Sources */,
 				072F81061D3499FF002CECC4 /* SignUpViewController.m in Sources */,
 				072F81081D3499FF002CECC4 /* SignUpDataViewController.m in Sources */,
-				072F80881D348F66002CECC4 /* OrderCarDataViewController.m in Sources */,
 				072F805B1D348F66002CECC4 /* OnlineMessageCollectionViewCell.m in Sources */,
 				072F80481D348F66002CECC4 /* AutomaintainAPI.m in Sources */,
 				072F81051D3499FF002CECC4 /* LoginViewController.m in Sources */,
-				072F808C1D348F66002CECC4 /* WashCarFourCollectionViewCell.m in Sources */,
 				072F80561D348F66002CECC4 /* PersonalSecondCollectionViewCell.m in Sources */,
 				072F80651D348F66002CECC4 /* MyCommentFirstCollectionViewCell.m in Sources */,
 				072F80821D348F66002CECC4 /* TimeSelectedViewController.m in Sources */,
@@ -1266,6 +1335,7 @@
 				072F80931D348F66002CECC4 /* MaintenanceViewController.m in Sources */,
 				072F80661D348F66002CECC4 /* MyCommentSecondCollectionViewCell.m in Sources */,
 				072F80B71D3491EA002CECC4 /* CommonCollectionViewCell.m in Sources */,
+				07576FDE1D373E1F000D5E20 /* WashCarDateListModel.m in Sources */,
 				072F80C01D349495002CECC4 /* AppDelegateHelper.m in Sources */,
 				072F80A31D3490A5002CECC4 /* NSObject+Helper.m in Sources */,
 				072F804D1D348F66002CECC4 /* main.m in Sources */,
@@ -1277,14 +1347,14 @@
 				072F80621D348F66002CECC4 /* MyCommentViewController.m in Sources */,
 				072F80B91D3491EA002CECC4 /* ImageAmplificationViewController.m in Sources */,
 				074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */,
-				072F808D1D348F66002CECC4 /* WashCarSecondCollectionViewCell.m in Sources */,
 				072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */,
 				072F80B41D3491EA002CECC4 /* BaseTableViewCell.m in Sources */,
 				072F80591D348F66002CECC4 /* OnlineMessageDataViewController.m in Sources */,
-				072F808A1D348F66002CECC4 /* WashCarFirstCollectionViewCell.m in Sources */,
 				072F805D1D348F66002CECC4 /* FeedbackViewController.m in Sources */,
 				074945D41D35E87200A46AE6 /* AdsCarouselModel.m in Sources */,
+				07576FE61D376931000D5E20 /* WashCarCollectionViewCell.m in Sources */,
 				074945C81D35D6EA00A46AE6 /* HomeViewController.m in Sources */,
+				07576FDB1D373527000D5E20 /* AppManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

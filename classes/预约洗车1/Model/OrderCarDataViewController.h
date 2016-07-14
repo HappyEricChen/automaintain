@@ -7,6 +7,7 @@
 //  洗车预约模型
 
 #import <Foundation/Foundation.h>
+#import "WashCarDateListModel.h"
 
 @interface OrderCarDataViewController : NSObject
 
@@ -21,7 +22,7 @@
 /**
  *  他人已预约的时间段
  */
-@property (nonatomic, strong) NSArray* otherOrderArr;
+@property (nonatomic, strong) NSMutableArray* otherOrderArr;
 
 /**
  *  总的时间段
@@ -32,8 +33,17 @@
  * 总的用户评论数组，包含MyCommentModel模型数据
  */
 @property (nonatomic, strong) NSArray* myCommentModelArr;
+
+
 /**
- *  加载洗车预约时间的数组：我的预约/他人预约时间
+ *  预约洗车/获取车位指定日期的预订表/POST 请求
  */
--(void)loadWashCarOrderTimeArr;
+-(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
+                                withCurrentDate:(NSString*)currentDate
+                                withSubjectGuid:(NSString*)subjectGuid
+                                   withCallback:(Callback )callback;
+/**
+ *  模型传值
+ */
+@property (nonatomic, strong) WashCarDateListModel* washCarDateListModel;
 @end

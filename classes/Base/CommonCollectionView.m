@@ -105,18 +105,15 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.pageName isEqualToString:@"washCar"])
-    {
-        return CGSizeMake(90, 25);
-    }
-    else if ([self.pageName isEqualToString:@"home"])
+    
+    if ([self.pageName isEqualToString:@"home"])
     {
         CGSize size = [self calculateSizeWithLabelContent:self.totalArr[indexPath.row] WithFontName:nil WithFontSize:self.fontSize];
         
         return CGSizeMake(size.width+30, size.height+15);
     }
     
-    return CGSizeMake(110, 25);
+    return CGSizeMake(ScreenWidth*0.27, ScreenHeight*0.037);
     
 }
 

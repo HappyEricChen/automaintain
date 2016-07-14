@@ -11,6 +11,7 @@
 #import "AdsCarouselModel.h"
 #import "ConvenienceServiceModel.h"
 #import "BottomAdsModel.h"
+#import "WashCarDateListModel.h"
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #else
@@ -228,6 +229,47 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
              NSArray* bottomAdsModelArr = [BottomAdsModel mj_objectArrayWithKeyValuesArray:ReturnObjectDic];
              callback(YES,nil,bottomAdsModelArr);
          }
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"注册error%@",error);
+     }];
+}
+
+#pragma mark - 预约洗车
+
++(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
+                                withCurrentDate:(NSString*)currentDate
+                                withSubjectGuid:(NSString*)subjectGuid
+                                   withCallback:(Callback )callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCarPlaceAppointmentList"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"subjectGuid"]=subjectGuid;
+    dic[@"date"]=currentDate;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             WashCarDateListModel* washCarDateListModel = [WashCarDateListModel mj_objectWithKeyValues:ReturnObjectDic];
+             callback(YES,nil,washCarDateListModel);
+         }
+         
          else
          {
              NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];

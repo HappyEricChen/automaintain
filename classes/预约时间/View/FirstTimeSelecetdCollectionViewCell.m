@@ -7,7 +7,6 @@
 //
 
 #import "FirstTimeSelecetdCollectionViewCell.h"
-#import "CommonCollectionView.h"
 
 @interface FirstTimeSelecetdCollectionViewCell()
 

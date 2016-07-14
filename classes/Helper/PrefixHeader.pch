@@ -21,5 +21,6 @@
 #import <SVProgressHUD.h>
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
+#import "AppManager.h"
 
 #endif /* PrefixHeader_pch */

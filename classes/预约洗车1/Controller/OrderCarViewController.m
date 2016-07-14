@@ -25,9 +25,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.orderCarDataViewController = [[OrderCarDataViewController alloc]init];
-    [self.orderCarDataViewController loadWashCarOrderTimeArr];// 数组赋值
     [self configureNavigationView];
     [self configureCollectionView];
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [NSDate date];
+    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:AppManagerSingleton.currentDate withSubjectGuid:@"00000000-0000-0000-0000-000000000001" withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             [self.orderCarDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             
+         }
+     }];
 }
 
 -(void)configureNavigationView
@@ -63,11 +78,8 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 2)
-    {
-        return self.orderCarDataViewController.totalTimeOrderArr.count>0?self.orderCarDataViewController.totalTimeOrderArr.count:1;
-    }
-    else if (section == 4)
+    
+    if (section == 4)
     {
         return 5;
     }
@@ -76,8 +88,8 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
-    
+    BaseCollectionViewCell * cell = nil;
+    id object = nil;
     if (indexPath.section == 0)
     {
         WashCarFirstCollectionViewCell * firstCell = [WashCarFirstCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:washCarFirstId forIndexPath:indexPath];
@@ -92,7 +104,8 @@
     else if (indexPath.section == 2)
     {
         WashCarThirdCollectionViewCell * thirdCell = [WashCarThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarThirdCollectionViewCellId forIndexPath:indexPath];
-        [thirdCell layoutWithObject:self.orderCarDataViewController.totalTimeOrderArr[indexPath.row]];
+        object = self.orderCarDataViewController.washCarDateListModel;
+        
         cell = thirdCell;
     }
     else if (indexPath.section == 3)
@@ -107,6 +120,7 @@
         cell = fiveCell;
     }
     
+    [cell layoutWithObject:object];
     return cell;
 }
 
@@ -124,7 +138,7 @@
     }
     else if (indexPath.section == 2)
     {
-        return CGSizeMake(ScreenWidth*0.27, ScreenHeight*0.04);
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.4);
     }
     else if (indexPath.section == 3)
     {
@@ -139,10 +153,10 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    if (section == 2)
-    {
-        return UIEdgeInsetsMake(0, ScreenWidth*0.04, 0, ScreenWidth*0.04);
-    }
+//    if (section == 2)
+//    {
+//        return UIEdgeInsetsMake(0, ScreenWidth*0.04, 0, ScreenWidth*0.04);
+//    }
 
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
