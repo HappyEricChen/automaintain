@@ -67,11 +67,35 @@
  *
  *  @param accessCode   唯一标示
  *  @param currentDate 当前日期
- *  @param subjectGuid 预约类型/洗车或者维修
+ *  @param subjectGuid 预约类型/洗车或者维修编号
  *  @param callback    回调
  */
 +(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
                                 withCurrentDate:(NSString*)currentDate
                                 withSubjectGuid:(NSString*)subjectGuid
                                    withCallback:(Callback )callback;
+/**
+ *   提交预约/POST 请求
+ *
+ *  @param accessCode   唯一标示
+ *  @param appointmentStartTime 预约开始时间
+ *  @param subjectGuid 预约类型/洗车或者维修编号
+ *  @param callback    回调
+ */
++(void)postAppointmentServiceWithAccessCode:(NSString*)accessCode
+                   withAppointmentStartTime:(NSString*)appointmentStartTime
+                            withSubjectGuid:(NSString*)subjectGuid
+                               withCallback:(Callback )callback;
+
+/**
+ *   获取预约的评论列表/POST 请求
+ *
+ *  @param accessCode   唯一标示
+ *  @param appointmentGuid 预约类型/洗车或者维修编号
+ *  @param callback    回调
+ */
++(void)postCommentListWithAccessCode:(NSString*)accessCode
+                 withMaintianSubjectGuid:(NSString*)maintianSubjectGuid
+                        withCallback:(Callback )callback;
+
 @end

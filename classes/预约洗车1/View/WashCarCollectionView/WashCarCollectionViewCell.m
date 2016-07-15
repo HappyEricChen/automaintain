@@ -7,10 +7,14 @@
 //
 
 #import "WashCarCollectionViewCell.h"
+#import "ScheduleListModel.h"
 
 @interface WashCarCollectionViewCell()
 @property (nonatomic, strong) UIButton* button;
-
+/**
+ *  数量
+ */
+@property (nonatomic, strong) NSString* appointmentCount;
 @end
 @implementation WashCarCollectionViewCell
 
@@ -38,7 +42,6 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         button.translatesAutoresizingMaskIntoConstraints = NO;
         [button addTarget:self action:@selector(clickCurrentButton:) forControlEvents:UIControlEventTouchUpInside];
         [button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateSelected];
-        [button setBackgroundImage:ImageNamed(@"order_choose_white") forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self addSubview:button];
         self.button = button;
@@ -50,21 +53,32 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[NSString class]])
+    
+        ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
+        
+        [self.button setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
+        self.appointmentCount = scheduleListModel.AppointmentCount;
+    
+    if ([self.appointmentCount isEqualToString:@"myOrder"])
     {
-        [self.button setTitle:(NSString*)object forState:UIControlStateNormal];
+        self.button.selected = YES;
+        self.button.userInteractionEnabled = NO;
     }
-  
-//    if (self.buttonColor == blueColor)
-//    {
-//        [self.button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateSelected];
-//        self.button.enabled = NO;
-//    }
-//    else if (self.buttonColor == redColor)
-//    {
-//        [self.button setBackgroundImage:ImageNamed(@"order_choose_red") forState:UIControlStateSelected];
-//        self.button.enabled = NO;
-//    }
+    else if ([self.appointmentCount isEqualToString:@"full"])
+    {
+        [self.button setBackgroundImage:ImageNamed(@"order_choose_red") forState:UIControlStateSelected];
+        self.button.enabled = NO;
+    }
+    else
+    {
+        [self.button setBackgroundColor:[UIColor whiteColor]];
+        self.button.selected = NO;
+    }
+    
+    if ([self.appointmentCount isEqualToString:@"myTempOrder"])
+    {
+        self.button.selected = YES;
+    }
 }
 
 
@@ -72,7 +86,6 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
 
 -(void)clickCurrentButton:(UIButton*)sender
 {
-    
     if ([self.delegate respondsToSelector:@selector(didSelectedButtonWithWashCarCollectionViewCell:withCurrentBtn:)])
     {
         [self.delegate didSelectedButtonWithWashCarCollectionViewCell:self withCurrentBtn:sender];

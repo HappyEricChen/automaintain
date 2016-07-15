@@ -9,25 +9,19 @@
 #import "WashCarCollectionView.h"
 #import "WashCarCollectionViewCell.h"
 #import "WashCarDateListModel.h"
-
+#import "ScheduleListModel.h"
 @interface WashCarCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarCollectionViewCellDelegate>
 
 /**
  *  显示选中状态的唯一按钮
  */
 @property (nonatomic, strong)UIButton* currentBtn;
+/**
+ *  显示选中状态的唯一cell
+ */
+@property (nonatomic, strong)WashCarCollectionViewCell* currentCell;
 @end
 @implementation WashCarCollectionView
-
--(NSMutableArray *)fullOrderArr
-{
-    if (!_fullOrderArr)
-    {
-        _fullOrderArr = [NSMutableArray array];
-    }
-    return _fullOrderArr;
-}
-
 
 - (instancetype)init
 {
@@ -61,7 +55,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.totalArr.count>0?self.totalArr.count:0;
+    return self.washCarDateListModel.Schedule.count>0?self.washCarDateListModel.Schedule.count:0;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -71,25 +65,8 @@
     if (indexPath.section == 0)
     {
         WashCarCollectionViewCell * commonCell = [WashCarCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarCollectionViewCell1Id forIndexPath:indexPath];
-        object = self.totalArr[indexPath.row];
+        object = self.washCarDateListModel.Schedule[indexPath.row];
         commonCell.delegate = self;
-        
-        commonCell.buttonColor = whiteColor;
-        for (NSInteger i=0; i<self.myOrderArr.count; i++)
-        {
-            if ([object isEqualToString:self.myOrderArr[i]])
-            {
-                commonCell.buttonColor = blueColor;
-            }
-        }
-        
-        for (NSInteger i=0; i<self.fullOrderArr.count; i++)
-        {
-            if ([object isEqualToString:self.fullOrderArr[i]])
-            {
-                commonCell.buttonColor = redColor;
-            }
-        }
         
         
         cell = commonCell;
@@ -115,22 +92,22 @@
 #pragma mark - 解析模型
 -(void)parseWashCarDateListModel
 {
-    NSArray* tempArr =[self.washCarDateListModel.Schedule allKeys];
-    self.totalArr = [tempArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return [obj1 compare:obj2 options:NSNumericSearch];
-    }];//排序
-    
-    for (NSString* tempStr in self.totalArr)
+    for (ScheduleListModel* scheduleListModel in self.washCarDateListModel.Schedule)
     {
-        NSString* countStr = [[self.washCarDateListModel.Schedule objectForKey:tempStr]stringValue];
+        NSString* countStr = scheduleListModel.AppointmentCount;
         
         if ([countStr isEqualToString:self.washCarDateListModel.MaxPlaceNum])
         {
-            [self.fullOrderArr addObject:tempStr];//他人预约
+            scheduleListModel.AppointmentCount = @"full";//他人预约
+        }
+        for (NSString* tempStr in self.washCarDateListModel.MySchedule)
+        {
+            if ([tempStr isEqualToString:scheduleListModel.ShopTime])
+            {
+                scheduleListModel.AppointmentCount = @"myOrder";//我的预约
+            }
         }
     }
-    
-    self.myOrderArr = self.washCarDateListModel.MySchedule;//我的预约
 }
 #pragma mark -WashCarCollectionViewCellDelegate
 -(void)didSelectedButtonWithWashCarCollectionViewCell:(WashCarCollectionViewCell *)washCarCollectionViewCell withCurrentBtn:(UIButton *)sender
@@ -140,29 +117,31 @@
     {
         self.currentBtn.selected = NO;
         self.currentBtn = sender;
+        
     }
     self.currentBtn.selected = YES;
-//    for (NSInteger i=0; i<self.fullOrderArr.count; i++)
-//    {
-//        if ([self.totalArr[indexPath.row] isEqualToString:self.fullOrderArr[i]])
-//        {
-//            return;
-//        }
-//    }
-//    for (NSInteger i=0; i<self.myOrderArr.count; i++)
-//    {
-//        if ([self.totalArr[indexPath.row] isEqualToString:self.myOrderArr[i]])
-//        {
-//            [SVProgressHUD showErrorWithStatus:@"已预约过的请在我的预约取消"];
-//            return;
-//        }
-//    }
-//    
-//        for (NSString* timeStr in self)
-//        {
-//            <#statements#>
-//        }
-//        sender.selected = !sender.isSelected;
+    
+    if (self.currentCell != washCarCollectionViewCell)
+    {
+        NSIndexPath* indexPath = [self.collectionView indexPathForCell:self.currentCell];
+        ScheduleListModel* scheduleListModel = self.washCarDateListModel.Schedule[indexPath.row];
+        scheduleListModel.AppointmentCount = @"0";
+        self.currentCell = washCarCollectionViewCell;
+        
+    }
+    NSIndexPath* indexPath1 = [self.collectionView indexPathForCell:self.currentCell];
+    ScheduleListModel* scheduleListModel1 = self.washCarDateListModel.Schedule[indexPath1.row];
+    scheduleListModel1.AppointmentCount = @"myTempOrder";
+    
+    /**
+     *  通知传值
+     */
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"kNotify_Refresh_Comment" object:nil userInfo:@{@"time":scheduleListModel1.ShopTime}];
 
+}
+#pragma mark - UICollectionViewDelegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 @end

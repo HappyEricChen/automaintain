@@ -143,7 +143,7 @@
     
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
-
+#pragma mark - UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
@@ -172,6 +172,15 @@
             
             [self.navigationController pushViewController:onlineMessageViewController animated:YES];
         }
+    }
+    else if (indexPath.section == 3)
+    {
+        /**
+         *  跳转到打电话
+         */
+//        NSString* number = @"4002-9889-888";
+        NSURL* url = [NSURL URLWithString:@"telprompt://4002-9889-888"];
+        [[UIApplication sharedApplication]openURL:url];
     }
 }
 

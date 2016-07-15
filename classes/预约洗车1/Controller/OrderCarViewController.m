@@ -15,9 +15,18 @@
 #import "WashCarFiveCollectionViewCell.h"
 #import "CommentHeaderView.h"
 #import "ImageAmplificationViewController.h"
+#import "UserCommentModel.h"
 
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
+/**
+ *  准备提交预约的起始时间
+ */
+@property (nonatomic, strong) NSString* selectedTime;
+/**
+ *  用户评论模型数组
+ */
+@property (nonatomic, strong) NSArray* userCommentModelArr;
 @end
 
 @implementation OrderCarViewController
@@ -28,21 +37,45 @@
     [self configureNavigationView];
     [self configureCollectionView];
     
+    [self loadDataFromService];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:@"kNotify_Refresh_Comment" object:nil];
+    
 }
--(void)viewWillAppear:(BOOL)animated
+
+-(void)notificationReceived:(NSNotification*)object
 {
-    [NSDate date];
-    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:AppManagerSingleton.currentDate withSubjectGuid:@"00000000-0000-0000-0000-000000000001" withCallback:^(BOOL success, NSError *error, id result)
+    self.selectedTime = object.userInfo[@"time"];
+
+}
+-(void)loadDataFromService
+{
+    [SVProgressHUD show];
+    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:AppManagerSingleton.currentDate withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
+             [SVProgressHUD dismiss];
              [self.orderCarDataViewController.collectionView reloadData];
          }
          else
          {
-             
+              [SVProgressHUD showErrorWithStatus:result];
          }
      }];
+    [self.orderCarDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             self.userCommentModelArr = (NSArray*)result;
+             [self.orderCarDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+         
+    }];
 }
 
 -(void)configureNavigationView
@@ -81,7 +114,7 @@
     
     if (section == 4)
     {
-        return 5;
+        return self.userCommentModelArr.count>0?self.userCommentModelArr.count:0;
     }
     return 1;
 }
@@ -116,6 +149,7 @@
     else if (indexPath.section == 4)
     {
         WashCarFiveCollectionViewCell * fiveCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
+        object = self.userCommentModelArr[indexPath.row];
         fiveCell.delegate = self;
         cell = fiveCell;
     }
@@ -186,8 +220,31 @@
 #pragma mark -UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2)
+    if (indexPath.section == 3)
     {
+        if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
+        {
+            [SVProgressHUD showErrorWithStatus:@"请选择预约的时间"];
+        }
+        else
+        {
+            [SVProgressHUD show];
+            [self.orderCarDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                         withAppointmentStartTime:self.selectedTime
+                                                                  withSubjectGuid:SubjectGuidWashCar
+                                                                     withCallback:^(BOOL success, NSError *error, id result)
+             {
+                 if (success)
+                 {
+                     [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 }
+                 else
+                 {
+                     [SVProgressHUD showErrorWithStatus:result];
+                 }
+             }];
+            
+        }
         
     }
 }
@@ -199,5 +256,10 @@
     imageAmplificationViewController.image = imageView.image;
     [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 @end

@@ -11,18 +11,6 @@
 @class WashCarDateListModel;
 
 @interface WashCarCollectionView : UIView
-/**
- *  总的时间数组
- */
-@property (nonatomic, strong) NSArray* totalArr;
-/**
- *  我已预约的时间数组
- */
-@property (nonatomic, strong) NSArray* myOrderArr;
-/**
- *  已被预约满的时间数组
- */
-@property (nonatomic, strong) NSMutableArray* fullOrderArr;
 
 /**
  *  collectionView

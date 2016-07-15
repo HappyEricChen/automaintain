@@ -19,9 +19,9 @@
  */
 @property (nonatomic, strong) NSArray* MySchedule;
 /**
- *  洗车时间总列表 "08:00:00" = 0;
+ *  每个时间段的模型数组
  */
-@property (nonatomic, strong) NSDictionary* Schedule;
+@property (nonatomic, strong) NSMutableArray* Schedule;
 
 
 @end

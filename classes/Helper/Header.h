@@ -41,3 +41,5 @@
  */
 #define FONT_Aparajita(s) [UIFont fontWithName:@"Aparajita" size:s]
 #define FONT_FZZYJW(s) [UIFont fontWithName:@"FZZYJW--GB1-0" size:s]
+
+#define SubjectGuidWashCar @"00000000-0000-0000-0000-000000000001"

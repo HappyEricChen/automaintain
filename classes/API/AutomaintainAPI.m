@@ -12,6 +12,8 @@
 #import "ConvenienceServiceModel.h"
 #import "BottomAdsModel.h"
 #import "WashCarDateListModel.h"
+#import "UserCommentModel.h"
+
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #else
@@ -138,7 +140,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"注册error%@",error);
+         NSLog(@"error%@",error);
      }];
     
 }
@@ -172,7 +174,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"注册error%@",error);
+         NSLog(@"error%@",error);
      }];
 }
 #pragma mark - 首页免费便民服务
@@ -205,7 +207,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"注册error%@",error);
+         NSLog(@"error%@",error);
      }];
 }
 #pragma mark - 首页底部广告图片
@@ -238,11 +240,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"注册error%@",error);
+         NSLog(@"error%@",error);
      }];
 }
 
-#pragma mark - 预约洗车
+#pragma mark - 预约洗车时间列表
 
 +(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
                                 withCurrentDate:(NSString*)currentDate
@@ -266,8 +268,14 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          if (IsSuccessed)
          {
              NSDictionary* ReturnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             [WashCarDateListModel mj_setupObjectClassInArray:^NSDictionary *{
+                 return @{
+                          @"Schedule" : @"ScheduleListModel"
+                          };
+             }];
              WashCarDateListModel* washCarDateListModel = [WashCarDateListModel mj_objectWithKeyValues:ReturnObjectDic];
              callback(YES,nil,washCarDateListModel);
+               
          }
          
          else
@@ -279,7 +287,81 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"注册error%@",error);
+         NSLog(@"error%@",error);
+     }];
+}
+#pragma mark - 提交预约
++(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode withAppointmentStartTime:(NSString *)appointmentStartTime withSubjectGuid:(NSString *)subjectGuid withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/AppointmentService"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"subjectGuid"]=subjectGuid;
+    dic[@"appointmentStartTime"]=appointmentStartTime;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSString* ReturnObject = [responseObject objectForKey:@"ReturnObject"];
+             
+             callback(YES,nil,ReturnObject);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+
+}
+#pragma mark - 获取预约的评论列表
++(void)postCommentListWithAccessCode:(NSString *)accessCode withMaintianSubjectGuid:(NSString *)maintianSubjectGuid withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCommentForAppointment"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"MaintianSubjectGuid"]=maintianSubjectGuid;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* userCommentModelArr = [UserCommentModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
+             callback(YES,nil,userCommentModelArr);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
      }];
 }
 @end

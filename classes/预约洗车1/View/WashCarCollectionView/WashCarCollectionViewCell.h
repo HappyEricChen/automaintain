@@ -8,13 +8,6 @@
 
 #import "BaseCollectionViewCell.h"
 
-typedef enum
-{
-    whiteColor = 1,
-    blueColor,
-    redColor,
-}buttonColor;
-
 @class WashCarCollectionViewCell,UIButton;
 
 @protocol WashCarCollectionViewCellDelegate <NSObject>
@@ -44,8 +37,5 @@ extern NSString* const WashCarCollectionViewCell1Id;
 
 @property (nonatomic, weak) id <WashCarCollectionViewCellDelegate> delegate;
 
-/**
- *  cell里的按钮的颜色
- */
-@property (nonatomic, assign) buttonColor buttonColor;
+
 @end

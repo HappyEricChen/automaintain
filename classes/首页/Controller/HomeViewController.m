@@ -29,9 +29,11 @@
     self.homeDataViewController = [[HomeDataViewController alloc]init];
     [self configureNavigationView];
     [self configureCollectionView];
+    
+    [self loadDataFromService];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)loadDataFromService
 {
     if (self.accessCode)
     {

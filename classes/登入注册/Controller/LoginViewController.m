@@ -104,10 +104,12 @@
         return;
     }
     
+    [SVProgressHUD show];
     [self.loginDataViewController loginWithUsername:username withpassword:password withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
+             [SVProgressHUD dismiss];
              //登录成功
              LoginModel* loginModel = (LoginModel*)result;
              

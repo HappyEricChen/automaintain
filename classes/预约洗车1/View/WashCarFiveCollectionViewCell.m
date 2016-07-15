@@ -7,12 +7,24 @@
 //
 
 #import "WashCarFiveCollectionViewCell.h"
+#import "UserCommentModel.h"
 @interface WashCarFiveCollectionViewCell()
 
 @property (nonatomic, weak) UIImageView* carImageView;
 
 @property (nonatomic, getter=isClick) BOOL click;
-
+/**
+ *  评论内容
+ */
+@property (nonatomic, weak) UILabel* contentLabel;
+/**
+ *  评论发布时间
+ */
+@property (nonatomic, weak) UILabel* timeLabel;
+/**
+ *  用户名
+ */
+@property (nonatomic, weak) UILabel* userName;
 @end
 @implementation WashCarFiveCollectionViewCell
 
@@ -49,6 +61,7 @@ NSString* const WashCarFiveCollectionViewCellId = @"WashCarFiveCollectionViewCel
         userName.textColor = UIColorFromRGB(0x4a4a4a);
         userName.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:userName];
+        self.userName = userName;
         CGFloat userNameWidth = [userName calculateWidthWithLabelContent:@"zhujunyi"
                                                             WithFontName:nil
                                                             WithFontSize:11
@@ -68,21 +81,21 @@ NSString* const WashCarFiveCollectionViewCellId = @"WashCarFiveCollectionViewCel
         }
         
         UILabel* timeLabel = [[UILabel alloc]init];
-        timeLabel.text = @"2016-07-08";
         timeLabel.font = [UIFont systemFontOfSize:11];
         timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:timeLabel];
+        self.timeLabel = timeLabel;
         
         
         /**
          *  评论内容
          */
         UILabel* contentLabel = [[UILabel alloc]init];
-        contentLabel.text = @"非常好! 很专业！ 下次再光顾!";
         contentLabel.font = [UIFont systemFontOfSize:11];
         contentLabel.textColor = UIColorFromRGB(0x4a4a4a);
         contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:contentLabel];
+        self.contentLabel = contentLabel;
 
         UIView * carView = [[UIView alloc]init];
         carView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -114,6 +127,16 @@ NSString* const WashCarFiveCollectionViewCellId = @"WashCarFiveCollectionViewCel
     }
     return self;
 }
+
+-(void)layoutWithObject:(id)object
+{
+    UserCommentModel* userCommentModel = (UserCommentModel*)object;
+     self.contentLabel.text = userCommentModel.CommentContent;
+    self.timeLabel.text = [userCommentModel.CreateTime substringToIndex:10];
+//    self.userName.text = userCommentModel.
+}
+
+
 
 -(void)tapImageAction
 {
