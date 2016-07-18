@@ -97,13 +97,20 @@
                      {
                          //注册成功
                          [SVProgressHUD showSuccessWithStatus:@"注册成功"];
-                         [self.navigationController popViewControllerAnimated:YES] ;
+//                         
+//                         LoginModel* loginModel = (LoginModel*)result;
+//                         
+//                         HomeViewController * homeViewController = [[HomeViewController alloc]init];
+//                         
+//                         homeViewController.accessCode = loginModel.AccessCode;
+//                         [[NSUserDefaults standardUserDefaults]setObject:loginModel.AccessCode forKey:@"accessCode"];//存到plist里面
+//                         [self.navigationController pushViewController:homeViewController animated:YES];
                          
                      }
                      else
                      {
                          //注册失败
-                         [SVProgressHUD showErrorWithStatus:@"注册失败"];
+                         [SVProgressHUD showErrorWithStatus:result];
                      }
                  }];
                 
@@ -122,7 +129,7 @@
                      else
                      {
                          //找回密码请求失败
-                         [SVProgressHUD showErrorWithStatus:@"密码修改失败"];
+                         [SVProgressHUD showErrorWithStatus:result];
                      }
                      
                  }];
@@ -139,7 +146,7 @@
     }
 }
 #pragma mark - 点击获取验证码
--(void)didClickVerificationButtonWithSignUpView:(SignUpView *)signUpView withUsername:(NSString *)username withCallback:(Callback)callback
+-(void)didClickVerificationButtonWithSignUpView:(SignUpView *)signUpView withUsername:(NSString *)username withIsExisted:(NSString*)IsExisted withCallback:(Callback)callback
 {
     /**
      *  正则表达式判断是否为正确的手机号
@@ -147,7 +154,7 @@
     if ([SignUpViewController isMobile:username])
     {
         __weak SignUpViewController* weakSelf = self;
-        [AutomaintainAPI SMSVerificationCodeWithPhoneNum:username withCallback:^(BOOL success, NSError *error, id result)
+        [AutomaintainAPI SMSVerificationCodeWithPhoneNum:username withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
              {

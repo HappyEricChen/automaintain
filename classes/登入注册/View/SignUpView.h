@@ -23,10 +23,11 @@ withconfirmPassword:(NSString*)confirmPassword
 withverificationCode:(NSString*)verificationCode;
 
 /**
- *  点击获取验证码按钮调用
+ *  点击获取验证码按钮调用, 注册页IsExisted=@"0"/找回密码IsExisted = @"1"
  */
 -(void)didClickVerificationButtonWithSignUpView:(SignUpView*)signUpView
                                    withUsername:(NSString*)username
+                                  withIsExisted:(NSString*)IsExisted
                                    withCallback:(Callback )callback;
 @end
 @interface SignUpView : UIView

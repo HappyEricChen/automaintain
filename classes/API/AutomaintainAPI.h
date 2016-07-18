@@ -17,6 +17,7 @@
  *  获取短信验证码/ post请求
  */
 +(void)SMSVerificationCodeWithPhoneNum:(NSString*)phoneNum
+                         withIsExisted:(NSString*)IsExisted
                           withCallback:(Callback )callback;
 
 

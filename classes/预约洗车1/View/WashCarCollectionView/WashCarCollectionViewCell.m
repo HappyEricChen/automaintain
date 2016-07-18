@@ -41,8 +41,9 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         button.clipsToBounds = YES;
         button.translatesAutoresizingMaskIntoConstraints = NO;
         [button addTarget:self action:@selector(clickCurrentButton:) forControlEvents:UIControlEventTouchUpInside];
-        [button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateSelected];
+//        [button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateSelected];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        button.userInteractionEnabled = NO;
         [self addSubview:button];
         self.button = button;
         
@@ -54,31 +55,33 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
 -(void)layoutWithObject:(id)object
 {
     
-        ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
-        
-        [self.button setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
-        self.appointmentCount = scheduleListModel.AppointmentCount;
+    ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
+    
+    [self.button setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
+    self.appointmentCount = scheduleListModel.AppointmentCount;
     
     if ([self.appointmentCount isEqualToString:@"myOrder"])
     {
-        self.button.selected = YES;
-        self.button.userInteractionEnabled = NO;
+        
+        [self.button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
+        self.userInteractionEnabled = NO;
     }
     else if ([self.appointmentCount isEqualToString:@"full"])
     {
         [self.button setBackgroundImage:ImageNamed(@"order_choose_red") forState:UIControlStateSelected];
-        self.button.enabled = NO;
+        self.userInteractionEnabled = NO;
+    }
+    else if ([self.appointmentCount isEqualToString:@"myTempOrder"])
+    {
+        [self.button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
+        self.userInteractionEnabled = NO;
     }
     else
     {
-        [self.button setBackgroundColor:[UIColor whiteColor]];
-        self.button.selected = NO;
+        [self.button setBackgroundImage:ImageNamed(@"register_k2") forState:UIControlStateNormal];
+        self.userInteractionEnabled = YES;
     }
     
-    if ([self.appointmentCount isEqualToString:@"myTempOrder"])
-    {
-        self.button.selected = YES;
-    }
 }
 
 

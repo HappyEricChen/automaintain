@@ -83,7 +83,6 @@
         verificationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         verificationButton.titleLabel.font = [UIFont systemFontOfSize:12];
         verificationButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [verificationButton addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
         [baseView1 addSubview:verificationButton];
         self.verificationButton = verificationButton;
         
@@ -159,6 +158,7 @@
             textField2.placeholder = @"请设置密码";
             textField3.placeholder = @"请确认密码";
             [signupButton addTarget:self action:@selector(signupAction) forControlEvents:UIControlEventTouchUpInside];
+            [verificationButton addTarget:self action:@selector(signupClickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
         }
         else
         {
@@ -166,6 +166,7 @@
             textField2.placeholder = @"设置新密码";
             textField3.placeholder = @"确认新密码";
             [signupButton addTarget:self action:@selector(findPasswordAction) forControlEvents:UIControlEventTouchUpInside];
+            [verificationButton addTarget:self action:@selector(changePasswordClickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
         }
         
         
@@ -228,11 +229,20 @@
 }
 
 #pragma mark - 点击获取验证码按钮
--(void)clickVerificationButton
+-(void)signupClickVerificationButton
 {
-    if ([self.delegate respondsToSelector:@selector(didClickVerificationButtonWithSignUpView:withUsername:withCallback:)])
+    [self clickVerificationButtonwithIsExisted:@"false"];
+}
+-(void)changePasswordClickVerificationButton
+{
+    [self clickVerificationButtonwithIsExisted:@"true"];
+}
+
+-(void)clickVerificationButtonwithIsExisted:(NSString*)IsExisted
+{
+    if ([self.delegate respondsToSelector:@selector(didClickVerificationButtonWithSignUpView:withUsername:withIsExisted:withCallback:)])
     {
-        [self.delegate didClickVerificationButtonWithSignUpView:self withUsername:self.textField.text withCallback:^(BOOL success, NSError *error, id result)
+        [self.delegate didClickVerificationButtonWithSignUpView:self withUsername:self.textField.text withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
              {
@@ -251,7 +261,7 @@
                              
                          });
                      }else{
-//                         int minutes = timeout / 60;
+                         //                         int minutes = timeout / 60;
                          int seconds = timeout % 60;
                          NSString *strTime = [NSString stringWithFormat:@"%.2d秒后重新获取", seconds];
                          dispatch_async(dispatch_get_main_queue(), ^{

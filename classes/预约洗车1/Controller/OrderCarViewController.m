@@ -20,9 +20,13 @@
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
 /**
- *  准备提交预约的起始时间
+ *  准备提交预约的起始时间,格式08:15:00
  */
 @property (nonatomic, strong) NSString* selectedTime;
+/**
+ *  准备提交预约的当前选中日期
+ */
+@property (nonatomic, strong) NSString* selectedDate;
 /**
  *  用户评论模型数组
  */
@@ -39,15 +43,49 @@
     
     [self loadDataFromService];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:@"kNotify_Refresh_Comment" object:nil];
+    self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
     
 }
 
 -(void)notificationReceived:(NSNotification*)object
 {
-    self.selectedTime = object.userInfo[@"time"];
+    /**
+     *  选中的起始时间，格式08:15:00
+     */
+  NSString* startTime = object.userInfo[@"time"];
+    /**
+     *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15:00
+     */
+    self.selectedTime = [self.selectedDate stringByAppendingString:startTime];
 
 }
+
+-(void)currentDateNotification:(NSNotification*)object
+{
+    NSString* currentDateStr = [object.userInfo objectForKey:@"currentDate"];
+    
+    NSString* dateStringFormate1 = [currentDateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
+    NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
+    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
+    self.selectedDate = dateStringFormate3;
+    
+    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             [SVProgressHUD dismiss];
+             [self.orderCarDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
+
+}
+
 -(void)loadDataFromService
 {
     [SVProgressHUD show];

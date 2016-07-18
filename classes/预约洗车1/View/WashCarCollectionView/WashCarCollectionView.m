@@ -17,9 +17,9 @@
  */
 @property (nonatomic, strong)UIButton* currentBtn;
 /**
- *  显示选中状态的唯一cell
+ *  当前选中的位置
  */
-@property (nonatomic, strong)WashCarCollectionViewCell* currentCell;
+@property (nonatomic, assign) NSInteger  currentIndex;
 @end
 @implementation WashCarCollectionView
 
@@ -42,6 +42,8 @@
         self.collectionView = collectionView;
         
         collectionView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+        
+        self.currentIndex = -1;
     
     }
     return self;
@@ -115,33 +117,45 @@
     
     if (self.currentBtn != sender)
     {
-        self.currentBtn.selected = NO;
+        //        self.currentBtn.selected = NO;
+        
         self.currentBtn = sender;
         
     }
     self.currentBtn.selected = YES;
     
-    if (self.currentCell != washCarCollectionViewCell)
-    {
-        NSIndexPath* indexPath = [self.collectionView indexPathForCell:self.currentCell];
-        ScheduleListModel* scheduleListModel = self.washCarDateListModel.Schedule[indexPath.row];
-        scheduleListModel.AppointmentCount = @"0";
-        self.currentCell = washCarCollectionViewCell;
-        
-    }
-    NSIndexPath* indexPath1 = [self.collectionView indexPathForCell:self.currentCell];
-    ScheduleListModel* scheduleListModel1 = self.washCarDateListModel.Schedule[indexPath1.row];
-    scheduleListModel1.AppointmentCount = @"myTempOrder";
     
-    /**
-     *  通知传值
-     */
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"kNotify_Refresh_Comment" object:nil userInfo:@{@"time":scheduleListModel1.ShopTime}];
-
+  
+    
 }
 #pragma mark - UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.currentIndex != -1)
+    {
+        if (self.currentIndex != indexPath.row)
+        {
+            
+            ScheduleListModel* scheduleListModel = self.washCarDateListModel.Schedule[self.currentIndex];
+            scheduleListModel.AppointmentCount = @"0";
+            
+            self.currentIndex = indexPath.row;
+        }
+        
+    }
+    else
+    {
+        self.currentIndex = indexPath.row;
+    }
     
+    ScheduleListModel* scheduleListModel1 = self.washCarDateListModel.Schedule[self.currentIndex];
+    scheduleListModel1.AppointmentCount = @"myTempOrder";
+    
+    [collectionView reloadData];//刷新界面
+    
+    /**
+     *  选中的时间传递出去
+     */
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_myOrder_StartTime object:nil userInfo:@{@"time":scheduleListModel1.ShopTime}];
 }
 @end

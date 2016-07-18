@@ -21,7 +21,8 @@
 - (NSString*)accessCode;
 
 /**
- *  获取当前时间
+ *  获取当前时间,返回YYYY-MM-dd格式的String
  */
 - (NSString*)currentDate;
+
 @end

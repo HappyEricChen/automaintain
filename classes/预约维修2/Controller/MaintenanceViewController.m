@@ -18,6 +18,10 @@
 @interface MaintenanceViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MaintenanceHeaderViewDelegate,WashCarFiveCollectionViewCellDelegate>
 
 @property (nonatomic, strong) MaintenanceDataViewController* maintenanceDataViewController;
+/**
+ *  用户评论模型数组
+ */
+@property (nonatomic, strong) NSArray* userCommentModelArr;
 @end
 
 @implementation MaintenanceViewController
@@ -29,6 +33,8 @@
     [self configureNavigationView];
     [self configureHeaderView];
     [self configureCollectionView];
+    
+    [self loadDataFromService];
 }
 
 -(void)configureNavigationView
@@ -56,6 +62,24 @@
     
 }
 
+-(void)loadDataFromService
+{
+    [AutomaintainAPI postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             
+             self.userCommentModelArr = (NSArray*)result;
+             [self.maintenanceDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
+    
+}
+
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
@@ -71,17 +95,19 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    return 20;
+    return self.userCommentModelArr.count>0?self.userCommentModelArr.count:0;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
+    BaseCollectionViewCell * cell = nil;
     
     if (indexPath.section == 0)
     {
         WashCarFiveCollectionViewCell * thirdCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
         thirdCell.delegate = self;
+        
+        [cell layoutWithObject:self.userCommentModelArr[indexPath.row]];
         cell = thirdCell;
     }
     

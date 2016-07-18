@@ -16,6 +16,7 @@
 @property (nonatomic, strong)NSNumber *seletedDay;//选择的日期
 @property (nonatomic, weak) UILabel* dateLabel;
 @property (nonatomic, copy)NSString *showStr;//显示的日期内容
+@property (nonatomic, weak) UIButton* lastDayButton;//上一天按钮
 @end
 
 @implementation WashCarFirstCollectionViewCell
@@ -44,7 +45,9 @@ NSString* const washCarFirstId = @"washCarFirstId";
         lastDayButton.titleLabel.font = [UIFont systemFontOfSize:11];
         [lastDayButton setTitleColor:UIColorFromRGB(0x40add8) forState:UIControlStateNormal];
         lastDayButton.translatesAutoresizingMaskIntoConstraints = NO;
+        lastDayButton.hidden = YES;
         [self addSubview:lastDayButton];
+        self.lastDayButton = lastDayButton;
         CGFloat lastDayWidth = [lastDayButton calculateWidthWithLabelContent:@"上一天"
                                                                  WithFontName:nil
                                                                  WithFontSize:11
@@ -80,8 +83,30 @@ NSString* const washCarFirstId = @"washCarFirstId";
         lastDayButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.184).topEqualToView(self).bottomEqualToView(self).widthIs(lastDayWidth);
         nextDayButton.sd_layout.rightSpaceToView(self,ScreenWidth*0.184).topEqualToView(self).bottomEqualToView(self).widthRatioToView(lastDayButton,1);
         
+        [self.dateLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        
     }
     return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"text"])
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_selected_date object:nil userInfo:@{@"currentDate":self.dateLabel.text}];
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+-(void)dealloc
+{
+    if (self.dateLabel)
+    {
+        [self.dateLabel removeObserver:self forKeyPath:@"text"];
+    }
 }
 
 -(void)clickDateLabel
@@ -95,6 +120,16 @@ NSString* const washCarFirstId = @"washCarFirstId";
 - (NSString *)showStr {
     
     NSString *partStr = [NSDate stringWithTimestamp:self.seletedDay.doubleValue format:@"yyyy年MM月dd日"];
+    
+    NSString* todayStr = [NSDate stringWithTimestamp:[NSDate date].timeIntervalSince1970 format:@"yyyy年MM月dd日"];
+    if ([partStr isEqualToString:todayStr])
+    {
+        self.lastDayButton.hidden = YES;
+    }
+    else
+    {
+        self.lastDayButton.hidden = NO;
+    }
     
     return partStr;
 }
@@ -114,7 +149,7 @@ NSString* const washCarFirstId = @"washCarFirstId";
     }
     return _calendarView;
 }
-#pragma mark - clickYesterdayButton
+#pragma mark - 点击上一天按钮
 - (void)clickYesterdayButton
 {
     
@@ -122,14 +157,21 @@ NSString* const washCarFirstId = @"washCarFirstId";
     
     [formatter setDateFormat:@"yyyy年MM月dd日"];
     
-    NSDate *date = [formatter dateFromString:self.dateLabel.text];
+//    NSDate *date = [formatter dateFromString:self.dateLabel.text];
     
-    NSDate *yesterday = [NSDate dateWithTimeInterval:-60 * 60 * 24 sinceDate:date];
+//    NSDate *yesterday = [NSDate dateWithTimeInterval:-60 * 60 * 24 sinceDate:date];
     
-    self.dateLabel.text = [NSDate stringWithTimestamp:yesterday.timeIntervalSince1970 format:@"yyyy年MM月dd日"];
+//    self.dateLabel.text = [NSDate stringWithTimestamp:yesterday.timeIntervalSince1970 format:@"yyyy年MM月dd日"];
     [self.calendarView clickForIndex:self.calendarView.selectedButton.tag-100-1];
     
+    NSString* todayStr = [NSDate stringWithTimestamp:[NSDate date].timeIntervalSince1970 format:@"yyyy年MM月dd日"];
+    if ([self.dateLabel.text isEqualToString:todayStr])
+    {
+        self.lastDayButton.hidden = YES;
+    }
+    
 }
+#pragma mark - 点击下一天按钮
 - (void)clickTomorrowButton
 {
     
@@ -137,11 +179,9 @@ NSString* const washCarFirstId = @"washCarFirstId";
     
     [formatter setDateFormat:@"yyyy年MM月dd日"];
     
-    NSDate *date = [formatter dateFromString:self.dateLabel.text];
-    
-    NSDate *tomorrow = [NSDate dateWithTimeInterval:60 * 60 * 24 sinceDate:date];
-    
-    self.dateLabel.text = [NSDate stringWithTimestamp:tomorrow.timeIntervalSince1970 format:@"yyyy年MM月dd日"];
     [self.calendarView clickForIndex:self.calendarView.selectedButton.tag-100+1];
+    
+    self.lastDayButton.hidden = NO;//显示上一天按钮
+    
 }
 @end

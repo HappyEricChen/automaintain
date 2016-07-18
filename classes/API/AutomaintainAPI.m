@@ -23,11 +23,13 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 @implementation AutomaintainAPI
 #pragma mark - 获取短信验证码
 +(void)SMSVerificationCodeWithPhoneNum:(NSString *)phoneNum
-                          withCallback:(Callback )callback
+                         withIsExisted:(NSString*)IsExisted
+                          withCallback:(Callback)callback
 {
     NSString* urlStr =[urlPath stringByAppendingString:@"/api/Sms/SendAndGetPhoneValidateCode"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"phoneNo"]=phoneNum;
+    dic[@"IsExisted"]=IsExisted;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -98,9 +100,19 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          NSDictionary* tempDic = (NSDictionary*)responseObject;
-         NSString* ReturnObject = [tempDic objectForKey:@"ReturnObject"];
+         BOOL IsSuccessed = [[tempDic objectForKey:@"IsSuccessed"]boolValue];
+         if (IsSuccessed)
+         {
+             NSString* ReturnObject = [tempDic objectForKey:@"ReturnObject"];
+             
+             callback(YES,nil,ReturnObject);
+         }
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
          
-         callback(YES,nil,ReturnObject);
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {

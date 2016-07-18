@@ -45,7 +45,7 @@ NSString* const fourCellId = @"fourCellId";
     {
         BottomAdsModel* bottomAdsModel = (BottomAdsModel*)object;
         
-        NSString* completedImageStr = [@"http://112.64.131.222/NoOne" stringByAppendingString:bottomAdsModel.PicUrl];
+        NSString* completedImageStr = bottomAdsModel.PicUrl;
         NSURL* completedImageUrl = [NSURL URLWithString:completedImageStr];
         [self.imageView sd_setImageWithURL:completedImageUrl];
         

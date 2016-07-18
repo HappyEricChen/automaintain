@@ -8,6 +8,13 @@
 
 #import "BaseCollectionViewCell.h"
 
+@class WashCarFirstCollectionViewCell;
+@protocol WashCarFirstCollectionViewCellDelegate <NSObject>
+
+@optional
+-(void)didChangedDateWithWashCarFirstCollectionViewCell:(WashCarFirstCollectionViewCell*)washCarFirstCollectionViewCell;
+
+@end
 @interface WashCarFirstCollectionViewCell : BaseCollectionViewCell
 
 /**
@@ -18,5 +25,7 @@ extern NSString* const washCarFirstId;
  *  cell创建方法
  */
 +(WashCarFirstCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
+
+@property (nonatomic, weak) id <WashCarFirstCollectionViewCellDelegate> delegate;
 
 @end

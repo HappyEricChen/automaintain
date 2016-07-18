@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0702D6961D3CA9F000447073 /* NotificationNameManager.m */; };
 		070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */; };
 		070F74751D1A7F5F0041F293 /* automaintainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F74741D1A7F5F0041F293 /* automaintainTests.m */; };
 		070F74801D1A7F5F0041F293 /* automaintainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F747F1D1A7F5F0041F293 /* automaintainUITests.m */; };
@@ -129,6 +130,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0702D6951D3CA9F000447073 /* NotificationNameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationNameManager.h; sourceTree = "<group>"; };
+		0702D6961D3CA9F000447073 /* NotificationNameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationNameManager.m; sourceTree = "<group>"; };
 		070A8CD21D36409300D81463 /* BaseCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		070F74571D1A7F5F0041F293 /* 一号车库.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "一号车库.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,6 +367,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0702D6941D3CA9BF00447073 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				0702D6951D3CA9F000447073 /* NotificationNameManager.h */,
+				0702D6961D3CA9F000447073 /* NotificationNameManager.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		070F744E1D1A7F5F0041F293 = {
 			isa = PBXGroup;
 			children = (
@@ -850,6 +862,7 @@
 		072F809D1D3490A5002CECC4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0702D6941D3CA9BF00447073 /* Notification */,
 				07576FD81D3734DD000D5E20 /* Singleton */,
 				072F809E1D3490A5002CECC4 /* Block.h */,
 				072F809F1D3490A5002CECC4 /* Header.h */,
@@ -1052,7 +1065,7 @@
 				07576FD91D373527000D5E20 /* AppManager.h */,
 				07576FDA1D373527000D5E20 /* AppManager.m */,
 			);
-			name = Singleton;
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 		07576FE01D3768D0000D5E20 /* WashCarCollectionView */ = {
@@ -1321,6 +1334,7 @@
 				0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */,
 				072F80831D348F66002CECC4 /* TimeSelectedDataViewController.m in Sources */,
 				072F807E1D348F66002CECC4 /* SettingDataViewController.m in Sources */,
+				0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */,
 				072F81071D3499FF002CECC4 /* LoginDataViewController.m in Sources */,
 				072F807F1D348F66002CECC4 /* ModifyPasswordView.m in Sources */,
 				07576FD41D372319000D5E20 /* WashCarFiveCollectionViewCell.m in Sources */,

@@ -47,7 +47,7 @@ NSString * const firstCellId = @"firstCellId";
         NSMutableArray* imageArr = [NSMutableArray array];
         for (AdsCarouselModel* adsCarousel in adsModelArr)
         {
-            NSString* completeUrl = [NSString stringWithFormat:@"http://112.64.131.222/NoOne%@",adsCarousel.PicUrl];
+            NSString* completeUrl = adsCarousel.PicUrl;
             [imageArr addObject:completeUrl];
         }
         

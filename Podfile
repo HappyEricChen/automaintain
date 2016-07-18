@@ -5,6 +5,7 @@ target:'一号车库' do
 
    	pod 'SDAutoLayout', '~> 2.1.1'
   	pod 'SDCycleScrollView','~> 1.64'
+	pod 'SDWebImage', '~>3.8'
    	pod 'MJExtension'
    	pod 'SVProgressHUD'
 	pod 'AFNetworking', '~> 3.0'
