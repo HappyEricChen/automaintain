@@ -24,5 +24,7 @@
 #import "AppManager.h"
 #import "NotificationNameManager.h"
 #import <UIImageView+WebCache.h>
+#import "TransferTimeSingleton.h"
+#import <MJRefresh/MJRefresh.h>
 
 #endif /* PrefixHeader_pch */

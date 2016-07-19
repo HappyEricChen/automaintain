@@ -13,6 +13,7 @@
 #import "BottomAdsModel.h"
 #import "WashCarDateListModel.h"
 #import "UserCommentModel.h"
+#import "MyOrderModel.h"
 
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
@@ -375,5 +376,82 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      {
          NSLog(@"error%@",error);
      }];
+}
+#pragma mark - 获取预约类型列表
++(void)postOrderTypeListWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetMaintainSubject"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* userCommentModelArr = [UserCommentModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
+             callback(YES,nil,userCommentModelArr);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+
+}
+
+#pragma mark - 获取我的预约列表
++(void)postMyOrderListWithAccessCode:(NSString *)accessCode
+                       withPageIndex:(NSString *)pageIndex
+                        withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCustomerAppointmentList"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"pageIndex"]=pageIndex;
+    dic[@"pageSize"]=@"10";
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* myOrderModelArr = [MyOrderModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
+             callback(YES,nil,myOrderModelArr);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+
 }
 @end

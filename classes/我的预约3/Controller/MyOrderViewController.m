@@ -14,21 +14,31 @@
 @interface MyOrderViewController ()<CustomNavigationViewDelegate,UITableViewDelegate,UITableViewDataSource,MyOrderTableViewCellDelegate>
 @property (nonatomic, strong) MyOrderDataViewController * myOrderDataViewController;
 
-@property (nonatomic, strong) NSArray* stateArr;
+/**
+ *  我的预约模型数组
+ */
+@property (nonatomic, strong) NSArray* myOrderModelArr;
 
+/**
+ *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
+ */
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation MyOrderViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myOrderDataViewController = [[MyOrderDataViewController alloc]init];
-    self.stateArr = @[@{@"state":@"已审核",@"button":@"取消预约",@"time":@""},
-                      @{@"state":@"服务中",@"button":@"",@"time":@"距离完成时间：01:20:30"},
-                      @{@"state":@"已完成",@"button":@"发表评论",@"time":@""}];
     [self configureNavigationView];
     [self configureTableView];
+
+    [self loadMJRefreshMethod];//配置刷新
 }
+
+
 
 -(void)configureNavigationView
 {
@@ -47,6 +57,50 @@
     self.myOrderDataViewController.customTableView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.myOrderDataViewController.customNavigationView,0).bottomEqualToView(self.view);
     
 }
+
+-(void)loadMJRefreshMethod
+{
+    self.index = 0;//初始化
+    
+    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.myOrderDataViewController.customTableView.mj_header = header;
+    [self.myOrderDataViewController.customTableView.mj_header beginRefreshing];//开始刷新
+    self.myOrderDataViewController.customTableView.mj_header.automaticallyChangeAlpha = YES;
+    
+    MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.myOrderDataViewController.customTableView.mj_footer = footer;
+    
+}
+
+-(void)loadDataFromService:(MJRefreshComponent*)headerFooterView
+{
+    
+    if ([headerFooterView isKindOfClass:[MJRefreshNormalHeader class]])
+    {
+         self.index = 0;
+    }
+    else
+    {
+        self.index += 1;
+    }
+    
+    NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
+    [self.myOrderDataViewController postMyOrderListWithAccessCode:AppManagerSingleton.accessCode withPageIndex:indexStr withCallback:^(BOOL success, NSError *error, id result)
+     {
+         [self.myOrderDataViewController.customTableView.mj_header endRefreshing];//结束刷新
+         [self.myOrderDataViewController.customTableView.mj_footer endRefreshing];//结束刷新
+         if (success)
+         {
+             self.myOrderModelArr = (NSArray*)result;
+             [self.myOrderDataViewController.customTableView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
+   }
+
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
@@ -60,7 +114,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.myOrderModelArr.count>0?self.myOrderModelArr.count:0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +123,7 @@
     
     MyOrderTableViewCell* myOrderTableViewCell = [MyOrderTableViewCell tableView:tableView dequeueReusableCellWithReuseIdentifier:MyOrderTableViewCellId forIndexPath:indexPath];
     myOrderTableViewCell.delegate = self;
-    [myOrderTableViewCell layoutWithObject:self.stateArr[indexPath.row]];
+    [myOrderTableViewCell layoutWithObject:self.myOrderModelArr[indexPath.row]];
     cell = myOrderTableViewCell;
     
     return cell;

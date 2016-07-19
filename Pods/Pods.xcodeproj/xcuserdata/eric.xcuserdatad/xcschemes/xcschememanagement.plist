@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-一号车库.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,12 +47,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F18D2DDE0DAD46F6382158F849441B3</key>
+		<key>2F8E383AF69F433FBA4955843C1E38CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>861DD76CAE299F2AD67A6A6BF9D7ECDC</key>
+		<key>4E101DFF51F799F4B859CAE66A788884</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C35604C4EF24B487820846B77BDD685</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>70BC44266C6FFE30D2C57129458E070B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>85AF2334738874FA98E5A5330281CE0F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9881A14BF63DB8C467ADB0F2659A954D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9EAB3E42EF957541E6C3C76D35FD008E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D48C70D4D15FDF60ABD85697E5972C03</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E8389767DEAD641B851AAC04D9CBFA74</key>
+		<key>D00D68A694B537E889F9E0A811DCE6E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

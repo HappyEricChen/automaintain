@@ -120,10 +120,6 @@ CGFloat userNameWidth;
             [self.photoImageViewArr addObject:carImageView];
             [carView addSubview:carImageView];
             
-            UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageAction)];
-            [recognizer setNumberOfTapsRequired:1];
-            carImageView.userInteractionEnabled = YES;
-            [carImageView addGestureRecognizer:recognizer];
             self.carImageView = carImageView;
         }
         
@@ -177,6 +173,10 @@ CGFloat userNameWidth;
         UIImageView* imageView = self.photoImageViewArr[i];
         [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:ImageNamed(@"home_icon_cleancar")];
     }
+    UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageAction)];
+    [recognizer setNumberOfTapsRequired:1];
+    self.carImageView.userInteractionEnabled = YES;
+    [self.carImageView addGestureRecognizer:recognizer];
     
 }
 
@@ -201,35 +201,11 @@ CGFloat userNameWidth;
 -(void)tapImageAction
 {
     
- 
     if ([self.delegate respondsToSelector:@selector(didClickCarImageWithWashCarFiveCollectionViewCell:withImageView:)])
     {
         [self.delegate didClickCarImageWithWashCarFiveCollectionViewCell:self withImageView:self.carImageView];
     }
-//    if (self.isClick)
-//    {
-//        /**
-//         ios7 后动画效果
-//         */
-//        __weak WashCarFiveCollectionViewCell* weakSelf = self;
-//        [UIView animateWithDuration:1.0//动画时长
-//                              delay:0.0//动画延迟
-//             usingSpringWithDamping:1.0//弹簧效果0~1
-//              initialSpringVelocity:5.0//初始速度
-//                            options:UIViewAnimationOptionCurveEaseInOut//动画过渡效果
-//                         animations:^{
-//                             CGRect temp = weakSelf.carImageView.frame;
-//                             temp.origin.x = 0.0f;
-//                             temp.size.width = ScreenWidth;
-//                             temp.size.height = ScreenWidth*imageRect.size.height/imageRect.size.width;
-//                             weakSelf.carImageView.frame = temp;
-//                             
-//                         } completion:^(BOOL finished) {
-//                             
-//                         }];
-//
-//    }
-
+    
 }
 
 @end

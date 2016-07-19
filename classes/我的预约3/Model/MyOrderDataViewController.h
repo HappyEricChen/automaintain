@@ -14,4 +14,13 @@
 
 @property (nonatomic, strong) UITableView* customTableView;
 
+/**
+ *   我的预约列表/POST 请求
+ *
+ *  @param accessCode   唯一标识符
+ *  @param callback    回调
+ */
+-(void)postMyOrderListWithAccessCode:(NSString*)accessCode
+                       withPageIndex:(NSString*)pageIndex
+                        withCallback:(Callback )callback;
 @end

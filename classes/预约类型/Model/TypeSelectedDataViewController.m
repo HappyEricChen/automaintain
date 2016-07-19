@@ -51,4 +51,19 @@
     }
     return _typeSelectedArr;
 }
+
+-(void)postOrderTypeListWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    [AutomaintainAPI postOrderTypeListWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
+    {
+        if (success)
+        {
+            callback(YES,nil,result);
+        }
+        else
+        {
+            callback(NO,nil,result);
+        }
+    }];
+}
 @end

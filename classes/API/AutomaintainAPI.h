@@ -66,7 +66,7 @@
 /**
  *   预约洗车/获取车位指定日期的预订表/POST 请求
  *
- *  @param accessCode   唯一标示
+ *  @param accessCode   唯一标识
  *  @param currentDate 当前日期
  *  @param subjectGuid 预约类型/洗车或者维修编号
  *  @param callback    回调
@@ -78,7 +78,7 @@
 /**
  *   提交预约/POST 请求
  *
- *  @param accessCode   唯一标示
+ *  @param accessCode   唯一标识
  *  @param appointmentStartTime 预约开始时间
  *  @param subjectGuid 预约类型/洗车或者维修编号
  *  @param callback    回调
@@ -91,7 +91,7 @@
 /**
  *   获取预约的评论列表/POST 请求
  *
- *  @param accessCode   唯一标示
+ *  @param accessCode   唯一标识
  *  @param appointmentGuid 预约类型/洗车或者维修编号
  *  @param callback    回调
  */
@@ -99,4 +99,24 @@
                  withMaintianSubjectGuid:(NSString*)maintianSubjectGuid
                         withCallback:(Callback )callback;
 
+#pragma mark - 预约维修
+/**
+ *   预约类型/POST 请求
+ *
+ *  @param accessCode   唯一标识符
+ *  @param callback    回调
+ */
++(void)postOrderTypeListWithAccessCode:(NSString*)accessCode
+                          withCallback:(Callback )callback;
+#pragma mark - 我的预约列表
+/**
+ *  我的预约列表/POST 请求
+ *
+ *  @param accessCode 唯一标识符
+ *  @param pageIndex  当前请求页数
+ *  @param callback    回调
+ */
++(void)postMyOrderListWithAccessCode:(NSString*)accessCode
+                       withPageIndex:(NSString*)pageIndex
+                        withCallback:(Callback )callback;
 @end

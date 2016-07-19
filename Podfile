@@ -9,4 +9,5 @@ target:'一号车库' do
    	pod 'MJExtension'
    	pod 'SVProgressHUD'
 	pod 'AFNetworking', '~> 3.0'
+	pod 'MJRefresh'
 end

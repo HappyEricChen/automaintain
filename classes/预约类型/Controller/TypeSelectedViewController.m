@@ -24,6 +24,8 @@
     [self configureNavigationView];
     [self configureSelectedView];
     [self configureTableView];
+    
+    [self loadDataFromService];
 }
 
 -(void)configureNavigationView
@@ -48,6 +50,21 @@
     self.typeSelectedDataViewController.customTableView.dataSource = self;
     
     self.typeSelectedDataViewController.customTableView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.typeSelectedDataViewController.typeSelectedView,6).bottomEqualToView(self.view);
+}
+
+-(void)loadDataFromService
+{
+    [self.typeSelectedDataViewController postOrderTypeListWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
+    {
+        if (success)
+        {
+            
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:result];
+        }
+    }];
 }
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView

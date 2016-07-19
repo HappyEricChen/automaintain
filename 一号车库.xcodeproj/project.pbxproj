@@ -94,6 +94,9 @@
 		074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */; };
 		074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */; };
 		074945DD1D36271300A46AE6 /* BottomAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945DC1D36271300A46AE6 /* BottomAdsModel.m */; };
+		074C9F281D3DBCD600A74509 /* OrderTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F271D3DBCD600A74509 /* OrderTypeModel.m */; };
+		074C9F2B1D3DC51000A74509 /* MyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F2A1D3DC51000A74509 /* MyOrderModel.m */; };
+		074C9F2E1D3E182F00A74509 /* TransferTimeSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F2D1D3E182F00A74509 /* TransferTimeSingleton.m */; };
 		07576FD01D372319000D5E20 /* OrderCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FBF1D372319000D5E20 /* OrderCarViewController.m */; };
 		07576FD11D372319000D5E20 /* OrderCarDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC21D372319000D5E20 /* OrderCarDataViewController.m */; };
 		07576FD21D372319000D5E20 /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC51D372319000D5E20 /* CommentHeaderView.m */; };
@@ -306,6 +309,12 @@
 		074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvenienceServiceModel.m; sourceTree = "<group>"; };
 		074945DB1D36271300A46AE6 /* BottomAdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomAdsModel.h; sourceTree = "<group>"; };
 		074945DC1D36271300A46AE6 /* BottomAdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomAdsModel.m; sourceTree = "<group>"; };
+		074C9F261D3DBCD600A74509 /* OrderTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTypeModel.h; sourceTree = "<group>"; };
+		074C9F271D3DBCD600A74509 /* OrderTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTypeModel.m; sourceTree = "<group>"; };
+		074C9F291D3DC51000A74509 /* MyOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderModel.h; sourceTree = "<group>"; };
+		074C9F2A1D3DC51000A74509 /* MyOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderModel.m; sourceTree = "<group>"; };
+		074C9F2C1D3E182F00A74509 /* TransferTimeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTimeSingleton.h; sourceTree = "<group>"; };
+		074C9F2D1D3E182F00A74509 /* TransferTimeSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTimeSingleton.m; sourceTree = "<group>"; };
 		07576FBE1D372319000D5E20 /* OrderCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarViewController.h; sourceTree = "<group>"; };
 		07576FBF1D372319000D5E20 /* OrderCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCarViewController.m; sourceTree = "<group>"; };
 		07576FC11D372319000D5E20 /* OrderCarDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarDataViewController.h; sourceTree = "<group>"; };
@@ -668,6 +677,8 @@
 			children = (
 				072F7FC81D348F66002CECC4 /* MyOrderDataViewController.h */,
 				072F7FC91D348F66002CECC4 /* MyOrderDataViewController.m */,
+				074C9F291D3DC51000A74509 /* MyOrderModel.h */,
+				074C9F2A1D3DC51000A74509 /* MyOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -807,6 +818,8 @@
 			children = (
 				072F80281D348F66002CECC4 /* TypeSelectedDataViewController.h */,
 				072F80291D348F66002CECC4 /* TypeSelectedDataViewController.m */,
+				074C9F261D3DBCD600A74509 /* OrderTypeModel.h */,
+				074C9F271D3DBCD600A74509 /* OrderTypeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1064,6 +1077,8 @@
 			children = (
 				07576FD91D373527000D5E20 /* AppManager.h */,
 				07576FDA1D373527000D5E20 /* AppManager.m */,
+				074C9F2C1D3E182F00A74509 /* TransferTimeSingleton.h */,
+				074C9F2D1D3E182F00A74509 /* TransferTimeSingleton.m */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -1287,11 +1302,13 @@
 				074945D11D35E1E400A46AE6 /* LoginModel.m in Sources */,
 				07576FE31D376919000D5E20 /* WashCarCollectionView.m in Sources */,
 				072F80611D348F66002CECC4 /* FeedbackThirdCollectionViewCell.m in Sources */,
+				074C9F281D3DBCD600A74509 /* OrderTypeModel.m in Sources */,
 				072F807B1D348F66002CECC4 /* ModifyPasswordViewController.m in Sources */,
 				074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */,
 				072F80631D348F66002CECC4 /* MyCommentDataViewController.m in Sources */,
 				072F80641D348F66002CECC4 /* MyCommentModel.m in Sources */,
 				07576FD11D372319000D5E20 /* OrderCarDataViewController.m in Sources */,
+				074C9F2B1D3DC51000A74509 /* MyOrderModel.m in Sources */,
 				072F80B31D3491EA002CECC4 /* BaseCollectionViewCell.m in Sources */,
 				0757EE031D38714000D82657 /* ScheduleListModel.m in Sources */,
 				072F80811D348F66002CECC4 /* SettingSecondCollectionViewCell.m in Sources */,
@@ -1367,6 +1384,7 @@
 				072F80621D348F66002CECC4 /* MyCommentViewController.m in Sources */,
 				072F80B91D3491EA002CECC4 /* ImageAmplificationViewController.m in Sources */,
 				074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */,
+				074C9F2E1D3E182F00A74509 /* TransferTimeSingleton.m in Sources */,
 				072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */,
 				072F80B41D3491EA002CECC4 /* BaseTableViewCell.m in Sources */,
 				072F80591D348F66002CECC4 /* OnlineMessageDataViewController.m in Sources */,

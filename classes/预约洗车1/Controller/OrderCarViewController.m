@@ -58,8 +58,7 @@
     /**
      *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15:00
      */
-    self.selectedTime = [self.selectedDate stringByAppendingString:startTime];
-
+    self.selectedTime = [NSString stringWithFormat:@"%@ %@",self.selectedDate,startTime];
 }
 
 -(void)currentDateNotification:(NSNotification*)object

@@ -7,10 +7,29 @@
 //
 
 #import "MyOrderTableViewCell.h"
+#import "MyOrderModel.h"
+
 @interface MyOrderTableViewCell()
+/**
+ *   审核状态
+ */
 @property (nonatomic, weak) UILabel* stateTypeLabel;
+/**
+ *  取消预约/发表评论
+ */
 @property (nonatomic, weak) UIButton* selectedButton;
+/**
+ *  距离完成的时间
+ */
 @property (nonatomic, weak) UILabel* timeCompleteLabel;
+/**
+ *  2016-05-28 17:00-17:30
+ */
+@property (nonatomic, weak) UILabel* timeContentLabel;
+/**
+ *  预约类型
+ */
+@property (nonatomic, weak) UILabel* typeContentLabel;
 @end
 @implementation MyOrderTableViewCell
 
@@ -63,10 +82,8 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         timeContentLabel.textColor = UIColorFromRGB(0x929292);
         timeContentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:timeContentLabel];
-        CGFloat timeContentLabelWidth = [timeContentLabel calculateWidthWithLabelContent:timeContentLabel.text
-                                                                     WithFontName:nil
-                                                                     WithFontSize:14
-                                                                         WithBold:NO];
+        self.timeContentLabel = timeContentLabel;
+        
         /**
          洗车/维修/更换轮胎
          */
@@ -76,6 +93,7 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         typeContentLabel.textColor = UIColorFromRGB(0x929292);
         typeContentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:typeContentLabel];
+        self.typeContentLabel = typeContentLabel;
         CGFloat typeContentLabelWidth = [typeContentLabel calculateWidthWithLabelContent:typeContentLabel.text
                                                                      WithFontName:nil
                                                                      WithFontSize:14
@@ -114,6 +132,7 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         timeCompleteLabel.font = [UIFont systemFontOfSize:11];
         timeCompleteLabel.textColor = UIColorFromRGB(0xe71a39);
         timeCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        timeCompleteLabel.hidden = YES;
         [self addSubview:timeCompleteLabel];
         self.timeCompleteLabel = timeCompleteLabel;
         
@@ -121,12 +140,14 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         timeLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.024).topSpaceToView(self,ScreenHeight*0.04).widthIs(timeLabelWidth).autoHeightRatio(0);
         typeLabel.sd_layout.leftEqualToView(timeLabel).topSpaceToView(timeLabel,ScreenHeight*0.02).widthIs(typeLabelWidth).autoHeightRatio(0);
         
-        timeContentLabel.sd_layout.leftSpaceToView(timeLabel,ScreenWidth*0.024).topEqualToView(timeLabel).widthIs(timeContentLabelWidth).autoHeightRatio(0);
+        stateTypeLabel.sd_layout.rightSpaceToView(self,ScreenWidth*0.037).topSpaceToView(self,ScreenHeight*0.04).widthIs(ScreenWidth*0.16).autoHeightRatio(0);
+        
+        timeContentLabel.sd_layout.leftSpaceToView(timeLabel,ScreenWidth*0.024).topEqualToView(timeLabel).rightSpaceToView(stateTypeLabel,0).autoHeightRatio(0);
         
         typeContentLabel.sd_layout.leftEqualToView(timeContentLabel).topEqualToView(typeLabel).widthIs(typeContentLabelWidth).autoHeightRatio(0);
         
         
-        stateTypeLabel.sd_layout.rightSpaceToView(self,ScreenWidth*0.037).topSpaceToView(self,ScreenHeight*0.04).leftSpaceToView(timeContentLabel,0).autoHeightRatio(0);
+        
         selectedButton.sd_layout.rightEqualToView(stateTypeLabel).widthIs(68).heightIs(24).bottomSpaceToView(self,ScreenHeight*0.018);
         lineView.sd_layout.leftEqualToView(timeLabel).rightSpaceToView(self,5).bottomEqualToView(self).heightIs(1);
         
@@ -138,16 +159,73 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[NSDictionary class]])
+    
+    if ([object isKindOfClass:[MyOrderModel class]])
     {
-        NSDictionary* dic = (NSDictionary*)object;
-        self.stateTypeLabel.text = [dic objectForKey:@"state"];
+        MyOrderModel* myOrderModel = (MyOrderModel*)object;
         
-        NSString* tempStr = [dic objectForKey:@"button"];
-        if ([tempStr isEqualToString:@""])
+        /**
+         *  拼接时间格式为:2016-05-28 17:00-17:30
+         */
+        NSRange range = NSMakeRange(11, 5);
+        NSString* startTime = [myOrderModel.StartTime substringWithRange:range];
+        NSString* endTime = [myOrderModel.EndTime substringWithRange:range];
+        NSString* myOrderDateStr = [myOrderModel.StartTime substringToIndex:10];
+        self.timeContentLabel.text = [NSString stringWithFormat:@"%@ %@-%@",myOrderDateStr,startTime,endTime];
+        /**
+         *  预约的项目内容
+         */
+        self.typeContentLabel.text = myOrderModel.AppointmentName;
+        
+        
+        if ([myOrderModel.AppointmentStatus isEqualToString:@"Appointmented"])
+        {
+            self.stateTypeLabel.text = @"未审核";
+            [self.selectedButton setTitle:@"取消预约" forState:UIControlStateNormal];
+            self.selectedButton.hidden = NO;
+            self.timeCompleteLabel.hidden = YES;
+        }
+        else if ([myOrderModel.AppointmentStatus isEqualToString:@"Approval"])
+        {
+            self.stateTypeLabel.text = @"已审核";
+            [self.selectedButton setTitle:@"取消预约" forState:UIControlStateNormal];
+            self.selectedButton.hidden = NO;
+            self.timeCompleteLabel.hidden = YES;
+        }
+        else if ([myOrderModel.AppointmentStatus isEqualToString:@"InService"])
+        {
+            self.stateTypeLabel.text = @"服务中";
+            self.selectedButton.hidden = YES;
+            self.timeCompleteLabel.hidden = NO;
+        }
+        else if ([myOrderModel.AppointmentStatus isEqualToString:@"Completed"])
+        {
+            self.stateTypeLabel.text = @"已完成";
+            [self.selectedButton setTitle:@"发表评论" forState:UIControlStateNormal];
+            self.selectedButton.hidden = NO;
+            self.timeCompleteLabel.hidden = YES;
+        }
+        else if ([myOrderModel.AppointmentStatus isEqualToString:@"Cancel"])
+        {
+            self.stateTypeLabel.text = @"已取消";
+            self.selectedButton.hidden = YES;
+            self.timeCompleteLabel.hidden = YES;
+        }
+        else
         {
             self.selectedButton.hidden = YES;
-            __block int timeout=3000; //倒计时时间
+            self.timeCompleteLabel.hidden = YES;
+        }
+        
+        
+        if ([self.stateTypeLabel.text isEqualToString:@"服务中"])
+        {
+            /**
+             *  把服务器传回来的时间中的T去掉
+             */
+            NSString* endTimeFormate = [myOrderModel.EndTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+            ;
+            __block NSInteger timeout=[TransferTimeSingleton.shareTransfer transferTimeStringToIntervalWith:endTimeFormate]; //倒计时时间
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
             dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
@@ -159,9 +237,10 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
                         
                     });
                 }else{
-                    int minutes = timeout / 60;
-                    int seconds = timeout % 60;
-                    NSString *strTime = [NSString stringWithFormat:@"距离完成时间：01:%d:%.2d",minutes, seconds];
+                    NSInteger hours = timeout/3600;
+                    NSInteger minutes = (timeout-hours*3600)/60;
+                    NSInteger seconds = timeout % 60;
+                    NSString *strTime = [NSString stringWithFormat:@"距离完成时间：%.2ld:%.2ld:%.2ld",hours,minutes, seconds];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //设置界面的按钮显示 根据自己需求设置
                         self.timeCompleteLabel.text = strTime;
@@ -174,7 +253,7 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         }
         else
         {
-            [self.selectedButton setTitle:tempStr forState:UIControlStateNormal];
+           
         }
         
     }
