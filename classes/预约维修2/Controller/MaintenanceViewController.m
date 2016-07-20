@@ -14,6 +14,8 @@
 #import "TypeSelectedViewController.h"
 #import "TimeSelectedViewController.h"
 #import "ImageAmplificationViewController.h"
+#import "MaintenanceHeaderView.h"
+#import "OrderTypeModel.h"
 
 @interface MaintenanceViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MaintenanceHeaderViewDelegate,WashCarFiveCollectionViewCellDelegate>
 
@@ -22,19 +24,27 @@
  *  用户评论模型数组
  */
 @property (nonatomic, strong) NSArray* userCommentModelArr;
+
 @end
 
 @implementation MaintenanceViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.maintenanceDataViewController = [[MaintenanceDataViewController alloc]init];
     self.view.backgroundColor = [UIColor whiteColor];
     [self configureNavigationView];
     [self configureHeaderView];
     [self configureCollectionView];
-    
     [self loadDataFromService];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.maintenanceDataViewController.maintenanceHeaderView layoutWithOrderTypeModel:self.orderTypeModel];
+    
 }
 
 -(void)configureNavigationView
@@ -158,13 +168,18 @@
 }
 
 #pragma mark - MaintenanceHeaderViewDelegate
+/**
+ *  类型选择
+ */
 -(void)didSelectedTypeChangeButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
 {
     TypeSelectedViewController* typeSelectedViewController = [[TypeSelectedViewController alloc]init];
-    
+    typeSelectedViewController.orderTypeModel = self.orderTypeModel;
     [self.navigationController pushViewController:typeSelectedViewController animated:YES];
 }
-
+/**
+ *  时间选择
+ */
 -(void)didSelectedTimeChangeButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
 {
     TimeSelectedViewController* timeSelectedViewController = [[TimeSelectedViewController alloc]init];

@@ -7,6 +7,7 @@
 //
 
 #import "CustomTypeSelectedTableViewCell.h"
+#import "OrderTypeModel.h"
 
 @interface CustomTypeSelectedTableViewCell()
 
@@ -57,8 +58,6 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
         
         
         UIButton* selectedButton = [[UIButton alloc]init];
-        [selectedButton setTitle:@"选择" forState:UIControlStateNormal];
-         [self.selectedButton setTitle:@"取消" forState:UIControlStateSelected];
         selectedButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [selectedButton setTitleColor:UIColorFromRGB(0xff7e31) forState:UIControlStateNormal];
         [selectedButton setBackgroundImage:ImageNamed(@"order_type_choose") forState:UIControlStateNormal];
@@ -84,19 +83,32 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[NSDictionary class]])
+
+    if ([object isKindOfClass:[OrderTypeModel class]])
     {
-        NSDictionary* dic = (NSDictionary*)object;
+        OrderTypeModel* orderTypeModel = (OrderTypeModel*)object;
         
-        self.typeNameLabel.text = [dic objectForKey:@"name"];
-        self.contentLabel.text = [dic objectForKey:@"content"];
-        self.priceLabel.text = [dic objectForKey:@"price"];
+        self.typeNameLabel.text = orderTypeModel.SubjectName;
+        self.contentLabel.text = [NSString stringWithFormat:@"%@;施工约%@分钟",orderTypeModel.Note,orderTypeModel.NeedTime];
+        self.priceLabel.text = [NSString stringWithFormat:@"￥%@",orderTypeModel.Price];
+        
+        if (orderTypeModel.IsSelected)
+        {
+            [self.selectedButton setTitle:@"已选择" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.selectedButton setTitle:@"选择" forState:UIControlStateNormal];
+        }
     }
 }
 
 -(void)clickSelectedButton:(UIButton*)sender
 {
-    sender.hidden = YES;
+    if ([self.delegate respondsToSelector:@selector(didSelectedCustomTypeSelectedTableViewCell:)])
+    {
+        [self.delegate didSelectedCustomTypeSelectedTableViewCell:self];
+    }
     
 }
 @end

@@ -116,6 +116,7 @@
              HomeViewController * homeViewController = [[HomeViewController alloc]init];
              
              homeViewController.accessCode = loginModel.AccessCode;
+             SharedAppDelegateHelper.homeViewController = homeViewController;
              [[NSUserDefaults standardUserDefaults]setObject:loginModel.AccessCode forKey:@"accessCode"];//存到plist里面
              [self.navigationController pushViewController:homeViewController animated:YES];
              

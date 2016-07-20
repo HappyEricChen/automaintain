@@ -102,13 +102,11 @@
         {
             scheduleListModel.AppointmentCount = @"full";//他人预约
         }
-        for (NSString* tempStr in self.washCarDateListModel.MySchedule)
+        if ([scheduleListModel.MyAppointmentCount isEqualToString:@"1"])
         {
-            if ([tempStr isEqualToString:scheduleListModel.ShopTime])
-            {
-                scheduleListModel.AppointmentCount = @"myOrder";//我的预约
-            }
+            scheduleListModel.AppointmentCount = @"myOrder";//我的预约
         }
+        
     }
 }
 #pragma mark -WashCarCollectionViewCellDelegate

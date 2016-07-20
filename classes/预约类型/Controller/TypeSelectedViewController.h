@@ -7,7 +7,10 @@
 // 预约维修
 
 #import "BaseViewController.h"
-
+@class OrderTypeModel;
 @interface TypeSelectedViewController : BaseViewController
-
+/**
+ *   选中项目模型
+ */
+@property (nonatomic, strong) OrderTypeModel* orderTypeModel;
 @end

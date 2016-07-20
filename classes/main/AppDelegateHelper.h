@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+@class MaintenanceViewController;
 /**
  *  单例对象宏定义
  */
@@ -20,5 +22,13 @@
 @property (nonatomic, strong) UIViewController* loginViewController;
 
 @property (nonatomic, strong) UINavigationController* navigationController;
+/**
+ *  首页
+ */
+@property (nonatomic, strong) UIViewController* homeViewController;
+/**
+ *  维修保养
+ */
+@property (nonatomic, strong) MaintenanceViewController* maintenanceViewController;
 +(AppDelegateHelper *)sharedManager;
 @end

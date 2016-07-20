@@ -10,8 +10,10 @@
 #import "TypeSelectedDataViewController.h"
 #import "TypeSelectedView.h"
 #import "CustomTypeSelectedTableViewCell.h"
+#import "OrderTypeModel.h"
+#import "MaintenanceViewController.h"
 
-@interface TypeSelectedViewController ()<CustomNavigationViewDelegate,UITableViewDelegate,UITableViewDataSource,TypeSelectedViewDelegate>
+@interface TypeSelectedViewController ()<CustomNavigationViewDelegate,UITableViewDelegate,UITableViewDataSource,TypeSelectedViewDelegate,CustomTypeSelectedTableViewCellDelegate>
 @property (nonatomic, strong) TypeSelectedDataViewController * typeSelectedDataViewController;
 
 @end
@@ -58,7 +60,8 @@
     {
         if (success)
         {
-            
+            [self findSelectedOrderTypeModel];//遍历数组寻找已选择的按钮
+            [self.typeSelectedDataViewController.customTableView reloadData];
         }
         else
         {
@@ -66,6 +69,21 @@
         }
     }];
 }
+
+-(void)findSelectedOrderTypeModel
+{
+    if (self.typeSelectedDataViewController.typeSelectedArr.count>0)
+    {
+        for (OrderTypeModel* tempModel in self.typeSelectedDataViewController.typeSelectedArr)
+        {
+            if ([self.orderTypeModel.Guid isEqualToString:tempModel.Guid])
+            {
+                tempModel.IsSelected = YES;
+            }
+        }
+    }
+}
+
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
@@ -79,7 +97,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.typeSelectedDataViewController.typeSelectedArr.count>0?self.typeSelectedDataViewController.typeSelectedArr.count:0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,8 +105,9 @@
     UITableViewCell* cell = nil;
     
     CustomTypeSelectedTableViewCell* customTypeSelectedTableViewCell = [CustomTypeSelectedTableViewCell tableView:tableView dequeueReusableCellWithReuseIdentifier:CustomTypeSelectedTableViewCellId forIndexPath:indexPath];
+    customTypeSelectedTableViewCell.delegate = self;
     cell = customTypeSelectedTableViewCell;
-    [customTypeSelectedTableViewCell layoutWithObject:self.typeSelectedDataViewController.typeSelectedArr[0]];
+    [customTypeSelectedTableViewCell layoutWithObject:self.typeSelectedDataViewController.typeSelectedArr[indexPath.row]];
     return cell;
 }
 #pragma mark -UITableViewDelegate
@@ -102,15 +121,27 @@
 -(void)didClickWashCarButtonWithTypeSelectedView:(TypeSelectedView *)typeSelectedView
 {
     [self.typeSelectedDataViewController.typeSelectedArr removeAllObjects];
-    [self.typeSelectedDataViewController.typeSelectedArr addObjectsFromArray: @[@{@"name":@"全车打蜡",@"content":@"SONAX蜡; 施工约60分钟; 洗车+机器打蜡",@"price":@"￥588"}]];
-    
+    [self.typeSelectedDataViewController.typeSelectedArr addObjectsFromArray:self.typeSelectedDataViewController.beautyServiceArr];
+    [self findSelectedOrderTypeModel];
     [self.typeSelectedDataViewController.customTableView reloadData];
 }
 
 -(void)didClickMaintenanceButtonWithTypeSelectedView:(TypeSelectedView *)typeSelectedView
 {
     [self.typeSelectedDataViewController.typeSelectedArr removeAllObjects];
-    [self.typeSelectedDataViewController.typeSelectedArr addObjectsFromArray: @[@{@"name":@"空调电器系统",@"content":@"大修空调系统; 施工约120分钟; 检测/更换空调冷疑器",@"price":@"￥1000"}]];
+    [self.typeSelectedDataViewController.typeSelectedArr addObjectsFromArray:self.typeSelectedDataViewController.maintenanceArr];
+    [self findSelectedOrderTypeModel];
     [self.typeSelectedDataViewController.customTableView reloadData];
+}
+#pragma mark - 点击选择按钮调用CustomTypeSelectedTableViewCellDelegate
+-(void)didSelectedCustomTypeSelectedTableViewCell:(CustomTypeSelectedTableViewCell *)customTypeSelectedTableViewCell
+{
+    NSIndexPath* indexPath = [self.typeSelectedDataViewController.customTableView indexPathForCell:customTypeSelectedTableViewCell];
+    OrderTypeModel* orderTypeModel = self.typeSelectedDataViewController.typeSelectedArr[indexPath.row];
+    
+    orderTypeModel.IsSelected = YES;//选择状态改为已选择
+    SharedAppDelegateHelper.maintenanceViewController.orderTypeModel = orderTypeModel;
+
+    [self.navigationController popToViewController:SharedAppDelegateHelper.maintenanceViewController animated:YES];
 }
 @end

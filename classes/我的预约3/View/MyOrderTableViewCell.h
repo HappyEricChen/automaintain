@@ -16,7 +16,10 @@
  *  点击发表评论按钮
  */
 -(void)didSelectedCommentButtonWithMyOrderTableViewCell:(MyOrderTableViewCell*)myOrderTableViewCell;
-
+/**
+ *  点击取消预约按钮
+ */
+-(void)didSelectedCancelOrderButtonWithMyOrderTableViewCell:(MyOrderTableViewCell*)myOrderTableViewCell;
 @end
 @interface MyOrderTableViewCell : BaseTableViewCell
 

@@ -191,11 +191,13 @@
     
     [self.navigationController pushViewController:personalViewController animated:YES];
 }
-
+/**
+ *  预约维修
+ */
 -(void)didSelectedMaintenanceButtonWithSecondCollectionViewCell:(SecondCollectionViewCell *)secondCollectionViewCell
 {
     MaintenanceViewController* maintenanceViewController = [[MaintenanceViewController alloc]init];
-    
+    SharedAppDelegateHelper.maintenanceViewController = maintenanceViewController;
     [self.navigationController pushViewController:maintenanceViewController animated:YES];
     
 }

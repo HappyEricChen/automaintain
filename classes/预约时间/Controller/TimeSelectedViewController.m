@@ -24,10 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.timeSelectedDataViewController = [[TimeSelectedDataViewController alloc]init];
-    [self.timeSelectedDataViewController loadMaintenanceOrderTimeArr];//加载数据
     self.view.backgroundColor = [UIColor whiteColor];
     [self configureNavigationView];
     [self configureCollectionView];
+    
+    [self loadDataFromService];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
 }
 
 -(void)configureNavigationView
@@ -48,6 +50,53 @@
     
 }
 
+-(void)loadDataFromService
+{
+    [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode
+                                                                  withCurrentDate:AppManagerSingleton.currentDate
+                                                                  withSubjectGuid:SubjectGuidWashCar
+                                                                     withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             [self.timeSelectedDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             
+         }
+     }];
+}
+
+
+/**
+ *  切换日期刷新数据
+ */
+//-(void)currentDateNotification:(NSNotification*)object
+//{
+//    NSString* currentDateStr = [object.userInfo objectForKey:@"currentDate"];
+//    
+//    NSString* dateStringFormate1 = [currentDateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
+//    NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
+//    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
+//    self.selectedDate = dateStringFormate3;
+//    
+//    [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+//     {
+//         if (success)
+//         {
+//             [SVProgressHUD dismiss];
+//             [self.timeSelectedDataViewController.collectionView reloadData];
+//         }
+//         else
+//         {
+//             [SVProgressHUD showErrorWithStatus:result];
+//         }
+//     }];
+//    
+//}
+
+
 
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
@@ -65,7 +114,7 @@
 {
     if (section == 1)
     {
-        return self.timeSelectedDataViewController.otherOrderMaintenanceArr.count>0?self.timeSelectedDataViewController.otherOrderMaintenanceArr.count:0;
+        return self.timeSelectedDataViewController.fullOrderMaintenanceArr.count>0?self.timeSelectedDataViewController.fullOrderMaintenanceArr.count:0;
     }
     else if (section == 2)
     {
@@ -87,7 +136,7 @@
     else if (indexPath.section == 1)
     {
         FirstTimeSelecetdCollectionViewCell * secondCell = [FirstTimeSelecetdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:firstTimeCellId forIndexPath:indexPath];
-         [secondCell layoutWithObject:self.timeSelectedDataViewController.otherOrderMaintenanceArr[indexPath.row]];
+         [secondCell layoutWithObject:self.timeSelectedDataViewController.fullOrderMaintenanceArr[indexPath.row]];
         cell =secondCell;
     }
     else if (indexPath.section == 2)
@@ -96,11 +145,7 @@
         [thirdCell layoutWithObject:self.timeSelectedDataViewController.canOrderMaintenanceArr[indexPath.row]];
         cell = thirdCell;
     }
-    else if (indexPath.section == 3)
-    {
-        //        FourCollectionViewCell * fourCell = [FourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:fourCellId forIndexPath:indexPath];
-        //        cell = fourCell;
-    }
+
     
     return cell;
 }

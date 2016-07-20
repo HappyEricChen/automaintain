@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
+@class OrderTypeModel;
 @interface MaintenanceViewController : BaseViewController
-
+/**
+ *   选中项目模型
+ */
+@property (nonatomic, strong) OrderTypeModel* orderTypeModel;
 @end

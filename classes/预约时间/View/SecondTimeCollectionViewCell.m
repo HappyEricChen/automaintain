@@ -7,6 +7,7 @@
 //
 
 #import "SecondTimeCollectionViewCell.h"
+#import "ScheduleListModel.h"
 
 @interface SecondTimeCollectionViewCell()
 
@@ -53,9 +54,10 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[NSString class]])
+    if ([object isKindOfClass:[ScheduleListModel class]])
     {
-        [self.timeButton setTitle:(NSString*)object forState:UIControlStateNormal];
+        ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
+        [self.timeButton setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
     }
 }
 

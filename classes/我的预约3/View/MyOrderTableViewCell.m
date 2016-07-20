@@ -270,8 +270,10 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
     }
     else if ([sender.titleLabel.text isEqualToString:@"取消预约"])
     {
-        sender.hidden = YES;
-        self.stateTypeLabel.text = @"已取消";
+        if ([self.delegate respondsToSelector:@selector(didSelectedCancelOrderButtonWithMyOrderTableViewCell:)])
+        {
+            [self.delegate didSelectedCancelOrderButtonWithMyOrderTableViewCell:self];
+        }
     }
     
 }

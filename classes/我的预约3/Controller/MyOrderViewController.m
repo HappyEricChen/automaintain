@@ -10,19 +10,17 @@
 #import "MyOrderDataViewController.h"
 #import "MyOrderTableViewCell.h"
 #import "MyCommentViewController.h"
+#import "MyOrderModel.h"
 
 @interface MyOrderViewController ()<CustomNavigationViewDelegate,UITableViewDelegate,UITableViewDataSource,MyOrderTableViewCellDelegate>
 @property (nonatomic, strong) MyOrderDataViewController * myOrderDataViewController;
 
-/**
- *  我的预约模型数组
- */
-@property (nonatomic, strong) NSArray* myOrderModelArr;
 
 /**
  *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
  */
 @property (nonatomic, assign) NSInteger index;
+
 @end
 
 @implementation MyOrderViewController
@@ -91,7 +89,6 @@
          [self.myOrderDataViewController.customTableView.mj_footer endRefreshing];//结束刷新
          if (success)
          {
-             self.myOrderModelArr = (NSArray*)result;
              [self.myOrderDataViewController.customTableView reloadData];
          }
          else
@@ -104,7 +101,7 @@
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToViewController:SharedAppDelegateHelper.homeViewController animated:YES];
 }
 
 #pragma mark -UITableViewDataSource
@@ -114,7 +111,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.myOrderModelArr.count>0?self.myOrderModelArr.count:0;
+    return self.myOrderDataViewController.myOrderModelArr.count>0?self.myOrderDataViewController.myOrderModelArr.count:0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,7 +120,7 @@
     
     MyOrderTableViewCell* myOrderTableViewCell = [MyOrderTableViewCell tableView:tableView dequeueReusableCellWithReuseIdentifier:MyOrderTableViewCellId forIndexPath:indexPath];
     myOrderTableViewCell.delegate = self;
-    [myOrderTableViewCell layoutWithObject:self.myOrderModelArr[indexPath.row]];
+    [myOrderTableViewCell layoutWithObject:self.myOrderDataViewController.myOrderModelArr[indexPath.row]];
     cell = myOrderTableViewCell;
     
     return cell;
@@ -136,10 +133,35 @@
 }
 
 #pragma mark - MyOrderTableViewCellDelegate
+/**
+ *  点击评论按钮
+ */
 -(void)didSelectedCommentButtonWithMyOrderTableViewCell:(MyOrderTableViewCell *)myOrderTableViewCell
 {
     MyCommentViewController* myCommentViewController = [[MyCommentViewController alloc]init];
     
     [self.navigationController pushViewController:myCommentViewController animated:YES];
+}
+/**
+ *  点击取消预约按钮
+ */
+-(void)didSelectedCancelOrderButtonWithMyOrderTableViewCell:(MyOrderTableViewCell *)myOrderTableViewCell
+{
+    NSIndexPath* indexpath = [self.myOrderDataViewController.customTableView indexPathForCell:myOrderTableViewCell];
+    
+    MyOrderModel* myOrderModel = self.myOrderDataViewController.myOrderModelArr[indexpath.row];
+    
+    [self.myOrderDataViewController postCancelOrderWithAccessCode:AppManagerSingleton.accessCode withAppointmentGuid:myOrderModel.AppointmentGuid withCallback:^(BOOL success, NSError *error, id result)
+    {
+        if (success)
+        {
+            [SVProgressHUD showSuccessWithStatus:@"取消成功"];
+            [self.myOrderDataViewController.customTableView.mj_header beginRefreshing];//开始刷新
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:result];
+        }
+    }];
 }
 @end

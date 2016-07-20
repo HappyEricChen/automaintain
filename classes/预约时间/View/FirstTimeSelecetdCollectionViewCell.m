@@ -7,7 +7,7 @@
 //
 
 #import "FirstTimeSelecetdCollectionViewCell.h"
-
+#import "ScheduleListModel.h"
 @interface FirstTimeSelecetdCollectionViewCell()
 
 @property (nonatomic, weak) UIButton* timeButton;
@@ -54,9 +54,10 @@ NSString* const firstTimeCellId = @"firstTimeCellId";
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[NSString class]])
+    if ([object isKindOfClass:[ScheduleListModel class]])
     {
-        [self.timeButton setTitle:(NSString*)object forState:UIControlStateNormal];
+        ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
+        [self.timeButton setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
     }
 }
 @end

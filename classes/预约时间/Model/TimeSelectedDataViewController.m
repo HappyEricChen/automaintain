@@ -11,6 +11,8 @@
 #import "TimeSelectedHeaderView.h"
 #import "FirstTimeSelecetdCollectionViewCell.h"
 #import "SecondTimeCollectionViewCell.h"
+#import "WashCarDateListModel.h"
+#import "ScheduleListModel.h"
 
 @implementation TimeSelectedDataViewController
 
@@ -42,34 +44,56 @@
     return _collectionView;
 }
 
--(void)loadMaintenanceOrderTimeArr
+-(NSMutableArray *)fullOrderMaintenanceArr
 {
-    
-    self.otherOrderMaintenanceArr = @[@"10:00-10:30",
-                                      @"10:30-11:00",
-                                      @"11:00-11:30",
-                                      @"11:30-12:00",
-                                      @"12:00-12:30",
-                                      @"12:30-13:00",];
-    
-    self.canOrderMaintenanceArr = @[@"7:00-7:30",
-                               @"7:30-8:00",
-                               @"8:00-8:30",
-                               @"8:30-9:00",
-                               @"9:00-9:30",
-                               @"9:30-10:00",
-                               @"13:00-13:30",
-                               @"13:30-14:00",
-                               @"14:00-14:30",
-                               @"14:30-15:00",
-                               @"15:00-15:30",
-                               @"15:30-16:00",
-                               @"16:00-16:30",
-                               @"17:30-18:00",
-                               @"17:00-17:30",
-                               @"17:30-18:00",
-                               @"18:00-18:30",
-                               @"18:30-19:00"];
+    if (!_fullOrderMaintenanceArr)
+    {
+        _fullOrderMaintenanceArr = [NSMutableArray array];
+    }
+    return _fullOrderMaintenanceArr;
+}
+
+-(NSMutableArray *)canOrderMaintenanceArr
+{
+    if (!_canOrderMaintenanceArr)
+    {
+        _canOrderMaintenanceArr = [NSMutableArray array];
+    }
+    return _canOrderMaintenanceArr;
+}
+
+-(void)postListofWashCarPlaceListWithAccessCode:(NSString *)accessCode
+                                withCurrentDate:(NSString *)currentDate
+                                withSubjectGuid:(NSString *)subjectGuid
+                                   withCallback:(Callback)callback
+{
+    [AutomaintainAPI postListofWashCarPlaceListWithAccessCode:accessCode
+                                              withCurrentDate:currentDate
+                                              withSubjectGuid:subjectGuid
+                                                 withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             WashCarDateListModel* washCarDateListModel = (WashCarDateListModel*)result;
+             
+             for (ScheduleListModel* scheduleListModel in washCarDateListModel.Schedule)
+             {
+                 if ([washCarDateListModel.MaxPlaceNum isEqualToString:scheduleListModel.AppointmentCount])
+                 {
+                     [self.fullOrderMaintenanceArr addObject:scheduleListModel];
+                 }
+                 else
+                 {
+                     [self.canOrderMaintenanceArr addObject:scheduleListModel];
+                 }
+             }
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
 }
 
 @end

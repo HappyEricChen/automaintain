@@ -14,6 +14,7 @@
 #import "WashCarDateListModel.h"
 #import "UserCommentModel.h"
 #import "MyOrderModel.h"
+#import "OrderTypeModel.h"
 
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
@@ -89,7 +90,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #pragma mark - 找回密码
 +(void)changePasswordWithUsername:(NSString *)username withNewPassword:(NSString *)newPassword withCallback:(Callback)callback
 {
-    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/SetCustomerPassword"];
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/FindCustomerPassword"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"username"]=username;
     dic[@"password"]=newPassword;
@@ -395,8 +396,8 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          if (IsSuccessed)
          {
              NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
-             NSArray* userCommentModelArr = [UserCommentModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
-             callback(YES,nil,userCommentModelArr);
+             NSArray* orderTypeModelArr = [OrderTypeModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
+             callback(YES,nil,orderTypeModelArr);
              
          }
          
@@ -452,6 +453,45 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      {
          NSLog(@"error%@",error);
      }];
+    
+}
 
+#pragma mark - 取消预约
++(void)postCancelOrderWithAccessCode:(NSString *)accessCode
+                 withAppointmentGuid:(NSString *)appointmentGuid
+                        withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/CancelAppointment"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"appointmentGuid"]=appointmentGuid;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(YES,nil,ResultMessage);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+    
 }
 @end

@@ -9,6 +9,7 @@
 #import "TypeSelectedDataViewController.h"
 #import "TypeSelectedView.h"
 #import "CustomTypeSelectedTableViewCell.h"
+#import "OrderTypeModel.h"
 
 @implementation TypeSelectedDataViewController
 
@@ -47,23 +48,54 @@
     if (!_typeSelectedArr)
     {
         _typeSelectedArr = [NSMutableArray array];
-        [_typeSelectedArr addObjectsFromArray: @[@{@"name":@"全车打蜡",@"content":@"SONAX蜡; 施工约60分钟; 洗车+机器打蜡",@"price":@"￥588"}]];
     }
     return _typeSelectedArr;
 }
 
+-(NSMutableArray *)beautyServiceArr
+{
+    if (!_beautyServiceArr)
+    {
+        _beautyServiceArr = [NSMutableArray array];
+    }
+    return _beautyServiceArr;
+}
+-(NSMutableArray *)maintenanceArr
+{
+    if (!_maintenanceArr)
+    {
+        _maintenanceArr = [NSMutableArray array];
+    }
+    return _maintenanceArr;
+}
 -(void)postOrderTypeListWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     [AutomaintainAPI postOrderTypeListWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
-    {
-        if (success)
-        {
-            callback(YES,nil,result);
-        }
-        else
-        {
-            callback(NO,nil,result);
-        }
-    }];
+     {
+         if (success)
+         {
+             NSArray* tempModelArr = (NSArray*)result;
+             
+             for (OrderTypeModel* orderTypeModel in tempModelArr)
+             {
+                 if ([orderTypeModel.Type isEqualToString:@"美容洗护"])
+                 {
+                     [self.beautyServiceArr addObject:orderTypeModel];
+                 }
+                 else if ([orderTypeModel.Type isEqualToString:@"维修保养"])
+                 {
+                     [self.maintenanceArr addObject:orderTypeModel];
+                 }
+             }
+             [self.typeSelectedArr removeAllObjects];
+             [self.typeSelectedArr addObjectsFromArray:self.beautyServiceArr];
+             callback(YES,nil,result);
+             
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
 }
 @end

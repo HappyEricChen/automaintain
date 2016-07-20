@@ -10,6 +10,7 @@
 #define PrefixHeader_pch
 
 #import "Header.h"
+#import "AppDelegateHelper.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
 #import "CustomNavigationView.h"
 #import <SDCycleScrollView.h>

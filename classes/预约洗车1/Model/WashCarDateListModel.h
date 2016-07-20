@@ -14,10 +14,7 @@
  *  同一个时间最多能接受的预约次数
  */
 @property (nonatomic, strong) NSString* MaxPlaceNum;
-/**
- *  我的预约时间列表
- */
-@property (nonatomic, strong) NSArray* MySchedule;
+
 /**
  *  每个时间段的模型数组
  */

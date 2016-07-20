@@ -62,7 +62,7 @@
 +(void)postListofBottomAdsWithAccessCode:(NSString*)accessCode
                             withCallback:(Callback )callback;
 
-#pragma mark - 预约洗车
+#pragma mark - 预约洗车/获取指定日期的时间表
 /**
  *   预约洗车/获取车位指定日期的预订表/POST 请求
  *
@@ -75,6 +75,7 @@
                                 withCurrentDate:(NSString*)currentDate
                                 withSubjectGuid:(NSString*)subjectGuid
                                    withCallback:(Callback )callback;
+#pragma mark - 提交预约
 /**
  *   提交预约/POST 请求
  *
@@ -118,5 +119,16 @@
  */
 +(void)postMyOrderListWithAccessCode:(NSString*)accessCode
                        withPageIndex:(NSString*)pageIndex
+                        withCallback:(Callback )callback;
+#pragma mark - 取消预约
+/**
+ *  取消预约/POST 请求
+ *
+ *  @param accessCode 唯一标识符
+ *  @param appointmentGuid  预约时间段的唯一id
+ *  @param callback    回调
+ */
++(void)postCancelOrderWithAccessCode:(NSString*)accessCode
+                 withAppointmentGuid:(NSString*)appointmentGuid
                         withCallback:(Callback )callback;
 @end

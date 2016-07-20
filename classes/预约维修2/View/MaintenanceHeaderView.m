@@ -7,7 +7,14 @@
 //
 
 #import "MaintenanceHeaderView.h"
+#import "OrderTypeModel.h"
 
+@interface MaintenanceHeaderView()
+/**
+ *  保养/精细/项目内容名称
+ */
+@property (nonatomic, weak) UILabel* contentLabel;
+@end
 @implementation MaintenanceHeaderView
 
 - (instancetype)init
@@ -38,15 +45,11 @@
          *  保养/精细/项目内容名称
          */
         UILabel* contentLabel = [[UILabel alloc]init];
-        contentLabel.text = @"保养/精细洗车(预计2小时)";
         contentLabel.font = [UIFont systemFontOfSize:14];
         contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:contentLabel];
+        self.contentLabel = contentLabel;
         
-        CGFloat contentLabelWidth = [typeLabel calculateWidthWithLabelContent:contentLabel.text
-                                                              WithFontName:nil
-                                                              WithFontSize:14
-                                                                  WithBold:NO];
         /**
          右边箭头
          */
@@ -59,11 +62,12 @@
         lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:lineView];
         
-        baseViewButton.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.067);
+        baseViewButton.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.076);
         typeLabel.sd_layout.leftSpaceToView(baseViewButton,ScreenWidth*0.037).topSpaceToView(baseViewButton,ScreenHeight*0.036).widthIs(typeLabelWidth).autoHeightRatio(0);
-        contentLabel.sd_layout.leftSpaceToView(typeLabel,ScreenWidth*0.12).topSpaceToView(baseViewButton,ScreenHeight*0.036).widthIs(contentLabelWidth).autoHeightRatio(0);
-        rightImageView.sd_layout.rightSpaceToView(baseViewButton,20).centerYEqualToView(typeLabel).widthIs(9).heightIs(18);
-        lineView.sd_layout.leftEqualToView(baseViewButton).rightEqualToView(baseViewButton).heightIs(2).topSpaceToView(contentLabel,6);
+        rightImageView.sd_layout.rightSpaceToView(baseViewButton,20).centerYEqualToView(typeLabel).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
+        contentLabel.sd_layout.leftSpaceToView(typeLabel,ScreenWidth*0.12).topSpaceToView(baseViewButton,ScreenHeight*0.036).rightSpaceToView(rightImageView,0).autoHeightRatio(0);
+        
+        lineView.sd_layout.leftEqualToView(baseViewButton).rightEqualToView(baseViewButton).heightIs(2).bottomSpaceToView(baseViewButton,0);
         
         
 #pragma mark - 预约时间
@@ -110,11 +114,11 @@
         lineView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:lineView1];
         
-        baseViewButton1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseViewButton,0).heightIs(ScreenHeight*0.067);
+        baseViewButton1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseViewButton,0).heightIs(ScreenHeight*0.076);
         typeLabel1.sd_layout.leftSpaceToView(baseViewButton1,ScreenWidth*0.037).topSpaceToView(baseViewButton1,ScreenHeight*0.036).widthIs(typeLabelWidth1).autoHeightRatio(0);
         contentLabel1.sd_layout.leftSpaceToView(typeLabel1,ScreenWidth*0.12).topSpaceToView(baseViewButton1,ScreenHeight*0.036).widthIs(contentLabelWidth1).autoHeightRatio(0);
         rightImageView1.sd_layout.rightSpaceToView(baseViewButton1,20).centerYEqualToView(typeLabel1).widthIs(9).heightIs(18);
-        lineView1.sd_layout.leftEqualToView(baseViewButton1).rightEqualToView(baseViewButton1).heightIs(2).topSpaceToView(contentLabel1,6);
+        lineView1.sd_layout.leftEqualToView(baseViewButton1).rightEqualToView(baseViewButton1).heightIs(2).bottomSpaceToView(baseViewButton1,0);
         
 #pragma mark - 提交预约按钮
         
@@ -129,6 +133,24 @@
         submitButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.04).topSpaceToView(baseViewButton1,ScreenHeight*0.067).heightIs(ScreenHeight*0.05);
     }
     return self;
+}
+
+
+#pragma mark - 布局类型时间
+-(void)layoutWithOrderTypeModel:(OrderTypeModel *)orderTypeModel
+{
+    if ([orderTypeModel isKindOfClass:[OrderTypeModel class]])
+    {
+        if ([orderTypeModel.Type isEqualToString:@"美容洗护"])
+        {
+            self.contentLabel.text = [NSString stringWithFormat:@"保养/%@",orderTypeModel.SubjectName];
+        }
+        else if ([orderTypeModel.Type isEqualToString:@"维修保养"])
+        {
+            self.contentLabel.text = [NSString stringWithFormat:@"维修/%@",orderTypeModel.SubjectName];
+        }
+        
+    }
 }
 
 -(void)clickTypeChangeButton

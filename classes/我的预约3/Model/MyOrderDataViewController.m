@@ -32,20 +32,67 @@
     return _customTableView;
 }
 
+-(NSMutableArray *)myOrderModelArr
+{
+    if (!_myOrderModelArr)
+    {
+        _myOrderModelArr = [NSMutableArray array];
+    }
+    return _myOrderModelArr;
+}
+/**
+ *    我的预约列表/POST 请求
+ */
 -(void)postMyOrderListWithAccessCode:(NSString *)accessCode
                        withPageIndex:(NSString*)pageIndex
                         withCallback:(Callback)callback
 {
+    if ([pageIndex isEqualToString:@"0"])
+    {
+        [self.myOrderModelArr removeAllObjects];
+    }
+    else
+    {
+        
+    }
+    
+    
     [AutomaintainAPI postMyOrderListWithAccessCode:accessCode withPageIndex:pageIndex withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
              callback(YES,nil,result);
+             NSArray * tempModelArr = (NSArray*)result;
+             if (tempModelArr.count<10)
+             {
+                 [self.customTableView.mj_footer endRefreshingWithNoMoreData];
+             }
+             
+             
+             [self.myOrderModelArr addObjectsFromArray:tempModelArr];
+             [self.customTableView reloadData];
          }
          else
          {
              callback(NO,nil,result);
          }
      }];
+}
+/**
+ *    取消预约
+ */
+-(void)postCancelOrderWithAccessCode:(NSString *)accessCode withAppointmentGuid:(NSString *)appointmentGuid withCallback:(Callback)callback
+{
+    [AutomaintainAPI postCancelOrderWithAccessCode:accessCode withAppointmentGuid:appointmentGuid withCallback:^(BOOL success, NSError *error, id result)
+    {
+        if (success)
+        {
+            callback(YES,nil,result);
+        }
+        else
+        {
+            callback(NO,nil,result);
+        }
+    }];
 }
 @end

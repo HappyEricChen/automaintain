@@ -16,6 +16,7 @@
 #import "CommentHeaderView.h"
 #import "ImageAmplificationViewController.h"
 #import "UserCommentModel.h"
+#import "MyOrderViewController.h"
 
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
@@ -274,6 +275,8 @@
                  if (success)
                  {
                      [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                     MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
+                     [self.navigationController pushViewController:myOrderViewController animated:YES];
                  }
                  else
                  {

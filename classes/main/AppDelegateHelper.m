@@ -8,6 +8,8 @@
 
 #import "AppDelegateHelper.h"
 #import "LoginViewController.h"
+#import "HomeViewController.h"
+#import "MaintenanceViewController.h"
 
 @implementation AppDelegateHelper
 
@@ -38,4 +40,20 @@
     return _navigationController;
 }
 
+-(UIViewController *)homeViewController
+{
+    if (!_homeViewController)
+    {
+        _homeViewController = [[HomeViewController alloc]init];
+    }
+    return _homeViewController;
+}
+-(MaintenanceViewController *)maintenanceViewController
+{
+    if (!_maintenanceViewController)
+    {
+        _maintenanceViewController = [[MaintenanceViewController alloc]init];
+    }
+    return _maintenanceViewController;
+}
 @end

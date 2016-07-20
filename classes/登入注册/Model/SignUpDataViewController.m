@@ -57,7 +57,7 @@
          }
          else
          {
-             
+             callback(NO,nil,result);
          }
     }];
 }
@@ -73,7 +73,7 @@
         }
         else
         {
-            
+              callback(NO,nil,result);
         }
     }];
 }

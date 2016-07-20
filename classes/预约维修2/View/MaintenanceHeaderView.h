@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MaintenanceHeaderView;
+@class MaintenanceHeaderView,OrderTypeModel;
 
 @protocol MaintenanceHeaderViewDelegate <NSObject>
 
@@ -24,4 +24,6 @@
 @interface MaintenanceHeaderView : UIView
 
 @property (nonatomic, weak) id <MaintenanceHeaderViewDelegate> delegate;
+
+-(void)layoutWithOrderTypeModel:(OrderTypeModel*)orderTypeModel;
 @end

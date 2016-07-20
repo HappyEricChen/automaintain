@@ -22,5 +22,8 @@
  *  该时间段被预约的次数
  */
 @property (nonatomic, strong) NSString* AppointmentCount;
-
+/**
+ *  该时间段, 我预约的次数
+ */
+@property (nonatomic, strong) NSString* MyAppointmentCount;
 @end
