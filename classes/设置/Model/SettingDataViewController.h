@@ -14,4 +14,10 @@
 
 @property (nonatomic, strong) UICollectionView* collectionView;
 
+/**
+ 会员登出/POST 请求
+ */
+-(void)logoutWithAccessCode:(NSString*)accessCode
+               withCallback:(Callback )callback;
+
 @end

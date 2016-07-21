@@ -19,7 +19,7 @@
 {
     if (!_customNavigationView)
     {
-        _customNavigationView = [CustomNavigationView homeCustomNavigationViewWithLeftBtnImage:ImageNamed(@"home_Location") withRightBtnImage:nil withTitle:@"欢迎进入凯旋花苑一号车库社区汽车服务站"];
+        _customNavigationView = [CustomNavigationView homeCustomNavigationViewWithLeftBtnImage:ImageNamed(@"home_Location") withRightBtnImage:nil withTitle:AppManagerSingleton.welcomeStr];
     }
     return _customNavigationView;
 }

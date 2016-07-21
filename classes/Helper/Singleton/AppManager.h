@@ -14,7 +14,10 @@
  *  app单例
  */
 +(AppManager*)sharedManager;
-
+/**
+ *   登录的账号
+ */
+- (NSString*)userName;
 /**
  *  用户唯一标示/登录后从服务器获取 
  */
@@ -24,5 +27,29 @@
  *  获取当前时间,返回YYYY-MM-dd格式的String
  */
 - (NSString*)currentDate;
+/**
+ *   小区名称：凯旋花苑
+ */
+- (NSString*)SectionName;
+/**
+ *   用户头像url
+ */
+- (NSString*)AvatarUrl;
+/**
+ *  汽车品牌: 奥迪
+ */
+- (NSString*)CarBrand;
+/**
+ *  汽车型号: A6L
+ */
+- (NSString*)CarModel;
+/**
+ * 车牌号: 沪A888888
+ */
+- (NSString*)CarNo;
 
+/**
+ *   欢迎进入凯旋小区一号车库社区汽车服务站
+ */
+- (NSString*)welcomeStr;
 @end

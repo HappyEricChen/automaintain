@@ -35,9 +35,9 @@
 
 -(void)loadDataFromService
 {
-    if (self.accessCode)
+    if (AppManagerSingleton.accessCode)
     {
-        [self.homeDataViewController postListofAdsCarouselWithAccessCode:self.accessCode withCallback:^(BOOL success, NSError *error, id result)
+        [self.homeDataViewController postListofAdsCarouselWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
              {
@@ -49,7 +49,7 @@
              }
         }];
         
-        [self.homeDataViewController postListofConvenienceServiceWithAccessCode:self.accessCode withCallback:^(BOOL success, NSError *error, id result)
+        [self.homeDataViewController postListofConvenienceServiceWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
              {
@@ -61,7 +61,7 @@
              }
          }];
         
-        [self.homeDataViewController postListofBottomAdsWithAccessCode:self.accessCode withCallback:^(BOOL success, NSError *error, id result)
+        [self.homeDataViewController postListofBottomAdsWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
              {
@@ -69,7 +69,7 @@
              }
              else
              {
-                 
+                 [SVProgressHUD showErrorWithStatus:result];
              }
          }];
     }

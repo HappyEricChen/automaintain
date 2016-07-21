@@ -10,6 +10,10 @@
 
 @interface PersonalFirstCollectionViewCell()
 @property (nonatomic, weak) UIImageView* iconImageView;
+/**
+ *  汽车品牌+型号，没有数据用用户名占位
+ */
+@property (nonatomic, weak) UILabel* nameLabel;
 @end
 @implementation PersonalFirstCollectionViewCell
 
@@ -38,19 +42,16 @@ NSString* const personalFirstId = @"personalFirstId";
         
         UILabel* nameLabel = [[UILabel alloc]init];
         nameLabel.font = [UIFont boldSystemFontOfSize:17];
-        nameLabel.text = @"奥迪A6L";
+        
         nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:nameLabel];
-        
-        CGFloat nameWidth = [nameLabel calculateWidthWithLabelContent:nameLabel.text
-                                                         WithFontName:nil
-                                                         WithFontSize:17
-                                                             WithBold:YES];
+        self.nameLabel = nameLabel;
         
         UILabel* licensePlateNumberLabel = [[UILabel alloc]init];
         licensePlateNumberLabel.textColor = UIColorFromRGB(0x9c9c9c);
         licensePlateNumberLabel.font = [UIFont systemFontOfSize:12];
-        licensePlateNumberLabel.text = @"沪A8888888";
+        licensePlateNumberLabel.textAlignment = NSTextAlignmentLeft;
+        licensePlateNumberLabel.text = AppManagerSingleton.CarNo;
         licensePlateNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:licensePlateNumberLabel];
         
@@ -60,7 +61,7 @@ NSString* const personalFirstId = @"personalFirstId";
                                                              WithBold:NO];
         
         iconImageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.021).centerYEqualToView(self).heightIs(60).widthEqualToHeight();
-        nameLabel.sd_layout.leftSpaceToView(iconImageView,10).topSpaceToView(self,15).widthIs(nameWidth).autoHeightRatio(0);
+        nameLabel.sd_layout.leftSpaceToView(iconImageView,ScreenWidth*0.0267).topSpaceToView(self,ScreenHeight*0.022).rightSpaceToView(self,ScreenWidth*0.0267).autoHeightRatio(0);
         licensePlateNumberLabel.sd_layout.leftEqualToView(nameLabel).topSpaceToView(nameLabel,5).widthIs(licensePlateNumberWidth).autoHeightRatio(0);
         
     }
@@ -72,6 +73,15 @@ NSString* const personalFirstId = @"personalFirstId";
     if ([object isKindOfClass:[UIImage class]])
     {
         self.iconImageView.image = (UIImage*)object;
+    }
+    
+    if (!AppManagerSingleton.CarBrand)
+    {
+        self.nameLabel.text = AppManagerSingleton.userName;
+    }
+    else
+    {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@%@",AppManagerSingleton.CarBrand,AppManagerSingleton.CarModel];
     }
 }
 

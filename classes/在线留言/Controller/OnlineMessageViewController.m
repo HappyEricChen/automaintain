@@ -30,6 +30,8 @@
     [self configureNavigationView];
     [self configureCollectionView];
     [self configureMyMessageView];
+    
+    [self loadDataFromService];
 }
 
 -(void)configureNavigationView
@@ -53,6 +55,26 @@
     [self.view addSubview:self.onlineMessageDataViewController.myMessageView];
     self.onlineMessageDataViewController.myMessageView.hidden = YES;
     self.onlineMessageDataViewController.myMessageView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.onlineMessageDataViewController.customNavigationView,0).bottomEqualToView(self.view);
+}
+
+
+-(void)loadDataFromService
+{
+    [self.onlineMessageDataViewController postOnlineMessageListWithAccessCode:AppManagerSingleton.accessCode
+                                                                withPageIndex:@"0"
+                                                                 withCallback:^(BOOL success, NSError *error, id result)
+     {
+         
+         if (success)
+         {
+             [self.onlineMessageDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+         
+     }];
 }
 
 #pragma mark - CustomNavigationViewDelegate

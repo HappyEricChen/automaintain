@@ -19,10 +19,34 @@
     });
     return sharedInstance;
 }
-
+-(NSString *)userName
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+}
 -(NSString *)accessCode
 {
     return [[NSUserDefaults standardUserDefaults]objectForKey:@"accessCode"];
+}
+
+-(NSString *)SectionName
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"SectionName"];
+}
+-(NSString *)AvatarUrl
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"AvatarUrl"];
+}
+-(NSString *)CarBrand
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"CarBrand"];
+}
+-(NSString *)CarModel
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"CarModel"];
+}
+-(NSString *)CarNo
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"CarNo"];
 }
 
 -(NSString *)currentDate
@@ -33,5 +57,16 @@
     NSString* dateString = [dateFormatter stringFromDate:currentDate];
     
     return dateString;
+}
+
+#pragma mark - 欢迎进入凯旋小区一号车库社区汽车服务站
+-(NSString *)welcomeStr
+{
+    /**
+     *  去掉首尾空格方法
+     */
+    NSString* tempStr = [AppManagerSingleton.SectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString* welcomeStr = [NSString stringWithFormat:@"欢迎进入%@一号车库社区汽车服务站",tempStr];
+    return welcomeStr;
 }
 @end

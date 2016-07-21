@@ -36,7 +36,7 @@ NSString* const personalSecondId = @"personalSecondId";
          */
         UILabel* nameLabel = [[UILabel alloc]init];
         nameLabel.font = [UIFont boldSystemFontOfSize:12];
-        nameLabel.text = @"欢迎进入凯旋花苑一号车库社区汽车服务站";
+        nameLabel.text = AppManagerSingleton.welcomeStr;
         nameLabel.textColor = UIColorFromRGB(0x9c9c9c);
         nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:nameLabel];

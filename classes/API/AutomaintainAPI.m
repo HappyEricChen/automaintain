@@ -158,6 +158,39 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      }];
     
 }
+#pragma mark - 会员登出
++(void)logoutWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerLogout"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [tempDic[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSString* ReturnObject = [responseObject objectForKey:@"ReturnObject"];
+             callback(YES,nil,ReturnObject);
+         }
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+    
+}
 #pragma mark - 首页轮播图请求
 +(void)postListofAdsCarouselWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
@@ -494,4 +527,84 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      }];
     
 }
+#pragma mark - 意见反馈
++(void)postFeedbackWithAccessCode:(NSString *)accessCode
+                         withType:(NSString *)type
+               withCommentContent:(NSString *)commentContent
+                     withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/Feedback"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"type"]=type;
+    dic[@"commentContent"]=commentContent;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [tempDic[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             callback(YES,nil,nil);
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+
+}
+
+#pragma mark - 获取在线留言列表
++(void)postOnlineMessageListWithAccessCode:(NSString *)accessCode
+                             withPageIndex:(NSString *)pageIndex
+                              withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/GetOnlineComment"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"pageIndex"]=pageIndex;
+    dic[@"pageSize"]=@"10";
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSArray* myOrderModelArr = [MyOrderModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
+             callback(YES,nil,myOrderModelArr);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+    
+}
+
 @end

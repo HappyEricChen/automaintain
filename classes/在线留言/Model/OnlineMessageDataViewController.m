@@ -46,4 +46,23 @@
     return _myMessageView;
 }
 
+-(void)postOnlineMessageListWithAccessCode:(NSString *)accessCode
+                             withPageIndex:(NSString *)pageIndex
+                              withCallback:(Callback)callback
+{
+    [AutomaintainAPI postOnlineMessageListWithAccessCode:accessCode
+                                           withPageIndex:pageIndex
+                                            withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+    
+}
 @end

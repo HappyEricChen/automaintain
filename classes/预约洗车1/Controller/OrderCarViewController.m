@@ -98,7 +98,7 @@
          }
          else
          {
-              [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showErrorWithStatus:result];
          }
      }];
     [self.orderCarDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
@@ -113,7 +113,7 @@
              [SVProgressHUD showErrorWithStatus:result];
          }
          
-    }];
+     }];
 }
 
 -(void)configureNavigationView
@@ -300,6 +300,7 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_myOrder_StartTime object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotify_selected_date object:nil];
 }
 @end

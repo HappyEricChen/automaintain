@@ -13,10 +13,13 @@
 #import "FirstTimeSelecetdCollectionViewCell.h"
 #import "WashCarSecondCollectionViewCell.h"
 #import "SecondTimeCollectionViewCell.h"
+#import "ScheduleListModel.h"
 
 @interface TimeSelectedViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) TimeSelectedDataViewController* timeSelectedDataViewController;
+
+@property (nonatomic, strong) NSString* selectedDate;
 @end
 
 @implementation TimeSelectedViewController
@@ -29,7 +32,8 @@
     [self configureCollectionView];
     
     [self loadDataFromService];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
+    self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
 }
 
 -(void)configureNavigationView
@@ -67,36 +71,6 @@
          }
      }];
 }
-
-
-/**
- *  切换日期刷新数据
- */
-//-(void)currentDateNotification:(NSNotification*)object
-//{
-//    NSString* currentDateStr = [object.userInfo objectForKey:@"currentDate"];
-//    
-//    NSString* dateStringFormate1 = [currentDateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
-//    NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
-//    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
-//    self.selectedDate = dateStringFormate3;
-//    
-//    [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
-//     {
-//         if (success)
-//         {
-//             [SVProgressHUD dismiss];
-//             [self.timeSelectedDataViewController.collectionView reloadData];
-//         }
-//         else
-//         {
-//             [SVProgressHUD showErrorWithStatus:result];
-//         }
-//     }];
-//    
-//}
-
-
 
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
@@ -215,7 +189,47 @@
 {
     if (indexPath.section == 2)
     {
+        
+        ScheduleListModel* scheduleListModel =self.timeSelectedDataViewController.canOrderMaintenanceArr[indexPath.row];
+        
+        /**
+         *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15-08:30
+         */
+        NSString* completedTime = [NSString stringWithFormat:@"%@ %@",self.selectedDate,scheduleListModel.TimeSegment];
+        /**
+         *  选中的时间传递出去
+         */
+        [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_myOrder_CompletedTime object:nil userInfo:@{@"completedTime":completedTime}];
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+#pragma mark - 日期切换重新获取时间列表数据
+-(void)currentDateNotification:(NSNotification*)object
+{
+    NSString* currentDateStr = [object.userInfo objectForKey:@"currentDate"];
+    
+    NSString* dateStringFormate1 = [currentDateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
+    NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
+    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
+    self.selectedDate = dateStringFormate3;
+    
+    [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             [self.timeSelectedDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
+    
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotify_selected_date object:nil];
 }
 @end

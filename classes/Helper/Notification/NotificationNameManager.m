@@ -13,4 +13,9 @@
 NSString* const kNotify_selected_date = @"kNotify_selected_date";
 
 NSString* const kNotify_myOrder_StartTime = @"kNotify_myOrder_StartTime";
+
+NSString* const kNotify_myOrder_CompletedTime = @"kNotify_myOrder_CompletedTime";
+
+NSString* const kNotify_feedback_Content = @"kNotify_feedback_Content";
+
 @end

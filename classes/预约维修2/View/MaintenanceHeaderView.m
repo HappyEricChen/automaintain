@@ -14,6 +14,10 @@
  *  保养/精细/项目内容名称
  */
 @property (nonatomic, weak) UILabel* contentLabel;
+/**
+ *  预约完整时间 @"2016-06-01 15:00-17:00"
+ */
+@property (nonatomic, weak) UILabel* contentLabel1;
 @end
 @implementation MaintenanceHeaderView
 
@@ -47,6 +51,7 @@
         UILabel* contentLabel = [[UILabel alloc]init];
         contentLabel.font = [UIFont systemFontOfSize:14];
         contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
+//        contentLabel.userInteractionEnabled = NO;
         [baseViewButton addSubview:contentLabel];
         self.contentLabel = contentLabel;
         
@@ -64,7 +69,7 @@
         
         baseViewButton.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.076);
         typeLabel.sd_layout.leftSpaceToView(baseViewButton,ScreenWidth*0.037).topSpaceToView(baseViewButton,ScreenHeight*0.036).widthIs(typeLabelWidth).autoHeightRatio(0);
-        rightImageView.sd_layout.rightSpaceToView(baseViewButton,20).centerYEqualToView(typeLabel).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
+        rightImageView.sd_layout.rightSpaceToView(baseViewButton,ScreenWidth*0.053).centerYEqualToView(typeLabel).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
         contentLabel.sd_layout.leftSpaceToView(typeLabel,ScreenWidth*0.12).topSpaceToView(baseViewButton,ScreenHeight*0.036).rightSpaceToView(rightImageView,0).autoHeightRatio(0);
         
         lineView.sd_layout.leftEqualToView(baseViewButton).rightEqualToView(baseViewButton).heightIs(2).bottomSpaceToView(baseViewButton,0);
@@ -93,15 +98,11 @@
          *  2016-06-01 15:00-17:00
          */
         UILabel* contentLabel1 = [[UILabel alloc]init];
-        contentLabel1.text = @"2016-06-01 15:00-17:00";
         contentLabel1.font = [UIFont systemFontOfSize:14];
         contentLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:contentLabel1];
+        self.contentLabel1 = contentLabel1;
         
-        CGFloat contentLabelWidth1 = [typeLabel calculateWidthWithLabelContent:contentLabel1.text
-                                                                 WithFontName:nil
-                                                                 WithFontSize:14
-                                                                     WithBold:NO];
         /**
          右边箭头
          */
@@ -116,8 +117,9 @@
         
         baseViewButton1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseViewButton,0).heightIs(ScreenHeight*0.076);
         typeLabel1.sd_layout.leftSpaceToView(baseViewButton1,ScreenWidth*0.037).topSpaceToView(baseViewButton1,ScreenHeight*0.036).widthIs(typeLabelWidth1).autoHeightRatio(0);
-        contentLabel1.sd_layout.leftSpaceToView(typeLabel1,ScreenWidth*0.12).topSpaceToView(baseViewButton1,ScreenHeight*0.036).widthIs(contentLabelWidth1).autoHeightRatio(0);
-        rightImageView1.sd_layout.rightSpaceToView(baseViewButton1,20).centerYEqualToView(typeLabel1).widthIs(9).heightIs(18);
+        rightImageView1.sd_layout.rightSpaceToView(baseViewButton1,ScreenWidth*0.053).centerYEqualToView(typeLabel1).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
+        contentLabel1.sd_layout.leftSpaceToView(typeLabel1,ScreenWidth*0.12).topSpaceToView(baseViewButton1,ScreenHeight*0.036).rightSpaceToView(rightImageView1,0).autoHeightRatio(0);
+        
         lineView1.sd_layout.leftEqualToView(baseViewButton1).rightEqualToView(baseViewButton1).heightIs(2).bottomSpaceToView(baseViewButton1,0);
         
 #pragma mark - 提交预约按钮
@@ -127,6 +129,7 @@
         [submitButton setTitle:@"提交预约" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [submitButton setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
+        [submitButton addTarget:self action:@selector(clickSubmitOrderButton) forControlEvents:UIControlEventTouchUpInside];
         submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:submitButton];
         
@@ -136,8 +139,8 @@
 }
 
 
-#pragma mark - 布局类型时间
--(void)layoutWithOrderTypeModel:(OrderTypeModel *)orderTypeModel
+#pragma mark - 布局预约类型及预约完整时间
+-(void)layoutWithOrderTypeModel:(OrderTypeModel *)orderTypeModel withCompletedTime:(NSString *)completedTime
 {
     if ([orderTypeModel isKindOfClass:[OrderTypeModel class]])
     {
@@ -149,10 +152,29 @@
         {
             self.contentLabel.text = [NSString stringWithFormat:@"维修/%@",orderTypeModel.SubjectName];
         }
+        self.contentLabel.textColor = UIColorFromRGB(0x000000);
         
+    }else
+    {
+        self.contentLabel.text = @"请选择预约类型";
+        self.contentLabel.textColor = UIColorFromRGB(0x7b7b7b);
     }
+    
+    if (!completedTime || [completedTime isEqualToString:@""])
+    {
+        self.contentLabel1.text = @"请选择预约时间";
+        self.contentLabel1.textColor = UIColorFromRGB(0x7b7b7b);
+    }
+    else
+    {
+        self.contentLabel1.text = completedTime;
+        self.contentLabel1.textColor = UIColorFromRGB(0x000000);
+    }
+    
 }
-
+/**
+ *  选择预约类型
+ */
 -(void)clickTypeChangeButton
 {
     if ([self.delegate respondsToSelector:@selector(didSelectedTypeChangeButtonWithMaintenanceHeaderView:)])
@@ -160,12 +182,24 @@
         [self.delegate didSelectedTypeChangeButtonWithMaintenanceHeaderView:self];
     }
 }
-
+/**
+ *  选择预约时间
+ */
 -(void)clickTimeChangeButton
 {
     if ([self.delegate respondsToSelector:@selector(didSelectedTimeChangeButtonWithMaintenanceHeaderView:)])
     {
         [self.delegate didSelectedTimeChangeButtonWithMaintenanceHeaderView:self];
+    }
+}
+/**
+ *  提交选择的预约
+ */
+-(void)clickSubmitOrderButton
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectedSubmitOrderButtonWithMaintenanceHeaderView:)])
+    {
+        [self.delegate didSelectedSubmitOrderButtonWithMaintenanceHeaderView:self];
     }
 }
 @end

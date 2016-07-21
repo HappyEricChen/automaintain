@@ -17,8 +17,14 @@
 @property (nonatomic, strong) FeedbackDataViewController* feedbackDataViewController;
 
 @property (nonatomic, strong) NSArray* listArr;
-
-@property (nonatomic, strong) NSString* feedbackTypeStr;//选择的反馈类型
+/**
+ *  当前选择的反馈类型
+ */
+@property (nonatomic, strong) NSString* feedbackTypeStr;
+/**
+ *  反馈意见的内容
+ */
+@property (nonatomic, strong) NSString* feedbackContent;
 @end
 
 @implementation FeedbackViewController
@@ -30,10 +36,16 @@
     [self configureCollectionView];
     [self configureTableView];
     
-    self.listArr = @[@"功能建议",@"页面展示",@"商品反馈",@"售后服务",@"相关活动",@"其他"];
+    self.listArr = @[@"功能建议",@"页面展示",@"产品反馈",@"售后服务",@"相关活动",@"其他"];
     self.feedbackTypeStr = @"功能建议";
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(feedbackTextViewContentChanged:) name:kNotify_feedback_Content object:nil];
 }
 
+-(void)feedbackTextViewContentChanged:(NSNotification*)object
+{
+    self.feedbackContent =[object.userInfo objectForKey:@"textViewContent"];
+}
 
 -(void)configureNavigationView
 {
@@ -148,7 +160,35 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    /**
+     *  点击提交反馈
+     */
+    if (indexPath.section == 2)
+    {
+        if (!self.feedbackContent || [self.feedbackContent isEqualToString:@""])
+        {
+            [SVProgressHUD showErrorWithStatus:@"意见不能为空"];
+        }
+        else
+        {
+            [self.feedbackDataViewController postFeedbackWithAccessCode:AppManagerSingleton.accessCode
+                                                               withType:self.feedbackTypeStr
+                                                     withCommentContent:self.feedbackContent
+                                                           withCallback:^(BOOL success, NSError *error, id result)
+             {
+                 if (success)
+                 {
+                     [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 }
+                 else
+                 {
+                     [SVProgressHUD  showErrorWithStatus:result];
+                 }
+             }];
+            
+        }
+        
+    }
 }
 
 
@@ -192,5 +232,10 @@
 {
     
     self.feedbackDataViewController.listTableView.hidden = ! self.feedbackDataViewController.listTableView.isHidden;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_feedback_Content object:nil];
 }
 @end

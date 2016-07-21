@@ -16,6 +16,7 @@
 #import "ImageAmplificationViewController.h"
 #import "MaintenanceHeaderView.h"
 #import "OrderTypeModel.h"
+#import "MyOrderViewController.h"
 
 @interface MaintenanceViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MaintenanceHeaderViewDelegate,WashCarFiveCollectionViewCellDelegate>
 
@@ -24,6 +25,10 @@
  *  用户评论模型数组
  */
 @property (nonatomic, strong) NSArray* userCommentModelArr;
+/**
+ *  完整的日期+时间 2017-02-03 08:15-08:30
+ */
+@property (nonatomic, strong) NSString* completedTime;
 
 @end
 
@@ -38,12 +43,17 @@
     [self configureHeaderView];
     [self configureCollectionView];
     [self loadDataFromService];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(ReceivedCompletedTime:)
+                                                name:kNotify_myOrder_CompletedTime
+                                              object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.maintenanceDataViewController.maintenanceHeaderView layoutWithOrderTypeModel:self.orderTypeModel];
+    [self.maintenanceDataViewController.maintenanceHeaderView layoutWithOrderTypeModel:self.orderTypeModel withCompletedTime:self.completedTime];
     
 }
 
@@ -74,11 +84,10 @@
 
 -(void)loadDataFromService
 {
-    [AutomaintainAPI postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+    [self.maintenanceDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
-             
              self.userCommentModelArr = (NSArray*)result;
              [self.maintenanceDataViewController.collectionView reloadData];
          }
@@ -86,10 +95,15 @@
          {
              [SVProgressHUD showErrorWithStatus:result];
          }
-     }];
+
+    }];
     
 }
-
+#pragma mark - 接收到通知调用，接收到完整的日期+时间
+-(void)ReceivedCompletedTime:(NSNotification*)object
+{
+   self.completedTime = [object.userInfo objectForKey:@"completedTime"];
+}
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
@@ -117,7 +131,7 @@
         WashCarFiveCollectionViewCell * thirdCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
         thirdCell.delegate = self;
         
-        [cell layoutWithObject:self.userCommentModelArr[indexPath.row]];
+        [thirdCell layoutWithObject:self.userCommentModelArr[indexPath.row]];
         cell = thirdCell;
     }
     
@@ -167,6 +181,12 @@
     return reusableView;
 }
 
+#pragma mark - UICollectionViewDelegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+  
+}
+
 #pragma mark - MaintenanceHeaderViewDelegate
 /**
  *  类型选择
@@ -186,6 +206,47 @@
     
     [self.navigationController pushViewController:timeSelectedViewController animated:YES];
 }
+/**
+ *  点击提交预约按钮
+ */
+-(void)didSelectedSubmitOrderButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
+{
+    if (!self.orderTypeModel || [self.orderTypeModel.Guid isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请选择预约类型"];
+    }
+    else if (!self.completedTime || [self.completedTime isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请选择预约的时间"];
+    }
+    else
+    {
+        /**
+         *  通过完整时间截取到，项目起始时间 2017-02-03 08:15
+         */
+        NSString* appointmentStartTime = [self.completedTime substringToIndex:16];
+        
+        [SVProgressHUD show];
+        [self.maintenanceDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                        withAppointmentStartTime:appointmentStartTime
+                                                                 withSubjectGuid:self.orderTypeModel.Guid
+                                                                    withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
+             {
+                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
+                 [self.navigationController pushViewController:myOrderViewController animated:YES];
+             }
+             else
+             {
+                 [SVProgressHUD showErrorWithStatus:result];
+             }
+         }];
+        
+    }
+    
+}
 #pragma mark -WashCarFiveCollectionViewCellDelegate
 -(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImageView:(UIImageView *)imageView
 {
@@ -193,5 +254,10 @@
     imageAmplificationViewController.image = imageView.image;
     [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotify_myOrder_CompletedTime object:nil];
 }
 @end

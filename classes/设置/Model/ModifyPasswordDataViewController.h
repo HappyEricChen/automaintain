@@ -14,4 +14,5 @@
 @property (nonatomic, strong) CustomNavigationView* customNavigationView;
 
 @property (nonatomic, strong) ModifyPasswordView* modifyPasswordView;
+
 @end

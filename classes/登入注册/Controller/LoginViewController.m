@@ -111,14 +111,10 @@
          {
              [SVProgressHUD dismiss];
              //登录成功
-             LoginModel* loginModel = (LoginModel*)result;
              
-             HomeViewController * homeViewController = [[HomeViewController alloc]init];
-             
-             homeViewController.accessCode = loginModel.AccessCode;
-             SharedAppDelegateHelper.homeViewController = homeViewController;
-             [[NSUserDefaults standardUserDefaults]setObject:loginModel.AccessCode forKey:@"accessCode"];//存到plist里面
-             [self.navigationController pushViewController:homeViewController animated:YES];
+             [[NSUserDefaults standardUserDefaults]setObject:username forKey:@"userName"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
+             [self.navigationController pushViewController:SharedAppDelegateHelper.homeViewController animated:YES];
              
          }
          else

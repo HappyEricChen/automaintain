@@ -98,6 +98,8 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         [textView setText:s];
     }
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_feedback_Content object:nil userInfo:@{@"textViewContent":nsTextContent}];
+    
     //不让显示负数
     self.wordsCountLabel.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_LIMIT_NUMS];
 }
@@ -176,10 +178,9 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
             //rang是指从当前光标处进行替换处理(注意如果执行此句后面返回的是YES会触发didchange事件)
             [textView setText:[textView.text stringByReplacingCharactersInRange:range withString:s]];
             //既然是超出部分截取了，哪一定是最大限制了。
-            self.wordsCountLabel.text = [NSString stringWithFormat:@"%d/%ld",0,(long)MAX_LIMIT_NUMS];
+            self.wordsCountLabel.text = [NSString stringWithFormat:@"%d/%ld",100,(long)MAX_LIMIT_NUMS];
         }
         return NO;
     }
-    
 }
 @end

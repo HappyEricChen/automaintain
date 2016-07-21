@@ -72,6 +72,9 @@
                                               withSubjectGuid:subjectGuid
                                                  withCallback:^(BOOL success, NSError *error, id result)
      {
+         [self.canOrderMaintenanceArr removeAllObjects];
+         [self.fullOrderMaintenanceArr removeAllObjects];
+         
          if (success)
          {
              WashCarDateListModel* washCarDateListModel = (WashCarDateListModel*)result;

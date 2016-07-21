@@ -20,10 +20,16 @@
  *  预约时间点击事件
  */
 -(void)didSelectedTimeChangeButtonWithMaintenanceHeaderView:(MaintenanceHeaderView*)maintenanceHeaderView;
+/**
+ *  提交选择的预约
+ */
+-(void)didSelectedSubmitOrderButtonWithMaintenanceHeaderView:(MaintenanceHeaderView*)maintenanceHeaderView;
 @end
 @interface MaintenanceHeaderView : UIView
 
 @property (nonatomic, weak) id <MaintenanceHeaderViewDelegate> delegate;
-
--(void)layoutWithOrderTypeModel:(OrderTypeModel*)orderTypeModel;
+/**
+ *  预约类型模型+完整的日期时间，传递数据布局界面 2017-02-03 08:15-08:30
+ */
+-(void)layoutWithOrderTypeModel:(OrderTypeModel*)orderTypeModel withCompletedTime:(NSString*)completedTime;
 @end

@@ -35,4 +35,18 @@
     return _collectionView;
 }
 
+-(void)logoutWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
+{
+    [AutomaintainAPI logoutWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+}
 @end
