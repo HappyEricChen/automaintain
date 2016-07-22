@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+@class MyOrderModel;
 @interface MyCommentViewController : BaseViewController
 
+@property (nonatomic, strong) MyOrderModel* myOrderModel;
 @end

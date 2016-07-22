@@ -161,4 +161,42 @@
 +(void)postOnlineMessageListWithAccessCode:(NSString*)accessCode
                              withPageIndex:(NSString*)pageIndex
                               withCallback:(Callback )callback;
+
+#pragma mark - 提交我的留言
+/**
+ *   提交我的留言/POST 请求
+ *
+ *  @param accessCode 唯一标识符
+ *  @param commentContent  在线留言内容
+ *  @param callback    回调
+ */
++(void)postMessageToServiceWithAccessCode:(NSString*)accessCode
+                       withCommentContent:(NSString*)commentContent
+                             withCallback:(Callback )callback;
+
+#pragma mark - 提交我的评论
+/**
+ *  提交我的评论/POST 请求
+ *
+ *  @param accessCode          唯一标识符
+ *  @param stars               评论星数
+ *  @param ContentText         评论内容
+ *  @param maintainSubjectGuid 预约项目guid
+ *  @param appointmentGuid     该条预约guid
+ *  @param photoGuidList       图片guid数组
+ *  @param callback            回调
+ */
++(void)postCommentToServiceWithAccessCode:(NSString*)accessCode
+                                withStars:(NSString*)stars
+                          withContentText:(NSString*)ContentText
+                  withMaintainSubjectGuid:(NSString*)maintainSubjectGuid
+                      withAppointmentGuid:(NSString*)appointmentGuid
+                        withPhotoGuidList:(NSArray*)photoGuidList
+                             withCallback:(Callback )callback;
+
+//#pragma mark - 找回密码/POST 请求
+//
+//+(void)settingPasswordWithUsername:(NSString*)username
+//                  withNewPassword:(NSString*)newPassword
+//                     withCallback:(Callback )callback;
 @end

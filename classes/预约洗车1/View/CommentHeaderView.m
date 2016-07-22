@@ -8,8 +8,13 @@
 
 #import "CommentHeaderView.h"
 
+@interface CommentHeaderView()
+/**
+ *  用户评价(288条)
+ */
+@property (nonatomic, weak) UILabel* label;
+@end
 @implementation CommentHeaderView
-
 
 NSString* const headerId = @"headerId";
 
@@ -28,13 +33,25 @@ NSString* const headerId = @"headerId";
          用户评价（文字）
          */
         UILabel* label = [[UILabel alloc]init];
-        label.text = @"用户评价(288条)";
         label.font = [UIFont systemFontOfSize:11];
         label.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label];
-        
+        self.label = label;
         label.sd_layout.leftSpaceToView(self,10).topEqualToView(self).bottomEqualToView(self).widthIs(ScreenWidth*0.5);
     }
     return self;
+}
+
+-(void)layoutWithObject:(NSInteger)object
+{
+    if (object == 0)
+    {
+        self.label.text = @"用户评价";
+    }
+    else
+    {
+        self.label.text = [NSString stringWithFormat:@"用户评价(%ld条)",object];
+    }
+    
 }
 @end

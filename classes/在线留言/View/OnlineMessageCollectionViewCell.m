@@ -7,6 +7,8 @@
 //
 
 #import "OnlineMessageCollectionViewCell.h"
+#import "OnlineMessageModel.h"
+
 @interface OnlineMessageCollectionViewCell()
 
 @property (nonatomic, weak) UILabel* questionLabel;
@@ -80,14 +82,14 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[NSDictionary class]])
+    if ([object isKindOfClass:[OnlineMessageModel class]])
     {
-        NSDictionary* dic = (NSDictionary*)object;
+        OnlineMessageModel* onlineMessageModel = (OnlineMessageModel*)object;
         
-        self.questionLabel.text = [dic objectForKey:@"question"];
-        self.answerLabel.text = [dic objectForKey:@"answer"];
+        self.questionLabel.text = onlineMessageModel.Text;
+        self.answerLabel.text = onlineMessageModel.ReplyContent;
         
-        if ([self.answerLabel.text isEqualToString:@""])
+        if (!self.answerLabel.text || [self.answerLabel.text isEqualToString:@""])
         {
             self.stateLabel.hidden = NO;
         }

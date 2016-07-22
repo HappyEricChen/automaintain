@@ -82,6 +82,7 @@
 		072F81091D3499FF002CECC4 /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81001D3499FF002CECC4 /* LoginTextField.m */; };
 		072F810A1D3499FF002CECC4 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81021D3499FF002CECC4 /* LoginView.m */; };
 		072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81041D3499FF002CECC4 /* SignUpView.m */; };
+		0747CA611D41C6F200241ACC /* OnlineMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0747CA601D41C6F200241ACC /* OnlineMessageModel.m */; };
 		074945C81D35D6EA00A46AE6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945B91D35D6EA00A46AE6 /* HomeViewController.m */; };
 		074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945BC1D35D6EA00A46AE6 /* HomeDataViewController.m */; };
 		074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945BF1D35D6EA00A46AE6 /* CustomButton.m */; };
@@ -285,6 +286,8 @@
 		072F81021D3499FF002CECC4 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		072F81031D3499FF002CECC4 /* SignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpView.h; sourceTree = "<group>"; };
 		072F81041D3499FF002CECC4 /* SignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpView.m; sourceTree = "<group>"; };
+		0747CA5F1D41C6F200241ACC /* OnlineMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageModel.h; sourceTree = "<group>"; };
+		0747CA601D41C6F200241ACC /* OnlineMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageModel.m; sourceTree = "<group>"; };
 		074945B81D35D6EA00A46AE6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		074945B91D35D6EA00A46AE6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		074945BB1D35D6EA00A46AE6 /* HomeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataViewController.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 			children = (
 				072F7F9C1D348F66002CECC4 /* OnlineMessageDataViewController.h */,
 				072F7F9D1D348F66002CECC4 /* OnlineMessageDataViewController.m */,
+				0747CA5F1D41C6F200241ACC /* OnlineMessageModel.h */,
+				0747CA601D41C6F200241ACC /* OnlineMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1348,6 +1353,7 @@
 				072F805E1D348F66002CECC4 /* FeedbackDataViewController.m in Sources */,
 				072F806A1D348F66002CECC4 /* MyOrderTableViewCell.m in Sources */,
 				072F80B51D3491EA002CECC4 /* BaseViewController.m in Sources */,
+				0747CA611D41C6F200241ACC /* OnlineMessageModel.m in Sources */,
 				0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */,
 				072F80831D348F66002CECC4 /* TimeSelectedDataViewController.m in Sources */,
 				072F807E1D348F66002CECC4 /* SettingDataViewController.m in Sources */,

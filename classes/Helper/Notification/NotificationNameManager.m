@@ -18,4 +18,7 @@ NSString* const kNotify_myOrder_CompletedTime = @"kNotify_myOrder_CompletedTime"
 
 NSString* const kNotify_feedback_Content = @"kNotify_feedback_Content";
 
+NSString* const kNotify_comment_StarScore = @"kNotify_comment_StarScore";
+
+NSString* const kNotify_comment_Content = @"kNotify_comment_Content";
 @end

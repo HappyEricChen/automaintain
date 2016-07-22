@@ -11,12 +11,15 @@
 #import "OnlineMessageCollectionViewCell.h"
 #import "OnlineMessageSecondCollectionViewCell.h"
 #import "MyMessageView.h"
-
-@interface OnlineMessageViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+#import "OnlineMessageModel.h"
+@interface OnlineMessageViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyMessageViewDelegate>
 
 @property (nonatomic, strong) OnlineMessageDataViewController* onlineMessageDataViewController;
 
-@property (nonatomic, strong) NSArray* contentArr;
+/**
+ *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
+ */
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation OnlineMessageViewController
@@ -25,13 +28,13 @@
     [super viewDidLoad];
     self.onlineMessageDataViewController = [[OnlineMessageDataViewController alloc]init];
     
-    self.contentArr = @[@{@"question":@"这边最晚营业到什么时候?",@"answer":@""},
-                        @{@"question":@"只有办卡才能到这边预约洗车吗?",@"answer":@"回复：您好，目前我们APP主要是为我们的会员卡用户提供预约服务的。如果您这边有需要可以去小区物业处咨询。"}];
+//    self.contentArr = @[@{@"question":@"这边最晚营业到什么时候?",@"answer":@""},
+//                        @{@"question":@"只有办卡才能到这边预约洗车吗?",@"answer":@"回复：您好，目前我们APP主要是为我们的会员卡用户提供预约服务的。如果您这边有需要可以去小区物业处咨询。"}];
     [self configureNavigationView];
     [self configureCollectionView];
     [self configureMyMessageView];
     
-    [self loadDataFromService];
+    [self loadMJRefreshMethod];//配置刷新
 }
 
 -(void)configureNavigationView
@@ -54,17 +57,42 @@
 {
     [self.view addSubview:self.onlineMessageDataViewController.myMessageView];
     self.onlineMessageDataViewController.myMessageView.hidden = YES;
+    self.onlineMessageDataViewController.myMessageView.delegate = self;
     self.onlineMessageDataViewController.myMessageView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.onlineMessageDataViewController.customNavigationView,0).bottomEqualToView(self.view);
 }
 
-
--(void)loadDataFromService
+-(void)loadMJRefreshMethod
 {
+    self.index = 0;//初始化
+    
+    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.onlineMessageDataViewController.collectionView.mj_header = header;
+    [self.onlineMessageDataViewController.collectionView.mj_header beginRefreshing];//开始刷新
+    self.onlineMessageDataViewController.collectionView .mj_header.automaticallyChangeAlpha = YES;
+    
+    MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.onlineMessageDataViewController.collectionView.mj_footer = footer;
+    
+}
+
+-(void)loadDataFromService:(MJRefreshComponent*)headerFooterView
+{
+    if ([headerFooterView isKindOfClass:[MJRefreshNormalHeader class]])
+    {
+        self.index = 0;
+    }
+    else
+    {
+        self.index += 1;
+    }
+    
+    NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
     [self.onlineMessageDataViewController postOnlineMessageListWithAccessCode:AppManagerSingleton.accessCode
-                                                                withPageIndex:@"0"
+                                                                withPageIndex:indexStr
                                                                  withCallback:^(BOOL success, NSError *error, id result)
      {
-         
+         [self.onlineMessageDataViewController.collectionView.mj_header endRefreshing];//结束刷新
+         [self.onlineMessageDataViewController.collectionView.mj_footer endRefreshing];//结束刷新
          if (success)
          {
              [self.onlineMessageDataViewController.collectionView reloadData];
@@ -93,7 +121,7 @@
 {
     if (section == 0)
     {
-        return self.contentArr.count>0?self.contentArr.count:1;
+        return self.onlineMessageDataViewController.onlineMessageModelArr.count>0?self.onlineMessageDataViewController.onlineMessageModelArr.count:0;
     }
     return 1;
 }
@@ -104,7 +132,7 @@
     if (indexPath.section == 0)
     {
         OnlineMessageCollectionViewCell * firstCell = [OnlineMessageCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:OnlineMessageCollectionViewCellId forIndexPath:indexPath];
-        [firstCell layoutWithObject:self.contentArr[indexPath.row]];
+        [firstCell layoutWithObject:self.onlineMessageDataViewController.onlineMessageModelArr[indexPath.row]];
         cell = firstCell;
     }
     else if (indexPath.section == 1)
@@ -121,11 +149,16 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* answer = [self.contentArr[indexPath.row] objectForKey:@"answer"];
+    OnlineMessageModel* onlineMessageModel;
+    
+    if (self.onlineMessageDataViewController.onlineMessageModelArr && self.onlineMessageDataViewController.onlineMessageModelArr.count>0)
+    {
+        onlineMessageModel = self.onlineMessageDataViewController.onlineMessageModelArr[indexPath.row];
+    }
     
     if (indexPath.section == 0)
     {
-        if ([answer isEqualToString:@""])
+        if (!onlineMessageModel.ReplyContent || [onlineMessageModel.ReplyContent  isEqualToString:@""])
         {
             return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.095);
         }
@@ -160,4 +193,27 @@
     }
 }
 
+#pragma mark - MyMessageViewDelegate
+-(void)didSelectedSubmitButtonWithMyMessageView:(MyMessageView *)myMessageView withMessageContent:(NSString *)messageContent
+{
+    [SVProgressHUD show];
+    [self.onlineMessageDataViewController postMessageToServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                          withCommentContent:messageContent
+                                                                withCallback:^(BOOL success, NSError *error, id result)
+     {
+         [self.view endEditing:YES];
+         if (success)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+             self.onlineMessageDataViewController.collectionView.hidden = NO;
+             self.onlineMessageDataViewController.myMessageView.hidden = YES;
+             [self.onlineMessageDataViewController.collectionView.mj_header beginRefreshing];
+             
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
+}
 @end

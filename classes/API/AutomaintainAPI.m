@@ -15,6 +15,7 @@
 #import "UserCommentModel.h"
 #import "MyOrderModel.h"
 #import "OrderTypeModel.h"
+#import "OnlineMessageModel.h"
 
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
@@ -588,8 +589,45 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          if (IsSuccessed)
          {
              NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
-             NSArray* myOrderModelArr = [MyOrderModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
-             callback(YES,nil,myOrderModelArr);
+             NSArray* onlineMessageModelArr = [OnlineMessageModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
+             callback(YES,nil,onlineMessageModelArr);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+    
+}
+#pragma mark - 提交我的留言
++(void)postMessageToServiceWithAccessCode:(NSString *)accessCode
+                       withCommentContent:(NSString *)commentContent
+                             withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/OnlineComment"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"commentContent"]=commentContent;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             callback(YES,nil,nil);
              
          }
          
@@ -607,4 +645,49 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     
 }
 
+#pragma mark - 提交我的评论
++(void)postCommentToServiceWithAccessCode:(NSString*)accessCode
+                                withStars:(NSString*)stars
+                          withContentText:(NSString*)ContentText
+                  withMaintainSubjectGuid:(NSString*)maintainSubjectGuid
+                      withAppointmentGuid:(NSString*)appointmentGuid
+                        withPhotoGuidList:(NSArray*)photoGuidList
+                             withCallback:(Callback )callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/CommentForAppointment"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"]=accessCode;
+    dic[@"Stars"]=stars;
+    dic[@"ContentText"]=ContentText;
+    dic[@"MaintainSubjectGuid"]=maintainSubjectGuid;
+    dic[@"AppointmentGuid"]=appointmentGuid;
+    dic[@"photoGuidList"]=photoGuidList;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             callback(YES,nil,nil);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+
+}
 @end

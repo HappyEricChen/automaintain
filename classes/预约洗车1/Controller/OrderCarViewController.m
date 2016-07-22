@@ -241,7 +241,7 @@
     }
     return CGSizeZero;
 }
-
+#pragma mark - headView头部的View，用户评价(288条)
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView * reusableView = nil;
@@ -249,7 +249,7 @@
     if (kind == UICollectionElementKindSectionHeader)
     {
         CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        
+        [headerView layoutWithObject:self.userCommentModelArr.count];
         reusableView = headerView;
     }
     

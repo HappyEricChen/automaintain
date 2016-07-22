@@ -29,11 +29,6 @@
  */
 @property (nonatomic, strong) NSArray* totalTimeOrderArr;
 
-/**
- * 总的用户评论数组，包含MyCommentModel模型数据
- */
-@property (nonatomic, strong) NSArray* myCommentModelArr;
-
 
 /**
  *  预约洗车/获取车位指定日期的预订表/POST 请求

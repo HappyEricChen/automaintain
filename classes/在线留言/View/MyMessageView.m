@@ -9,7 +9,9 @@
 #import "MyMessageView.h"
 
 @interface MyMessageView()<UITextViewDelegate>
-
+/**
+ *  评论内容
+ */
 @property (nonatomic, weak) UITextView* textView;
 @property (nonatomic, weak) UILabel* placeholderLabel;
 @property (nonatomic, weak) UILabel* wordsCountLabel;
@@ -33,6 +35,7 @@
         textView.layer.borderColor = UIColorFromRGB(0x929292).CGColor;
         textView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:textView];
+        self.textView = textView;
         textView.delegate = self;
         
         
@@ -56,6 +59,7 @@
         UIButton* submitButton = [[UIButton alloc]init];
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
         [submitButton setTitle:@"提交" forState:UIControlStateNormal];
+        [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:submitButton];
@@ -181,68 +185,19 @@
             //rang是指从当前光标处进行替换处理(注意如果执行此句后面返回的是YES会触发didchange事件)
             [textView setText:[textView.text stringByReplacingCharactersInRange:range withString:s]];
             //既然是超出部分截取了，哪一定是最大限制了。
-            self.wordsCountLabel.text = [NSString stringWithFormat:@"%d/%ld",0,(long)MAX_LIMIT_NUMS];
+            self.wordsCountLabel.text = [NSString stringWithFormat:@"%d/%ld",100,(long)MAX_LIMIT_NUMS];
         }
         return NO;
     }
 
 }
 
-
-#pragma mark - 计算文字的个数
-//- (BOOL)isChinesecharacter:(NSString *)string
-//{
-//    if (string.length == 0)
-//    {
-//        return NO;
-//    }
-//    unichar c = [string characterAtIndex:0];
-//    if (c >=0x4E00 && c <=0x9FA5)
-//    {
-//        return YES;//汉字
-//    }
-//    else
-//    {
-//        return NO;//英文
-//    }
-//}
-////计算汉字的个数
-//- (NSInteger)chineseCountOfString:(NSString *)string
-//{
-//    int ChineseCount = 0;
-//    if (string.length == 0)
-//    {
-//        return 0;
-//    }
-//    for (int i = 0; i<string.length; i++)
-//    {
-//        unichar c = [string characterAtIndex:i];
-//        if (c >=0x4E00 && c <=0x9FA5)
-//        {
-//            ChineseCount++;//汉字
-//        }
-//    }
-//    return ChineseCount;
-//}
-////计算字母的个数
-//- (NSInteger)characterCountOfString:(NSString *)string
-//{
-//    int characterCount = 0;
-//    if (string.length == 0)
-//    {
-//        return 0;
-//    }
-//    for (int i = 0; i<string.length; i++)
-//    {
-//        unichar c = [string characterAtIndex:i];
-//        if (c >=0x4E00 && c <=0x9FA5)
-//        {
-//        }
-//        else
-//        {
-//            characterCount++;//英文
-//        }
-//    }
-//    return characterCount;
-//}
+#pragma mark - 点击提交按钮
+-(void)clickSubmitButton
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectedSubmitButtonWithMyMessageView:withMessageContent:)])
+    {
+        [self.delegate didSelectedSubmitButtonWithMyMessageView:self withMessageContent:self.textView.text];
+    }
+}
 @end

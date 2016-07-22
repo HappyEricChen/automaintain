@@ -101,6 +101,7 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
         
         [textView setText:s];
     }
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_comment_Content object:nil userInfo:@{@"textViewContent":nsTextContent}];
     
     //不让显示负数
 //    self.wordsCountLabel.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_COMMENT_LIMIT_NUMS];

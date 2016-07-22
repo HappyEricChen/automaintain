@@ -25,4 +25,12 @@ extern NSString* const kNotify_myOrder_CompletedTime;
  *  意见反馈，编辑的内容传送到控制器
  */
 extern NSString* const kNotify_feedback_Content;
+/**
+ *  评论星星数量，界面改动传送到控制器
+ */
+extern NSString* const kNotify_comment_StarScore;
+/**
+ *  发布评论，评论的内容传送到控制器
+ */
+extern NSString* const kNotify_comment_Content;
 @end

@@ -29,6 +29,7 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
         UIButton* submitButton = [[UIButton alloc]init];
         [submitButton setTitle:@"提交评论" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        submitButton.userInteractionEnabled = NO;
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
         submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:submitButton];

@@ -11,10 +11,19 @@
 #import "MyCommentFirstCollectionViewCell.h"
 #import "MyCommentSecondCollectionViewCell.h"
 #import "MyCommentThirdCollectionViewCell.h"
+#import "MyOrderModel.h"
 
 @interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) MyCommentDataViewController* myCommentDataViewController;
+/**
+ *  评论星星的分数
+ */
+@property (nonatomic, strong) NSString* starScore;
+/**
+ *  评论的内容
+ */
+@property (nonatomic, strong) NSString* commentContent;
 @end
 
 @implementation MyCommentViewController
@@ -24,6 +33,11 @@
     self.myCommentDataViewController = [[MyCommentDataViewController alloc]init];
     [self configureNavigationView];
     [self configureCollectionView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveStarScore:) name:kNotify_comment_StarScore object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveCommentContent:) name:kNotify_comment_Content object:nil];
+    
+    self.starScore = @"5";//初始化星星为5
 }
 
 
@@ -45,6 +59,14 @@
     
 }
 
+-(void)receiveStarScore:(NSNotification*)object
+{
+    self.starScore = [object.userInfo objectForKey:@"score"];
+}
+-(void)receiveCommentContent:(NSNotification*)object
+{
+    self.commentContent = [object.userInfo objectForKey:@"textViewContent"];
+}
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
@@ -64,11 +86,12 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
-    
+    BaseCollectionViewCell * cell = nil;
+    id object = nil;
     if (indexPath.section == 0)
     {
         MyCommentFirstCollectionViewCell * firstCell = [MyCommentFirstCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentFirstCollectionViewCellId forIndexPath:indexPath];
+        object = self.myOrderModel.AppointmentName;
         cell = firstCell;
     }
     else if (indexPath.section == 1)
@@ -82,6 +105,7 @@
         cell = thirdCell;
     }
     
+    [cell layoutWithObject:object];
     return cell;
 }
 
@@ -116,5 +140,40 @@
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
-
+#pragma mark - UICollectionViewDelegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.section == 2)
+    {
+        if (!self.commentContent || [self.commentContent isEqualToString:@""])
+        {
+            [SVProgressHUD showErrorWithStatus:@"评论的内容不能为空"];
+        }
+        else
+        {
+            
+            [self.myCommentDataViewController postCommentToServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                                       withStars:self.starScore
+                                                                 withContentText:self.commentContent
+                                                         withMaintainSubjectGuid:SubjectGuidWashCar
+                                                             withAppointmentGuid:self.myOrderModel.AppointmentGuid
+                                                               withPhotoGuidList:@[]
+                                                                    withCallback:^(BOOL success, NSError *error, id result)
+             {
+                 if (success)
+                 {
+                     [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+                     [self.navigationController popViewControllerAnimated:YES];
+                 }
+                 else
+                 {
+                     [SVProgressHUD showErrorWithStatus:result];
+                 }
+             }];
+            
+        }
+        
+    }
+}
 @end

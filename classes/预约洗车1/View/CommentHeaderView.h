@@ -15,5 +15,9 @@ extern NSString* const headerId;
 /**
  *  headerView创建方法
  */
-+(CommentHeaderView*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
++(CommentHeaderView*)collectionView:(UICollectionView*)collectionView
+dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier
+                       forIndexPath:(NSIndexPath*)indexPath;
+
+-(void)layoutWithObject:(NSInteger)object;
 @end

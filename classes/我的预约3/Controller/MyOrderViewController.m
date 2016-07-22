@@ -138,8 +138,9 @@
  */
 -(void)didSelectedCommentButtonWithMyOrderTableViewCell:(MyOrderTableViewCell *)myOrderTableViewCell
 {
+    NSIndexPath* indexPath = [self.myOrderDataViewController.customTableView indexPathForCell:myOrderTableViewCell];
     MyCommentViewController* myCommentViewController = [[MyCommentViewController alloc]init];
-    
+    myCommentViewController.myOrderModel = self.myOrderDataViewController.myOrderModelArr[indexPath.row];
     [self.navigationController pushViewController:myCommentViewController animated:YES];
 }
 /**

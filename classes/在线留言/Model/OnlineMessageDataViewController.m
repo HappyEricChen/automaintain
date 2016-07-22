@@ -45,14 +45,65 @@
     }
     return _myMessageView;
 }
+-(NSMutableArray *)onlineMessageModelArr
+{
+    if (!_onlineMessageModelArr)
+    {
+        _onlineMessageModelArr = [NSMutableArray array];
+    }
+    return _onlineMessageModelArr;
+}
 
+/**
+ *  获取在线留言列表
+ */
 -(void)postOnlineMessageListWithAccessCode:(NSString *)accessCode
                              withPageIndex:(NSString *)pageIndex
                               withCallback:(Callback)callback
 {
+    if ([pageIndex isEqualToString:@"0"])
+    {
+        [self.onlineMessageModelArr removeAllObjects];
+    }
+    else
+    {
+        
+    }
+    
+    
     [AutomaintainAPI postOnlineMessageListWithAccessCode:accessCode
                                            withPageIndex:pageIndex
                                             withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             NSArray * tempModelArr = (NSArray*)result;
+             if (tempModelArr.count<10)
+             {
+                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+             }
+             
+             
+             [self.onlineMessageModelArr addObjectsFromArray:tempModelArr];
+             [self.collectionView reloadData];
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+    
+}
+#pragma mark - 提交我的留言
+
+-(void)postMessageToServiceWithAccessCode:(NSString*)accessCode
+                       withCommentContent:(NSString*)commentContent
+                             withCallback:(Callback )callback
+{
+    [AutomaintainAPI postMessageToServiceWithAccessCode:accessCode
+                                     withCommentContent:commentContent
+                                           withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
@@ -63,6 +114,5 @@
              callback(NO,nil,result);
          }
      }];
-    
 }
 @end

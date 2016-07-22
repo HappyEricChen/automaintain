@@ -174,7 +174,7 @@
     if (kind == UICollectionElementKindSectionHeader)
     {
         CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        
+        [headerView layoutWithObject:self.userCommentModelArr.count];
         reusableView = headerView;
     }
     
