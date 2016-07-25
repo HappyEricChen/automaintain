@@ -75,4 +75,91 @@
          }
      }];
 }
+
+-(UIAlertController *)alertController
+{
+    __weak MyCommentDataViewController* weakSelf = self;
+    if (!_alertController)
+    {
+        _alertController = [UIAlertController alertControllerWithTitle:nil
+                                                               message:nil
+                                                        preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        UIAlertAction* cameraAction = [UIAlertAction actionWithTitle:@"cameral"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+                                                                 {
+                                                                     [weakSelf performSelector:@selector(showcamera) withObject:weakSelf afterDelay:.3f];
+                                                                 }
+                                                                 else
+                                                                 {
+                                                                     NSLog(@"这设备没相机");
+                                                                 }
+                                                             }];
+        UIAlertAction* localAlbumAction = [UIAlertAction actionWithTitle:@"Local Album"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * _Nonnull action)
+                                           {
+                                               [weakSelf performSelector:@selector(showLocalAlbum)];
+                                           }];
+        [_alertController addAction:cameraAction];
+        [_alertController addAction:localAlbumAction];
+        [_alertController addAction:cancelAction];
+        
+    }
+    return _alertController;
+}
+
+-(UIActionSheet *)actionSheet
+{
+    if (!_actionSheet)
+    {
+        _actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"本地相册", nil];
+        _actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    }
+    return _actionSheet;
+}
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+            {
+                [self performSelector:@selector(showcamera) withObject:nil afterDelay:.3];
+            }
+            else
+            {
+                NSLog(@"这设备没相机");
+            }
+            break;
+        case 1:
+            [self performSelector:@selector(showLocalAlbum)];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void)showcamera
+{
+    if ([self.delegate respondsToSelector:@selector(didClickShowCameraMethod:)])
+    {
+        [self.delegate didClickShowCameraMethod:self];
+    }
+}
+
+-(void)showLocalAlbum
+{
+    if ([self.delegate respondsToSelector:@selector(didClickShowLocalAlbumMethod:)])
+    {
+        [self.delegate didClickShowLocalAlbumMethod:self];
+    }
+}
+
 @end

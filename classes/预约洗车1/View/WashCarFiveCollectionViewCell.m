@@ -158,21 +158,40 @@ CGFloat userNameWidth;
      *  星星数量展示
      */
     NSInteger starsCount = userCommentModel.Stars.integerValue;
-    for (NSInteger i=0; i<starsCount; i++)
+    
+    for (NSInteger i=0; i<self.starImageViewArr.count; i++)
     {
         UIImageView* imageView = self.starImageViewArr[i];
-        imageView.image = ImageNamed(@"order_star");
+        if (i<starsCount)
+        {
+            imageView.image = ImageNamed(@"order_star");
+        }
+        else
+        {
+            imageView.image = ImageNamed(@"order_star1");
+        }
+        
     }
+    
     /**
      *  评论图片
      */
     NSArray* photoUrlsArr = userCommentModel.PhotoUrls;
-    for (NSInteger i=0; i<photoUrlsArr.count; i++)
+    for (NSInteger i=0; i<self.photoImageViewArr.count; i++)
     {
-        NSString* imageUrlStr = photoUrlsArr[i];
         UIImageView* imageView = self.photoImageViewArr[i];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:ImageNamed(@"home_icon_cleancar")];
+        if (i<photoUrlsArr.count)
+        {
+            NSString* imageUrlStr = photoUrlsArr[i];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:ImageNamed(@"home_icon_cleancar")];
+        }
+        else
+        {
+            [imageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:ImageNamed(@"home_icon_cleancar")];
+        }
+        
     }
+    
     UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageAction)];
     [recognizer setNumberOfTapsRequired:1];
     self.carImageView.userInteractionEnabled = YES;

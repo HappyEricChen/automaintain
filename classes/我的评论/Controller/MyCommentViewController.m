@@ -12,8 +12,9 @@
 #import "MyCommentSecondCollectionViewCell.h"
 #import "MyCommentThirdCollectionViewCell.h"
 #import "MyOrderModel.h"
+#import "ImageAmplificationViewController.h"
 
-@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentSecondCollectionViewCellDelegate>
 
 @property (nonatomic, strong) MyCommentDataViewController* myCommentDataViewController;
 /**
@@ -24,6 +25,10 @@
  *  评论的内容
  */
 @property (nonatomic, strong) NSString* commentContent;
+/**
+ *   当前选择的图片
+ */
+@property (nonatomic, strong) UIImage* image;
 @end
 
 @implementation MyCommentViewController
@@ -31,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myCommentDataViewController = [[MyCommentDataViewController alloc]init];
+    self.myCommentDataViewController.delegate = self;
     [self configureNavigationView];
     [self configureCollectionView];
     
@@ -97,6 +103,8 @@
     else if (indexPath.section == 1)
     {
         MyCommentSecondCollectionViewCell * secondCell = [MyCommentSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentSecondCollectionViewCellId forIndexPath:indexPath];
+        secondCell.delegate = self;
+        [secondCell layoutWithObject:self.image];
         cell =secondCell;
     }
     else if (indexPath.section == 2)
@@ -119,7 +127,7 @@
     }
     else if (indexPath.section == 1)
     {
-        return CGSizeMake(ScreenWidth, ScreenHeight*0.198);
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.253);
     }
     else if (indexPath.section == 2)
     {
@@ -133,10 +141,6 @@
     if (section == 1)
     {
         return UIEdgeInsetsMake(ScreenHeight*0.03, 0, 0, 0);
-    }
-    else if (section == 2)
-    {
-        return UIEdgeInsetsMake(ScreenHeight*0.055, 0, 0, 0);
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
@@ -175,5 +179,52 @@
         }
         
     }
+}
+
+#pragma mark - MyCommentDataViewControllerDelegate
+
+-(void)didClickShowCameraMethod:(MyCommentViewController *)personalDataViewController
+{
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
+    [imagePicker setDelegate:self];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [imagePicker setAllowsEditing:YES];
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+-(void)didClickShowLocalAlbumMethod:(MyCommentViewController *)personalDataViewController
+{
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+    {
+        return;
+    }
+    
+    UIImagePickerController* localAlbumImagePicker = [[UIImagePickerController alloc]init];
+    [localAlbumImagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    localAlbumImagePicker.delegate = self;
+    localAlbumImagePicker.allowsEditing = YES;
+    [self presentViewController:localAlbumImagePicker animated:YES completion:nil];
+}
+#pragma mark - UIImagePickerControllerDelegate选择图片代理方法
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    
+    UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    self.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.myCommentDataViewController.collectionView reloadData];
+}
+
+#pragma mark - MyCommentSecondCollectionViewCellDelegate 点击选择照片按钮
+-(void)didSelectedCameraWithMyCommentSecondCollectionViewCell:(MyCommentSecondCollectionViewCell *)myCommentSecondCollectionViewCell
+{
+    [self.myCommentDataViewController.actionSheet showInView:self.view];
+}
+#pragma mark - 点击对应的照片放大
+-(void)didClickImageViewWithMyCommentSecondCollectionViewCell:(MyCommentSecondCollectionViewCell *)myCommentSecondCollectionViewCell withImage:(UIImage *)image
+{
+    ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
+    imageAmplificationViewController.image = image;
+    [self.navigationController pushViewController:imageAmplificationViewController animated:YES];
 }
 @end

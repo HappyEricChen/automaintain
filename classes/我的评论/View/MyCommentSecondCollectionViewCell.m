@@ -1,3 +1,4 @@
+
 //
 //  MyCommentSecondCollectionViewCell.m
 //  automaintain
@@ -12,9 +13,29 @@
 
 @property (nonatomic, weak) UITextView* textView;
 @property (nonatomic, weak) UILabel* placeholderLabel;
+
+/**
+ *  选择相机图片的底层View
+ */
+@property (nonatomic, weak) UIView* baseView;
+/**
+ *  选择相机图片的按钮
+ */
+@property (nonatomic, weak) UIButton* cameraButton;
+
+/**
+ *  选择评论图片的张数统计，最多三张
+ */
+@property (nonatomic, assign) NSInteger imageCount;
+
+/**
+ *  当前布局的imageView
+ */
+@property (nonatomic, weak) UIImageView* imageView;
 @end
 
 @implementation MyCommentSecondCollectionViewCell
+
 
 NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollectionViewCellId";
 
@@ -32,6 +53,8 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
     self = [super initWithFrame:frame];
     if (self)
     {
+        self.imageCount = 0;
+        
         UITextView* textView = [[UITextView alloc]init];
         textView.backgroundColor = UIColorFromRGB(0xf1eee7);
         textView.layer.borderWidth = 1.0f;
@@ -57,14 +80,22 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
         lengthLimitationLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:lengthLimitationLabel];
         
-        UIImageView* cameraImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"suggestion_photo")];
-        cameraImageView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:cameraImageView];
+        UIView* baseView = [[UIView alloc]init];
+        baseView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:baseView];
+        self.baseView = baseView;
+        
+        UIButton* cameraButton = [[UIButton alloc]init];
+        [cameraButton setImage:ImageNamed(@"suggestion_photo") forState:UIControlStateNormal];
+        cameraButton.frame = CGRectMake(0, ScreenHeight*0.022, 30, 30);
+        [cameraButton addTarget:self action:@selector(didclickCameraButton:) forControlEvents:UIControlEventTouchUpInside];
+        self.cameraButton = cameraButton;
+        [baseView addSubview:cameraButton];
         
         textView.sd_layout.leftSpaceToView(self,ScreenWidth*0.029).rightSpaceToView(self,ScreenWidth*0.029).topEqualToView(self).heightIs(ScreenHeight*0.121);
         placeHolderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.029).topSpaceToView(textView,ScreenWidth*0.029).rightEqualToView(textView).autoHeightRatio(0);
         lengthLimitationLabel.sd_layout.rightEqualToView(textView).topSpaceToView(textView,ScreenHeight*0.018).leftEqualToView(textView).autoHeightRatio(0);
-        cameraImageView.sd_layout.leftEqualToView(textView).topSpaceToView(lengthLimitationLabel,0).widthIs(30).heightIs(30);
+        baseView.sd_layout.leftEqualToView(textView).bottomEqualToView(self).rightEqualToView(textView).topSpaceToView(lengthLimitationLabel,0);
         
     }
     return self;
@@ -188,4 +219,53 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
     
 }
 
+-(void)didclickCameraButton:(UIButton*)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectedCameraWithMyCommentSecondCollectionViewCell:)])
+    {
+        [self.delegate didSelectedCameraWithMyCommentSecondCollectionViewCell:self];
+    }
+    
+}
+-(void)layoutWithObject:(id)object
+{
+    if (object && [object isKindOfClass:[UIImage class]])
+    {
+        if(self.imageCount<3)
+        {
+            UIImageView* imageView = [[UIImageView alloc]init];
+            imageView.backgroundColor = [UIColor greenColor];
+            imageView.frame = CGRectMake(ScreenWidth*0.226*self.imageCount, 0, ScreenWidth*0.197, ScreenHeight*0.073);
+            imageView.centerY_sd = self.cameraButton.centerY_sd;
+            imageView.image = (UIImage*)object;
+            imageView.userInteractionEnabled = YES;
+            [self.baseView addSubview:imageView];
+            self.imageView = imageView;
+            UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc]init];
+            [recognizer addTarget:self action:@selector(didClickImageView:)];
+            [imageView addGestureRecognizer:recognizer];
+            
+            self.imageCount+= 1;
+            
+            if (self.imageCount ==3)
+            {
+                self.cameraButton.hidden = YES;
+            }
+            
+        }
+        
+        CGRect myFrame = self.cameraButton.frame;
+        myFrame.origin.x+=ScreenWidth*0.226;
+        self.cameraButton.frame = myFrame;
+
+    }
+}
+
+-(void)didClickImageView:(UIImageView*)imageView
+{
+    if ([self.delegate respondsToSelector:@selector(didClickImageViewWithMyCommentSecondCollectionViewCell:withImage:)])
+    {
+        [self.delegate didClickImageViewWithMyCommentSecondCollectionViewCell:self withImage:self.imageView.image];
+    }
+}
 @end

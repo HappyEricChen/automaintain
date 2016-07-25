@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class MyCommentDataViewController;
+@protocol MyCommentDataViewControllerDelegate <NSObject>
+
+@optional
+/**
+ *  点击选择相机
+ */
+-(void)didClickShowCameraMethod:(MyCommentDataViewController*)myCommentDataViewController;
+/**
+ *  点击选择本地相册
+ */
+-(void)didClickShowLocalAlbumMethod:(MyCommentDataViewController *)myCommentDataViewController;
+
+@end
+
 @interface MyCommentDataViewController : NSObject
 
 
@@ -33,4 +48,15 @@
                       withAppointmentGuid:(NSString*)appointmentGuid
                         withPhotoGuidList:(NSArray*)photoGuidList
                              withCallback:(Callback )callback;
+
+/**
+ *  弹出的控制器选择相册和相机/ios8之后支持
+ */
+@property (nonatomic, strong) UIAlertController* alertController;
+/**
+ *  弹出的控制器选择相册和相机/ios7之前
+ */
+@property (nonatomic, strong) UIActionSheet* actionSheet;
+
+@property (nonatomic, weak) id<MyCommentDataViewControllerDelegate> delegate;
 @end

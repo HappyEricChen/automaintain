@@ -89,22 +89,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/Base/ImageAmplificationViewController.m"
-            timestampString = "490612021.013007"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-tapImageAction"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "classes/&#x6211;&#x7684;&#x9884;&#x7ea6;3/Model/MyOrderDataViewController.m"
             timestampString = "490686399.096058"
             startingColumnNumber = "9223372036854775807"
@@ -160,6 +144,38 @@
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "+changePasswordWithUsername:withNewPassword:withCallback:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;4/Controller/PersonalViewController.m"
+            timestampString = "491120127.860708"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "-didClickShowLocalAlbumMethod:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/&#x6211;&#x7684;&#x8bc4;&#x8bba;/Controller/MyCommentViewController.m"
+            timestampString = "491134508.693928"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-didClickImageViewWithMyCommentSecondCollectionViewCell:withImage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

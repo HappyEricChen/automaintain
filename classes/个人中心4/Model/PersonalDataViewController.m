@@ -64,10 +64,10 @@
                                                                message:nil
                                                         preferredStyle:UIAlertControllerStyleActionSheet];
         
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消"
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"cancel"
                                                                style:UIAlertActionStyleCancel
                                                              handler:nil];
-        UIAlertAction* cameraAction = [UIAlertAction actionWithTitle:@"相机"
+        UIAlertAction* cameraAction = [UIAlertAction actionWithTitle:@"cameral"
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction * _Nonnull action) {
                                                                  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -79,7 +79,7 @@
                                                                      NSLog(@"这设备没相机");
                                                                  }
                                                              }];
-        UIAlertAction* localAlbumAction = [UIAlertAction actionWithTitle:@"本地相册"
+        UIAlertAction* localAlbumAction = [UIAlertAction actionWithTitle:@"Local Album"
                                                                    style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * _Nonnull action)
                                            {

@@ -135,7 +135,7 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         NSLog(@"_all[%i] = (%f,%f)",i,im.frame.origin.x,im.frame.origin.y);
         if ((touchPoint.x > 0)&&(touchPoint.x < 144)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
         {
-            self.starScore = [NSString stringWithFormat:@"分数为：%i",((int)touchPoint.x)/13];
+            self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13];
             //            _score.text = myscore;//_score是一个UILable，myscore为分数，显示在给用户看，关于这个不在赘述
             if (im.frame.origin.x > touchPoint.x)
             {
@@ -160,7 +160,7 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         NSLog(@"_all[%i] = (%f,%f)",i,im.frame.origin.x,im.frame.origin.y);
         if ((touchPoint.x > 0)&&(touchPoint.x < 144)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
         {
-            self.starScore = [NSString stringWithFormat:@"分数为：%i",((int)touchPoint.x)/13];
+            self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13];
             //            _score.text = myscore;//_score是一个UILable，myscore为分数，显示在给用户看，关于这个不在赘述
             if (im.frame.origin.x > touchPoint.x)
             {
