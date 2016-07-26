@@ -112,6 +112,8 @@
 		07576FE61D376931000D5E20 /* WashCarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FE51D376931000D5E20 /* WashCarCollectionViewCell.m */; };
 		0757EE031D38714000D82657 /* ScheduleListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE021D38714000D82657 /* ScheduleListModel.m */; };
 		0757EE061D38D08200D82657 /* UserCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE051D38D08200D82657 /* UserCommentModel.m */; };
+		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
+		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
 /* End PBXBuildFile section */
@@ -346,6 +348,10 @@
 		0757EE021D38714000D82657 /* ScheduleListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleListModel.m; sourceTree = "<group>"; };
 		0757EE041D38D08200D82657 /* UserCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommentModel.h; sourceTree = "<group>"; };
 		0757EE051D38D08200D82657 /* UserCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommentModel.m; sourceTree = "<group>"; };
+		077E7F871D47355000C5C8DB /* MyCommentFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentFourCollectionViewCell.h; sourceTree = "<group>"; };
+		077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentFourCollectionViewCell.m; sourceTree = "<group>"; };
+		077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JCExtension.h"; sourceTree = "<group>"; };
+		077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JCExtension.m"; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
 		830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-一号车库.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -654,6 +660,8 @@
 				072F7FC01D348F66002CECC4 /* MyCommentSecondCollectionViewCell.m */,
 				072F7FC11D348F66002CECC4 /* MyCommentThirdCollectionViewCell.h */,
 				072F7FC21D348F66002CECC4 /* MyCommentThirdCollectionViewCell.m */,
+				077E7F871D47355000C5C8DB /* MyCommentFourCollectionViewCell.h */,
+				077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -887,6 +895,8 @@
 				072F80A01D3490A5002CECC4 /* NSObject+Helper.h */,
 				072F80A11D3490A5002CECC4 /* NSObject+Helper.m */,
 				072F80A21D3490A5002CECC4 /* PrefixHeader.pch */,
+				077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */,
+				077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1338,6 +1348,7 @@
 				072F80601D348F66002CECC4 /* FeedbackSecondCollectionViewCell.m in Sources */,
 				0757EE061D38D08200D82657 /* UserCommentModel.m in Sources */,
 				072F80851D348F66002CECC4 /* SecondTimeCollectionViewCell.m in Sources */,
+				077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */,
 				072F80521D348F66002CECC4 /* PersonalModel.m in Sources */,
 				072F805C1D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m in Sources */,
 				072F80781D348F66002CECC4 /* LDCalendarView.m in Sources */,
@@ -1385,6 +1396,7 @@
 				072F80501D348F66002CECC4 /* PersonalViewController.m in Sources */,
 				072F80921D348F66002CECC4 /* TypeSelectedView.m in Sources */,
 				072F80581D348F66002CECC4 /* OnlineMessageViewController.m in Sources */,
+				077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */,
 				072F80801D348F66002CECC4 /* SettingFirstCollectionViewCell.m in Sources */,
 				072F80511D348F66002CECC4 /* PersonalDataViewController.m in Sources */,
 				072F80621D348F66002CECC4 /* MyCommentViewController.m in Sources */,

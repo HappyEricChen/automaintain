@@ -11,10 +11,11 @@
 #import "MyCommentFirstCollectionViewCell.h"
 #import "MyCommentSecondCollectionViewCell.h"
 #import "MyCommentThirdCollectionViewCell.h"
+#import "MyCommentFourCollectionViewCell.h"
 #import "MyOrderModel.h"
 #import "ImageAmplificationViewController.h"
 
-@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentSecondCollectionViewCellDelegate>
+@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentThirdCollectionViewCellDelegate>
 
 @property (nonatomic, strong) MyCommentDataViewController* myCommentDataViewController;
 /**
@@ -82,7 +83,7 @@
 #pragma mark - UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3;
+    return 4;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -103,14 +104,19 @@
     else if (indexPath.section == 1)
     {
         MyCommentSecondCollectionViewCell * secondCell = [MyCommentSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentSecondCollectionViewCellId forIndexPath:indexPath];
-        secondCell.delegate = self;
-        [secondCell layoutWithObject:self.image];
         cell =secondCell;
     }
     else if (indexPath.section == 2)
     {
         MyCommentThirdCollectionViewCell * thirdCell = [MyCommentThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentThirdCollectionViewCellId forIndexPath:indexPath];
+        thirdCell.delegate = self;
+        object = self.image;
         cell = thirdCell;
+    }
+    else if (indexPath.section == 3)
+    {
+        MyCommentFourCollectionViewCell * fourCell = [MyCommentFourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentFourCollectionViewCellId forIndexPath:indexPath];
+        cell = fourCell;
     }
     
     [cell layoutWithObject:object];
@@ -127,9 +133,13 @@
     }
     else if (indexPath.section == 1)
     {
-        return CGSizeMake(ScreenWidth, ScreenHeight*0.253);
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.163);
     }
     else if (indexPath.section == 2)
+    {
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.18);
+    }
+    else if (indexPath.section == 3)
     {
         return CGSizeMake(ScreenWidth, ScreenHeight*0.049);
     }
@@ -148,7 +158,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 2)
+    if (indexPath.section == 3)
     {
         if (!self.commentContent || [self.commentContent isEqualToString:@""])
         {
@@ -194,15 +204,10 @@
 
 -(void)didClickShowLocalAlbumMethod:(MyCommentViewController *)personalDataViewController
 {
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
-    {
-        return;
-    }
-    
     UIImagePickerController* localAlbumImagePicker = [[UIImagePickerController alloc]init];
-    [localAlbumImagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     localAlbumImagePicker.delegate = self;
-    localAlbumImagePicker.allowsEditing = YES;
+    [localAlbumImagePicker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    [localAlbumImagePicker setAllowsEditing:YES];
     [self presentViewController:localAlbumImagePicker animated:YES completion:nil];
 }
 #pragma mark - UIImagePickerControllerDelegate选择图片代理方法
@@ -215,8 +220,8 @@
     [self.myCommentDataViewController.collectionView reloadData];
 }
 
-#pragma mark - MyCommentSecondCollectionViewCellDelegate 点击选择照片按钮
--(void)didSelectedCameraWithMyCommentSecondCollectionViewCell:(MyCommentSecondCollectionViewCell *)myCommentSecondCollectionViewCell
+#pragma mark - MyCommentThirdCollectionViewCellDelegate 点击选择照片按钮
+-(void)didSelectedCameraWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell *)myCommentThirdCollectionViewCell
 {
     [self.myCommentDataViewController.actionSheet showInView:self.view];
 }

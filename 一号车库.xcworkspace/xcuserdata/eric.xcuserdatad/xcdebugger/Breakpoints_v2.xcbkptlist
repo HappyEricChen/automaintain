@@ -169,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x6211;&#x7684;&#x8bc4;&#x8bba;/Controller/MyCommentViewController.m"
-            timestampString = "491134508.693928"
+            filePath = "classes/&#x6211;&#x7684;&#x8bc4;&#x8bba;/View/MyCommentFirstCollectionViewCell.m"
+            timestampString = "491218227.366518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "-didClickImageViewWithMyCommentSecondCollectionViewCell:withImage:"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-initWithFrame:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

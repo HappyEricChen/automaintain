@@ -10,6 +10,7 @@
 #import "MyCommentFirstCollectionViewCell.h"
 #import "MyCommentSecondCollectionViewCell.h"
 #import "MyCommentThirdCollectionViewCell.h"
+#import "MyCommentFourCollectionViewCell.h"
 
 @implementation MyCommentDataViewController
 
@@ -32,7 +33,8 @@
         
         [_collectionView registerClass:[MyCommentFirstCollectionViewCell class] forCellWithReuseIdentifier:MyCommentFirstCollectionViewCellId];
         [_collectionView registerClass:[MyCommentSecondCollectionViewCell class] forCellWithReuseIdentifier:MyCommentSecondCollectionViewCellId];
-        [_collectionView registerClass:[MyCommentThirdCollectionViewCell class] forCellWithReuseIdentifier:MyCommentThirdCollectionViewCellId];        
+        [_collectionView registerClass:[MyCommentThirdCollectionViewCell class] forCellWithReuseIdentifier:MyCommentThirdCollectionViewCellId];
+        [_collectionView registerClass:[MyCommentFourCollectionViewCell class] forCellWithReuseIdentifier:MyCommentFourCollectionViewCellId];
         
     }
     return _collectionView;
