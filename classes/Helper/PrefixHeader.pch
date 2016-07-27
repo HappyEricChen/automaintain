@@ -28,5 +28,6 @@
 #import "TransferTimeSingleton.h"
 #import <MJRefresh/MJRefresh.h>
 #import "UIView+JCExtension.h"
+#import <UIButton+WebCache.h>
 
 #endif /* PrefixHeader_pch */

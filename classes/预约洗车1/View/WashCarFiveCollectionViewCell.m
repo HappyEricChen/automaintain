@@ -9,8 +9,10 @@
 #import "WashCarFiveCollectionViewCell.h"
 #import "UserCommentModel.h"
 @interface WashCarFiveCollectionViewCell()
-
-@property (nonatomic, weak) UIImageView* carImageView;
+/**
+ *  评论的图片 按钮
+ */
+@property (nonatomic, weak) UIButton* imageButton;
 
 @property (nonatomic, getter=isClick) BOOL click;
 /**
@@ -38,6 +40,14 @@
  *   评论图片url数组
  */
 @property (nonatomic, strong) NSMutableArray* photoImageViewArr;
+/**
+ *  评论图片所在的底部View
+ */
+@property (nonatomic, weak) UIView* commentImageView;
+/**
+ *  评论的项目类型
+ */
+@property (nonatomic, weak) UILabel* projectType;
 @end
 @implementation WashCarFiveCollectionViewCell
 
@@ -59,39 +69,61 @@ CGFloat userNameWidth;
     self = [super initWithFrame:frame];
     if (self)
     {
+        
         /**
-         头像／用户名／星星／时间
+         头像／用户名／星星／时间///基础的View
          */
         UIView* baseView = [[UIView alloc]init];
         baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
-        
+        /**
+         头像
+         */
         UIImageView* iconImageView = [[UIImageView alloc]init];
         iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:iconImageView];
         self.iconImageView = iconImageView;
-        
+        /**
+         用户名
+         */
         UILabel* userName = [[UILabel alloc]init];
         userName.font = [UIFont systemFontOfSize:11];
         userName.textColor = UIColorFromRGB(0x4a4a4a);
         userName.translatesAutoresizingMaskIntoConstraints = NO;
+        userName.textAlignment = NSTextAlignmentLeft;
         [baseView addSubview:userName];
         self.userName = userName;
         
         
+        /**
+         项目类型名字
+         */
+        UILabel* projectType = [[UILabel alloc]init];
+        projectType.font = [UIFont systemFontOfSize:11];
+        projectType.textColor = UIColorFromRGB(0x4a4a4a);
+        projectType.textAlignment = NSTextAlignmentLeft;
+        projectType.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:projectType];
+        self.projectType = projectType;
+        
+        /**
+         星星底部的View
+         */
         UIView *baseView1 = [[UIView alloc]init];
         baseView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:baseView1];
         
         for (NSInteger i=0; i<5; i++)
         {
-            UIImageView* starImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"order_star1")];
+            UIImageView* starImageView = [[UIImageView alloc]init];
             starImageView.frame = CGRectMake(5+13*i, 6, 13, 13);
             [self.starImageViewArr addObject:starImageView];
             [baseView1 addSubview:starImageView];
             
         }
-        
+        /**
+         时间
+         */
         UILabel* timeLabel = [[UILabel alloc]init];
         timeLabel.font = [UIFont systemFontOfSize:11];
         timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -109,18 +141,27 @@ CGFloat userNameWidth;
         [self addSubview:contentLabel];
         self.contentLabel = contentLabel;
 
-        UIView * carView = [[UIView alloc]init];
-        carView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:carView];
+        /**
+         评论图片显示的View
+         */
+        UIView * commentImageView = [[UIView alloc]init];
+        commentImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:commentImageView];
+        self.commentImageView = commentImageView;
         
         for (NSInteger i=0; i<3; i++)
         {
-            UIImageView* carImageView = [[UIImageView alloc]init];
-            carImageView.frame = CGRectMake((12+70)*i, 0, ScreenWidth*0.189, ScreenHeight*0.073);
-            [self.photoImageViewArr addObject:carImageView];
-            [carView addSubview:carImageView];
-            
-            self.carImageView = carImageView;
+//            UIImageView* carImageView = [[UIImageView alloc]init];
+//            carImageView.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
+//            [self.photoImageViewArr addObject:carImageView];
+//            [commentImageView addSubview:carImageView];
+//            
+//            self.carImageView = carImageView;
+            UIButton* imageButton = [[UIButton alloc]init];
+            imageButton.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
+            [imageButton addTarget:self action:@selector(tapImageAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.photoImageViewArr addObject:imageButton];
+            [commentImageView addSubview:imageButton];
         }
         
         baseView.sd_layout.leftSpaceToView(self,10).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.03);
@@ -128,8 +169,9 @@ CGFloat userNameWidth;
         
         baseView1.sd_layout.centerYEqualToView(userName).leftSpaceToView(userName,ScreenWidth*0.026).heightRatioToView(userName,1).widthIs(ScreenWidth*0.26);
         timeLabel.sd_layout.centerYEqualToView(userName).rightEqualToView(baseView).topEqualToView(userName).bottomEqualToView(userName).widthIs(ScreenWidth*0.24);
-        contentLabel.sd_layout.leftSpaceToView(iconImageView,ScreenWidth*0.026).topSpaceToView(baseView,13).rightSpaceToView(self,10).autoHeightRatio(0);
-        carView.sd_layout.leftSpaceToView(iconImageView,ScreenWidth*0.026).topSpaceToView(contentLabel,10).bottomEqualToView(self).rightSpaceToView(self,10);
+        projectType.sd_layout.leftSpaceToView(self,26+ScreenWidth*0.026+10).topSpaceToView(baseView,10).rightSpaceToView(self,10).autoHeightRatio(0);
+        contentLabel.sd_layout.leftEqualToView(projectType).topSpaceToView(projectType,13).rightSpaceToView(self,10).autoHeightRatio(0);
+        commentImageView.sd_layout.leftEqualToView(contentLabel).topSpaceToView(contentLabel,10).bottomEqualToView(self).rightSpaceToView(self,10);
         
         
         
@@ -142,6 +184,9 @@ CGFloat userNameWidth;
     UserCommentModel* userCommentModel = (UserCommentModel*)object;
      self.contentLabel.text = userCommentModel.CommentContent;
     self.timeLabel.text = [userCommentModel.CreateTime substringToIndex:10];
+    self.projectType.text = [NSString stringWithFormat:@"项目类型：%@",userCommentModel.MaintainSubjectName];
+    
+    
     NSString* iconImageUrlStr = userCommentModel.AvatarUrl;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:iconImageUrlStr] placeholderImage:ImageNamed(@"order_user")];
     /**
@@ -168,7 +213,10 @@ CGFloat userNameWidth;
         }
         else
         {
-            imageView.image = ImageNamed(@"order_star1");
+            /**
+             *  要保留，每个状态都要有值，防止复用异常
+             */
+            imageView.image = ImageNamed(@"");
         }
         
     }
@@ -179,23 +227,26 @@ CGFloat userNameWidth;
     NSArray* photoUrlsArr = userCommentModel.PhotoUrls;
     for (NSInteger i=0; i<self.photoImageViewArr.count; i++)
     {
-        UIImageView* imageView = self.photoImageViewArr[i];
-        if (i<photoUrlsArr.count)
+        UIButton* imageButton = self.photoImageViewArr[i];
+        if (photoUrlsArr.count == 0)
+        {
+            self.commentImageView.hidden = YES;
+        }
+        else if (i<photoUrlsArr.count)
         {
             NSString* imageUrlStr = photoUrlsArr[i];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:ImageNamed(@"home_icon_cleancar")];
+            [imageButton sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] forState:UIControlStateNormal placeholderImage:ImageNamed(@"personal_img0")];
+            self.imageButton = imageButton;
+            self.commentImageView.hidden = NO;
         }
         else
         {
-            [imageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:ImageNamed(@"home_icon_cleancar")];
+            self.commentImageView.hidden = NO;
         }
         
     }
     
-    UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageAction)];
-    [recognizer setNumberOfTapsRequired:1];
-    self.carImageView.userInteractionEnabled = YES;
-    [self.carImageView addGestureRecognizer:recognizer];
+ 
     
 }
 
@@ -217,12 +268,12 @@ CGFloat userNameWidth;
     return _photoImageViewArr;
 }
 
--(void)tapImageAction
+-(void)tapImageAction:(UIButton*)sender
 {
     
-    if ([self.delegate respondsToSelector:@selector(didClickCarImageWithWashCarFiveCollectionViewCell:withImageView:)])
+    if ([self.delegate respondsToSelector:@selector(didClickCarImageWithWashCarFiveCollectionViewCell:withImage:)])
     {
-        [self.delegate didClickCarImageWithWashCarFiveCollectionViewCell:self withImageView:self.carImageView];
+        [self.delegate didClickCarImageWithWashCarFiveCollectionViewCell:self withImage:sender.currentImage];
     }
     
 }

@@ -33,4 +33,8 @@ extern NSString* const kNotify_comment_StarScore;
  *  发布评论，评论的内容传送到控制器
  */
 extern NSString* const kNotify_comment_Content;
+/**
+ *  发布评论，点击空白处取消第一响应者，键盘回收
+ */
+extern NSString* const kNotify_cancel_Keyboard;
 @end

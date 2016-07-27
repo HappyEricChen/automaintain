@@ -193,10 +193,28 @@
                       withAppointmentGuid:(NSString*)appointmentGuid
                         withPhotoGuidList:(NSArray*)photoGuidList
                              withCallback:(Callback )callback;
+#pragma mark - 上传评论照片
+/**
+ *  上传评论照片/POST 请求
+ *
+ *  @param binaryPhoto         图片的二进制文件
+ *  @param callback            回调
+ */
++(void)postUploadPhotoFileWithBinaryPhoto:(UIImage*)binaryPhoto
+                             withCallback:(Callback )callback;
 
-//#pragma mark - 找回密码/POST 请求
-//
-//+(void)settingPasswordWithUsername:(NSString*)username
-//                  withNewPassword:(NSString*)newPassword
-//                     withCallback:(Callback )callback;
+#pragma mark - 修改密码/POST 请求
+/**
+ *
+ *  修改密码/POST请求
+ *
+ *  @param accessCode  唯一标识符
+ *  @param OldPassword 旧密码
+ *  @param NewPassword 新密码
+ *  @param callback    回调
+ */
++(void)postChangePasswordWithAccessCode:(NSString*)accessCode
+                        withOldPassword:(NSString*)OldPassword
+                        withNewPassword:(NSString*)NewPassword
+                           withCallback:(Callback )callback;
 @end

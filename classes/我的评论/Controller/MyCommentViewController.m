@@ -30,6 +30,10 @@
  *   当前选择的图片
  */
 @property (nonatomic, strong) UIImage* image;
+/**
+ *  照片返回的guid字符串拼接，提交评论时需要
+ */
+@property (nonatomic, strong) NSString* photoGuidList;
 @end
 
 @implementation MyCommentViewController
@@ -40,11 +44,23 @@
     self.myCommentDataViewController.delegate = self;
     [self configureNavigationView];
     [self configureCollectionView];
-    
+    /**
+     *  接收星星数
+     */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveStarScore:) name:kNotify_comment_StarScore object:nil];
+    /**
+     *  接收评论内容
+     */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveCommentContent:) name:kNotify_comment_Content object:nil];
+    /**
+     *  接收取消键盘消息
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveCancelKeyboard:) name:kNotify_cancel_Keyboard object:nil];
+    
     
     self.starScore = @"5";//初始化星星为5
+    
+    self.photoGuidList = @"";//初始化图片字符串
 }
 
 
@@ -172,7 +188,7 @@
                                                                  withContentText:self.commentContent
                                                          withMaintainSubjectGuid:SubjectGuidWashCar
                                                              withAppointmentGuid:self.myOrderModel.AppointmentGuid
-                                                               withPhotoGuidList:@[]
+                                                               withPhotoGuidList:self.photoGuidList
                                                                     withCallback:^(BOOL success, NSError *error, id result)
              {
                  if (success)
@@ -217,6 +233,26 @@
     UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.myCommentDataViewController postUploadPhotoFileWithPhoto:image withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             NSString* photoStr = (NSString*)result;
+             if ([self.photoGuidList isEqualToString:@""])
+             {
+                 self.photoGuidList = [self.photoGuidList stringByAppendingString:photoStr];
+             }
+             else
+             {
+                 self.photoGuidList = [NSString stringWithFormat:@"%@|%@",self.photoGuidList,photoStr];
+             }
+             
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
     [self.myCommentDataViewController.collectionView reloadData];
 }
 
@@ -231,5 +267,17 @@
     ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
     imageAmplificationViewController.image = image;
     [self.navigationController pushViewController:imageAmplificationViewController animated:YES];
+}
+#pragma mark - 取消第一响应者
+-(void)receiveCancelKeyboard:(NSNotification*)object
+{
+    [self.view endEditing:YES];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_comment_StarScore object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_comment_Content object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_cancel_Keyboard object:nil];
 }
 @end

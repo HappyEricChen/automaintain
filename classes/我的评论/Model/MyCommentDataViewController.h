@@ -49,6 +49,17 @@
                         withPhotoGuidList:(NSArray*)photoGuidList
                              withCallback:(Callback )callback;
 
+#pragma mark - 上传评论照片
+/**
+ *  上传评论照片/POST 请求
+ *
+ *  @param Photo         图片文件
+ *  @param callback            回调
+ */
+-(void)postUploadPhotoFileWithPhoto:(UIImage*)image
+                       withCallback:(Callback )callback;
+
+
 /**
  *  弹出的控制器选择相册和相机/ios8之后支持
  */

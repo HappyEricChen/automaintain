@@ -164,4 +164,26 @@
     }
 }
 
+#pragma mark - 上传评论照片
+/**
+ *  上传评论照片/POST 请求
+ *
+ *  @param binaryPhoto         图片的二进制文件
+ *  @param callback            回调
+ */
+-(void)postUploadPhotoFileWithPhoto:(UIImage *)image withCallback:(Callback)callback
+{
+    
+    [AutomaintainAPI postUploadPhotoFileWithBinaryPhoto:image withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+}
 @end

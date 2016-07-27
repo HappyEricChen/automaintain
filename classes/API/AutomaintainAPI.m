@@ -449,7 +449,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 
 }
 
-#pragma mark - 获取我的预约列表
+#pragma mark - 我的预约列表
 +(void)postMyOrderListWithAccessCode:(NSString *)accessCode
                        withPageIndex:(NSString *)pageIndex
                         withCallback:(Callback)callback
@@ -662,6 +662,91 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     dic[@"MaintainSubjectGuid"]=maintainSubjectGuid;
     dic[@"AppointmentGuid"]=appointmentGuid;
     dic[@"photoGuidList"]=photoGuidList;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             callback(YES,nil,nil);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+    
+}
+
+#pragma mark - 上传评论照片****和其他的请求方式不同
++(void)postUploadPhotoFileWithBinaryPhoto:(UIImage *)binaryPhoto withCallback:(Callback)callback
+{
+//    NSString* urlStr = @"http://192.168.2.137/ErpWebApi/api/File/UploadPhotoFile";
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/File/UploadPhotoFile"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"] = AppManagerSingleton.accessCode;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
+     
+     {
+         NSData *imageData = UIImageJPEGRepresentation(binaryPhoto, 0.5);
+         if (imageData != nil)
+         {
+             
+             [formData appendPartWithFileData:imageData name:@"filedata" fileName:@"test.jpg"mimeType:@"image/jpeg"]; //multipart/form-data
+         }    
+     }
+         progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSString* returnObject = [tempDic objectForKey:@"ReturnObject"];
+             callback(YES,nil,returnObject);
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+     }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+}
+
+#pragma mark - 修改密码/POST 请求
++(void)postChangePasswordWithAccessCode:(NSString *)accessCode
+                        withOldPassword:(NSString *)OldPassword
+                        withNewPassword:(NSString *)NewPassword
+                           withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/File/UploadPhotoFile"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"] = accessCode;
+    dic[@"OldPassword"] = OldPassword;
+    dic[@"NewPassword"] = NewPassword;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)

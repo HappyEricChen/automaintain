@@ -112,6 +112,7 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
  */
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    
     UITextRange *selectedRange = [textView markedTextRange];
     //获取高亮部分
     UITextPosition *pos = [textView positionFromPosition:selectedRange.start offset:0];
@@ -189,11 +190,21 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
     
 }
 
-
 -(void)layoutWithObject:(id)object
 {
 
 }
 
-
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    return YES;
+}
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    [textView resignFirstResponder];
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_cancel_Keyboard object:nil];
+}
 @end

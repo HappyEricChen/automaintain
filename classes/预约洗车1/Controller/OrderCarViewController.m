@@ -218,7 +218,16 @@
     }
     else if (indexPath.section == 4)
     {
-        return CGSizeMake(ScreenWidth, ScreenHeight*0.2);
+        UserCommentModel* userCommentModel = self.userCommentModelArr[indexPath.row];
+        if (userCommentModel.PhotoUrls.count>0)
+        {
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.3);
+        }
+        else
+        {
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.15);
+        }
+        
     }
     return CGSizeZero;
 }
@@ -290,10 +299,10 @@
 }
 
 #pragma mark -WashCarFiveCollectionViewCellDelegate
--(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImageView:(UIImageView *)imageView
+-(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
 {
     ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
-    imageAmplificationViewController.image = imageView.image;
+    imageAmplificationViewController.image = image;
     [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
 }

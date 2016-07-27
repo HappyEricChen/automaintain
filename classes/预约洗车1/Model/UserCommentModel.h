@@ -10,6 +10,10 @@
 
 @interface UserCommentModel : NSObject
 /**
+ *  用户头像url
+ */
+@property (nonatomic, strong) NSString* AvatarUrl;
+/**
  *  评论内容
  */
 @property (nonatomic, strong) NSString* CommentContent;
@@ -18,6 +22,14 @@
  */
 @property (nonatomic, strong) NSString* CreateTime;
 /**
+ *  评论的项目名称
+ */
+@property (nonatomic, strong) NSString* MaintainSubjectName;
+/**
+ *  用户名
+ */
+@property (nonatomic, strong) NSString* Name;
+/**
  *  评论图片url 数组，最多三张
  */
 @property (nonatomic, strong) NSArray* PhotoUrls;
@@ -25,12 +37,5 @@
  *  评论星星数量
  */
 @property (nonatomic, strong) NSString* Stars;
-/**
- *  用户名
- */
-@property (nonatomic, strong) NSString* Name;
-/**
- *  用户头像url
- */
-@property (nonatomic, strong) NSString* AvatarUrl;
+
 @end

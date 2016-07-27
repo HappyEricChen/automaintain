@@ -214,4 +214,9 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
     }
     
 }
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_cancel_Keyboard object:nil];
+}
 @end

@@ -169,13 +169,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x6211;&#x7684;&#x8bc4;&#x8bba;/View/MyCommentFirstCollectionViewCell.m"
-            timestampString = "491218227.366518"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "491295202.953792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-initWithFrame:"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "+postMyOrderListWithAccessCode:withPageIndex:withCallback:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "491295205.072784"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "481"
+            endingLineNumber = "481"
+            landmarkName = "+postMyOrderListWithAccessCode:withPageIndex:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

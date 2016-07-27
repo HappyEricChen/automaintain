@@ -129,11 +129,11 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.baseView1];
     UIImageView *im ;
-    for(int i = 0;i < 5 ; i++)
+    for(int i = 0;i < self.allStarsArr.count; i++)
     {
         im = self.allStarsArr[i];
         NSLog(@"_all[%i] = (%f,%f)",i,im.frame.origin.x,im.frame.origin.y);
-        if ((touchPoint.x > 0)&&(touchPoint.x < 144)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
+        if ((touchPoint.x > 0)&&(touchPoint.x < 80)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
         {
             self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13];
             //            _score.text = myscore;//_score是一个UILable，myscore为分数，显示在给用户看，关于这个不在赘述
@@ -147,18 +147,25 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
             }
         }
     }
-    [self sendNotification];//把分数传控制器
+    if (self.starScore && self.starScore.integerValue<6)//防止crash
+    {
+        [self sendNotification];//把分数传控制器
+    }
+    /**
+     *  隐藏键盘
+     */
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_cancel_Keyboard object:nil];
 }
 #pragma mark - 评论星星选择，滑动的坐标
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInView:self.baseView1];
     UIImageView *im ;
-    for(int i = 0;i < 5 ; i++)
+    for(int i = 0;i < self.allStarsArr.count; i++)
     {
         im = self.allStarsArr[i];
         NSLog(@"_all[%i] = (%f,%f)",i,im.frame.origin.x,im.frame.origin.y);
-        if ((touchPoint.x > 0)&&(touchPoint.x < 144)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
+        if ((touchPoint.x > 0)&&(touchPoint.x < 80)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
         {
             self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13];
             //            _score.text = myscore;//_score是一个UILable，myscore为分数，显示在给用户看，关于这个不在赘述
@@ -172,7 +179,10 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
             }
         }
     }
-    [self sendNotification];//把分数传控制器
+    if (self.starScore && self.starScore.integerValue<6)//防止crash
+    {
+        [self sendNotification];//把分数传控制器
+    }
 }
 
 -(void)sendNotification
