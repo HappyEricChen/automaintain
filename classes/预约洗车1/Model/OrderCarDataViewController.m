@@ -56,6 +56,15 @@
     }
     return _otherOrderArr;
 }
+
+-(NSMutableArray *)userCommentModelArr
+{
+    if (!_userCommentModelArr)
+    {
+        _userCommentModelArr = [NSMutableArray array];
+    }
+    return _userCommentModelArr;
+}
 -(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
                                 withCurrentDate:(NSString*)currentDate
                                 withSubjectGuid:(NSString*)subjectGuid
@@ -97,12 +106,43 @@
 
 }
 #pragma mark - 获取预约的评论列表
--(void)postCommentListWithAccessCode:(NSString *)accessCode withMaintianSubjectGuid:(NSString *)maintianSubjectGuid withCallback:(Callback)callback
+/**
+ *   获取预约的评论列表/POST 请求
+ *
+ *  @param accessCode   唯一标识
+ *  @param pageIndex   页数
+ *  @param callback    回调
+ */
+-(void)postCommentListWithAccessCode:(NSString*)accessCode
+                       withPageIndex:(NSString*)pageIndex
+                        withCallback:(Callback )callback
 {
-    [AutomaintainAPI postCommentListWithAccessCode:accessCode withMaintianSubjectGuid:maintianSubjectGuid withCallback:^(BOOL success, NSError *error, id result)
+    if ([pageIndex isEqualToString:@"0"])
+    {
+        [self.userCommentModelArr removeAllObjects];
+    }
+    else
+    {
+        
+    }
+    
+    [AutomaintainAPI postCommentListWithAccessCode:accessCode withPageIndex:pageIndex withCallback:^(BOOL success, NSError *error, id result)
      {
+         [self.collectionView.mj_header endRefreshing];
          if (success)
          {
+             NSArray * tempModelArr = (NSArray*)result;
+             if (tempModelArr.count<10)
+             {
+                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+             }
+             else
+             {
+                 [self.collectionView.mj_footer endRefreshing];
+             }
+             
+             [self.userCommentModelArr addObjectsFromArray:tempModelArr];
+             [self.collectionView reloadData];
              
              callback(YES,nil,result);
          }

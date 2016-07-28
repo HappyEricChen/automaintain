@@ -70,9 +70,9 @@ NSString* const personalFirstId = @"personalFirstId";
 
 -(void)layoutWithObject:(id)object
 {
-    if ([object isKindOfClass:[UIImage class]])
+    if ([object isKindOfClass:[NSString class]])
     {
-        self.iconImageView.image = (UIImage*)object;
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:object] placeholderImage:ImageNamed(@"personal_img0")];
     }
     
     if (!AppManagerSingleton.CarBrand)

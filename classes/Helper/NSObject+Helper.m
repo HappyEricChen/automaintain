@@ -11,8 +11,8 @@
 @implementation NSObject (Helper)
 
 -(CGSize)calculateSizeWithLabelContent:(NSString *)labelContent
-                            WithFontName:(NSString *)fontName
-                                WithFontSize:(CGFloat)fontSize
+                          WithFontName:(NSString *)fontName
+                          WithFontSize:(CGFloat)fontSize
 {
     UIFont* font = nil;
     if (fontName)
@@ -26,8 +26,8 @@
     UILabel* label = [[UILabel alloc]init];
     label.text = labelContent;
     label.font = font;
+    label.numberOfLines = 0;
     CGSize size = [label.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
-    
     return size;
 }
 
@@ -59,5 +59,31 @@
     CGSize size = [label.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
     
     return size.width;
+}
+#pragma mark - 根据宽度计算高度
+-(CGFloat)calculateHeighWithLabelContent:(NSString *)labelContent
+                            WithFontName:(NSString *)fontName
+                            WithFontSize:(CGFloat)fontSize
+                               WithWidth:(CGFloat)width
+                                WithBold:(BOOL)isBold
+{
+    UIFont* font = nil;
+    if (fontName)
+    {
+        font = [UIFont fontWithName:fontName size:fontSize];
+    }
+    else
+    {
+        font = [UIFont systemFontOfSize:fontSize];
+    }
+    UILabel* label = [[UILabel alloc]init];
+    label.text = labelContent;
+    label.font = font;
+    label.numberOfLines = 0;
+    
+    CGRect tmpRect = [label.text boundingRectWithSize:CGSizeMake(width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil] context:nil];
+    CGSize size = tmpRect.size;
+    return size.height;
+    
 }
 @end

@@ -22,7 +22,9 @@
     /**
      *  //设置弹出的HUD时间，单例
      */
-     [SVProgressHUD setMinimumDismissTimeInterval:1];
+    [SVProgressHUD setMinimumDismissTimeInterval:1];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithPatternImage:ImageNamed(@"tip_bg")]];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

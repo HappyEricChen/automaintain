@@ -108,9 +108,11 @@
     
     if ([self.pageName isEqualToString:@"home"])
     {
-        CGSize size = [self calculateSizeWithLabelContent:self.totalArr[indexPath.row] WithFontName:nil WithFontSize:self.fontSize];
+        CGSize size = [self calculateSizeWithLabelContent:self.totalArr[indexPath.row]
+                                             WithFontName:nil
+                                             WithFontSize:self.fontSize];
         
-        return CGSizeMake(size.width+30, size.height+15);
+        return CGSizeMake(size.width+ScreenWidth*0.053, size.height+ScreenWidth*0.04);
     }
     
     return CGSizeMake(ScreenWidth*0.27, ScreenHeight*0.037);

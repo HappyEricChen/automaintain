@@ -42,4 +42,26 @@
 @property (nonatomic, strong) UIActionSheet* actionSheet;
 
 @property (nonatomic, weak) id<PersonalDataViewControllerDelegate> delegate;
+
+#pragma mark - 上传照片
+/**
+ *  上传照片/POST 请求
+ *
+ *  @param image         图片
+ *  @param callback      回调
+ */
+-(void)postUploadPhotoFileWithImage:(UIImage*)image
+                       withCallback:(Callback )callback;
+#pragma mark - 更新会员头像/POST 请求
+/**
+ *
+ *  更新会员头像/POST请求
+ *
+ *  @param accessCode  唯一标识符
+ *  @param photoGuid 照片返回的guid
+ *  @param callback    回调
+ */
+-(void)postUpdateCustomerAvatarWithAccessCode:(NSString*)accessCode
+                                withPhotoGuid:(NSString*)photoGuid
+                                 withCallback:(Callback )callback;
 @end

@@ -52,8 +52,18 @@
 
 /**
  *   获取预约的评论列表/POST 请求
+ *
+ *  @param accessCode   唯一标识
+ *  @param pageIndex   页数
+ *  @param callback    回调
  */
 -(void)postCommentListWithAccessCode:(NSString*)accessCode
-                 withMaintianSubjectGuid:(NSString*)maintianSubjectGuid
+                       withPageIndex:(NSString*)pageIndex
                         withCallback:(Callback )callback;
+
+/**
+ *  模型数组，上拉刷新时数据增加，下拉刷新数据保持10条最新
+ */
+@property (nonatomic, strong) NSMutableArray* userCommentModelArr;
+
 @end

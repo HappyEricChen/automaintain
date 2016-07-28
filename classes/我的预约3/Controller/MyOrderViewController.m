@@ -85,11 +85,9 @@
     NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
     [self.myOrderDataViewController postMyOrderListWithAccessCode:AppManagerSingleton.accessCode withPageIndex:indexStr withCallback:^(BOOL success, NSError *error, id result)
      {
-         [self.myOrderDataViewController.customTableView.mj_header endRefreshing];//结束刷新
-         [self.myOrderDataViewController.customTableView.mj_footer endRefreshing];//结束刷新
          if (success)
          {
-             [self.myOrderDataViewController.customTableView reloadData];
+             
          }
          else
          {

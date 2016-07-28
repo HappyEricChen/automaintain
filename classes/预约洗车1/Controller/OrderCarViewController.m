@@ -29,9 +29,9 @@
  */
 @property (nonatomic, strong) NSString* selectedDate;
 /**
- *  用户评论模型数组
+ *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
  */
-@property (nonatomic, strong) NSArray* userCommentModelArr;
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation OrderCarViewController
@@ -43,7 +43,10 @@
     [self configureCollectionView];
     
     [self loadDataFromService];
-    
+    /**
+     *  刷新数据
+     */
+    [self loadMJRefreshMethod];
     self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
@@ -85,6 +88,45 @@
      }];
 
 }
+#pragma mark - 刷新
+-(void)loadMJRefreshMethod
+{
+    self.index = 0;//初始化
+    
+    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.orderCarDataViewController.collectionView.mj_header = header;
+    [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];//开始刷新
+    self.orderCarDataViewController.collectionView.mj_header.automaticallyChangeAlpha = YES;
+    
+    MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.orderCarDataViewController.collectionView.mj_footer = footer;
+    
+}
+-(void)loadDataFromService:(MJRefreshComponent*)headerFooterView
+{
+    if ([headerFooterView isKindOfClass:[MJRefreshNormalHeader class]])
+    {
+        self.index = 0;
+    }
+    else
+    {
+        self.index += 1;
+    }
+    
+    NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
+    [self.orderCarDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withPageIndex:indexStr withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+    
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+         
+     }];
+}
 
 -(void)loadDataFromService
 {
@@ -101,19 +143,7 @@
              [SVProgressHUD showErrorWithStatus:result];
          }
      }];
-    [self.orderCarDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
-         {
-             self.userCommentModelArr = (NSArray*)result;
-             [self.orderCarDataViewController.collectionView reloadData];
-         }
-         else
-         {
-             [SVProgressHUD showErrorWithStatus:result];
-         }
-         
-     }];
+    
 }
 
 -(void)configureNavigationView
@@ -152,7 +182,7 @@
     
     if (section == 4)
     {
-        return self.userCommentModelArr.count>0?self.userCommentModelArr.count:0;
+        return self.orderCarDataViewController.userCommentModelArr.count>0?self.orderCarDataViewController.userCommentModelArr.count:0;
     }
     return 1;
 }
@@ -187,7 +217,7 @@
     else if (indexPath.section == 4)
     {
         WashCarFiveCollectionViewCell * fiveCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
-        object = self.userCommentModelArr[indexPath.row];
+        object = self.orderCarDataViewController.userCommentModelArr[indexPath.row];
         fiveCell.delegate = self;
         cell = fiveCell;
     }
@@ -218,14 +248,20 @@
     }
     else if (indexPath.section == 4)
     {
-        UserCommentModel* userCommentModel = self.userCommentModelArr[indexPath.row];
+        UserCommentModel* userCommentModel = self.orderCarDataViewController.userCommentModelArr[indexPath.row];
+        CGFloat height = [self calculateHeighWithLabelContent:userCommentModel.CommentContent
+                                                 WithFontName:nil
+                                                 WithFontSize:11
+                                                    WithWidth:ScreenWidth-60
+                                                     WithBold:NO];
+        
         if (userCommentModel.PhotoUrls.count>0)
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.3);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.25+height);
         }
         else
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.15);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.15+height);
         }
         
     }
@@ -258,7 +294,7 @@
     if (kind == UICollectionElementKindSectionHeader)
     {
         CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        [headerView layoutWithObject:self.userCommentModelArr.count];
+        [headerView layoutWithObject:self.orderCarDataViewController.userCommentModelArr.count];
         reusableView = headerView;
     }
     

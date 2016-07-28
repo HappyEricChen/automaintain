@@ -59,6 +59,7 @@
     
     [AutomaintainAPI postMyOrderListWithAccessCode:accessCode withPageIndex:pageIndex withCallback:^(BOOL success, NSError *error, id result)
      {
+         [self.customTableView.mj_header endRefreshing];
          if (success)
          {
              callback(YES,nil,result);
@@ -66,6 +67,10 @@
              if (tempModelArr.count<10)
              {
                  [self.customTableView.mj_footer endRefreshingWithNoMoreData];
+             }
+             else
+             {
+                 [self.customTableView.mj_footer endRefreshing];
              }
              
              

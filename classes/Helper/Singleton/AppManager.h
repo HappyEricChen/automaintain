@@ -52,4 +52,8 @@
  *   欢迎进入凯旋小区一号车库社区汽车服务站
  */
 - (NSString*)welcomeStr;
+/**
+ *  登出时，清除plist里面所有的数据
+ */
+-(void)removeDataFromPlist;
 @end

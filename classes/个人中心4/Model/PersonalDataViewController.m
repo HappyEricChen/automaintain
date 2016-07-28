@@ -45,15 +45,15 @@
     return _collectionView;
 }
 
--(PersonalModel *)personalModel
-{
-    if (!_personalModel)
-    {
-        _personalModel = [[PersonalModel alloc]init];
-        _personalModel.headImage = ImageNamed(@"personal_img");
-    }
-    return _personalModel;
-}
+//-(PersonalModel *)personalModel
+//{
+//    if (!_personalModel)
+//    {
+//        _personalModel = [[PersonalModel alloc]init];
+//        _personalModel.headImage = ImageNamed(@"personal_img");
+//    }
+//    return _personalModel;
+//}
 
 -(UIAlertController *)alertController
 {
@@ -140,5 +140,55 @@
         [self.delegate didClickShowLocalAlbumMethod:self];
     }
 }
+#pragma mark - 上传照片
+/**
+ *  上传照片/POST 请求
+ *
+ *  @param image         图片
+ *  @param callback      回调
+ */
+-(void)postUploadPhotoFileWithImage:(UIImage*)image
+                       withCallback:(Callback )callback;
+{
+    [AutomaintainAPI postUploadPhotoFileWithBinaryPhoto:image
+                                           withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+}
 
+#pragma mark - 更新会员头像/POST 请求
+/**
+ *
+ *  更新会员头像/POST请求
+ *
+ *  @param accessCode  唯一标识符
+ *  @param photoGuid 照片返回的guid
+ *  @param callback    回调
+ */
+-(void)postUpdateCustomerAvatarWithAccessCode:(NSString*)accessCode
+                                withPhotoGuid:(NSString*)photoGuid
+                                 withCallback:(Callback )callback
+{
+    [AutomaintainAPI postUpdateCustomerAvatarWithAccessCode:accessCode
+                                              withPhotoGuid:photoGuid
+                                               withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+}
 @end

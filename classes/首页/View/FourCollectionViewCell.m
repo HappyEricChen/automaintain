@@ -47,7 +47,7 @@ NSString* const fourCellId = @"fourCellId";
         
         NSString* completedImageStr = bottomAdsModel.PicUrl;
         NSURL* completedImageUrl = [NSURL URLWithString:completedImageStr];
-        [self.imageView sd_setImageWithURL:completedImageUrl];
+        [self.imageView sd_setImageWithURL:completedImageUrl placeholderImage:ImageNamed(@"home_buttom_img0")];
         
     }
 }

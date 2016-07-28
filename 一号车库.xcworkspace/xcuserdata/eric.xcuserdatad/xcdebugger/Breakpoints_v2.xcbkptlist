@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/Base/CommonCollectionView.m"
-            timestampString = "490168927.838408"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/View/WashCarCollectionView/WashCarCollectionView.m"
             timestampString = "490503082.536699"
             startingColumnNumber = "9223372036854775807"
@@ -90,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/&#x6211;&#x7684;&#x9884;&#x7ea6;3/Model/MyOrderDataViewController.m"
-            timestampString = "490686399.096058"
+            timestampString = "491379166.858274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-postMyOrderListWithAccessCode:withPageIndex:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -153,28 +137,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;4/Controller/PersonalViewController.m"
-            timestampString = "491120127.860708"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "-didClickShowLocalAlbumMethod:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491295202.953792"
+            timestampString = "491377241.103988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
             landmarkName = "+postMyOrderListWithAccessCode:withPageIndex:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491295205.072784"
+            timestampString = "491377241.103988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
             landmarkName = "+postMyOrderListWithAccessCode:withPageIndex:withCallback:"
             landmarkType = "5">
          </BreakpointContent>

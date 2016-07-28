@@ -92,7 +92,6 @@
 		074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945C71D35D6EA00A46AE6 /* ThirdCollectionViewCell.m */; };
 		074945D11D35E1E400A46AE6 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D01D35E1E400A46AE6 /* LoginModel.m */; };
 		074945D41D35E87200A46AE6 /* AdsCarouselModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D31D35E87200A46AE6 /* AdsCarouselModel.m */; };
-		074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */; };
 		074945DA1D36148B00A46AE6 /* ConvenienceServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */; };
 		074945DD1D36271300A46AE6 /* BottomAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945DC1D36271300A46AE6 /* BottomAdsModel.m */; };
 		074C9F281D3DBCD600A74509 /* OrderTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F271D3DBCD600A74509 /* OrderTypeModel.m */; };
@@ -308,8 +307,6 @@
 		074945D01D35E1E400A46AE6 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		074945D21D35E87200A46AE6 /* AdsCarouselModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsCarouselModel.h; sourceTree = "<group>"; };
 		074945D31D35E87200A46AE6 /* AdsCarouselModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsCarouselModel.m; sourceTree = "<group>"; };
-		074945D51D35EACD00A46AE6 /* CustomAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertViewController.h; sourceTree = "<group>"; };
-		074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewController.m; sourceTree = "<group>"; };
 		074945D81D36148B00A46AE6 /* ConvenienceServiceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvenienceServiceModel.h; sourceTree = "<group>"; };
 		074945D91D36148B00A46AE6 /* ConvenienceServiceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvenienceServiceModel.m; sourceTree = "<group>"; };
 		074945DB1D36271300A46AE6 /* BottomAdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomAdsModel.h; sourceTree = "<group>"; };
@@ -503,8 +500,6 @@
 		072F7F841D348F66002CECC4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				074945D51D35EACD00A46AE6 /* CustomAlertViewController.h */,
-				074945D61D35EACD00A46AE6 /* CustomAlertViewController.m */,
 				072F7F851D348F66002CECC4 /* PersonalViewController.h */,
 				072F7F861D348F66002CECC4 /* PersonalViewController.m */,
 			);
@@ -1335,7 +1330,6 @@
 				072F80911D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m in Sources */,
 				072F80541D348F66002CECC4 /* PersonalFirstCollectionViewCell.m in Sources */,
 				074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */,
-				074945D71D35EACD00A46AE6 /* CustomAlertViewController.m in Sources */,
 				072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */,
 				072F807D1D348F66002CECC4 /* ModifyPasswordDataViewController.m in Sources */,
 				072F80B81D3491EA002CECC4 /* CustomNavigationView.m in Sources */,

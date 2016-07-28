@@ -62,8 +62,7 @@ NSString* const thirdCellId = @"thirdCellId";
         
         CommonCollectionView* collectionView = [[CommonCollectionView alloc]init];
         collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-//        [collectionView.totalArr addObjectsFromArray:@[@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎",@"车胎检查补气",@"更换轮胎",@"电瓶数据流检测",@"更换轮胎",@"断电车辆泵电",@"基础工具租借",@"电瓶数据流监测",@"车胎检查补气",@"更换轮胎",@"电瓶数据流监测",@"更换轮胎"]];
-        collectionView.fontSize = 8;
+        collectionView.fontSize = 10;
         collectionView.pageName = @"home";
         collectionView.textColor = UIColorFromRGB(0x7b7b7b);
         [self addSubview:collectionView];

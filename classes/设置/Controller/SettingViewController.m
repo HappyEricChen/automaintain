@@ -150,17 +150,10 @@
              if (success)
              {
                  [SVProgressHUD dismiss];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"accessCode"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AvatarUrl"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CarBrand"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CarModel"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CarNo"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CardNo"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Role"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SectionName"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShopName"];
-                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
-                 [[NSUserDefaults standardUserDefaults]synchronize];
+                 /**
+                  *  移除plist里面的数据
+                  */
+                 [AppManagerSingleton removeDataFromPlist];
                  [self.navigationController popToViewController:SharedAppDelegateHelper.loginViewController animated:YES];
              }
              else

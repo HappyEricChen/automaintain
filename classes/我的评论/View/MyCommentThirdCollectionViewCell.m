@@ -173,6 +173,8 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
  */
 -(void)didclickCameraButton:(UIButton*)sender
 {
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_cancel_Keyboard object:nil];
+    
     if ([self.delegate respondsToSelector:@selector(didSelectedCameraWithMyCommentThirdCollectionViewCell:)])
     {
         [self.delegate didSelectedCameraWithMyCommentThirdCollectionViewCell:self];

@@ -9,7 +9,7 @@
 #import "ModifyPasswordViewController.h"
 #import "ModifyPasswordDataViewController.h"
 
-@interface ModifyPasswordViewController ()<CustomNavigationViewDelegate>
+@interface ModifyPasswordViewController ()<CustomNavigationViewDelegate,ModifyPasswordViewDelegate>
 
 @property (nonatomic, strong) ModifyPasswordDataViewController* modifyPasswordDataViewController;
 @end
@@ -37,7 +37,7 @@
 -(void)configureModifyPasswordView
 {
     [self.view addSubview:self.modifyPasswordDataViewController.modifyPasswordView];
-    
+    self.modifyPasswordDataViewController.modifyPasswordView.delegate = self;
     self.modifyPasswordDataViewController.modifyPasswordView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.modifyPasswordDataViewController.customNavigationView,0).bottomEqualToView(self.view);
 }
 
@@ -47,4 +47,61 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 点击提交修改密码按钮调用
+-(void)didClickSubmitButtonWithOldPassword:(NSString *)oldPassword
+                           withNewPassword:(NSString *)newPassword
+                       withConfirmPassword:(NSString *)confirmPassword
+                    withModifyPasswordView:(ModifyPasswordView *)modifyPasswordView
+{
+    if ([oldPassword isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请输入原密码"];
+        return;
+    }
+    else if ([newPassword isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请输入新密码"];
+        return;
+    }
+    else if ([confirmPassword isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请再次输入新密码"];
+        return;
+    }
+    
+    
+    if (![newPassword isEqualToString:confirmPassword])
+    {
+        NSLog(@"两个密码不相等");
+        /**
+         *  显示错误
+         */
+        [SVProgressHUD showErrorWithStatus:@"两次密码不相同"];
+    }
+    else
+    {
+        [self.modifyPasswordDataViewController postChangePasswordWithAccessCode:AppManagerSingleton.accessCode
+                                                                withOldPassword:oldPassword
+                                                                withNewPassword:newPassword
+                                                                   withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
+             {
+                 [SVProgressHUD showSuccessWithStatus:@"密码修改成功,请重新登录"];
+                 /**
+                  *  移除plist里面的数据
+                  */
+                 [AppManagerSingleton removeDataFromPlist];
+                 [self.navigationController popToViewController:SharedAppDelegateHelper.loginViewController animated:YES];
+                 
+             }
+             else
+             {
+                 [SVProgressHUD showErrorWithStatus:result];
+             }
+         }];
+    }
+    
+    
+}
 @end

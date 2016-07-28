@@ -59,6 +59,11 @@
 -(void)postUploadPhotoFileWithPhoto:(UIImage*)image
                        withCallback:(Callback )callback;
 
+/**
+ *   图片数组
+ */
+@property (nonatomic, strong) NSMutableArray* imageArr;
+
 
 /**
  *  弹出的控制器选择相册和相机/ios8之后支持
@@ -70,4 +75,10 @@
 @property (nonatomic, strong) UIActionSheet* actionSheet;
 
 @property (nonatomic, weak) id<MyCommentDataViewControllerDelegate> delegate;
+#pragma mark -上传图片测试
+- (void)runDispatchTestWithCallback:(Callback )callback;;
+/**
+ *  图片上传成功后，返回的guid数组
+ */
+@property (nonatomic, strong) NSMutableArray* imageGuidArr;
 @end

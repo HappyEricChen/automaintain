@@ -94,15 +94,16 @@
                             withSubjectGuid:(NSString*)subjectGuid
                                withCallback:(Callback )callback;
 
+#pragma mark - 获取评论列表
 /**
  *   获取预约的评论列表/POST 请求
  *
  *  @param accessCode   唯一标识
- *  @param appointmentGuid 预约类型/洗车或者维修编号
+ *  @param pageIndex   页数
  *  @param callback    回调
  */
 +(void)postCommentListWithAccessCode:(NSString*)accessCode
-                 withMaintianSubjectGuid:(NSString*)maintianSubjectGuid
+                       withPageIndex:(NSString*)pageIndex
                         withCallback:(Callback )callback;
 
 #pragma mark - 预约维修
@@ -193,9 +194,9 @@
                       withAppointmentGuid:(NSString*)appointmentGuid
                         withPhotoGuidList:(NSArray*)photoGuidList
                              withCallback:(Callback )callback;
-#pragma mark - 上传评论照片
+#pragma mark - 上传照片
 /**
- *  上传评论照片/POST 请求
+ *  上传照片/POST 请求
  *
  *  @param binaryPhoto         图片的二进制文件
  *  @param callback            回调
@@ -217,4 +218,17 @@
                         withOldPassword:(NSString*)OldPassword
                         withNewPassword:(NSString*)NewPassword
                            withCallback:(Callback )callback;
+
+#pragma mark - 更新会员头像/POST 请求
+/**
+ *
+ *  更新会员头像/POST请求
+ *
+ *  @param accessCode  唯一标识符
+ *  @param photoGuid 照片返回的guid
+ *  @param callback    回调
+ */
++(void)postUpdateCustomerAvatarWithAccessCode:(NSString*)accessCode
+                                withPhotoGuid:(NSString*)photoGuid
+                                 withCallback:(Callback )callback;
 @end

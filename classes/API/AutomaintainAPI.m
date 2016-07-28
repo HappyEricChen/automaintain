@@ -377,12 +377,15 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 
 }
 #pragma mark - 获取预约的评论列表
-+(void)postCommentListWithAccessCode:(NSString *)accessCode withMaintianSubjectGuid:(NSString *)maintianSubjectGuid withCallback:(Callback)callback
++(void)postCommentListWithAccessCode:(NSString *)accessCode
+                       withPageIndex:(NSString *)pageIndex
+                        withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCommentForAppointment"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"accessCode"]=accessCode;
-    dic[@"MaintianSubjectGuid"]=maintianSubjectGuid;
+    dic[@"pageIndex"] = pageIndex;
+    dic[@"pageSize"] = @"10";
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -742,7 +745,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                         withNewPassword:(NSString *)NewPassword
                            withCallback:(Callback)callback
 {
-    NSString* urlStr = [urlPath stringByAppendingString:@"/api/File/UploadPhotoFile"];
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/SetCustomerPassword"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"accessCode"] = accessCode;
     dic[@"OldPassword"] = OldPassword;
@@ -759,6 +762,43 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          if (IsSuccessed)
          {
              callback(YES,nil,nil);
+             
+         }
+         
+         else
+         {
+             NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,ResultMessage);
+         }
+         
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"error%@",error);
+     }];
+
+}
+
+#pragma mark - 更新会员头像/POST 请求
++(void)postUpdateCustomerAvatarWithAccessCode:(NSString *)accessCode withPhotoGuid:(NSString *)photoGuid withCallback:(Callback)callback
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/UpdateCustomerAvatar"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    dic[@"accessCode"] = accessCode;
+    dic[@"photoGuid"] = photoGuid;
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         NSDictionary* tempDic = (NSDictionary*)responseObject;
+         BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
+         if (IsSuccessed)
+         {
+             NSString* returnObject = [tempDic objectForKey:@"ReturnObject"];
+             callback(YES,nil,returnObject);
              
          }
          

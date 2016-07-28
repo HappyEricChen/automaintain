@@ -37,10 +37,6 @@
  */
 @property (nonatomic, strong) NSMutableArray* starImageViewArr;
 /**
- *   评论图片url数组
- */
-@property (nonatomic, strong) NSMutableArray* photoImageViewArr;
-/**
  *  评论图片所在的底部View
  */
 @property (nonatomic, weak) UIView* commentImageView;
@@ -80,7 +76,10 @@ CGFloat userNameWidth;
          头像
          */
         UIImageView* iconImageView = [[UIImageView alloc]init];
+        iconImageView.layer.masksToBounds = YES;
+        iconImageView.layer.cornerRadius = 26*0.5;//宽度的一半为圆形
         iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        
         [baseView addSubview:iconImageView];
         self.iconImageView = iconImageView;
         /**
@@ -149,20 +148,7 @@ CGFloat userNameWidth;
         [self addSubview:commentImageView];
         self.commentImageView = commentImageView;
         
-        for (NSInteger i=0; i<3; i++)
-        {
-//            UIImageView* carImageView = [[UIImageView alloc]init];
-//            carImageView.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
-//            [self.photoImageViewArr addObject:carImageView];
-//            [commentImageView addSubview:carImageView];
-//            
-//            self.carImageView = carImageView;
-            UIButton* imageButton = [[UIButton alloc]init];
-            imageButton.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
-            [imageButton addTarget:self action:@selector(tapImageAction:) forControlEvents:UIControlEventTouchUpInside];
-            [self.photoImageViewArr addObject:imageButton];
-            [commentImageView addSubview:imageButton];
-        }
+
         
         baseView.sd_layout.leftSpaceToView(self,10).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.03);
         iconImageView.sd_layout.leftEqualToView(baseView).topEqualToView(baseView).widthIs(26).heightIs(26);
@@ -182,10 +168,9 @@ CGFloat userNameWidth;
 -(void)layoutWithObject:(id)object
 {
     UserCommentModel* userCommentModel = (UserCommentModel*)object;
-     self.contentLabel.text = userCommentModel.CommentContent;
+    self.contentLabel.text = userCommentModel.CommentContent;
     self.timeLabel.text = [userCommentModel.CreateTime substringToIndex:10];
     self.projectType.text = [NSString stringWithFormat:@"项目类型：%@",userCommentModel.MaintainSubjectName];
-    
     
     NSString* iconImageUrlStr = userCommentModel.AvatarUrl;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:iconImageUrlStr] placeholderImage:ImageNamed(@"order_user")];
@@ -194,9 +179,9 @@ CGFloat userNameWidth;
      */
     self.userName.text = userCommentModel.Name;
     userNameWidth = [self.userName calculateWidthWithLabelContent:self.userName.text
-                                                WithFontName:nil
-                                                WithFontSize:11
-                                                    WithBold:NO];
+                                                     WithFontName:nil
+                                                     WithFontSize:11
+                                                         WithBold:NO];
     self.userName.sd_layout.centerYEqualToView(self.iconImageView).leftSpaceToView(self.iconImageView,ScreenWidth*0.026).widthIs(userNameWidth).topEqualToView(self.iconImageView).bottomEqualToView(self.iconImageView);
     
     /**
@@ -216,7 +201,7 @@ CGFloat userNameWidth;
             /**
              *  要保留，每个状态都要有值，防止复用异常
              */
-            imageView.image = ImageNamed(@"");
+            imageView.image = ImageNamed(@"order_star1");
         }
         
     }
@@ -225,29 +210,51 @@ CGFloat userNameWidth;
      *  评论图片
      */
     NSArray* photoUrlsArr = userCommentModel.PhotoUrls;
-    for (NSInteger i=0; i<self.photoImageViewArr.count; i++)
+    
+    if (photoUrlsArr.count == 0)
     {
-        UIButton* imageButton = self.photoImageViewArr[i];
-        if (photoUrlsArr.count == 0)
+        self.commentImageView.hidden = YES;
+    }
+    else
+    {
+        
+        NSMutableArray* tempArr = [NSMutableArray array];
+        /**
+         *  当subviews.count<photoUrlsArr.count造新的按钮，直到达到photoUrlsArr.count
+         */
+        while (self.commentImageView.subviews.count<photoUrlsArr.count)
         {
-            self.commentImageView.hidden = YES;
-        }
-        else if (i<photoUrlsArr.count)
-        {
-            NSString* imageUrlStr = photoUrlsArr[i];
-            [imageButton sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] forState:UIControlStateNormal placeholderImage:ImageNamed(@"personal_img0")];
+            UIButton* imageButton = [[UIButton alloc]init];
+            
+            [imageButton addTarget:self action:@selector(tapImageAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.commentImageView addSubview:imageButton];
+            
             self.imageButton = imageButton;
-            self.commentImageView.hidden = NO;
+            [tempArr addObject:imageButton];
+            
         }
-        else
+        /**
+         *  赋值
+         */
+        for (NSInteger i=0; i<self.commentImageView.subviews.count; i++)
         {
-            self.commentImageView.hidden = NO;
+            UIButton* button = self.commentImageView.subviews[i];
+            if (i<photoUrlsArr.count)
+            {
+                NSString* imageUrlStr = photoUrlsArr[i];
+                button.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
+                [button sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] forState:UIControlStateNormal placeholderImage:ImageNamed(@"personal_img0")];
+                
+                button.hidden = NO;
+            }
+            else
+            {
+                button.hidden = YES;
+            }
         }
         
+        self.commentImageView.hidden = NO;
     }
-    
- 
-    
 }
 
 
@@ -258,14 +265,6 @@ CGFloat userNameWidth;
         _starImageViewArr = [NSMutableArray array];
     }
     return _starImageViewArr;
-}
--(NSMutableArray *)photoImageViewArr
-{
-    if (!_photoImageViewArr)
-    {
-        _photoImageViewArr = [NSMutableArray array];
-    }
-    return _photoImageViewArr;
 }
 
 -(void)tapImageAction:(UIButton*)sender

@@ -82,12 +82,12 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
+    BaseCollectionViewCell * cell = nil;
     id object = nil;
     if (indexPath.section == 0)
     {
         PersonalFirstCollectionViewCell * firstCell = [PersonalFirstCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:personalFirstId forIndexPath:indexPath];
-        [firstCell layoutWithObject:self.personalDataViewController.personalModel.headImage];
+        object = AppManagerSingleton.AvatarUrl;
         cell = firstCell;
     }
     else if (indexPath.section == 1)
@@ -99,7 +99,6 @@
     {
         PersonalThirdCollectionViewCell * thirdCell = [PersonalThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:personalThirdId forIndexPath:indexPath];
         object = self.contentArr[indexPath.row];
-        [thirdCell layoutWithObject:object];
         cell = thirdCell;
     }
     else if (indexPath.section == 3)
@@ -107,7 +106,7 @@
         PersonalFourCollectionViewCell * fourCell = [PersonalFourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:personalFourId forIndexPath:indexPath];
         cell = fourCell;
     }
-    
+    [cell layoutWithObject:object];
     return cell;
 }
 
@@ -198,7 +197,7 @@
 -(void)didClickShowLocalAlbumMethod:(PersonalDataViewController *)personalDataViewController
 {
     UIImagePickerController* localAlbumImagePicker = [[UIImagePickerController alloc]init];
-    [localAlbumImagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [localAlbumImagePicker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum  ];
     localAlbumImagePicker.delegate = self;
     localAlbumImagePicker.allowsEditing = YES;
     [self presentViewController:localAlbumImagePicker animated:YES completion:nil];
@@ -207,10 +206,44 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     
-    self.personalDataViewController.personalModel.headImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    
+    UIImage* avatorImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    __weak PersonalViewController* weakSelf = self;
+    [self.personalDataViewController postUploadPhotoFileWithImage:avatorImage
+                                                     withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             NSString* photoGuid = result;
+             [weakSelf updateCustomerAvatorWithPhotoGuid:photoGuid];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.personalDataViewController.collectionView reloadData];
+}
+#pragma mark - 更新用户头像请求
+-(void)updateCustomerAvatorWithPhotoGuid:(NSString*)photoGuid
+{
+    [self.personalDataViewController postUpdateCustomerAvatarWithAccessCode:AppManagerSingleton.accessCode
+                                                              withPhotoGuid:photoGuid
+                                                               withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"头像更新成功"];
+             [[NSUserDefaults standardUserDefaults]setObject:result forKey:@"AvatarUrl"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
+             [self.personalDataViewController.collectionView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
+    
 }
 
 @end

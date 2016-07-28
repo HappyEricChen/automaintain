@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface PersonalModel : NSObject
-
-/**
- *  个人头像
- */
-@property (nonatomic, strong) UIImage* headImage;
+//
+///**
+// *  个人头像
+// */
+//@property (nonatomic, strong) UIImage* headImage;
 @end

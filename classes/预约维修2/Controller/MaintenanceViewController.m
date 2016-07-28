@@ -23,14 +23,13 @@
 
 @property (nonatomic, strong) MaintenanceDataViewController* maintenanceDataViewController;
 /**
- *  用户评论模型数组
- */
-@property (nonatomic, strong) NSArray* userCommentModelArr;
-/**
  *  完整的日期+时间 2017-02-03 08:15-08:30
  */
 @property (nonatomic, strong) NSString* completedTime;
-
+/**
+ *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
+ */
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation MaintenanceViewController
@@ -43,7 +42,7 @@
     [self configureNavigationView];
     [self configureHeaderView];
     [self configureCollectionView];
-    [self loadDataFromService];
+    [self loadMJRefreshMethod];//刷新数据
     
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(ReceivedCompletedTime:)
@@ -82,23 +81,45 @@
     self.maintenanceDataViewController.collectionView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.maintenanceDataViewController.maintenanceHeaderView,ScreenHeight*0.07).bottomEqualToView(self.view);
     
 }
-
--(void)loadDataFromService
+#pragma mark - 刷新
+-(void)loadMJRefreshMethod
 {
-    [self.maintenanceDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withMaintianSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+    self.index = 0;//初始化
+    
+    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.maintenanceDataViewController.collectionView.mj_header = header;
+    [self.maintenanceDataViewController.collectionView.mj_header beginRefreshing];//开始刷新
+    self.maintenanceDataViewController.collectionView.mj_header.automaticallyChangeAlpha = YES;
+    
+    MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
+    self.maintenanceDataViewController.collectionView.mj_footer = footer;
+    
+}
+-(void)loadDataFromService:(MJRefreshComponent*)headerFooterView
+{
+    if ([headerFooterView isKindOfClass:[MJRefreshNormalHeader class]])
+    {
+        self.index = 0;
+    }
+    else
+    {
+        self.index += 1;
+    }
+    
+    NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
+    [self.maintenanceDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withPageIndex:indexStr withCallback:^(BOOL success, NSError *error, id result)
      {
+         
          if (success)
          {
-             self.userCommentModelArr = (NSArray*)result;
-             [self.maintenanceDataViewController.collectionView reloadData];
+
          }
          else
          {
              [SVProgressHUD showErrorWithStatus:result];
          }
-
-    }];
-    
+         
+     }];
 }
 #pragma mark - 接收到通知调用，接收到完整的日期+时间
 -(void)ReceivedCompletedTime:(NSNotification*)object
@@ -120,7 +141,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    return self.userCommentModelArr.count>0?self.userCommentModelArr.count:0;
+    return self.maintenanceDataViewController.userCommentModelArr.count>0?self.maintenanceDataViewController.userCommentModelArr.count:0;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -132,7 +153,7 @@
         WashCarFiveCollectionViewCell * thirdCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
         thirdCell.delegate = self;
         
-        [thirdCell layoutWithObject:self.userCommentModelArr[indexPath.row]];
+        [thirdCell layoutWithObject:self.maintenanceDataViewController.userCommentModelArr[indexPath.row]];
         cell = thirdCell;
     }
     
@@ -145,7 +166,7 @@
 {
     if (indexPath.section == 0)
     {
-        UserCommentModel* userCommentModel = self.userCommentModelArr[indexPath.row];
+        UserCommentModel* userCommentModel = self.maintenanceDataViewController.userCommentModelArr[indexPath.row];
         if (userCommentModel.PhotoUrls.count>0)
         {
             return CGSizeMake(ScreenWidth, ScreenHeight*0.3);
@@ -183,7 +204,7 @@
     if (kind == UICollectionElementKindSectionHeader)
     {
         CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        [headerView layoutWithObject:self.userCommentModelArr.count];
+        [headerView layoutWithObject:self.maintenanceDataViewController.userCommentModelArr.count];
         reusableView = headerView;
     }
     

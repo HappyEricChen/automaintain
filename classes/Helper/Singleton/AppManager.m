@@ -69,4 +69,20 @@
     NSString* welcomeStr = [NSString stringWithFormat:@"欢迎进入%@一号车库社区汽车服务站",tempStr];
     return welcomeStr;
 }
+
+#pragma mark -  登出时，清除plist里面所有的数据
+-(void)removeDataFromPlist
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"accessCode"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AvatarUrl"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CarBrand"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CarModel"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CarNo"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CardNo"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Role"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SectionName"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShopName"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
 @end

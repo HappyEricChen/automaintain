@@ -23,4 +23,13 @@
                             WithFontName:(NSString*)fontName
                             WithFontSize:(CGFloat)fontSize
                                 WithBold:(BOOL)isBold;
+
+/**
+ *  根据label的内容和宽度,计算高度
+ */
+-(CGFloat)calculateHeighWithLabelContent:(NSString*)labelContent
+                            WithFontName:(NSString*)fontName
+                            WithFontSize:(CGFloat)fontSize
+                               WithWidth:(CGFloat)width
+                                WithBold:(BOOL)isBold;
 @end

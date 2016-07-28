@@ -30,6 +30,7 @@
  *   当前选择的图片
  */
 @property (nonatomic, strong) UIImage* image;
+
 /**
  *  照片返回的guid字符串拼接，提交评论时需要
  */
@@ -79,8 +80,8 @@
     self.myCommentDataViewController.collectionView.dataSource = self;
     
     self.myCommentDataViewController.collectionView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.myCommentDataViewController.customNavigationView,0).bottomEqualToView(self.view);
-    
 }
+
 
 -(void)receiveStarScore:(NSNotification*)object
 {
@@ -182,31 +183,101 @@
         }
         else
         {
-            
-            [self.myCommentDataViewController postCommentToServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                                       withStars:self.starScore
-                                                                 withContentText:self.commentContent
-                                                         withMaintainSubjectGuid:SubjectGuidWashCar
-                                                             withAppointmentGuid:self.myOrderModel.AppointmentGuid
-                                                               withPhotoGuidList:self.photoGuidList
-                                                                    withCallback:^(BOOL success, NSError *error, id result)
-             {
-                 if (success)
-                 {
-                     [SVProgressHUD showSuccessWithStatus:@"评论成功"];
-                     [self.navigationController popViewControllerAnimated:YES];
-                 }
-                 else
-                 {
-                     [SVProgressHUD showErrorWithStatus:result];
-                 }
-             }];
-            
+            /**
+             *  先上传图片
+             */
+            [self updateCommentPhotos];
         }
         
     }
 }
+#pragma mark - 评论图片上传方法
+-(void)updateCommentPhotos
+{
+    __weak MyCommentViewController* weakSelf = self;
+    [self.myCommentDataViewController runDispatchTestWithCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             for (NSString* guidStr in self.myCommentDataViewController.imageGuidArr)
+             {
+                 if ([self.photoGuidList isEqualToString:@""])
+                 {
+                     weakSelf.photoGuidList = [weakSelf.photoGuidList stringByAppendingString:guidStr];
+                 }
+                 else
+                 {
+                     weakSelf.photoGuidList = [NSString stringWithFormat:@"%@|%@",self.photoGuidList,guidStr];
+                 }
+             }
+             
+             /**
+              *  调用上传评论接口
+              */
+             [self updateCommentWithGuid];
+         }
+         else
+         {
+             
+         }
+    }];
+    
+//    if (self.myCommentDataViewController.imageArr.count == 0)
+//    {
+//        return;
+//    }
+//    else
+//    {
+//        for (NSInteger i=0; i<self.imageArr.count; i++)
+//        {
+//            [self.myCommentDataViewController postUploadPhotoFileWithPhoto:self.imageArr[i] withCallback:^(BOOL success, NSError *error, id result)
+//             {
+//                 if (success)
+//                 {
+//                     NSString* photoStr = (NSString*)result;
+//                     if ([self.photoGuidList isEqualToString:@""])
+//                     {
+//                         self.photoGuidList = [self.photoGuidList stringByAppendingString:photoStr];
+//                     }
+//                     else
+//                     {
+//                         self.photoGuidList = [NSString stringWithFormat:@"%@|%@",self.photoGuidList,photoStr];
+//                     }
+//                     
+//                 }
+//                 else
+//                 {
+//                     [SVProgressHUD showErrorWithStatus:result];
+//                 }
+//             }];
+//            
+//        }
+//    }
+//    
+}
+#pragma mark - 调用上传评论接口
+-(void)updateCommentWithGuid
+{
+    [self.myCommentDataViewController postCommentToServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                               withStars:self.starScore
+                                                         withContentText:self.commentContent
+                                                 withMaintainSubjectGuid:SubjectGuidWashCar
+                                                     withAppointmentGuid:self.myOrderModel.AppointmentGuid
+                                                       withPhotoGuidList:self.photoGuidList
+                                                            withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+             [self.navigationController popViewControllerAnimated:YES];
+         }
+         else
+         {
+             [SVProgressHUD showErrorWithStatus:result];
+         }
+     }];
 
+}
 #pragma mark - MyCommentDataViewControllerDelegate
 
 -(void)didClickShowCameraMethod:(MyCommentViewController *)personalDataViewController
@@ -232,27 +303,8 @@
     
     UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.image = image;
+    [self.myCommentDataViewController.imageArr addObject:image];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [self.myCommentDataViewController postUploadPhotoFileWithPhoto:image withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
-         {
-             NSString* photoStr = (NSString*)result;
-             if ([self.photoGuidList isEqualToString:@""])
-             {
-                 self.photoGuidList = [self.photoGuidList stringByAppendingString:photoStr];
-             }
-             else
-             {
-                 self.photoGuidList = [NSString stringWithFormat:@"%@|%@",self.photoGuidList,photoStr];
-             }
-             
-         }
-         else
-         {
-             [SVProgressHUD showErrorWithStatus:result];
-         }
-     }];
     [self.myCommentDataViewController.collectionView reloadData];
 }
 
