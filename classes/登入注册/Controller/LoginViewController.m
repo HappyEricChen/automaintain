@@ -8,7 +8,6 @@
 
 #import "LoginViewController.h"
 #import "LoginDataViewController.h"
-#import "LoginView.h"
 #import "SignUpViewController.h"
 #import "HomeViewController.h"
 #import "LoginModel.h"
@@ -115,7 +114,10 @@
              [[NSUserDefaults standardUserDefaults]setObject:username forKey:@"userName"];
              [[NSUserDefaults standardUserDefaults]synchronize];
              [self.navigationController pushViewController:SharedAppDelegateHelper.homeViewController animated:YES];
-             
+             /**
+              *  清除账号密码
+              */
+             [loginView clearTextField];
          }
          else
          {

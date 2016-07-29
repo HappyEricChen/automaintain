@@ -91,8 +91,6 @@
                                                                 withPageIndex:indexStr
                                                                  withCallback:^(BOOL success, NSError *error, id result)
      {
-         [self.onlineMessageDataViewController.collectionView.mj_header endRefreshing];//结束刷新
-         [self.onlineMessageDataViewController.collectionView.mj_footer endRefreshing];//结束刷新
          if (success)
          {
              [self.onlineMessageDataViewController.collectionView reloadData];
@@ -156,15 +154,25 @@
         onlineMessageModel = self.onlineMessageDataViewController.onlineMessageModelArr[indexPath.row];
     }
     
+    CGFloat textHeight = [self calculateHeighWithLabelContent:onlineMessageModel.Text
+                                                 WithFontName:nil
+                                                 WithFontSize:12
+                                                    WithWidth:ScreenWidth*0.855
+                                                     WithBold:NO];
     if (indexPath.section == 0)
     {
         if (!onlineMessageModel.ReplyContent || [onlineMessageModel.ReplyContent  isEqualToString:@""])
         {
-            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.095);
+            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.05+textHeight);
         }
         else
         {
-            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.148);
+            CGFloat replyContentHeight = [self calculateHeighWithLabelContent:onlineMessageModel.ReplyContent
+                                                                 WithFontName:nil
+                                                                 WithFontSize:10
+                                                                    WithWidth:ScreenWidth*0.855
+                                                                     WithBold:NO];
+            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.065+textHeight+replyContentHeight);
         }
         
     }

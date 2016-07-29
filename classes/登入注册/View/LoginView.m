@@ -185,4 +185,14 @@ static CGFloat baseViewY = 0;
                      }];
 }
 
+#pragma mark -  登录成功后清除账号密码
+-(void)clearTextField
+{
+    self.accountField.textField.text = @"";
+    self.passwordField.textField.text = @"";
+    
+    [self.accountField.textField resignFirstResponder];
+    [self.passwordField.textField resignFirstResponder];
+    [self didClickReturnBurronWithLoginTextField:self.passwordField];
+}
 @end

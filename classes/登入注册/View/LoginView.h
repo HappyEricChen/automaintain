@@ -28,4 +28,8 @@
 @interface LoginView : UIView
 
 @property (nonatomic, weak) id <LoginViewDelegate> delegate;
+/**
+ *  登录成功后清除账号密码
+ */
+-(void)clearTextField;
 @end

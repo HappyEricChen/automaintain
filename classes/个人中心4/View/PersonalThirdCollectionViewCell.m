@@ -29,7 +29,7 @@ NSString* const personalThirdId = @"personalThirdId";
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"personal_k")];
+        self.backgroundView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_k")];
         
         UIImageView* iconImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_order")];
         iconImageView.translatesAutoresizingMaskIntoConstraints = NO;

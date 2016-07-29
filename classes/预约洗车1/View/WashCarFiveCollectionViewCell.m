@@ -222,7 +222,7 @@ CGFloat userNameWidth;
         /**
          *  当subviews.count<photoUrlsArr.count造新的按钮，直到达到photoUrlsArr.count
          */
-        while (self.commentImageView.subviews.count<photoUrlsArr.count)
+        while (self.commentImageView.subviews.count<3)//限制最多三张图片
         {
             UIButton* imageButton = [[UIButton alloc]init];
             

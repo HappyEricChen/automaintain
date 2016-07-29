@@ -68,7 +68,7 @@
         
         textView.sd_layout.leftEqualToView(baseView).rightEqualToView(baseView).topEqualToView(baseView).heightIs(ScreenHeight*0.2);
         submitButton.sd_layout.leftSpaceToView(baseView,3).rightSpaceToView(baseView,3).topSpaceToView(textView,ScreenHeight*0.05).heightIs(ScreenHeight*0.05);
-        wordsCountLabel.sd_layout.rightSpaceToView(textView,ScreenWidth*0.035).bottomSpaceToView(textView,ScreenWidth*0.035).leftSpaceToView(textView,10).autoHeightRatio(0);
+        wordsCountLabel.sd_layout.rightSpaceToView(textView,ScreenWidth*0.035).bottomSpaceToView(textView,ScreenWidth*0.035).leftSpaceToView(textView,ScreenWidth*0.026).autoHeightRatio(0);
         placeholderLabel.sd_layout.leftSpaceToView(textView,15).topSpaceToView(textView,10).rightEqualToView(textView).autoHeightRatio(0);
         
     }

@@ -35,8 +35,6 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
     self = [super initWithFrame:frame];
     if (self)
     {
-        
-
         self.layer.borderWidth = 1;
         self.layer.cornerRadius = 2;
         self.layer.borderColor = UIColorFromRGB(0x929292).CGColor;
@@ -52,8 +50,8 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
         
         UILabel* answerLabel = [[UILabel alloc]init];
         answerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        answerLabel.font = [UIFont systemFontOfSize:9];
-        answerLabel.textColor = [UIColor blueColor];
+        answerLabel.font = [UIFont systemFontOfSize:10];
+        answerLabel.textColor = UIColorFromRGB(0x223daa);
         answerLabel.numberOfLines = 0;
         [self addSubview:answerLabel];
         self.answerLabel = answerLabel;
@@ -71,7 +69,7 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
         
         questionLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.035).topSpaceToView(self,ScreenHeight*0.02).rightSpaceToView(self,ScreenWidth*0.035).autoHeightRatio(0);
         
-        answerLabel.sd_layout.leftEqualToView(questionLabel).bottomSpaceToView(self,ScreenHeight*0.015).rightEqualToView(questionLabel).autoHeightRatio(0);
+        answerLabel.sd_layout.leftEqualToView(questionLabel).topSpaceToView(questionLabel,ScreenHeight*0.015).rightEqualToView(questionLabel).autoHeightRatio(0);
 
         stateLabel.sd_layout.bottomSpaceToView(self,ScreenHeight*0.015).rightSpaceToView(self,ScreenWidth*0.032).leftSpaceToView(self,ScreenWidth*0.032).autoHeightRatio(0);
         

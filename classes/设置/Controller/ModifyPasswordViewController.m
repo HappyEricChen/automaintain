@@ -87,7 +87,7 @@
          {
              if (success)
              {
-                 [SVProgressHUD showSuccessWithStatus:@"密码修改成功,请重新登录"];
+                 [SVProgressHUD showSuccessWithStatus:@"密码修改成功"];
                  /**
                   *  移除plist里面的数据
                   */

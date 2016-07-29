@@ -33,7 +33,8 @@ NSString* const personalFirstId = @"personalFirstId";
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_k2")];
+        self.backgroundView = [[UIImageView alloc]initWithImage:ImageNamed(@"register_k2")];
+        
         
         UIImageView* iconImageView = [[UIImageView alloc]init];
         iconImageView.translatesAutoresizingMaskIntoConstraints = NO;

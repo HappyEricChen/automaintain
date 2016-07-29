@@ -75,12 +75,18 @@
                                            withPageIndex:pageIndex
                                             withCallback:^(BOOL success, NSError *error, id result)
      {
+         [self.collectionView.mj_header endRefreshing];
+         
          if (success)
          {
              NSArray * tempModelArr = (NSArray*)result;
              if (tempModelArr.count<10)
              {
                  [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+             }
+             else
+             {
+                 [self.collectionView.mj_footer endRefreshing];
              }
              
              
