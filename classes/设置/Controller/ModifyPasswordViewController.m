@@ -68,6 +68,11 @@
         [SVProgressHUD showErrorWithStatus:@"请再次输入新密码"];
         return;
     }
+    else if ([newPassword isEqualToString:oldPassword])
+    {
+        [SVProgressHUD showErrorWithStatus:@"新旧密码不能一样"];
+        return;
+    }
     
     
     if (![newPassword isEqualToString:confirmPassword])

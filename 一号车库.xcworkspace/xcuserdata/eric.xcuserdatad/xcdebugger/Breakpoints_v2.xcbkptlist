@@ -25,54 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "490850736.493026"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "+signupWithUsername:withPassword:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "490850736.493026"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "+signupWithUsername:withPassword:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "490850736.493026"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "+signupWithUsername:withPassword:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "classes/&#x6211;&#x7684;&#x9884;&#x7ea6;3/Model/MyOrderDataViewController.m"
             timestampString = "491379166.858274"
             startingColumnNumber = "9223372036854775807"
@@ -169,13 +121,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491472212.7506"
+            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
+            timestampString = "491475690.991713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "+SMSVerificationCodeWithPhoneNum:withIsExisted:withCallback:"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "491480003.419591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "+signupWithUsername:withPassword:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
