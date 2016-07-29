@@ -16,9 +16,10 @@
 #import "PersonalViewController.h"
 #import "MaintenanceViewController.h"
 #import "MyOrderViewController.h"
+#import "AdsCarouselModel.h"
+#import "WebViewController.h"
 
-
-@interface HomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SecondCollectionViewCellDelegate>
+@interface HomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SecondCollectionViewCellDelegate,FirstCollectionViewCellDelegate>
 @property (nonatomic, strong) HomeDataViewController* homeDataViewController;
 @end
 
@@ -114,6 +115,7 @@
     if (indexPath.section == 0)
     {
          FirstCollectionViewCell * firstCell = [FirstCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:firstCellId forIndexPath:indexPath];
+        firstCell.delegate = self;
         object = self.homeDataViewController.adsCarouselArr;
         cell = firstCell;
     }
@@ -207,5 +209,15 @@
     MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
     
     [self.navigationController pushViewController:myOrderViewController animated:YES];
+}
+
+#pragma mark - FirstCollectionViewCellDelegate 点击轮播图调用
+-(void)didSelectedImageWithFirstCollectionViewCell:(FirstCollectionViewCell *)firstCollectionViewCell withItemAtIndex:(NSInteger)index
+{
+    AdsCarouselModel* adsCarouselModel = self.homeDataViewController.adsCarouselArr[index];
+   
+    WebViewController* webViewController = [[WebViewController alloc]init];
+    webViewController.urlStr = adsCarouselModel.Url;
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 @end

@@ -10,39 +10,19 @@
 
 @interface AdsCarouselModel : NSObject
 /**
- *
- */
-@property (nonatomic, strong) NSString* CreateTime;
-/**
- *
- */
-@property (nonatomic, strong) NSString* Guid;
-/**
- *
- */
-@property (nonatomic, strong) NSString* Id;
-/**
  *  轮播图片url
  */
 @property (nonatomic, strong) NSString* PicUrl;
 /**
- *
+ *  排序
  */
 @property (nonatomic, strong) NSString* Sort;
 /**
- *
- */
-@property (nonatomic, strong) NSString* Status;
-/**
- *
+ *  标题
  */
 @property (nonatomic, strong) NSString* Title;
 /**
- *
- */
-@property (nonatomic, strong) NSString* Type;
-/**
- *
+ *  点击图片跳转的Url
  */
 @property (nonatomic, strong) NSString* Url;
 

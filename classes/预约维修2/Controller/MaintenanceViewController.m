@@ -166,14 +166,21 @@
 {
     if (indexPath.section == 0)
     {
+        
         UserCommentModel* userCommentModel = self.maintenanceDataViewController.userCommentModelArr[indexPath.row];
+        CGFloat height = [self calculateHeighWithLabelContent:userCommentModel.CommentContent
+                                                 WithFontName:nil
+                                                 WithFontSize:11
+                                                    WithWidth:ScreenWidth-60
+                                                     WithBold:NO];
+        
         if (userCommentModel.PhotoUrls.count>0)
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.3);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.25+height);
         }
         else
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.15);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.15+height);
         }
     }
     return CGSizeZero;

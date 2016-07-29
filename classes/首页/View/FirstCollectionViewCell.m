@@ -9,7 +9,7 @@
 #import "FirstCollectionViewCell.h"
 #import "AdsCarouselModel.h"
 
-@interface FirstCollectionViewCell()
+@interface FirstCollectionViewCell()<SDCycleScrollViewDelegate>
 @property (nonatomic, weak) SDCycleScrollView* cycleScrollView;
 @end
 @implementation FirstCollectionViewCell
@@ -32,6 +32,7 @@ NSString * const firstCellId = @"firstCellId";
     {
         SDCycleScrollView * cycleScrollView = [[SDCycleScrollView alloc]initWithFrame:self.bounds];
         cycleScrollView.currentPageDotImage = ImageNamed(@"home_c2");
+        cycleScrollView.delegate = self;
         cycleScrollView.pageDotImage = ImageNamed(@"home_c1");
         [self addSubview:cycleScrollView];
         self.cycleScrollView = cycleScrollView;
@@ -56,6 +57,14 @@ NSString * const firstCellId = @"firstCellId";
         [self.cycleScrollView setPlaceholderImage:ImageNamed(@"home_banner_img0")];
         [self.cycleScrollView setImageURLStringsGroup:imageArr];
         
+    }
+}
+#pragma mark - 点击轮播图调用
+-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectedImageWithFirstCollectionViewCell:withItemAtIndex:)])
+    {
+        [self.delegate didSelectedImageWithFirstCollectionViewCell:self withItemAtIndex:index];
     }
 }
 @end
