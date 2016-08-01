@@ -119,6 +119,7 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
     }
 }
 
+#pragma mark - 长按图片调用，出现删除按钮
 -(void)didClickImageView:(UITapGestureRecognizer*)imageViewGestureRecognizer
 {
     /**
@@ -140,16 +141,12 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
                      } completion:^(BOOL finished) {
                          
                      }];
-    
-    //    if ([self.delegate respondsToSelector:@selector(didClickImageViewWithMyCommentSecondCollectionViewCell:withImage:)])
-    //    {
-    //        [self.delegate didClickImageViewWithMyCommentSecondCollectionViewCell:self withImage:self.imageView.image];
-    //    }
 }
 
+#pragma mark - 点击删除照片按钮调用
 -(void)clickDeleteImageButton:(UIButton*)sender
 {
-    UIView* imageView = sender.superview;
+    UIImageView* imageView = (UIImageView*)sender.superview;
     [self.imageArr removeObject:imageView];
     [imageView removeFromSuperview];
     
@@ -166,6 +163,11 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
                      } completion:^(BOOL finished) {
                          
                      }];
+    
+    if ([self.delegate respondsToSelector:@selector(didClickDeleteImageButtonWithMyCommentThirdCollectionViewCell:withImage:)])
+    {
+        [self.delegate didClickDeleteImageButtonWithMyCommentThirdCollectionViewCell:self withImage:imageView.image];
+    }
     
 }
 /**

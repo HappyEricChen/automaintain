@@ -17,9 +17,9 @@
  */
 -(void)didSelectedCameraWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell*)myCommentThirdCollectionViewCell;
 /**
- *  点击相片跳转到放大的控制器，可以删除照片
+ *  点击删除照片按钮，在照片数组删除当前的照片
  */
--(void)didClickImageViewWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell*)myCommentThirdCollectionViewCell withImage:(UIImage*)image;
+-(void)didClickDeleteImageButtonWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell*)myCommentThirdCollectionViewCell withImage:(UIImage*)image;
 @end
 
 @interface MyCommentThirdCollectionViewCell : BaseCollectionViewCell

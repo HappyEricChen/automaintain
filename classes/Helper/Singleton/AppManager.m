@@ -59,6 +59,12 @@
     return dateString;
 }
 
+-(NSString *)selectedDate
+{
+    _selectedDate  = [selectedDate copy];
+
+}
+
 #pragma mark - 欢迎进入凯旋小区一号车库社区汽车服务站
 -(NSString *)welcomeStr
 {
@@ -83,6 +89,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SectionName"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShopName"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"commentTotalCount"];//评论列表总数
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 @end

@@ -397,7 +397,13 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
          if (IsSuccessed)
          {
-             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSDictionary* returnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             /**
+              *  评论列表总数存plist
+              */
+             [[NSUserDefaults standardUserDefaults]setObject:[returnObjectDic objectForKey:@"Total"] forKey:@"commentTotalCount"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
+             NSArray* ReturnObjectArr = [returnObjectDic objectForKey:@"List"];
              NSArray* userCommentModelArr = [UserCommentModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
              callback(YES,nil,userCommentModelArr);
              
@@ -473,7 +479,14 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
          if (IsSuccessed)
          {
-             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSDictionary* returnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             /**
+              *  我的预约总数存到plist
+              */
+             [[NSUserDefaults standardUserDefaults]setObject:[returnObjectDic objectForKey:@"Total"] forKey:@"myOrderTotalCount"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
+             NSArray* ReturnObjectArr = [returnObjectDic objectForKey:@"List"];
+             
              NSArray* myOrderModelArr = [MyOrderModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
              callback(YES,nil,myOrderModelArr);
              
@@ -591,7 +604,13 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
          if (IsSuccessed)
          {
-             NSArray* ReturnObjectArr = [responseObject objectForKey:@"ReturnObject"];
+             NSDictionary* returnObjectDic = [responseObject objectForKey:@"ReturnObject"];
+             /**
+              *  在线留言总数存plist
+              */
+             [[NSUserDefaults standardUserDefaults]setObject:[returnObjectDic objectForKey:@"Total"] forKey:@"onlineMessageTotalCount"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
+             NSArray* ReturnObjectArr = [returnObjectDic objectForKey:@"List"];
              NSArray* onlineMessageModelArr = [OnlineMessageModel mj_objectArrayWithKeyValuesArray:ReturnObjectArr];
              callback(YES,nil,onlineMessageModelArr);
              

@@ -82,6 +82,9 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         self.userInteractionEnabled = YES;
     }
     
+    NSDate* date = [NSDate date];
+    NSLog(@"%@",date);
+    
 }
 
 

@@ -14,7 +14,7 @@
 #import "FeedbackViewController.h"
 #import "ModifyPasswordViewController.h"
 
-@interface SettingViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface SettingViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate>
 
 @property (nonatomic, strong) SettingDataViewController* settingDataViewController;
 
@@ -144,6 +144,40 @@
         /**
          *  退出登录
          */
+        
+        //        __weak SettingViewController* weakSelf = self;
+        //        UIAlertController* logoutAlertController = [UIAlertController alertControllerWithTitle:@"确定退出?"
+        //                                                                                       message:nil
+        //                                                                                preferredStyle:UIAlertControllerStyleAlert];
+        //
+        //        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+        //                                   {
+        //                                       /**
+        //                                        *  退出登录
+        //                                        */
+        //                                       [weakSelf logoutMethod];
+        //                                   }];
+        //        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        //
+        //        [logoutAlertController addAction:okAction];
+        //        [logoutAlertController addAction:cancelAction];
+        //
+        //        [self.navigationController presentViewController:logoutAlertController animated:YES completion:nil];
+        
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"确定退出?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.alertViewStyle = UIAlertViewStyleDefault;
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        
+    }
+    else if (buttonIndex == 1)
+    {
         [SVProgressHUD show];
         [self.settingDataViewController logoutWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
@@ -162,5 +196,7 @@
              }
          }];
     }
+    
 }
+
 @end

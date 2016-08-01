@@ -56,4 +56,7 @@
  *  登出时，清除plist里面所有的数据
  */
 -(void)removeDataFromPlist;
+
+#pragma mark - 保存一个日期值，用来过滤时间，与当前时间比较，用在预约洗车和维修列表展示
+@property (nonatomic, strong) NSString* SelectedDate;
 @end

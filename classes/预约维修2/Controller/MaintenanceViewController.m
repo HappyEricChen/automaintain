@@ -211,7 +211,8 @@
     if (kind == UICollectionElementKindSectionHeader)
     {
         CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        [headerView layoutWithObject:self.maintenanceDataViewController.userCommentModelArr.count];
+        NSString* commentTotalCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"commentTotalCount"];
+        [headerView layoutWithObject:commentTotalCount.integerValue];
         reusableView = headerView;
     }
     

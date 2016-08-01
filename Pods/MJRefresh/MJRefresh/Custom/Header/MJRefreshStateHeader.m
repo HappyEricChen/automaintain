@@ -7,7 +7,6 @@
 //
 
 #import "MJRefreshStateHeader.h"
-
 @interface MJRefreshStateHeader()
 {
     /** 显示上一次刷新时间的label */

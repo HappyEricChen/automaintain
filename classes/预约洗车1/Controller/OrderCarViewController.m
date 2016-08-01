@@ -73,7 +73,7 @@
     NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
     NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
     self.selectedDate = dateStringFormate3;
-    
+    AppManagerSingleton.selectedDate = dateStringFormate3;
     [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
@@ -294,7 +294,8 @@
     if (kind == UICollectionElementKindSectionHeader)
     {
         CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        [headerView layoutWithObject:self.orderCarDataViewController.userCommentModelArr.count];
+        NSString* commentTotalCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"commentTotalCount"];
+        [headerView layoutWithObject:commentTotalCount.integerValue];
         reusableView = headerView;
     }
     

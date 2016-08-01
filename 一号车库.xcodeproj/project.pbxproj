@@ -116,6 +116,7 @@
 		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
 		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
+		07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
 /* End PBXBuildFile section */
 
@@ -357,6 +358,8 @@
 		077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JCExtension.m"; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
+		07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateSetting.h"; sourceTree = "<group>"; };
+		07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateSetting.m"; sourceTree = "<group>"; };
 		830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-一号车库.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBF2928CB0ED074C829020D /* Pods-一号车库.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-一号车库.debug.xcconfig"; path = "Pods/Target Support Files/Pods-一号车库/Pods-一号车库.debug.xcconfig"; sourceTree = "<group>"; };
 		DEF8E43CEF340319244EB327 /* Pods-一号车库.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-一号车库.release.xcconfig"; path = "Pods/Target Support Files/Pods-一号车库/Pods-一号车库.release.xcconfig"; sourceTree = "<group>"; };
@@ -899,6 +902,8 @@
 				072F80A21D3490A5002CECC4 /* PrefixHeader.pch */,
 				077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */,
 				077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */,
+				07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */,
+				07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1407,6 +1412,7 @@
 				072F80831D348F66002CECC4 /* TimeSelectedDataViewController.m in Sources */,
 				072F807E1D348F66002CECC4 /* SettingDataViewController.m in Sources */,
 				0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */,
+				07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */,
 				072F81071D3499FF002CECC4 /* LoginDataViewController.m in Sources */,
 				072F807F1D348F66002CECC4 /* ModifyPasswordView.m in Sources */,
 				07576FD41D372319000D5E20 /* WashCarFiveCollectionViewCell.m in Sources */,
@@ -1591,6 +1597,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automation;
 				PRODUCT_NAME = "一号车库";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -1619,6 +1626,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automation;
 				PRODUCT_NAME = "一号车库";
 				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

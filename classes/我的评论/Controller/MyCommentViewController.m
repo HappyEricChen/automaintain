@@ -308,7 +308,7 @@
     [self.myCommentDataViewController.collectionView reloadData];
 }
 
-#pragma mark - MyCommentThirdCollectionViewCellDelegate 点击选择照片按钮
+#pragma mark - 点击相机按钮，选择照片或拍照
 -(void)didSelectedCameraWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell *)myCommentThirdCollectionViewCell
 {
     [self.myCommentDataViewController.actionSheet showInView:self.view];
@@ -326,6 +326,15 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - 点击删除照片按钮调用，清除数组中对应的照片
+-(void)didClickDeleteImageButtonWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell *)myCommentThirdCollectionViewCell withImage:(UIImage *)image
+{
+    if (self.myCommentDataViewController.imageArr.count>0)
+    {
+        [self.myCommentDataViewController.imageArr removeObject:image];
+    }
+    
+}
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_comment_StarScore object:nil];
