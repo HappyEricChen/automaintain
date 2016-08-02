@@ -24,9 +24,13 @@
 - (NSString*)accessCode;
 
 /**
- *  获取当前时间,返回YYYY-MM-dd格式的String
+ *  获取当前日期,返回YYYY-MM-dd格式的String
  */
 - (NSString*)currentDate;
+/**
+ *  获取当前时间,返回HH-mm格式的String
+ */
+- (NSString*)currentTime;
 /**
  *   小区名称：凯旋花苑
  */
@@ -58,5 +62,5 @@
 -(void)removeDataFromPlist;
 
 #pragma mark - 保存一个日期值，用来过滤时间，与当前时间比较，用在预约洗车和维修列表展示
-@property (nonatomic, strong) NSString* SelectedDate;
+@property (nonatomic, strong) NSString* selectedDate;
 @end

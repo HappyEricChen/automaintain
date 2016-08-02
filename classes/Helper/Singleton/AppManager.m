@@ -59,10 +59,14 @@
     return dateString;
 }
 
--(NSString *)selectedDate
+-(NSString *)currentTime
 {
-    _selectedDate  = [selectedDate copy];
-
+    NSDate* date = [NSDate date];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    NSString* dateStr = [dateFormatter stringFromDate:date];
+    
+    return dateStr;
 }
 
 #pragma mark - 欢迎进入凯旋小区一号车库社区汽车服务站
@@ -72,7 +76,15 @@
      *  去掉首尾空格方法
      */
     NSString* tempStr = [AppManagerSingleton.SectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString* welcomeStr = [NSString stringWithFormat:@"欢迎进入%@一号车库社区汽车服务站",tempStr];
+    NSString* welcomeStr;
+    if (tempStr && ![tempStr isEqualToString:@""])
+    {
+        welcomeStr = [NSString stringWithFormat:@"欢迎进入%@一号车库社区汽车服务站",tempStr];
+    }
+    else
+    {
+        welcomeStr = @"欢迎进入一号车库社区汽车服务站";
+    }
     return welcomeStr;
 }
 

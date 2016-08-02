@@ -42,7 +42,6 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         button.translatesAutoresizingMaskIntoConstraints = NO;
         [button addTarget:self action:@selector(clickCurrentButton:) forControlEvents:UIControlEventTouchUpInside];
 //        [button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateSelected];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button.userInteractionEnabled = NO;
         [self addSubview:button];
         self.button = button;
@@ -82,8 +81,26 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         self.userInteractionEnabled = YES;
     }
     
-    NSDate* date = [NSDate date];
-    NSLog(@"%@",date);
+    if ([AppManagerSingleton.currentDate isEqualToString:AppManagerSingleton.selectedDate])
+    {
+        
+        if ([AppManagerSingleton.currentTime compare:scheduleListModel.ShopTime options:NSCaseInsensitiveSearch] == NSOrderedAscending)
+        {
+            [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            self.button.userInteractionEnabled = NO;
+        }
+        else
+        {
+            [self.button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            self.button.userInteractionEnabled = YES;
+            self.button.adjustsImageWhenHighlighted = NO;
+        }
+    }
+    else
+    {
+        [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.button.userInteractionEnabled = NO;
+    }
     
 }
 
@@ -92,9 +109,9 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
 
 -(void)clickCurrentButton:(UIButton*)sender
 {
-    if ([self.delegate respondsToSelector:@selector(didSelectedButtonWithWashCarCollectionViewCell:withCurrentBtn:)])
-    {
-        [self.delegate didSelectedButtonWithWashCarCollectionViewCell:self withCurrentBtn:sender];
-    }
+//    if ([self.delegate respondsToSelector:@selector(didSelectedButtonWithWashCarCollectionViewCell:withCurrentBtn:)])
+//    {
+//        [self.delegate didSelectedButtonWithWashCarCollectionViewCell:self withCurrentBtn:sender];
+//    }
 }
 @end

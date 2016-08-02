@@ -19,7 +19,7 @@
 {
     if (!_customNavigationView)
     {
-        _customNavigationView = [CustomNavigationView homeCustomNavigationViewWithLeftBtnImage:ImageNamed(@"home_Location") withRightBtnImage:nil withTitle:AppManagerSingleton.welcomeStr];
+        _customNavigationView = [[CustomNavigationView alloc] initHomeCustomNavigationViewWithLeftBtnImage:ImageNamed(@"home_Location") withRightBtnImage:nil withTitle:AppManagerSingleton.welcomeStr];
     }
     return _customNavigationView;
 }

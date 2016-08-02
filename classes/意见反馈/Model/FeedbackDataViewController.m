@@ -30,6 +30,8 @@
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = UIColorFromRGB(0xf4f4f4);
         
+        [_collectionView setExclusiveTouch:YES];
+
         [_collectionView registerClass:[FeedbackFirstCollectionViewCell class] forCellWithReuseIdentifier:FeedbackFirstCollectionViewCellId];
         [_collectionView registerClass:[FeedbackSecondCollectionViewCell class] forCellWithReuseIdentifier:FeedbackSecondCollectionViewCellId];
         [_collectionView registerClass:[FeedbackThirdCollectionViewCell class] forCellWithReuseIdentifier:FeedbackThirdCollectionViewCellId];

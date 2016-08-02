@@ -188,6 +188,7 @@
                   *  移除plist里面的数据
                   */
                  [AppManagerSingleton removeDataFromPlist];
+                 
                  [self.navigationController popToViewController:SharedAppDelegateHelper.loginViewController animated:YES];
              }
              else

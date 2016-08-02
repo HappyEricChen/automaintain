@@ -71,21 +71,32 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     dic[@"username"]=username;
     dic[@"password"]=password;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-
+    
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
-    {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          NSDictionary* tempDic = (NSDictionary*)responseObject;
-         NSString* ReturnObject = [tempDic objectForKey:@"ReturnObject"];
+         BOOL IsSuccessed = [[tempDic objectForKey:@"IsSuccessed"]boolValue];
          
-         callback(YES,nil,ReturnObject);
+         if (IsSuccessed)
+         {
+             NSDictionary* ReturnObjectDic = [tempDic objectForKey:@"ReturnObject"];
+             
+             LoginModel* loginModel = [LoginModel mj_objectWithKeyValues:ReturnObjectDic];
+             callback(YES,nil,loginModel);
+         }
+         else
+         {
+             NSString* returnMessage = [tempDic objectForKey:@"ResultMessage"];
+             callback(NO,nil,returnMessage);
+         }
          
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
          NSLog(@"注册error%@",error);
-    }];
+     }];
 
 }
 #pragma mark - 找回密码

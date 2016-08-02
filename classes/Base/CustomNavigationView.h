@@ -35,7 +35,13 @@
 /**
  * 主页的导航栏
  */
-+(CustomNavigationView*)homeCustomNavigationViewWithLeftBtnImage:(UIImage*)leftImage
-                                           withRightBtnImage:(UIImage*)rightImage
-                                                   withTitle:(NSString*)title;
+
+-(instancetype)initHomeCustomNavigationViewWithLeftBtnImage:(UIImage*)leftImage
+                                          withRightBtnImage:(UIImage*)rightImage
+                                                  withTitle:(NSString*)title;
+
+/**
+ *   刷新首页的标题内容
+ */
+-(void)refreshTitleLabel;
 @end

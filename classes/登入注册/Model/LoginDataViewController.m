@@ -42,6 +42,7 @@
              [[NSUserDefaults standardUserDefaults]setObject:loginModel.Role forKey:@"Role"];
              [[NSUserDefaults standardUserDefaults]setObject:loginModel.SectionName forKey:@"SectionName"];
              [[NSUserDefaults standardUserDefaults]setObject:loginModel.ShopName forKey:@"ShopName"];
+             [[NSUserDefaults standardUserDefaults]setObject:username forKey:@"userName"];
              [[NSUserDefaults standardUserDefaults]synchronize];
              callback(YES,nil,result);
          }

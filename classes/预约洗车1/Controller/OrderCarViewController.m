@@ -48,6 +48,7 @@
      */
     [self loadMJRefreshMethod];
     self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
+    AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
     
@@ -71,11 +72,13 @@
     
     NSString* dateStringFormate1 = [currentDateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
     NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
-    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
+    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@""];
     self.selectedDate = dateStringFormate3;
     AppManagerSingleton.selectedDate = dateStringFormate3;
+    [SVProgressHUD show];
     [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
      {
+         [SVProgressHUD dismiss];
          if (success)
          {
              [SVProgressHUD dismiss];

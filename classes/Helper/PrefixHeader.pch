@@ -29,5 +29,13 @@
 #import <MJRefresh/MJRefresh.h>
 #import "UIView+JCExtension.h"
 #import <UIButton+WebCache.h>
+#import "UUID.h"
+#import "KeyChainStore.h"
+
+
+#define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
+#define  KEY_UUID @"com.company.app.uuid"
+#define  KEY_USERNAME @"com.company.app.username"
+#define  KEY_PASSWORD @"com.company.app.password"
 
 #endif /* PrefixHeader_pch */

@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/View/WashCarCollectionView/WashCarCollectionView.m"
-            timestampString = "490503082.536699"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -42,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "490850736.493026"
+            timestampString = "491816068.974244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "+changePasswordWithUsername:withNewPassword:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "490850736.493026"
+            timestampString = "491816068.974244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "+changePasswordWithUsername:withNewPassword:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "490850736.493026"
+            timestampString = "491816068.974244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "+changePasswordWithUsername:withNewPassword:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491732268.530221"
+            timestampString = "491816068.974244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "504"
-            endingLineNumber = "504"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
             landmarkName = "+postMyOrderListWithAccessCode:withPageIndex:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
-            timestampString = "491475690.991713"
+            timestampString = "491829963.346724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,32 +102,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491480003.419591"
+            timestampString = "491830479.081808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "+signupWithUsername:withPassword:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/Controller/OrderCarViewController.m"
-            timestampString = "491738105.195899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-currentDateNotification:"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "+loginWithUsername:withpassword:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

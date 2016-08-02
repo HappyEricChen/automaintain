@@ -8,7 +8,7 @@
 
 #import "WebViewController.h"
 #import "WebDataViewController.h"
-@interface WebViewController ()<CustomNavigationViewDelegate>
+@interface WebViewController ()<CustomNavigationViewDelegate,UIWebViewDelegate>
 
 @property (nonatomic, strong) WebDataViewController* webDataViewController;
 @end
@@ -32,18 +32,35 @@
 -(void)configureWebView
 {
      NSURL* url = [NSURL URLWithString:self.urlStr];
-    
+    NSLog(@"%@",self.urlStr);
     UIWebView* webView = [[UIWebView alloc]init];
+    webView.delegate = self;
     [webView loadRequest:[NSURLRequest requestWithURL:url]];
     [self.view addSubview:webView];
+    
+    /**
+     *  显示进度
+     */
+    [SVProgressHUD show];
+    
     
     webView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.webDataViewController.customNavigationView,0).bottomEqualToView(self.view);
    
 }
-
+#pragma mark - webView代理方法
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [SVProgressHUD dismiss];
+}
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
+    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+}
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
+    [SVProgressHUD dismiss];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

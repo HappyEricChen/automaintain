@@ -45,4 +45,5 @@
  *  最下面广告列表数组
  */
 @property (nonatomic, strong) NSArray* bottomAdsArr;
+
 @end

@@ -115,6 +115,8 @@
 		0757EE061D38D08200D82657 /* UserCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE051D38D08200D82657 /* UserCommentModel.m */; };
 		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
 		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
+		078058D31D5048340098185E /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D21D5048340098185E /* UUID.m */; };
+		078058D61D5048E40098185E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D51D5048E40098185E /* KeyChainStore.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
@@ -356,6 +358,11 @@
 		077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentFourCollectionViewCell.m; sourceTree = "<group>"; };
 		077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JCExtension.h"; sourceTree = "<group>"; };
 		077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JCExtension.m"; sourceTree = "<group>"; };
+		078058CF1D5044CA0098185E /* 一号车库.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "一号车库.entitlements"; sourceTree = "<group>"; };
+		078058D11D5048340098185E /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
+		078058D21D5048340098185E /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
+		078058D41D5048E40098185E /* KeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
+		078058D51D5048E40098185E /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
 		07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateSetting.h"; sourceTree = "<group>"; };
@@ -403,6 +410,7 @@
 		070F744E1D1A7F5F0041F293 = {
 			isa = PBXGroup;
 			children = (
+				078058CF1D5044CA0098185E /* 一号车库.entitlements */,
 				072F7F701D348F66002CECC4 /* classes */,
 				070F74731D1A7F5F0041F293 /* 一号车库Tests */,
 				070F747E1D1A7F5F0041F293 /* 一号车库UITests */,
@@ -895,6 +903,7 @@
 			children = (
 				0702D6941D3CA9BF00447073 /* Notification */,
 				07576FD81D3734DD000D5E20 /* Singleton */,
+				078058D01D50481F0098185E /* KeyChain */,
 				072F809E1D3490A5002CECC4 /* Block.h */,
 				072F809F1D3490A5002CECC4 /* Header.h */,
 				072F80A01D3490A5002CECC4 /* NSObject+Helper.h */,
@@ -1151,6 +1160,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		078058D01D50481F0098185E /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				078058D11D5048340098185E /* UUID.h */,
+				078058D21D5048340098185E /* UUID.m */,
+				078058D41D5048E40098185E /* KeyChainStore.h */,
+				078058D51D5048E40098185E /* KeyChainStore.m */,
+			);
+			path = KeyChain;
+			sourceTree = "<group>";
+		};
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1239,6 +1259,11 @@
 					070F74561D1A7F5F0041F293 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = RE5479Z76Q;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					070F746F1D1A7F5F0041F293 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1374,6 +1399,7 @@
 				072F808F1D348F66002CECC4 /* TypeSelectedViewController.m in Sources */,
 				072F80691D348F66002CECC4 /* MyOrderDataViewController.m in Sources */,
 				072F807C1D348F66002CECC4 /* SettingViewController.m in Sources */,
+				078058D61D5048E40098185E /* KeyChainStore.m in Sources */,
 				074945CB1D35D6EA00A46AE6 /* FirstCollectionViewCell.m in Sources */,
 				072F80911D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m in Sources */,
 				072F80541D348F66002CECC4 /* PersonalFirstCollectionViewCell.m in Sources */,
@@ -1431,6 +1457,7 @@
 				072F80821D348F66002CECC4 /* TimeSelectedViewController.m in Sources */,
 				074945DD1D36271300A46AE6 /* BottomAdsModel.m in Sources */,
 				072F80931D348F66002CECC4 /* MaintenanceViewController.m in Sources */,
+				078058D31D5048340098185E /* UUID.m in Sources */,
 				072F80661D348F66002CECC4 /* MyCommentSecondCollectionViewCell.m in Sources */,
 				072F80B71D3491EA002CECC4 /* CommonCollectionViewCell.m in Sources */,
 				07576FDE1D373E1F000D5E20 /* WashCarDateListModel.m in Sources */,
@@ -1578,6 +1605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_ENTITLEMENTS = "一号车库.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -1607,6 +1635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_ENTITLEMENTS = "一号车库.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;

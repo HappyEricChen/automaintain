@@ -36,6 +36,7 @@
     if (!_navigationController)
     {
         _navigationController = [[UINavigationController alloc]initWithRootViewController:self.loginViewController];
+        
     }
     return _navigationController;
 }

@@ -18,6 +18,7 @@
 #import "MyOrderViewController.h"
 #import "AdsCarouselModel.h"
 #import "WebViewController.h"
+#import "BottomAdsModel.h"
 
 @interface HomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SecondCollectionViewCellDelegate,FirstCollectionViewCellDelegate>
 @property (nonatomic, strong) HomeDataViewController* homeDataViewController;
@@ -30,7 +31,11 @@
     self.homeDataViewController = [[HomeDataViewController alloc]init];
     [self configureNavigationView];
     [self configureCollectionView];
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self loadDataFromService];
 }
 
@@ -38,6 +43,13 @@
 {
     if (AppManagerSingleton.accessCode)
     {
+        /**
+         *  更新导航栏的文字
+         */
+        [self.homeDataViewController.customNavigationView refreshTitleLabel];
+        /**
+         *  轮播请求
+         */
         [self.homeDataViewController postListofAdsCarouselWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
@@ -49,7 +61,9 @@
                  
              }
         }];
-        
+        /**
+         *  便民服务列表
+         */
         [self.homeDataViewController postListofConvenienceServiceWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
@@ -61,7 +75,9 @@
                  
              }
          }];
-        
+        /**
+         *  底部广告图
+         */
         [self.homeDataViewController postListofBottomAdsWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
@@ -176,6 +192,18 @@
         return UIEdgeInsetsMake(ScreenHeight*0.025, 0, 0, 0);
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+#pragma mark - UICollectionViewDelegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 3)
+    {
+        BottomAdsModel* bottomAdsModel = self.homeDataViewController.bottomAdsArr[indexPath.row];
+        
+        WebViewController* webViewController = [[WebViewController alloc]init];
+        webViewController.urlStr = bottomAdsModel.Url;
+        [self.navigationController pushViewController:webViewController animated:YES];
+    }
 }
 
 #pragma mark - SecondCollectionViewCellDelegate

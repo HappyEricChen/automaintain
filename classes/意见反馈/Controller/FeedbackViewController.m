@@ -12,7 +12,7 @@
 #import "FeedbackSecondCollectionViewCell.h"
 #import "FeedbackThirdCollectionViewCell.h"
 
-@interface FeedbackViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,FeedbackFirstCollectionViewCellDelegate>
+@interface FeedbackViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,FeedbackFirstCollectionViewCellDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) FeedbackDataViewController* feedbackDataViewController;
 
@@ -62,6 +62,10 @@
     self.feedbackDataViewController.collectionView.dataSource = self;
     
     self.feedbackDataViewController.collectionView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.feedbackDataViewController.customNavigationView,0).bottomEqualToView(self.view);
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCollectionView)];
+    tapGesture.delegate = self;
+    [self.feedbackDataViewController.collectionView addGestureRecognizer:tapGesture];
     
 }
 
@@ -113,8 +117,8 @@
     }
     else if (indexPath.section == 2)
     {
-        FeedbackThirdCollectionViewCell * secondCell = [FeedbackThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackThirdCollectionViewCellId forIndexPath:indexPath];
-        cell =secondCell;
+        FeedbackThirdCollectionViewCell * thirdCell = [FeedbackThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackThirdCollectionViewCellId forIndexPath:indexPath];
+        cell =thirdCell;
     }
     
     return cell;
@@ -189,6 +193,9 @@
         }
         
     }
+    
+    [self.view endEditing:YES];//缩回键盘
+    
 }
 
 
@@ -237,5 +244,22 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_feedback_Content object:nil];
+}
+
+#pragma -mark UICollectionView的点击事件，回缩键盘
+-(void)tapCollectionView
+{
+    [self.view endEditing:YES];
+}
+/**
+ *  解决collectinView阻挡cell的点击事件/解决UIcollectionView添加手势后不响应其cell的问题
+ */
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (touch.view != self.feedbackDataViewController.collectionView)
+    {
+        return NO;
+    }
+    return YES;
 }
 @end

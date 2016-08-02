@@ -1,3 +1,4 @@
+
 //
 //  LoginViewController.m
 //  automaintain
@@ -23,11 +24,22 @@
 {
     [super viewDidLoad];
    
+    [self checkInUsernamePasswordFromKeyChain];
     self.loginDataViewController = [[LoginDataViewController alloc]init];
     [self configureLoginView];
     self.navigationController.navigationBarHidden = YES;
     
 }
+
+-(void)checkInUsernamePasswordFromKeyChain
+{
+    // B、从keychain中读取用户名和密码
+    if (AppManagerSingleton.accessCode)
+    {
+        [self.navigationController pushViewController:SharedAppDelegateHelper.homeViewController animated:NO];
+    }
+}
+
 
 -(void)configureLoginView
 {
@@ -52,7 +64,7 @@
 -(void)didSelectedForgetPasswordButton
 {
     SignUpViewController* signUpViewController = [[SignUpViewController alloc]init];
-    signUpViewController.type = @"找回密码";
+    signUpViewController.type = @"提交";
     [self.navigationController pushViewController:signUpViewController animated:YES];
 }
 
@@ -103,6 +115,7 @@
         return;
     }
     
+    
     [SVProgressHUD show];
     [self.loginDataViewController loginWithUsername:username withpassword:password withCallback:^(BOOL success, NSError *error, id result)
      {
@@ -110,9 +123,6 @@
          {
              [SVProgressHUD dismiss];
              //登录成功
-             
-             [[NSUserDefaults standardUserDefaults]setObject:username forKey:@"userName"];
-             [[NSUserDefaults standardUserDefaults]synchronize];
              [self.navigationController pushViewController:SharedAppDelegateHelper.homeViewController animated:YES];
              /**
               *  清除账号密码

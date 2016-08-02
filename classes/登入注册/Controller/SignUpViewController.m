@@ -75,6 +75,11 @@
         [SVProgressHUD showErrorWithStatus:@"请输入密码"];
         return;
     }
+    else if (password.length<6 || password.length>12)
+    {
+        [SVProgressHUD showErrorWithStatus:@"密码控制在6-12位"];
+        return;
+    }
     
     
     if (![password isEqualToString:confirmPassword])
@@ -91,21 +96,15 @@
         {
             if ([self.type isEqualToString:@"立即注册"])
             {
+                [SVProgressHUD show];
                 [self.signUpDataViewController signupWithUsername:username withPassword:password withCallback:^(BOOL success, NSError *error, id result)
                  {
+                     [SVProgressHUD dismiss];
                      if (success)
                      {
                          //注册成功
                          [SVProgressHUD showSuccessWithStatus:@"注册成功"];
-//                         
-//                         LoginModel* loginModel = (LoginModel*)result;
-//                         
-//                         HomeViewController * homeViewController = [[HomeViewController alloc]init];
-//                         
-//                         homeViewController.accessCode = loginModel.AccessCode;
-//                         [[NSUserDefaults standardUserDefaults]setObject:loginModel.AccessCode forKey:@"accessCode"];//存到plist里面
-//                         [self.navigationController pushViewController:homeViewController animated:YES];
-                         
+                         [self.navigationController pushViewController:SharedAppDelegateHelper.homeViewController animated:YES];
                      }
                      else
                      {
@@ -115,10 +114,12 @@
                  }];
                 
             }
-            else if ([self.type isEqualToString:@"找回密码"])
+            else if ([self.type isEqualToString:@"提交"])
             {
+                [SVProgressHUD show];
                 [self.signUpDataViewController changePasswordWithUsername:username withNewPassword:password withCallback:^(BOOL success, NSError *error, id result)
                  {
+                     [SVProgressHUD dismiss];
                      if (success)
                      {
                          //找回密码请求成功
@@ -159,6 +160,7 @@
              if (success)
              {
                  weakSelf.signUpDataViewController.verificationCode = (NSString*)result;
+#warning mark- 上线的时候去掉
                  [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"验证码是%@",(NSString*)result]];
                  callback(YES,nil,nil);
              }
