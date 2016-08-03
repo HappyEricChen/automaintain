@@ -56,8 +56,18 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
 {
     if ([object isKindOfClass:[ScheduleListModel class]])
     {
+        
         ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
         [self.timeButton setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
+        
+        if ([AppManagerSingleton.selectedTime isEqualToString:scheduleListModel.TimeSegment])
+        {
+            [self.timeButton setBackgroundColor:UIColorFromRGB(0x40add8)];
+        }
+        else
+        {
+            [self.timeButton setBackgroundColor:[UIColor whiteColor]];
+        }
     }
 }
 

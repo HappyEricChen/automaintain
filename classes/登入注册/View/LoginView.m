@@ -14,6 +14,11 @@
 @property (nonatomic, weak) LoginTextField* accountField;//用户名
 
 @property (nonatomic, weak) LoginTextField* passwordField;//密码
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
+
 @end
 @implementation LoginView
 
@@ -118,12 +123,22 @@ static CGFloat baseViewY = 0;
 #pragma mark - 登录按钮点击
 -(void)clickLoginButton
 {
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimerLogin) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+}
+-(void)updateTimerLogin
+{
     if ([self.delegate respondsToSelector:@selector(didSelectedLoginButtonWithLoginView:withUsername:withPassword:)])
     {
         [self.delegate didSelectedLoginButtonWithLoginView:self withUsername:self.accountField.textField.text withPassword:self.passwordField.textField.text];
     }
 }
-
 -(void)clickSignupButton
 {
     if ([self.delegate respondsToSelector:@selector(didSelectedSiginUpButton)])

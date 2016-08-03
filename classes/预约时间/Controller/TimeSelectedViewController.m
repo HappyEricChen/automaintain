@@ -18,7 +18,9 @@
 @interface TimeSelectedViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) TimeSelectedDataViewController* timeSelectedDataViewController;
-
+/**
+ *   选择的日期
+ */
 @property (nonatomic, strong) NSString* selectedDate;
 @end
 
@@ -56,18 +58,21 @@
 
 -(void)loadDataFromService
 {
+    [SVProgressHUD show];
     [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode
                                                                   withCurrentDate:AppManagerSingleton.currentDate
-                                                                  withSubjectGuid:SubjectGuidWashCar
+                                                                  withSubjectGuid:self.subjectGuid
                                                                      withCallback:^(BOOL success, NSError *error, id result)
      {
+  
          if (success)
          {
+             [SVProgressHUD dismiss];
              [self.timeSelectedDataViewController.collectionView reloadData];
          }
          else
          {
-             
+             [SVProgressHUD showErrorWithStatus:(NSString*)result];
          }
      }];
 }
@@ -119,8 +124,6 @@
         [thirdCell layoutWithObject:self.timeSelectedDataViewController.canOrderMaintenanceArr[indexPath.row]];
         cell = thirdCell;
     }
-
-    
     return cell;
 }
 
@@ -192,6 +195,7 @@
         
         ScheduleListModel* scheduleListModel =self.timeSelectedDataViewController.canOrderMaintenanceArr[indexPath.row];
         
+       AppManagerSingleton.selectedTime = scheduleListModel.TimeSegment;
         /**
          *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15-08:30
          */

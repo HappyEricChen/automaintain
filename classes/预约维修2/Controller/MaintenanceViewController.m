@@ -30,6 +30,12 @@
  *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
  */
 @property (nonatomic, assign) NSInteger index;
+
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
+
 @end
 
 @implementation MaintenanceViewController
@@ -171,16 +177,16 @@
         CGFloat height = [self calculateHeighWithLabelContent:userCommentModel.CommentContent
                                                  WithFontName:nil
                                                  WithFontSize:11
-                                                    WithWidth:ScreenWidth-60
+                                                    WithWidth:ScreenWidth-46-(ScreenWidth*0.026)
                                                      WithBold:NO];
         
         if (userCommentModel.PhotoUrls.count>0)
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.25+height);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.27+height);
         }
         else
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.15+height);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.1+height);
         }
     }
     return CGSizeZero;
@@ -240,14 +246,34 @@
  */
 -(void)didSelectedTimeChangeButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
 {
-    TimeSelectedViewController* timeSelectedViewController = [[TimeSelectedViewController alloc]init];
+    if (!self.orderTypeModel.SubjectName || [self.orderTypeModel.SubjectName isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请先选择预约类型"];
+    }
+    else
+    {
+        TimeSelectedViewController* timeSelectedViewController = [[TimeSelectedViewController alloc]init];
+        timeSelectedViewController.subjectGuid = self.orderTypeModel.Guid;
+        [self.navigationController pushViewController:timeSelectedViewController animated:YES];
+    }
     
-    [self.navigationController pushViewController:timeSelectedViewController animated:YES];
 }
 /**
  *  点击提交预约按钮
  */
 -(void)didSelectedSubmitOrderButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
+{
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+}
+
+-(void)updateTimer
 {
     if (!self.orderTypeModel || [self.orderTypeModel.Guid isEqualToString:@""])
     {

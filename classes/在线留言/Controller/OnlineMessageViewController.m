@@ -199,29 +199,51 @@
         self.onlineMessageDataViewController.collectionView.hidden = YES;
         self.onlineMessageDataViewController.myMessageView.hidden = NO;
     }
+    
 }
 
 #pragma mark - MyMessageViewDelegate
 -(void)didSelectedSubmitButtonWithMyMessageView:(MyMessageView *)myMessageView withMessageContent:(NSString *)messageContent
 {
-    [SVProgressHUD show];
-    [self.onlineMessageDataViewController postMessageToServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                          withCommentContent:messageContent
-                                                                withCallback:^(BOOL success, NSError *error, id result)
-     {
-         [self.view endEditing:YES];
-         if (success)
+    /**
+     *  去掉首尾空格/回车方法
+     */
+    messageContent = [messageContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (!messageContent || [messageContent isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"留言不能为空"];
+    }
+    else
+    {
+        [SVProgressHUD show];
+        [self.onlineMessageDataViewController postMessageToServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                              withCommentContent:messageContent
+                                                                    withCallback:^(BOOL success, NSError *error, id result)
          {
-             [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-             self.onlineMessageDataViewController.collectionView.hidden = NO;
-             self.onlineMessageDataViewController.myMessageView.hidden = YES;
-             [self.onlineMessageDataViewController.collectionView.mj_header beginRefreshing];
-             
-         }
-         else
-         {
-             [SVProgressHUD showErrorWithStatus:result];
-         }
-     }];
+             [self.view endEditing:YES];
+             if (success)
+             {
+                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 self.onlineMessageDataViewController.collectionView.hidden = NO;
+                 self.onlineMessageDataViewController.myMessageView.hidden = YES;
+                 /**
+                  *  去掉textview内容、placehold显示
+                  */
+                 self.onlineMessageDataViewController.myMessageView.textView.text = @"";
+                 self.onlineMessageDataViewController.myMessageView.placeholderLabel.hidden = NO;
+                  self.onlineMessageDataViewController.myMessageView.wordsCountLabel.text =@"0/100";
+                 
+                 [self.onlineMessageDataViewController.collectionView.mj_header beginRefreshing];
+                 
+             }
+             else
+             {
+                 [SVProgressHUD showErrorWithStatus:result];
+             }
+         }];
+    }
+    
+    
 }
 @end

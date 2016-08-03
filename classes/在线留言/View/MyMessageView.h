@@ -18,4 +18,16 @@
 @interface MyMessageView : UIView
 
 @property (nonatomic, weak) id <MyMessageViewDelegate> delegate;
+/**
+ *  文本框
+ */
+@property (nonatomic, weak) UITextView* textView;
+/**
+ *  占位
+ */
+@property (nonatomic, weak) UILabel* placeholderLabel;
+/**
+ *  文字个数
+ */
+@property (nonatomic, weak) UILabel* wordsCountLabel;
 @end

@@ -32,6 +32,12 @@
  *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
  */
 @property (nonatomic, assign) NSInteger index;
+
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
+
 @end
 
 @implementation OrderCarViewController
@@ -255,16 +261,16 @@
         CGFloat height = [self calculateHeighWithLabelContent:userCommentModel.CommentContent
                                                  WithFontName:nil
                                                  WithFontSize:11
-                                                    WithWidth:ScreenWidth-60
+                                                    WithWidth:ScreenWidth-46-(ScreenWidth*0.026)
                                                      WithBold:NO];
         
         if (userCommentModel.PhotoUrls.count>0)
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.25+height);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.27+height);
         }
         else
         {
-            return CGSizeMake(ScreenWidth, ScreenHeight*0.15+height);
+            return CGSizeMake(ScreenWidth, ScreenHeight*0.1+height);
         }
         
     }
@@ -309,33 +315,44 @@
 {
     if (indexPath.section == 3)
     {
-        if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
-        {
-            [SVProgressHUD showErrorWithStatus:@"请选择预约的时间"];
-        }
-        else
-        {
-            [SVProgressHUD show];
-            [self.orderCarDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                         withAppointmentStartTime:self.selectedTime
-                                                                  withSubjectGuid:SubjectGuidWashCar
-                                                                     withCallback:^(BOOL success, NSError *error, id result)
+        /**
+         *  保证短时间内点击按钮，只有最后一次有效
+         */
+        [self.timer invalidate];
+        self.timer = nil;
+        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }
+}
+
+-(void)updateTimer
+{
+    if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请选择预约的时间"];
+    }
+    else
+    {
+        [SVProgressHUD show];
+        [self.orderCarDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                     withAppointmentStartTime:self.selectedTime
+                                                              withSubjectGuid:SubjectGuidWashCar
+                                                                 withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
              {
-                 if (success)
-                 {
-                     [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                     MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
-                     [self.navigationController pushViewController:myOrderViewController animated:YES];
-                 }
-                 else
-                 {
-                     [SVProgressHUD showErrorWithStatus:result];
-                 }
-             }];
-            
-        }
+                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
+                 [self.navigationController pushViewController:myOrderViewController animated:YES];
+             }
+             else
+             {
+                 [SVProgressHUD showErrorWithStatus:result];
+             }
+         }];
         
     }
+    
 }
 
 #pragma mark -WashCarFiveCollectionViewCellDelegate

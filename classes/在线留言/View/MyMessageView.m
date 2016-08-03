@@ -12,9 +12,11 @@
 /**
  *  评论内容
  */
-@property (nonatomic, weak) UITextView* textView;
-@property (nonatomic, weak) UILabel* placeholderLabel;
-@property (nonatomic, weak) UILabel* wordsCountLabel;
+
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
 @end
 
 @implementation MyMessageView
@@ -195,9 +197,24 @@
 #pragma mark - 点击提交按钮
 -(void)clickSubmitButton
 {
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+}
+-(void)updateTimer
+{
     if ([self.delegate respondsToSelector:@selector(didSelectedSubmitButtonWithMyMessageView:withMessageContent:)])
     {
         [self.delegate didSelectedSubmitButtonWithMyMessageView:self withMessageContent:self.textView.text];
     }
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+     [self endEditing:YES];//回缩键盘
 }
 @end

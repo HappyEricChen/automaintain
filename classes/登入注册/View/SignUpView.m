@@ -15,6 +15,12 @@
 @property (nonatomic, weak) UITextField* textField3;//密码验证
 
 @property (nonatomic, weak) UIButton* verificationButton;//发送验证按钮
+
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
+
 @end
 @implementation SignUpView
 
@@ -204,19 +210,19 @@
 }
 
 #pragma mark - signupAction
+
 -(void)signupAction
 {
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimerSignup) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     
-    if ([self.delegate respondsToSelector:@selector(signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:)])
-    {
-        [self.delegate signUpView:self
-                     withUsername:self.textField.text
-                     withPassword:self.textField2.text
-              withconfirmPassword:self.textField3.text
-             withverificationCode:self.textField1.text];
-    }
-}
--(void)findPasswordAction
+  }
+-(void)updateTimerSignup
 {
     if ([self.delegate respondsToSelector:@selector(signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:)])
     {
@@ -228,6 +234,29 @@
     }
 }
 
+-(void)findPasswordAction
+{
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimerFindPassword) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+}
+-(void)updateTimerFindPassword
+{
+    if ([self.delegate respondsToSelector:@selector(signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:)])
+    {
+        [self.delegate signUpView:self
+                     withUsername:self.textField.text
+                     withPassword:self.textField2.text
+              withconfirmPassword:self.textField3.text
+             withverificationCode:self.textField1.text];
+    }
+    
+}
 #pragma mark - 点击获取验证码按钮
 -(void)signupClickVerificationButton
 {

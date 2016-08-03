@@ -35,6 +35,10 @@
  *  照片返回的guid字符串拼接，提交评论时需要
  */
 @property (nonatomic, strong) NSString* photoGuidList;
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
 @end
 
 @implementation MyCommentViewController
@@ -177,20 +181,33 @@
     
     if (indexPath.section == 3)
     {
-        if (!self.commentContent || [self.commentContent isEqualToString:@""])
-        {
-            [SVProgressHUD showErrorWithStatus:@"评论的内容不能为空"];
-        }
-        else
-        {
-            /**
-             *  先上传图片
-             */
-            [self updateCommentPhotos];
-        }
+        /**
+         *  保证短时间内点击按钮，只有最后一次有效
+         */
+        [self.timer invalidate];
+        self.timer = nil;
+        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
         
     }
 }
+
+-(void)updateTimer
+{
+    if (!self.commentContent || [self.commentContent isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"评论不能为空"];
+    }
+    else
+    {
+        /**
+         *  先上传图片
+         */
+        [self updateCommentPhotos];
+    }
+    
+}
+
 #pragma mark - 评论图片上传方法
 -(void)updateCommentPhotos
 {
@@ -258,25 +275,37 @@
 #pragma mark - 调用上传评论接口
 -(void)updateCommentWithGuid
 {
-    [self.myCommentDataViewController postCommentToServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                               withStars:self.starScore
-                                                         withContentText:self.commentContent
-                                                 withMaintainSubjectGuid:SubjectGuidWashCar
-                                                     withAppointmentGuid:self.myOrderModel.AppointmentGuid
-                                                       withPhotoGuidList:self.photoGuidList
-                                                            withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
+    /**
+     *  去掉首尾空格/回车方法
+     */
+    self.commentContent = [self.commentContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (!self.commentContent || [self.commentContent isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"评论不能为空"];
+    }
+    else
+    {
+        
+        [self.myCommentDataViewController postCommentToServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                                   withStars:self.starScore
+                                                             withContentText:self.commentContent
+                                                     withMaintainSubjectGuid:SubjectGuidWashCar
+                                                         withAppointmentGuid:self.myOrderModel.AppointmentGuid
+                                                           withPhotoGuidList:self.photoGuidList
+                                                                withCallback:^(BOOL success, NSError *error, id result)
          {
-             [SVProgressHUD showSuccessWithStatus:@"评论成功"];
-             [self.navigationController popViewControllerAnimated:YES];
-         }
-         else
-         {
-             [SVProgressHUD showErrorWithStatus:result];
-         }
-     }];
-
+             if (success)
+             {
+                 [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+                 [self.navigationController popViewControllerAnimated:YES];
+             }
+             else
+             {
+                 [SVProgressHUD showErrorWithStatus:result];
+             }
+         }];
+    }
 }
 #pragma mark - MyCommentDataViewControllerDelegate
 

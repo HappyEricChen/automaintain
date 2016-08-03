@@ -25,6 +25,10 @@
  *  反馈意见的内容
  */
 @property (nonatomic, strong) NSString* feedbackContent;
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
 @end
 
 @implementation FeedbackViewController
@@ -42,6 +46,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(feedbackTextViewContentChanged:) name:kNotify_feedback_Content object:nil];
 }
 
+#pragma mark - 意见反馈输入文字接收方法
 -(void)feedbackTextViewContentChanged:(NSNotification*)object
 {
     self.feedbackContent =[object.userInfo objectForKey:@"textViewContent"];
@@ -169,33 +174,50 @@
      */
     if (indexPath.section == 2)
     {
-        if (!self.feedbackContent || [self.feedbackContent isEqualToString:@""])
-        {
-            [SVProgressHUD showErrorWithStatus:@"意见不能为空"];
-        }
-        else
-        {
-            [self.feedbackDataViewController postFeedbackWithAccessCode:AppManagerSingleton.accessCode
-                                                               withType:self.feedbackTypeStr
-                                                     withCommentContent:self.feedbackContent
-                                                           withCallback:^(BOOL success, NSError *error, id result)
+        /**
+         *  保证短时间内点击按钮，只有最后一次有效
+         */
+        [self.timer invalidate];
+        self.timer = nil;
+        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        
+    }
+    [self.view endEditing:YES];//回缩键盘
+}
+
+-(void)updateTimer
+{
+    /**
+     *  去掉首尾空格/回车方法
+     */
+    self.feedbackContent = [self.feedbackContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (!self.feedbackContent || [self.feedbackContent isEqualToString:@""])
+    {
+        [SVProgressHUD showErrorWithStatus:@"意见不能为空"];
+    }
+    else
+    {
+        [self.feedbackDataViewController postFeedbackWithAccessCode:AppManagerSingleton.accessCode
+                                                           withType:self.feedbackTypeStr
+                                                 withCommentContent:self.feedbackContent
+                                                       withCallback:^(BOOL success, NSError *error, id result)
+         {
+             if (success)
              {
-                 if (success)
-                 {
-                     [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                 }
-                 else
-                 {
-                     [SVProgressHUD  showErrorWithStatus:result];
-                 }
-             }];
-            
-        }
+                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 [self.navigationController popViewControllerAnimated:YES];
+             }
+             else
+             {
+                 [SVProgressHUD  showErrorWithStatus:result];
+             }
+         }];
         
     }
     
     [self.view endEditing:YES];//缩回键盘
-    
 }
 
 

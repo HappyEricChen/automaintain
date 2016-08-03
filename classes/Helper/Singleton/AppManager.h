@@ -63,4 +63,7 @@
 
 #pragma mark - 保存一个日期值，用来过滤时间，与当前时间比较，用在预约洗车和维修列表展示
 @property (nonatomic, strong) NSString* selectedDate;
+
+#pragma mark - 维修保养/保存一个选中的预约时间，用来改变颜色
+@property (nonatomic, strong) NSString* selectedTime;
 @end

@@ -303,7 +303,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      }];
 }
 
-#pragma mark - 预约洗车时间列表
+#pragma mark - 预约洗车/预约维修时间列表
 
 +(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
                                 withCurrentDate:(NSString*)currentDate
@@ -512,7 +512,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }

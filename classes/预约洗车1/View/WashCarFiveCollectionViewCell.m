@@ -65,7 +65,6 @@ CGFloat userNameWidth;
     self = [super initWithFrame:frame];
     if (self)
     {
-        
         /**
          头像／用户名／星星／时间///基础的View
          */

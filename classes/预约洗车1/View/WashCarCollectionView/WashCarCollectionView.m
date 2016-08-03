@@ -98,11 +98,11 @@
     {
         NSString* countStr = scheduleListModel.AppointmentCount;
         
-        if ([countStr isEqualToString:self.washCarDateListModel.MaxPlaceNum])
+        if (countStr.integerValue >= self.washCarDateListModel.MaxPlaceNum.integerValue)
         {
             scheduleListModel.AppointmentCount = @"full";//他人预约
         }
-        if ([scheduleListModel.MyAppointmentCount isEqualToString:@"1"])
+        if (scheduleListModel.MyAppointmentCount.integerValue>0)
         {
             scheduleListModel.AppointmentCount = @"myOrder";//我的预约
         }

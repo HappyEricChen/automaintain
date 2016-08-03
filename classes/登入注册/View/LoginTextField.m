@@ -45,7 +45,7 @@
         {
             textField.secureTextEntry = YES;
             textField.returnKeyType = UIReturnKeyDone;
-            imageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).centerYEqualToView(self).widthIs(ScreenWidth*0.045).heightIs(ScreenHeight*0.036);
+            imageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).centerYEqualToView(self).widthIs(ScreenWidth*0.053).heightIs(ScreenHeight*0.036);
         }
         else
         {

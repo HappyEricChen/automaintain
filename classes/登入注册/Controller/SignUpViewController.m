@@ -209,9 +209,9 @@
     NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
     /**
      20         * 中国电信：China Telecom
-     21         * 133,1349,153,180,189,181(增加)
+     21         * 133,1349,153,180,189,181(增加),17(0-9)号码
      22         */
-    NSString * CT = @"^1((33|53|8[019])[0-9]|349)\\d{7}$";
+    NSString * CT = @"^1((33|53|8[019]|7[0-9])[0-9]|349)\\d{7}$";
     
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBIL];
     NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];

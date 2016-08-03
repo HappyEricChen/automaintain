@@ -21,6 +21,12 @@
  *  密码确认
  */
 @property (nonatomic, weak) UITextField* confirmPasswordField;
+
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
+
 @end
 @implementation ModifyPasswordView
 
@@ -151,6 +157,19 @@
 
 -(void)changePasswordAction
 {
+    
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+}
+
+-(void)updateTimer
+{
     if ([self.delegate respondsToSelector:@selector(didClickSubmitButtonWithOldPassword:withNewPassword:withConfirmPassword:withModifyPasswordView:)])
     {
         [self.delegate didClickSubmitButtonWithOldPassword:self.oldPasswordField.text
@@ -158,5 +177,6 @@
                                        withConfirmPassword:self.confirmPasswordField.text
                                     withModifyPasswordView:self];
     }
+    
 }
 @end

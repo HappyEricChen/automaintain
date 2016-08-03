@@ -9,5 +9,8 @@
 #import "BaseViewController.h"
 
 @interface TimeSelectedViewController : BaseViewController
-
+/**
+ *  预约项目的guid
+ */
+@property (nonatomic, strong) NSString* subjectGuid;
 @end
