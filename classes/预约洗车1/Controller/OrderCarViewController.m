@@ -82,7 +82,10 @@
     self.selectedDate = dateStringFormate3;
     AppManagerSingleton.selectedDate = dateStringFormate3;
     [SVProgressHUD show];
-    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode
+                                                              withCurrentDate:dateStringFormate3
+                                                              withSubjectGuid:SubjectGuidWashCar
+                                                                 withCallback:^(BOOL success, NSError *error, id result)
      {
          [SVProgressHUD dismiss];
          if (success)
@@ -329,7 +332,13 @@
 {
     if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请选择预约的时间"];
+        [SVProgressHUD showErrorWithStatus:@"请选择预约时间"];
+        return;
+    }
+    else if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"该功能目前只对\n会员卡用户开放"];
+        return;
     }
     else
     {

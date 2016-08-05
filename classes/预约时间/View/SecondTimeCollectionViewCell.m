@@ -60,14 +60,49 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
         ScheduleListModel* scheduleListModel = (ScheduleListModel*)object;
         [self.timeButton setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
         
-        if ([AppManagerSingleton.selectedTime isEqualToString:scheduleListModel.TimeSegment])
+        /**
+         *  时间选中，选中的日期对应的时间背景颜色变蓝色
+         */
+        if ([AppManagerSingleton.selectedOrderDate isEqualToString:AppManagerSingleton.selectedDate])
         {
-            [self.timeButton setBackgroundColor:UIColorFromRGB(0x40add8)];
+            if ([AppManagerSingleton.selectedTime isEqualToString:scheduleListModel.TimeSegment])
+            {
+                [self.timeButton setBackgroundColor:UIColorFromRGB(0x40add8)];
+            }
+            else
+            {
+                [self.timeButton setBackgroundColor:[UIColor whiteColor]];
+            }
         }
         else
         {
             [self.timeButton setBackgroundColor:[UIColor whiteColor]];
         }
+        
+        /**
+         *  时间比较，超过的时间变灰色
+         */
+        if ([AppManagerSingleton.currentDate isEqualToString:AppManagerSingleton.selectedDate])
+        {
+            
+            if ([AppManagerSingleton.currentTime compare:scheduleListModel.ShopTime options:NSCaseInsensitiveSearch] == NSOrderedAscending)
+            {
+                [self.timeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                self.timeButton.userInteractionEnabled = NO;
+            }
+            else
+            {
+                [self.timeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                self.timeButton.userInteractionEnabled = YES;
+                self.timeButton.adjustsImageWhenHighlighted = NO;
+            }
+        }
+        else
+        {
+            [self.timeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            self.timeButton.userInteractionEnabled = NO;
+        }
+        
     }
 }
 

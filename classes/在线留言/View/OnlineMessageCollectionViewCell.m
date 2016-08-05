@@ -85,14 +85,15 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
         OnlineMessageModel* onlineMessageModel = (OnlineMessageModel*)object;
         
         self.questionLabel.text = onlineMessageModel.Text;
-        self.answerLabel.text = onlineMessageModel.ReplyContent;
         
-        if (!self.answerLabel.text || [self.answerLabel.text isEqualToString:@""])
+        if (!onlineMessageModel.ReplyContent || [onlineMessageModel.ReplyContent isEqualToString:@""])
         {
             self.stateLabel.hidden = NO;
+            self.answerLabel.text = @"";
         }
         else
         {
+            self.answerLabel.text = [NSString stringWithFormat:@"回复：%@",onlineMessageModel.ReplyContent];
             self.stateLabel.hidden = YES;
         }
         

@@ -14,23 +14,26 @@
 //行 列 每小格宽度 格子总数
 static const NSInteger kRow         = 1 + 6;//一,二,三... 1行 日期6行
 static const NSInteger kCol         = 7;//7列
-static const NSInteger kTotalNum    = (kRow - 1) * kCol;
-static const NSInteger kBtnStartTag = 100;
+static const NSInteger kTotalNum    = (kRow - 1) * kCol;//日期总数
+static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
 
-@interface LDCalendarView()
+@interface LDCalendarView()<UIGestureRecognizerDelegate>
 //UI
 @property (nonatomic, strong) UIView         *contentBgView,*dateBgView;
 @property (nonatomic, strong) UILabel        *titleLab;//标题
-@property (nonatomic, strong) UIButton       *doneBtn;//确定按钮
+
 //Data
 @property (nonatomic, assign) int32_t        year,month;
 @property (nonatomic, strong) NSDate         *today,*firstDay; //今天 当月第一天
-@property (nonatomic, strong) NSMutableArray *currentMonthDaysArray;
-@property (nonatomic, strong) NSNumber* selectedDay;
+@property (nonatomic, strong) NSMutableArray *currentMonthDaysArray;//当前月的天数数组
+@property (nonatomic, strong) NSNumber* selectedDay;//选中的某天
 @property (nonatomic, assign) CGRect         touchRect;//可操作区域
 @end
 
 @implementation LDCalendarView
+/**
+ *  获取格式化的今天
+ */
 - (NSDate *)today {
     if (!_today) {
         NSDate *currentDate = [NSDate date];
@@ -45,7 +48,9 @@ static const NSInteger kBtnStartTag = 100;
     }
     return _today;
 }
-
+/**
+ *  当月第一天
+ */
 - (NSDate *)firstDay {
     NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
@@ -62,17 +67,26 @@ static const NSInteger kBtnStartTag = 100;
             _complete(_selectedDay);
         }
         
-        self.dateBgView = ({
+        self.dateBgView =
+        ({
             UIView *view         = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
             view.alpha           = 0.3;
             view.backgroundColor = [UIColor blackColor];
             [self addSubview:view];
-            
             view;
         });
+        /**
+         添加手势，点击背景图，隐藏时间列表
+         */
+        UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCollectionView)];
+        tapGesture.delegate = self;
+        [self.dateBgView addGestureRecognizer:tapGesture];
 
+        /**
+         *  内容区的背景, 包括左右两边的箭头View
+         */
         self.contentBgView = ({
-            //内容区的背景
+            
             UIView        *view         = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH-UNIT_WIDTH*kCol)/2.0, 100, UNIT_WIDTH*kCol, 42+UNIT_WIDTH*kRow)];
             view.layer.cornerRadius     = 2.0;
             view.layer.masksToBounds    = YES;
@@ -85,19 +99,22 @@ static const NSInteger kBtnStartTag = 100;
                 leftImage.image        = [UIImage imageNamed:@"com_arrows_right"];
                 leftImage.image        = [UIImage imageWithCGImage:leftImage.image.CGImage scale:1 orientation:UIImageOrientationDown];
                 [view addSubview:leftImage];
-                leftImage.frame        = CGRectMake(CGRectGetWidth(view.frame)/3.0 - 8 - 10, (42-13)/2.0, 8, 13);
+                leftImage.frame        = CGRectMake(CGRectGetWidth(view.frame)/3.0 - 8 - 20, (42-13)/2.0, 8, 13);
             });
             
             ({
                 UIImageView *rightImage = [UIImageView new];
                 rightImage.image        = [UIImage imageNamed:@"com_arrows_right"];
                 [view addSubview:rightImage];
-                rightImage.frame        = CGRectMake(CGRectGetWidth(view.frame)*2/3.0 + 8, (42-13)/2.0, 8, 13);
+                rightImage.frame        = CGRectMake(CGRectGetWidth(view.frame)*2/3.0 + 18, (42-13)/2.0, 8, 13);
             });
             
             view;
         });
 
+        /**
+         *  年份月份标题View
+         */
         self.titleLab = ({
             UILabel *lab               = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_contentBgView.frame), 42)];
             lab.backgroundColor        = [UIColor clearColor];
@@ -118,7 +135,9 @@ static const NSInteger kBtnStartTag = 100;
             
             lab;
         });
-        
+        /**
+         *  日期详情列表的背景View
+         */
         self.dateBgView = ({
             UIView *view                = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_titleLab.frame), CGRectGetWidth(_contentBgView.frame), UNIT_WIDTH*kRow)];
             view.userInteractionEnabled = YES;
@@ -137,27 +156,14 @@ static const NSInteger kBtnStartTag = 100;
             });
             view;
         });
-
-//        self.doneBtn = ({
-//            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [btn setFrame:CGRectMake((CGRectGetWidth(_contentBgView.frame) - 150) / 2.0, CGRectGetHeight(_contentBgView.frame) - 40, 150, 30)];
-//            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//            [btn setBackgroundImage:[[UIImage imageNamed:@"b_com_bt_blue_normal"] stretchableImageWithLeftCapWidth:15 topCapHeight:10] forState:UIControlStateNormal];
-//            [btn setBackgroundImage:[[UIImage imageNamed:@"b_com_bt_blue_normal"] stretchableImageWithLeftCapWidth:15 topCapHeight:10] forState:UIControlStateSelected];
-//            [btn setBackgroundImage:[[UIImage imageNamed:@"com_bt_gray_normal"] stretchableImageWithLeftCapWidth:15 topCapHeight:10] forState:UIControlStateDisabled];
-//            [btn addTarget:self action:@selector(doneBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//            [btn setTitle:@"确定" forState:UIControlStateNormal];
-//            [_contentBgView addSubview:btn];
-//            
-//            btn;
-//        });
-        
+        /**
+         初始化数据
+         */
         [self initData];
     }
     return self;
 }
-
+#pragma mark - 初始化数据
 - (void)initData {
     _selectedDay        = 0;
 
@@ -165,6 +171,9 @@ static const NSInteger kBtnStartTag = 100;
     NSDate *currentDate = [NSDate date];
     self.month          = (int32_t)currentDate.month;
     self.year           = (int32_t)currentDate.year;
+    /**
+     *  刷新月份年份标题View
+     */
     [self refreshDateTitle];
 
     _currentMonthDaysArray = [NSMutableArray array];
@@ -174,7 +183,7 @@ static const NSInteger kBtnStartTag = 100;
 
     [self showDateView];
 }
-
+#pragma mark - 点击更换月份，年份
 - (void)switchMonthTap:(UITapGestureRecognizer *)tap {
    CGPoint loc =  [tap locationInView:_titleLab];
     CGFloat titleLabWidth = CGRectGetWidth(_titleLab.frame);
@@ -185,6 +194,9 @@ static const NSInteger kBtnStartTag = 100;
     }
 }
 
+/**
+ *  点击左边的按钮，月份-1
+ */
 - (void)leftSwitch{
     if (self.month > 1) {
         self.month -= 1;
@@ -196,6 +208,9 @@ static const NSInteger kBtnStartTag = 100;
     [self refreshDateTitle];
 }
 
+/**
+ *  点击右边的按钮，月份+1
+ */
 - (void)rightSwitch {
     if (self.month < 12) {
         self.month += 1;
@@ -203,13 +218,17 @@ static const NSInteger kBtnStartTag = 100;
         self.month = 1;
         self.year += 1;
     }
-    
+    /**
+     *  刷新月份年份标题View
+     */
     [self refreshDateTitle];
 }
-
+#pragma mark -刷新月份年份标题View
 - (void)refreshDateTitle {
     _titleLab.text = [NSString stringWithFormat:@"%@月,%@年",@(self.month),@(self.year)];
-    
+    /**
+     *  移除子视图
+     */
     [self showDateView];
 }
 
@@ -347,7 +366,7 @@ static const NSInteger kBtnStartTag = 100;
         }
     }
 }
-
+#pragma mark - 点击选择日期
 -(void)tap:(UITapGestureRecognizer *)gesture{
     CGPoint point = [gesture locationInView:_dateBgView];
     if (CGRectContainsPoint(_touchRect, point)) {
@@ -410,6 +429,13 @@ static const NSInteger kBtnStartTag = 100;
 }
 
 - (void)hide {
+    self.hidden = YES;
+}
+/**
+ *  点击背景图，隐藏日期列表
+ */
+-(void)tapCollectionView
+{
     self.hidden = YES;
 }
 @end

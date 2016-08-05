@@ -198,11 +198,17 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
             self.selectedButton.hidden = YES;
             self.timeCompleteLabel.hidden = NO;
         }
-        else if ([myOrderModel.AppointmentStatus isEqualToString:@"Completed"])
+        else if (![myOrderModel.HasComment isEqualToString:@"1"] && [myOrderModel.AppointmentStatus isEqualToString:@"Completed"])
         {
             self.stateTypeLabel.text = @"已完成";
             [self.selectedButton setTitle:@"发表评论" forState:UIControlStateNormal];
             self.selectedButton.hidden = NO;
+            self.timeCompleteLabel.hidden = YES;
+        }
+        else if ([myOrderModel.HasComment isEqualToString:@"1"] && [myOrderModel.AppointmentStatus isEqualToString:@"Completed"])
+        {
+            self.stateTypeLabel.text = @"已完成";
+            self.selectedButton.hidden = YES;
             self.timeCompleteLabel.hidden = YES;
         }
         else if ([myOrderModel.AppointmentStatus isEqualToString:@"Cancel"])
@@ -216,6 +222,8 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
             self.selectedButton.hidden = YES;
             self.timeCompleteLabel.hidden = YES;
         }
+        
+        
         
         
         if ([self.stateTypeLabel.text isEqualToString:@"服务中"])

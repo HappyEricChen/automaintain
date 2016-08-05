@@ -11,9 +11,18 @@
 typedef void(^DaysSelectedBlock)(NSNumber *result);
 
 @interface LDCalendarView : UIView
+/**
+ *  默认的天
+ */
 @property (nonatomic, strong) NSNumber          *defaultDay;
+/**
+ *  回调
+ */
 @property (nonatomic, copy  ) DaysSelectedBlock complete;
-@property (nonatomic, strong) UIButton* selectedButton;//选中的按钮
+/**
+ *  选中的按钮
+ */
+@property (nonatomic, strong) UIButton* selectedButton;
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)clickForIndex:(NSInteger)index;

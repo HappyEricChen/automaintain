@@ -30,5 +30,9 @@
  *  项目起始时间
  */
 @property (nonatomic, strong) NSString* StartTime;
+/**
+ *  是否已评论过/评论过=1，未评论=0
+ */
+@property (nonatomic, strong) NSString* HasComment;
 
 @end

@@ -35,7 +35,8 @@
     
     [self loadDataFromService];
     self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
-     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
+    AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
 }
 
 -(void)configureNavigationView
@@ -200,6 +201,12 @@
          *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15-08:30
          */
         NSString* completedTime = [NSString stringWithFormat:@"%@ %@",self.selectedDate,scheduleListModel.TimeSegment];
+        
+        /**
+         *  将选中的日期保存起来，用来下次布局使用
+         */
+        AppManagerSingleton.selectedOrderDate = self.selectedDate;
+        
         /**
          *  选中的时间传递出去
          */
@@ -215,11 +222,16 @@
     
     NSString* dateStringFormate1 = [currentDateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
     NSString* dateStringFormate2 = [dateStringFormate1 stringByReplacingOccurrencesOfString:@"月" withString:@"-"];
-    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@" "];
+    NSString* dateStringFormate3 = [dateStringFormate2 stringByReplacingOccurrencesOfString:@"日" withString:@""];
     self.selectedDate = dateStringFormate3;
-    
-    [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:dateStringFormate3 withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+    AppManagerSingleton.selectedDate = dateStringFormate3;
+    [SVProgressHUD show];
+    [self.timeSelectedDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode
+                                                                  withCurrentDate:dateStringFormate3
+                                                                  withSubjectGuid:self.subjectGuid
+                                                                     withCallback:^(BOOL success, NSError *error, id result)
      {
+         [SVProgressHUD dismiss];
          if (success)
          {
              [self.timeSelectedDataViewController.collectionView reloadData];

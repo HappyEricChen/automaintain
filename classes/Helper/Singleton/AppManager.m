@@ -48,6 +48,10 @@
 {
     return [[NSUserDefaults standardUserDefaults]objectForKey:@"CarNo"];
 }
+-(NSString *)CardNo
+{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"CardNo"];
+}
 
 -(NSString *)currentDate
 {

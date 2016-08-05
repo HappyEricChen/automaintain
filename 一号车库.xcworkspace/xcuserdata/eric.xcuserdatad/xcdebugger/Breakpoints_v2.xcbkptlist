@@ -89,45 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491899068.572966"
+            filePath = "classes/&#x7b2c;&#x4e09;&#x65b9;&#x5e93;/LDCalendarView.m"
+            timestampString = "492000488.956427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
-            landmarkName = "+postMyOrderListWithAccessCode:withPageIndex:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491911259.147524"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
-            landmarkName = "+postAppointmentServiceWithAccessCode:withAppointmentStartTime:withSubjectGuid:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "491911295.029157"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "+postAppointmentServiceWithAccessCode:withAppointmentStartTime:withSubjectGuid:withCallback:"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "-tap:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

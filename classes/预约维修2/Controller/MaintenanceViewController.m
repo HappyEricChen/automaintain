@@ -237,9 +237,12 @@
  */
 -(void)didSelectedTypeChangeButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
 {
+    
     TypeSelectedViewController* typeSelectedViewController = [[TypeSelectedViewController alloc]init];
     typeSelectedViewController.orderTypeModel = self.orderTypeModel;
     [self.navigationController pushViewController:typeSelectedViewController animated:YES];
+    
+    
 }
 /**
  *  时间选择

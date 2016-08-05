@@ -136,12 +136,21 @@
 #pragma mark - 点击选择按钮调用CustomTypeSelectedTableViewCellDelegate
 -(void)didSelectedCustomTypeSelectedTableViewCell:(CustomTypeSelectedTableViewCell *)customTypeSelectedTableViewCell
 {
-    NSIndexPath* indexPath = [self.typeSelectedDataViewController.customTableView indexPathForCell:customTypeSelectedTableViewCell];
-    OrderTypeModel* orderTypeModel = self.typeSelectedDataViewController.typeSelectedArr[indexPath.row];
+    if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"该功能目前只对\n会员卡用户开放"];
+        return;
+    }
+    else
+    {
+        NSIndexPath* indexPath = [self.typeSelectedDataViewController.customTableView indexPathForCell:customTypeSelectedTableViewCell];
+        OrderTypeModel* orderTypeModel = self.typeSelectedDataViewController.typeSelectedArr[indexPath.row];
+        
+        orderTypeModel.IsSelected = YES;//选择状态改为已选择
+        SharedAppDelegateHelper.maintenanceViewController.orderTypeModel = orderTypeModel;
+        
+        [self.navigationController popToViewController:SharedAppDelegateHelper.maintenanceViewController animated:YES];
+    }
     
-    orderTypeModel.IsSelected = YES;//选择状态改为已选择
-    SharedAppDelegateHelper.maintenanceViewController.orderTypeModel = orderTypeModel;
-
-    [self.navigationController popToViewController:SharedAppDelegateHelper.maintenanceViewController animated:YES];
 }
 @end

@@ -51,7 +51,10 @@
  * 车牌号: 沪A888888
  */
 - (NSString*)CarNo;
-
+/**
+ * 会员卡号: 123456
+ */
+- (NSString*)CardNo;
 /**
  *   欢迎进入凯旋小区一号车库社区汽车服务站
  */
@@ -65,5 +68,12 @@
 @property (nonatomic, strong) NSString* selectedDate;
 
 #pragma mark - 维修保养/保存一个选中的预约时间，用来改变颜色
+/**
+ *  选中的时间
+ */
 @property (nonatomic, strong) NSString* selectedTime;
+/**
+ *  维修选中的日期保存
+ */
+@property (nonatomic, strong) NSString* selectedOrderDate;
 @end

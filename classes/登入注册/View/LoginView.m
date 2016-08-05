@@ -114,7 +114,7 @@ static CGFloat baseViewY = 0;
         passwordField.sd_layout.leftEqualToView(baseView).topSpaceToView(accountField,ScreenHeight*0.018).rightEqualToView(baseView).heightIs(ScreenHeight*0.0697);
         loginButton.sd_layout.leftEqualToView(baseView).topSpaceToView(passwordField,ScreenHeight*0.024).rightEqualToView(baseView).heightIs(ScreenHeight*0.0697);
         signupButton.sd_layout.leftEqualToView(baseView).bottomSpaceToView(baseView,ScreenHeight*0.45*0.1).widthIs(ScreenWidth*0.4).heightIs(ScreenHeight*0.0697);
-        forgetPasswordButton.sd_layout.rightEqualToView(baseView).bottomSpaceToView(baseView,ScreenHeight*0.45*0.1).widthIs(ScreenWidth*0.267).heightIs(ScreenHeight*0.0697);
+        forgetPasswordButton.sd_layout.rightEqualToView(baseView).bottomSpaceToView(baseView,ScreenHeight*0.45*0.1).widthIs(ScreenWidth*0.16).heightIs(ScreenHeight*0.0697);
         
     }
     return self;

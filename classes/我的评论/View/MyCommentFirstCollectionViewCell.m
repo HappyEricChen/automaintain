@@ -79,7 +79,6 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
                                                                     WithBold:YES];
         
         UIView *baseView1 = [[UIView alloc]init];
-//        baseView1.backgroundColor = [UIColor redColor];
         baseView1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView1];
         self.baseView1 = baseView1;
@@ -89,7 +88,7 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         {
             starImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"order_star")];
             
-            starImageView.frame = CGRectMake(self.baseView1.bounds.origin.x+(1+i)*13, self.baseView1.bounds.origin.y, 13, 13);
+            starImageView.frame = CGRectMake(self.baseView1.bounds.origin.x+i*13, self.baseView1.bounds.origin.y, 13, 13);
             [baseView1 addSubview:starImageView];
             [self.allStarsArr addObject:starImageView];
             
@@ -106,9 +105,9 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         self.contentLabel = contentLabel;
         
         titleLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.03).topSpaceToView(self,ScreenHeight*0.024).widthIs(titleLabelWidth).autoHeightRatio(0);
-        contentLabel.sd_layout.leftSpaceToView(titleLabel,10).topEqualToView(titleLabel).rightEqualToView(self).autoHeightRatio(0);
+        contentLabel.sd_layout.leftSpaceToView(titleLabel,ScreenWidth*0.014).topEqualToView(titleLabel).rightEqualToView(self).autoHeightRatio(0);
         scoreLabel.sd_layout.leftEqualToView(titleLabel).topSpaceToView(titleLabel,ScreenHeight*0.03).widthIs(scoreLabelWidth).autoHeightRatio(0);
-        baseView1.sd_layout.centerYEqualToView(scoreLabel).leftSpaceToView(scoreLabel,10).topEqualToView(scoreLabel).bottomEqualToView(scoreLabel).rightEqualToView(self);
+        baseView1.sd_layout.centerYEqualToView(scoreLabel).leftSpaceToView(scoreLabel,0).topEqualToView(scoreLabel).bottomEqualToView(scoreLabel).rightEqualToView(self);
     }
     return self;
 }
@@ -135,7 +134,7 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         NSLog(@"_all[%i] = (%f,%f)",i,im.frame.origin.x,im.frame.origin.y);
         if ((touchPoint.x > 0)&&(touchPoint.x < 80)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
         {
-            self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13];
+            self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13+1];
             //            _score.text = myscore;//_score是一个UILable，myscore为分数，显示在给用户看，关于这个不在赘述
             if (im.frame.origin.x > touchPoint.x)
             {
@@ -167,7 +166,7 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         NSLog(@"_all[%i] = (%f,%f)",i,im.frame.origin.x,im.frame.origin.y);
         if ((touchPoint.x > 0)&&(touchPoint.x < 80)&&(touchPoint.y > 0)&&(touchPoint.y < 13))
         {
-            self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13];
+            self.starScore = [NSString stringWithFormat:@"%i",((int)touchPoint.x)/13+1];
             //            _score.text = myscore;//_score是一个UILable，myscore为分数，显示在给用户看，关于这个不在赘述
             if (im.frame.origin.x > touchPoint.x)
             {

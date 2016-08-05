@@ -184,6 +184,10 @@
         
     }
     [self.view endEditing:YES];//回缩键盘
+    if (!self.feedbackDataViewController.listTableView.isHidden)
+    {
+        self.feedbackDataViewController.listTableView.hidden = YES;
+    }
 }
 
 -(void)updateTimer
@@ -217,7 +221,6 @@
         
     }
     
-    [self.view endEditing:YES];//缩回键盘
 }
 
 
@@ -272,6 +275,11 @@
 -(void)tapCollectionView
 {
     [self.view endEditing:YES];
+    if (!self.feedbackDataViewController.listTableView.isHidden)
+    {
+        self.feedbackDataViewController.listTableView.hidden = YES;
+    }
+    
 }
 /**
  *  解决collectinView阻挡cell的点击事件/解决UIcollectionView添加手势后不响应其cell的问题

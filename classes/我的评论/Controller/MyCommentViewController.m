@@ -212,8 +212,10 @@
 -(void)updateCommentPhotos
 {
     __weak MyCommentViewController* weakSelf = self;
+    [SVProgressHUD show];
     [self.myCommentDataViewController runDispatchTestWithCallback:^(BOOL success, NSError *error, id result)
      {
+         [SVProgressHUD dismiss];
          if (success)
          {
              for (NSString* guidStr in self.myCommentDataViewController.imageGuidArr)
@@ -286,7 +288,7 @@
     }
     else
     {
-        
+        [SVProgressHUD show];
         [self.myCommentDataViewController postCommentToServiceWithAccessCode:AppManagerSingleton.accessCode
                                                                    withStars:self.starScore
                                                              withContentText:self.commentContent
@@ -295,6 +297,7 @@
                                                            withPhotoGuidList:self.photoGuidList
                                                                 withCallback:^(BOOL success, NSError *error, id result)
          {
+             [SVProgressHUD dismiss];
              if (success)
              {
                  [SVProgressHUD showSuccessWithStatus:@"评论成功"];
