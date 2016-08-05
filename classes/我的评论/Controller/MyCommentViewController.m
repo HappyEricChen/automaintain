@@ -333,7 +333,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     
-    UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+//    UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     self.image = image;
     [self.myCommentDataViewController.imageArr addObject:image];
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -157,12 +157,8 @@ NSString* const washCarFirstId = @"washCarFirstId";
     
     [formatter setDateFormat:@"yyyy年MM月dd日"];
     
-//    NSDate *date = [formatter dateFromString:self.dateLabel.text];
-    
-//    NSDate *yesterday = [NSDate dateWithTimeInterval:-60 * 60 * 24 sinceDate:date];
-    
-//    self.dateLabel.text = [NSDate stringWithTimestamp:yesterday.timeIntervalSince1970 format:@"yyyy年MM月dd日"];
-    [self.calendarView clickForIndex:self.calendarView.selectedButton.tag-100-1];
+//    [self.calendarView clickForIndex:self.calendarView.selectedButton.tag-100-1];
+    [self.calendarView clickLastDayButton];
     
     NSString* todayStr = [NSDate stringWithTimestamp:[NSDate date].timeIntervalSince1970 format:@"yyyy年MM月dd日"];
     if ([self.dateLabel.text isEqualToString:todayStr])
@@ -179,9 +175,13 @@ NSString* const washCarFirstId = @"washCarFirstId";
     
     [formatter setDateFormat:@"yyyy年MM月dd日"];
     
-    [self.calendarView clickForIndex:self.calendarView.selectedButton.tag-100+1];
+    //    [self.calendarView clickForIndex:self.calendarView.selectedButton.tag-100+1];
+    [self.calendarView clickNextDayButton];
+    if (self.lastDayButton.hidden)
+    {
+        self.lastDayButton.hidden = NO;//显示上一天按钮
+    }
     
-    self.lastDayButton.hidden = NO;//显示上一天按钮
     
 }
 @end

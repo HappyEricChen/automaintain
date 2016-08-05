@@ -37,7 +37,7 @@ NSString* const firstTimeCellId = @"firstTimeCellId";
         UIButton* timeButton = [[UIButton alloc]init];
         timeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         timeButton.titleLabel.font = [UIFont systemFontOfSize:10];
-        [timeButton setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
+        [timeButton setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
         [timeButton setBackgroundImage:ImageNamed(@"order_choose_red") forState:UIControlStateNormal];
         timeButton.layer.borderColor = UIColorFromRGB(0x7b7b7b).CGColor;
         timeButton.clipsToBounds = YES;

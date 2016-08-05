@@ -31,6 +31,10 @@
          *  修改placeholder颜色
          */
         [textField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+        /**
+         *  设置textfield光标为白色
+         */
+        textField.tintColor = [UIColor whiteColor];;
         textField.translatesAutoresizingMaskIntoConstraints = NO;
         textField.textAlignment = NSTextAlignmentLeft;
         textField.textColor = [UIColor whiteColor];

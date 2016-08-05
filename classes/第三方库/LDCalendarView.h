@@ -28,4 +28,13 @@ typedef void(^DaysSelectedBlock)(NSNumber *result);
 - (void)clickForIndex:(NSInteger)index;
 - (void)show;
 - (void)hide;
+
+/**
+ *  点击上一天按钮调用
+ */
+-(void)clickLastDayButton;
+/**
+ *  点击下一天按钮调用
+ */
+-(void)clickNextDayButton;
 @end

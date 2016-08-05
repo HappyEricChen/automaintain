@@ -75,7 +75,7 @@
         UITextField* textField1 = [[UITextField alloc]init];
         textField1.placeholder = @"请输入短信验证码";
         textField1.textAlignment = NSTextAlignmentLeft;
-        textField1.keyboardType = UIKeyboardTypeDefault;
+        textField1.keyboardType = UIKeyboardTypeNumberPad;
         textField1.textColor = UIColorFromRGB(0x000000);
         textField1.font = [UIFont systemFontOfSize:14];
         textField1.translatesAutoresizingMaskIntoConstraints = NO;

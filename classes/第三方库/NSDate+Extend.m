@@ -97,4 +97,16 @@
 	[formatter setDateFormat:format];
 	return [formatter stringFromDate:date];
 }
+/**
+ *  获取当前月份的天数
+ */
++(NSUInteger)numberOfDaysInMonthWithMounth:(NSDate*)currentDate
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:currentDate];
+    NSUInteger numberOfDaysInMonth = range.length;
+    
+    return numberOfDaysInMonth;
+}
+
 @end

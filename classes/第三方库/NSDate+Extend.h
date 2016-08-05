@@ -32,7 +32,10 @@
 - (NSInteger)day;
 - (NSInteger)month;
 - (NSInteger)year;
-
+/**
+ *  获取当前月的天数
+ */
++(NSUInteger)numberOfDaysInMonthWithMounth:(NSDate*)currentDate;
 /* 从时间戳获取特定格式的时间字符串 */
 + (NSString *)stringWithTimestamp:(NSTimeInterval)tt format:(NSString *)format;
 @end

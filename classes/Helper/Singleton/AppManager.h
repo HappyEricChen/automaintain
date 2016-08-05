@@ -76,4 +76,7 @@
  *  维修选中的日期保存
  */
 @property (nonatomic, strong) NSString* selectedOrderDate;
+
+#pragma mark - 手机号码验证
+- (BOOL) isMobile:(NSString *)mobileNumbel;
 @end
