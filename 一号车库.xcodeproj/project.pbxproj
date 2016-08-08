@@ -28,7 +28,6 @@
 		072F80591D348F66002CECC4 /* OnlineMessageDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F9D1D348F66002CECC4 /* OnlineMessageDataViewController.m */; };
 		072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA01D348F66002CECC4 /* MyMessageView.m */; };
 		072F805B1D348F66002CECC4 /* OnlineMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA21D348F66002CECC4 /* OnlineMessageCollectionViewCell.m */; };
-		072F805C1D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA41D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m */; };
 		072F805D1D348F66002CECC4 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA81D348F66002CECC4 /* FeedbackViewController.m */; };
 		072F805E1D348F66002CECC4 /* FeedbackDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FAB1D348F66002CECC4 /* FeedbackDataViewController.m */; };
 		072F805F1D348F66002CECC4 /* FeedbackFirstCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FAE1D348F66002CECC4 /* FeedbackFirstCollectionViewCell.m */; };
@@ -115,6 +114,9 @@
 		0757EE061D38D08200D82657 /* UserCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0757EE051D38D08200D82657 /* UserCommentModel.m */; };
 		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
 		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
+		078019E01D5818FD008D46FB /* MyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019DF1D5818FD008D46FB /* MyMessageViewController.m */; };
+		078019E31D581940008D46FB /* MyMessageDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019E21D581940008D46FB /* MyMessageDataViewController.m */; };
+		078019E61D581B8B008D46FB /* MyMessageSubmitButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019E51D581B8B008D46FB /* MyMessageSubmitButtonView.m */; };
 		078058D31D5048340098185E /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D21D5048340098185E /* UUID.m */; };
 		078058D61D5048E40098185E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D51D5048E40098185E /* KeyChainStore.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
@@ -176,12 +178,10 @@
 		072F7F9A1D348F66002CECC4 /* OnlineMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageViewController.m; sourceTree = "<group>"; };
 		072F7F9C1D348F66002CECC4 /* OnlineMessageDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageDataViewController.h; sourceTree = "<group>"; };
 		072F7F9D1D348F66002CECC4 /* OnlineMessageDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageDataViewController.m; sourceTree = "<group>"; };
-		072F7F9F1D348F66002CECC4 /* MyMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageView.h; sourceTree = "<group>"; };
-		072F7FA01D348F66002CECC4 /* MyMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageView.m; sourceTree = "<group>"; };
+		072F7F9F1D348F66002CECC4 /* MyMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessageView.h; path = "../../../在线留言/View/MyMessageView.h"; sourceTree = "<group>"; };
+		072F7FA01D348F66002CECC4 /* MyMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessageView.m; path = "../../../在线留言/View/MyMessageView.m"; sourceTree = "<group>"; };
 		072F7FA11D348F66002CECC4 /* OnlineMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageCollectionViewCell.h; sourceTree = "<group>"; };
 		072F7FA21D348F66002CECC4 /* OnlineMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageCollectionViewCell.m; sourceTree = "<group>"; };
-		072F7FA31D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageSecondCollectionViewCell.h; sourceTree = "<group>"; };
-		072F7FA41D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageSecondCollectionViewCell.m; sourceTree = "<group>"; };
 		072F7FA71D348F66002CECC4 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		072F7FA81D348F66002CECC4 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		072F7FAA1D348F66002CECC4 /* FeedbackDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackDataViewController.h; sourceTree = "<group>"; };
@@ -358,6 +358,12 @@
 		077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentFourCollectionViewCell.m; sourceTree = "<group>"; };
 		077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JCExtension.h"; sourceTree = "<group>"; };
 		077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JCExtension.m"; sourceTree = "<group>"; };
+		078019DE1D5818FD008D46FB /* MyMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageViewController.h; sourceTree = "<group>"; };
+		078019DF1D5818FD008D46FB /* MyMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageViewController.m; sourceTree = "<group>"; };
+		078019E11D581940008D46FB /* MyMessageDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageDataViewController.h; sourceTree = "<group>"; };
+		078019E21D581940008D46FB /* MyMessageDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageDataViewController.m; sourceTree = "<group>"; };
+		078019E41D581B8B008D46FB /* MyMessageSubmitButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageSubmitButtonView.h; sourceTree = "<group>"; };
+		078019E51D581B8B008D46FB /* MyMessageSubmitButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageSubmitButtonView.m; sourceTree = "<group>"; };
 		078058CF1D5044CA0098185E /* 一号车库.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "一号车库.entitlements"; sourceTree = "<group>"; };
 		078058D11D5048340098185E /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		078058D21D5048340098185E /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
@@ -455,6 +461,7 @@
 			children = (
 				072F7F711D348F66002CECC4 /* API */,
 				072F7F831D348F66002CECC4 /* 个人中心4 */,
+				078019DA1D581885008D46FB /* 我的留言 */,
 				072F7F971D348F66002CECC4 /* 在线留言 */,
 				072F7FA51D348F66002CECC4 /* 意见反馈 */,
 				072F7FB31D348F66002CECC4 /* 我的评论 */,
@@ -583,12 +590,10 @@
 		072F7F9E1D348F66002CECC4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				072F7F9F1D348F66002CECC4 /* MyMessageView.h */,
-				072F7FA01D348F66002CECC4 /* MyMessageView.m */,
 				072F7FA11D348F66002CECC4 /* OnlineMessageCollectionViewCell.h */,
 				072F7FA21D348F66002CECC4 /* OnlineMessageCollectionViewCell.m */,
-				072F7FA31D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.h */,
-				072F7FA41D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m */,
+				078019E41D581B8B008D46FB /* MyMessageSubmitButtonView.h */,
+				078019E51D581B8B008D46FB /* MyMessageSubmitButtonView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1160,6 +1165,44 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		078019DA1D581885008D46FB /* 我的留言 */ = {
+			isa = PBXGroup;
+			children = (
+				078019DB1D581885008D46FB /* Controller */,
+				078019DC1D581885008D46FB /* Model */,
+				078019DD1D581885008D46FB /* View */,
+			);
+			name = "我的留言";
+			path = "个人中心4/我的留言";
+			sourceTree = "<group>";
+		};
+		078019DB1D581885008D46FB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				078019DE1D5818FD008D46FB /* MyMessageViewController.h */,
+				078019DF1D5818FD008D46FB /* MyMessageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		078019DC1D581885008D46FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				078019E11D581940008D46FB /* MyMessageDataViewController.h */,
+				078019E21D581940008D46FB /* MyMessageDataViewController.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		078019DD1D581885008D46FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				072F7F9F1D348F66002CECC4 /* MyMessageView.h */,
+				072F7FA01D348F66002CECC4 /* MyMessageView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		078058D01D50481F0098185E /* KeyChain */ = {
 			isa = PBXGroup;
 			children = (
@@ -1407,6 +1450,7 @@
 				072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */,
 				072F807D1D348F66002CECC4 /* ModifyPasswordDataViewController.m in Sources */,
 				072F80B81D3491EA002CECC4 /* CustomNavigationView.m in Sources */,
+				078019E61D581B8B008D46FB /* MyMessageSubmitButtonView.m in Sources */,
 				072F80B61D3491EA002CECC4 /* CommonCollectionView.m in Sources */,
 				072F80791D348F66002CECC4 /* NSDate+Extend.m in Sources */,
 				072F81091D3499FF002CECC4 /* LoginTextField.m in Sources */,
@@ -1418,7 +1462,6 @@
 				072F80851D348F66002CECC4 /* SecondTimeCollectionViewCell.m in Sources */,
 				077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */,
 				072F80521D348F66002CECC4 /* PersonalModel.m in Sources */,
-				072F805C1D348F66002CECC4 /* OnlineMessageSecondCollectionViewCell.m in Sources */,
 				072F80781D348F66002CECC4 /* LDCalendarView.m in Sources */,
 				072F807A1D348F66002CECC4 /* UIColor+Extend.m in Sources */,
 				072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */,
@@ -1432,6 +1475,7 @@
 				072F80681D348F66002CECC4 /* MyOrderViewController.m in Sources */,
 				072F805E1D348F66002CECC4 /* FeedbackDataViewController.m in Sources */,
 				072F806A1D348F66002CECC4 /* MyOrderTableViewCell.m in Sources */,
+				078019E01D5818FD008D46FB /* MyMessageViewController.m in Sources */,
 				072F80B51D3491EA002CECC4 /* BaseViewController.m in Sources */,
 				0747CA611D41C6F200241ACC /* OnlineMessageModel.m in Sources */,
 				0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */,
@@ -1467,6 +1511,7 @@
 				072F80501D348F66002CECC4 /* PersonalViewController.m in Sources */,
 				072F80921D348F66002CECC4 /* TypeSelectedView.m in Sources */,
 				072F80581D348F66002CECC4 /* OnlineMessageViewController.m in Sources */,
+				078019E31D581940008D46FB /* MyMessageDataViewController.m in Sources */,
 				077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */,
 				072F80801D348F66002CECC4 /* SettingFirstCollectionViewCell.m in Sources */,
 				072F80511D348F66002CECC4 /* PersonalDataViewController.m in Sources */,

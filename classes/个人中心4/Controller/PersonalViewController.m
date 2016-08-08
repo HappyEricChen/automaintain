@@ -218,7 +218,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
      }];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -240,7 +240,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
      }];
     

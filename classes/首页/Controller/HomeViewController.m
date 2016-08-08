@@ -86,7 +86,7 @@
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
     }
@@ -246,6 +246,7 @@
    
     WebViewController* webViewController = [[WebViewController alloc]init];
     webViewController.urlStr = adsCarouselModel.Url;
+    webViewController.title = adsCarouselModel.Title;
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 @end

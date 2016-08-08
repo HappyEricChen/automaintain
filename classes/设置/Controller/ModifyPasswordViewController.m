@@ -55,27 +55,27 @@
 {
     if ([oldPassword isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入原密码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入原密码"];
         return;
     }
     else if ([newPassword isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入新密码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入新密码"];
         return;
     }
     else if ([confirmPassword isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请再次输入新密码"];
+        [SVProgressHUD showInfoWithStatus:@"请再次输入新密码"];
         return;
     }
     else if ([newPassword isEqualToString:oldPassword])
     {
-        [SVProgressHUD showErrorWithStatus:@"新旧密码不能一样"];
+        [SVProgressHUD showInfoWithStatus:@"新旧密码不能一样"];
         return;
     }
     else if (newPassword.length<6 || newPassword.length>12)
     {
-        [SVProgressHUD showErrorWithStatus:@"密码控制在6-12位"];
+        [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
         return;
     }
     
@@ -86,7 +86,7 @@
         /**
          *  显示错误
          */
-        [SVProgressHUD showErrorWithStatus:@"两次密码不相同"];
+        [SVProgressHUD showInfoWithStatus:@"两次密码不相同"];
     }
     else
     {
@@ -107,7 +107,7 @@
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
     }

@@ -59,7 +59,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -95,7 +95,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"注册error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 
 }
@@ -130,7 +130,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"找回密码error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -166,7 +166,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -199,7 +199,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -233,7 +233,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 }
 #pragma mark - 首页免费便民服务
@@ -266,7 +266,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 }
 #pragma mark - 首页底部广告图片
@@ -299,7 +299,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 }
 
@@ -346,7 +346,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 }
 #pragma mark - 提交预约
@@ -383,7 +383,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 
 }
@@ -429,7 +429,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 }
 #pragma mark - 获取预约类型列表
@@ -464,7 +464,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 
 }
@@ -551,7 +551,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -589,7 +589,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 
 }
@@ -636,7 +636,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -673,7 +673,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -719,7 +719,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
     
 }
@@ -765,7 +765,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 }
 
@@ -804,7 +804,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 
 }
@@ -841,7 +841,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         NSLog(@"error%@",error);
+         callback(NO,nil,[error localizedDescription]);
      }];
 
 }

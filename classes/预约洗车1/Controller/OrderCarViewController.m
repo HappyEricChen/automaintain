@@ -48,16 +48,27 @@
     [self configureNavigationView];
     [self configureCollectionView];
     
-    [self loadDataFromService];
-    /**
-     *  刷新数据
-     */
     [self loadMJRefreshMethod];
+    
     self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
     AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    /**
+     *  重新获取时间预约列表
+     */
+    [self loadDataFromService];
+    /**
+     *  开始刷新
+     */
+    [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];
 }
 
 -(void)notificationReceived:(NSNotification*)object
@@ -95,7 +106,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
      }];
 
@@ -107,7 +118,6 @@
     
     MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
     self.orderCarDataViewController.collectionView.mj_header = header;
-    [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];//开始刷新
     self.orderCarDataViewController.collectionView.mj_header.automaticallyChangeAlpha = YES;
     
     MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
@@ -134,7 +144,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
          
      }];
@@ -143,7 +153,10 @@
 -(void)loadDataFromService
 {
     [SVProgressHUD show];
-    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:AppManagerSingleton.currentDate withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
+    /**
+     *  请求当前日期下的时间列表
+     */
+    [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:AppManagerSingleton.selectedDate withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
@@ -152,7 +165,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
      }];
     
@@ -332,12 +345,14 @@
 {
     if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请选择预约时间"];
+        [SVProgressHUD showInfoWithStatus:@"请选择预约时间"];
         return;
     }
     else if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"该功能目前只对\n会员卡用户开放"];
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"该功能目前只对会员卡用户开放" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        alertView.alertViewStyle = UIAlertViewStyleDefault;
+        [alertView show];
         return;
     }
     else
@@ -356,7 +371,7 @@
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
         

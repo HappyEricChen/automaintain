@@ -12,4 +12,9 @@
 
 @property (nonatomic, strong) CustomNavigationView* customNavigationView;
 
+/**
+ *  初始化导航栏的标题
+ */
+-(instancetype)initWithTitle:(NSString*)title;
+
 @end

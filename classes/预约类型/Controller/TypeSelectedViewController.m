@@ -65,7 +65,7 @@
         }
         else
         {
-            [SVProgressHUD showErrorWithStatus:result];
+            [SVProgressHUD showInfoWithStatus:result];
         }
     }];
 }
@@ -138,7 +138,9 @@
 {
     if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
     {
-        [SVProgressHUD showErrorWithStatus:@"该功能目前只对\n会员卡用户开放"];
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"该功能目前只对会员卡用户开放" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        alertView.alertViewStyle = UIAlertViewStyleDefault;
+        [alertView show];
         return;
     }
     else

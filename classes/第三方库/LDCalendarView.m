@@ -24,11 +24,12 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
 
 //Data
 @property (nonatomic, assign) NSUInteger kTotalNum;//当前月总的天数
-@property (nonatomic, assign) int32_t        year,month;
-@property (nonatomic, strong) NSDate         *today,*firstDay; //今天 当月第一天
+@property (nonatomic, assign) NSInteger        year,month,day;
+@property (nonatomic, strong) NSDate         *today,*firstDay,*date; //今天 当月第一天
 @property (nonatomic, strong) NSMutableArray *currentMonthDaysArray;//当前月的天数数组
 @property (nonatomic, strong) NSNumber* selectedDay;//选中的某天
 @property (nonatomic, assign) CGRect         touchRect;//可操作区域
+@property (nonatomic, assign) NSInteger startDayIndex;//当月开始日期的下标值
 @end
 
 @implementation LDCalendarView
@@ -185,11 +186,6 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
      */
     [self refreshDateTitle];
 
-    _currentMonthDaysArray = [NSMutableArray array];
-    for (int i = 0; i < self.kTotalNum; i++) {
-        [_currentMonthDaysArray addObject:@(0)];
-    }
-
     /**
      *  显示日期列表View
      */
@@ -282,14 +278,15 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     btn.tag                    = kBtnStartTag + i;
     [btn setFrame:baseRect];
     btn.userInteractionEnabled = NO;
-    btn.backgroundColor = [UIColor clearColor];
+//    btn.backgroundColor = [UIColor redColor];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:10]];
     
     NSInteger startDayIndex = [self calculateStartIndex:self.firstDay];
     NSDate * date = [self.firstDay dateByAddingTimeInterval: (i-startDayIndex)*24*60*60];
-    _currentMonthDaysArray[i] = @([date timeIntervalSince1970]);
+    _currentMonthDaysArray[i-startDayIndex] = @([date timeIntervalSince1970]);
     NSString *title = INTTOSTR(date.day);
-    if ([date isToday]) {
+    if ([date isToday])
+    {
         title = @"今天";
         /**
          *  选中的日期为0的时候，将今天设置为高亮
@@ -298,8 +295,8 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         {
             [btn setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
             self.selectedButton = btn;
+            
         }
-        
     }
     else if(date.day == 1) {
         //1号在下面标一下月份
@@ -319,7 +316,6 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     }else {
         [btn setTitleColor:[UIColor hexColorWithString:@"bfbfbf"] forState:UIControlStateNormal];
     }
-    [btn setBackgroundColor:[UIColor clearColor]];
     
     [_dateBgView addSubview:btn];
 }
@@ -333,14 +329,15 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     //一，二，三，四...
     [self drawTitleView];
 
-    CGFloat startDayIndex       = [self calculateStartIndex:self.firstDay];
+    NSInteger startDayIndex       = [self calculateStartIndex:self.firstDay];
+    self.startDayIndex = startDayIndex;
     CGRect baseRect             = CGRectMake(UNIT_WIDTH * startDayIndex,UNIT_WIDTH, UNIT_WIDTH, UNIT_WIDTH);
     
     /**
      *  获取当月总天数
      */
     self.kTotalNum = [NSDate numberOfDaysInMonthWithMounth:self.firstDay];
-    [self.currentMonthDaysArray removeAllObjects];
+    _currentMonthDaysArray = [NSMutableArray array];
     for (int i = 0; i < self.kTotalNum; i++)
     {
         [self.currentMonthDaysArray addObject:@(0)];
@@ -392,19 +389,16 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
  */
 - (void)refreshDateView {
     for(int i = 0; i < self.kTotalNum; i++) {
-        UIButton *btn = (UIButton *)[_dateBgView viewWithTag:kBtnStartTag + i];
+        UIButton *btn = (UIButton *)[_dateBgView viewWithTag:kBtnStartTag + i+self.startDayIndex];
         NSNumber *interval = [_currentMonthDaysArray objectAtIndex:i];
 
         if (i < [_currentMonthDaysArray count] && btn)
         {
-            if ([_selectedDay isEqual:interval])
+
+        if ([_selectedDay isEqual:interval])
             {
                 [btn setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
                 self.selectedButton = btn;
-            }
-            else
-            {
-                [btn setBackgroundImage:nil forState:UIControlStateNormal];
             }
         }
     }
@@ -418,14 +412,14 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         int row         = (int)((point.y - _touchRect.origin.y) / h);
         int col         = (int)((point.x) / w);
 
-        NSInteger index = row * kCol + col;
+        NSInteger index = row * kCol + col-self.startDayIndex;
         [self clickForIndex:index];
     }
 }
 
 - (void)clickForIndex:(NSInteger)index
 {
-    UIButton *btn = (UIButton *)[_dateBgView viewWithTag:kBtnStartTag + index];
+    UIButton *btn = (UIButton *)[_dateBgView viewWithTag:kBtnStartTag + index+self.startDayIndex];
     
     if (index < [_currentMonthDaysArray count]) {
         NSNumber *interval = [_currentMonthDaysArray objectAtIndex:index];
@@ -459,15 +453,52 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     }
     self.selectedButton = btn;
 }
-/**
- *  点击上一天按钮调用
- */
+
+
+
+//
+///**
+// *  点击上一天按钮调用
+// */
 -(void)clickLastDayButton
 {
     NSDate *selectedDate = [NSDate dateWithTimeIntervalSince1970:self.selectedDay.doubleValue];
+
+    /**
+     *  防止选择月份的时候改变了当前的月和年，使选择天的时候不准
+     */
+    self.year = selectedDate.year;
+    self.month = selectedDate.month;
     
-    NSDate * date = [selectedDate dateByAddingTimeInterval: (-1)*24*60*60];
-    self.selectedDay = @([date timeIntervalSince1970]);
+    NSInteger day = selectedDate.day;
+    
+    if (day>1)
+    {
+        day -=1;
+    }
+    else if (self.month>1)
+    {
+        self.month-=1;
+        [self showDateView];
+        day = self.kTotalNum;
+        
+    }
+    else
+    {
+        
+        self.month = 12;
+        self.year -= 1;
+        [self showDateView];
+        day = self.kTotalNum;
+    }
+    
+    //字符串转换为日期,今天0点的时间
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    
+    self.date = [dateFormat dateFromString:[NSString stringWithFormat:@"%@-%@-%@",@(self.year),@(self.month),@(day)]];
+    
+    self.selectedDay = @([self.date timeIntervalSince1970]);
     
     /**
      *  将新的日期传递回View
@@ -476,9 +507,10 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         _complete(_selectedDay);
     }
     /**
-     *  刷新高亮的日期
+     *  刷新日期
      */
-    [self refreshDateView];
+    [self refreshDateTitle];
+    
 }
 /**
  *  点击下一天按钮调用
@@ -495,8 +527,36 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         selectedDate = [NSDate dateWithTimeIntervalSince1970:self.selectedDay.doubleValue];
     }
     
-    NSDate * date = [selectedDate dateByAddingTimeInterval: (1)*24*60*60];
-    self.selectedDay = @([date timeIntervalSince1970]);
+    /**
+     *  防止选择月份的时候改变了当前的月和年，使选择天的时候不准
+     */
+    self.year = selectedDate.year;
+    self.month = selectedDate.month;
+    
+    NSInteger day = selectedDate.day;
+    
+    if (day<self.kTotalNum)
+    {
+        day +=1;
+    }
+    else if (self.month<12)
+    {
+        day = 1;
+        self.month+=1;
+    }
+    else {
+        day = 1;
+        self.month = 1;
+        self.year += 1;
+    }
+
+    //字符串转换为日期,今天0点的时间
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    
+     self.date = [dateFormat dateFromString:[NSString stringWithFormat:@"%@-%@-%@",@(self.year),@(self.month),@(day)]];
+    
+    self.selectedDay = @([self.date timeIntervalSince1970]);
     
     /**
      *  将新的日期传递回View
@@ -505,9 +565,9 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         _complete(_selectedDay);
     }
     /**
-     *  刷新高亮的日期
+     *  刷新日期
      */
-    [self refreshDateView];
+    [self refreshDateTitle];
 }
 
 - (void)show {

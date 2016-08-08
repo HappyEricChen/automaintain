@@ -48,7 +48,7 @@
     [self configureNavigationView];
     [self configureHeaderView];
     [self configureCollectionView];
-    [self loadMJRefreshMethod];//刷新数据
+    [self loadMJRefreshMethod];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(ReceivedCompletedTime:)
@@ -58,7 +58,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [super viewWillAppear:animated];
+    /**
+     *  开始刷新数据
+     */
+    [self.maintenanceDataViewController.collectionView.mj_header beginRefreshing];
+    
     [self.maintenanceDataViewController.maintenanceHeaderView layoutWithOrderTypeModel:self.orderTypeModel withCompletedTime:self.completedTime];
     
 }
@@ -94,7 +100,6 @@
     
     MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
     self.maintenanceDataViewController.collectionView.mj_header = header;
-    [self.maintenanceDataViewController.collectionView.mj_header beginRefreshing];//开始刷新
     self.maintenanceDataViewController.collectionView.mj_header.automaticallyChangeAlpha = YES;
     
     MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
@@ -122,7 +127,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
          
      }];
@@ -242,6 +247,15 @@
     typeSelectedViewController.orderTypeModel = self.orderTypeModel;
     [self.navigationController pushViewController:typeSelectedViewController animated:YES];
     
+    /**
+     *  跳转到选择类型界面，清除时间
+     */
+    self.completedTime = @"";
+    /**
+     *  TimeSelected选中的时间清除
+     */
+    AppManagerSingleton.selectedTime = @"";
+    
     
 }
 /**
@@ -251,7 +265,7 @@
 {
     if (!self.orderTypeModel.SubjectName || [self.orderTypeModel.SubjectName isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请先选择预约类型"];
+        [SVProgressHUD showInfoWithStatus:@"请先选择预约类型"];
     }
     else
     {
@@ -280,11 +294,11 @@
 {
     if (!self.orderTypeModel || [self.orderTypeModel.Guid isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请选择预约类型"];
+        [SVProgressHUD showInfoWithStatus:@"请选择预约类型"];
     }
     else if (!self.completedTime || [self.completedTime isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请选择预约的时间"];
+        [SVProgressHUD showInfoWithStatus:@"请选择预约的时间"];
     }
     else
     {
@@ -299,15 +313,26 @@
                                                                  withSubjectGuid:self.orderTypeModel.Guid
                                                                     withCallback:^(BOOL success, NSError *error, id result)
          {
+             /**
+              *  清除计时器
+              */
+             [self.timer invalidate];
+             self.timer = nil;
              if (success)
              {
                  [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 /**
+                  *  清除选中的类型和时间
+                  */
+                 self.orderTypeModel = nil;
+                 self.completedTime = @"";
+                 
                  MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
                  [self.navigationController pushViewController:myOrderViewController animated:YES];
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
                  
              }
          }];
@@ -326,6 +351,11 @@
 
 -(void)dealloc
 {
+    /**
+     *  TimeSelected选中的时间清除
+     */
+    AppManagerSingleton.selectedTime = @"";
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotify_myOrder_CompletedTime object:nil];
 }
 @end

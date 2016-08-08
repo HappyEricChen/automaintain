@@ -91,7 +91,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
      }];
    }
@@ -160,7 +160,7 @@
         }
         else
         {
-            [SVProgressHUD showErrorWithStatus:result];
+            [SVProgressHUD showInfoWithStatus:result];
         }
     }];
 }

@@ -193,7 +193,7 @@
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
     }

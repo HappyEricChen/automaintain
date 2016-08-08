@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webDataViewController = [[WebDataViewController alloc]init];
+    self.webDataViewController = [[WebDataViewController alloc]initWithTitle:self.title];
     [self configureNavigationView];
     [self configureWebView];
 }
@@ -55,7 +55,7 @@
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     
-    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+    [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
 }
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView

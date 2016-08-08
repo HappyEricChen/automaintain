@@ -135,7 +135,14 @@
         {
             
             ScheduleListModel* scheduleListModel = self.washCarDateListModel.Schedule[self.currentIndex];
-            scheduleListModel.AppointmentCount = @"0";
+            /**
+             *  之前选中的按钮不是，我的预约和他人已预约时，改变颜色
+             */
+            if (![scheduleListModel.AppointmentCount isEqualToString:@"myOrder"] && ![scheduleListModel.AppointmentCount isEqualToString:@"full"])
+            {
+                scheduleListModel.AppointmentCount = @"0";
+            }
+            
             
             self.currentIndex = indexPath.row;
         }

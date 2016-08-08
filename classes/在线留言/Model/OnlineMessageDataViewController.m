@@ -8,8 +8,7 @@
 
 #import "OnlineMessageDataViewController.h"
 #import "OnlineMessageCollectionViewCell.h"
-#import "OnlineMessageSecondCollectionViewCell.h"
-#import "MyMessageView.h"
+#import "MyMessageSubmitButtonView.h"
 
 @implementation OnlineMessageDataViewController
 
@@ -31,20 +30,21 @@
         _collectionView.backgroundColor = UIColorFromRGB(0xf4f4f4);
         
         [_collectionView registerClass:[OnlineMessageCollectionViewCell class] forCellWithReuseIdentifier:OnlineMessageCollectionViewCellId];
-        [_collectionView registerClass:[OnlineMessageSecondCollectionViewCell class] forCellWithReuseIdentifier:OnlineMessageSecondCollectionViewCellId];
         
     }
     return _collectionView;
 }
 
--(UIView *)myMessageView
+-(MyMessageSubmitButtonView *)myMessageSubmitButtonView
 {
-    if (!_myMessageView)
+    if (!_myMessageSubmitButtonView)
     {
-        _myMessageView = [[MyMessageView alloc]init];
+        _myMessageSubmitButtonView = [[MyMessageSubmitButtonView alloc]init];
     }
-    return _myMessageView;
+    return _myMessageSubmitButtonView;
 }
+
+
 -(NSMutableArray *)onlineMessageModelArr
 {
     if (!_onlineMessageModelArr)
@@ -101,24 +101,5 @@
      }];
     
 }
-#pragma mark - 提交我的留言
 
--(void)postMessageToServiceWithAccessCode:(NSString*)accessCode
-                       withCommentContent:(NSString*)commentContent
-                             withCallback:(Callback )callback
-{
-    [AutomaintainAPI postMessageToServiceWithAccessCode:accessCode
-                                     withCommentContent:commentContent
-                                           withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
-         {
-             callback(YES,nil,result);
-         }
-         else
-         {
-             callback(NO,nil,result);
-         }
-     }];
-}
 @end

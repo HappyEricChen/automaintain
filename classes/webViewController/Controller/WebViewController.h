@@ -13,4 +13,8 @@
  *  跳转的网页url
  */
 @property (nonatomic, strong) NSString* urlStr;
+/**
+ *  跳转的网页title
+ */
+@property (nonatomic, strong) NSString* title;
 @end

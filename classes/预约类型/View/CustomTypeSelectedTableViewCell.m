@@ -70,7 +70,7 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
         lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:lineView];
         
-        typeNameLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.037).topSpaceToView(self,10).widthIs(ScreenWidth*0.6).autoHeightRatio(0);
+        typeNameLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.037).topSpaceToView(self,ScreenHeight*0.03).widthIs(ScreenWidth*0.6).autoHeightRatio(0);
         contentLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.037).topSpaceToView(typeNameLabel,10).widthIs(ScreenWidth*0.8).autoHeightRatio(0);
         selectedButton.sd_layout.widthIs(53).heightIs(24).bottomSpaceToView(self,ScreenHeight*0.024).rightSpaceToView(self,ScreenWidth*0.024);
          priceLabel.sd_layout.centerXEqualToView(selectedButton).rightSpaceToView(self,ScreenWidth*0.048).bottomSpaceToView(selectedButton,6).widthIs(ScreenWidth*0.19).autoHeightRatio(0);
@@ -89,7 +89,18 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
         OrderTypeModel* orderTypeModel = (OrderTypeModel*)object;
         
         self.typeNameLabel.text = orderTypeModel.SubjectName;
-        self.contentLabel.text = [NSString stringWithFormat:@"%@;施工约%@分钟",orderTypeModel.Note,orderTypeModel.NeedTime];
+        /**
+         *  判断维修内容是否为空，如果空去掉分号
+         */
+        if (!orderTypeModel.Note || [orderTypeModel.Note isEqualToString:@""])
+        {
+            self.contentLabel.text = [NSString stringWithFormat:@"施工约%@分钟",orderTypeModel.NeedTime];
+        }
+        else
+        {
+            self.contentLabel.text = [NSString stringWithFormat:@"%@;施工约%@分钟",orderTypeModel.Note,orderTypeModel.NeedTime];
+        }
+        
         self.priceLabel.text = [NSString stringWithFormat:@"￥%@",orderTypeModel.Price];
         
         if (orderTypeModel.IsSelected)

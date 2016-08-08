@@ -46,8 +46,13 @@ NSString * const firstCellId = @"firstCellId";
     {
         NSArray* adsModelArr = (NSArray*)object;
         NSMutableArray* imageArr = [NSMutableArray array];
-        for (AdsCarouselModel* adsCarousel in adsModelArr)
+        /**
+         *  轮播图最多6张
+         */
+        for (NSInteger i=0; i<MIN(6, adsModelArr.count); i++)
         {
+            AdsCarouselModel* adsCarousel  = adsModelArr[i];
+            
             NSString* completeUrl = adsCarousel.PicUrl;
             [imageArr addObject:completeUrl];
         }

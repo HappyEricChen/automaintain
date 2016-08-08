@@ -107,10 +107,15 @@
         NSString *s = [nsTextContent substringToIndex:MAX_LIMIT_NUMS];
         
         [textView setText:s];
+        
+        self.wordsCountLabel.text = [NSString stringWithFormat:@"%d/%d",100,MAX_LIMIT_NUMS];
+    }
+    else
+    {
+        //不让显示负数
+        self.wordsCountLabel.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_LIMIT_NUMS];
     }
     
-    //不让显示负数
-    self.wordsCountLabel.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_LIMIT_NUMS];
 }
 /**
  *  中文联想字不会触发

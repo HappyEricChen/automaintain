@@ -106,23 +106,23 @@
 {
     if ([username isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
         return;
     }
     else if ([password isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
         return;
     }
 #warning 上线之前打开
 //    else if (![AppManagerSingleton isMobile:username])
 //    {
-//        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+//        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
 //        return;
 //    }
 //    else if (password.length<6)
 //    {
-//        [SVProgressHUD showErrorWithStatus:@"密码不能少于6位"];
+//        [SVProgressHUD showInfoWithStatus:@"密码不能少于6位"];
 //        return;
 //    }
     
@@ -143,7 +143,7 @@
          else
          {
              //登录请求失败
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
              
          }
          

@@ -9,10 +9,10 @@
 #import "OnlineMessageViewController.h"
 #import "OnlineMessageDataViewController.h"
 #import "OnlineMessageCollectionViewCell.h"
-#import "OnlineMessageSecondCollectionViewCell.h"
-#import "MyMessageView.h"
+#import "MyMessageSubmitButtonView.h"
 #import "OnlineMessageModel.h"
-@interface OnlineMessageViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyMessageViewDelegate>
+#import "MyMessageViewController.h"
+@interface OnlineMessageViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyMessageSubmitButtonViewDelegate>
 
 @property (nonatomic, strong) OnlineMessageDataViewController* onlineMessageDataViewController;
 
@@ -28,20 +28,31 @@
     [super viewDidLoad];
     self.onlineMessageDataViewController = [[OnlineMessageDataViewController alloc]init];
     
-//    self.contentArr = @[@{@"question":@"这边最晚营业到什么时候?",@"answer":@""},
-//                        @{@"question":@"只有办卡才能到这边预约洗车吗?",@"answer":@"回复：您好，目前我们APP主要是为我们的会员卡用户提供预约服务的。如果您这边有需要可以去小区物业处咨询。"}];
     [self configureNavigationView];
+    [self configureMyMessageButtonView];
     [self configureCollectionView];
-    [self configureMyMessageView];
-    
-    [self loadMJRefreshMethod];//配置刷新
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [self loadMJRefreshMethod];//配置刷新
 }
 
 -(void)configureNavigationView
 {
     [self.view addSubview:self.onlineMessageDataViewController.customNavigationView];
     self.onlineMessageDataViewController.customNavigationView.delegate = self;
+    self.onlineMessageDataViewController.customNavigationView.translatesAutoresizingMaskIntoConstraints = NO;
     self.onlineMessageDataViewController.customNavigationView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topEqualToView(self.view).heightIs(ScreenHeight*0.1);
+}
+
+-(void)configureMyMessageButtonView
+{
+    [self.view addSubview:self.onlineMessageDataViewController.myMessageSubmitButtonView];
+    self.onlineMessageDataViewController.myMessageSubmitButtonView.delegate = self;
+    self.onlineMessageDataViewController.myMessageSubmitButtonView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.onlineMessageDataViewController.myMessageSubmitButtonView.sd_layout.leftSpaceToView(self.view,ScreenWidth*0.04).rightSpaceToView(self.view,ScreenWidth*0.04).bottomSpaceToView(self.view,ScreenHeight*0.015).heightIs(ScreenHeight*0.065);
 }
 
 -(void)configureCollectionView
@@ -50,16 +61,9 @@
     
     self.onlineMessageDataViewController.collectionView.delegate = self;
     self.onlineMessageDataViewController.collectionView.dataSource = self;
-    self.onlineMessageDataViewController.collectionView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.onlineMessageDataViewController.customNavigationView,0).bottomEqualToView(self.view);
+    self.onlineMessageDataViewController.collectionView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.onlineMessageDataViewController.customNavigationView,0).bottomSpaceToView(self.onlineMessageDataViewController.myMessageSubmitButtonView,0);
 }
 
--(void)configureMyMessageView
-{
-    [self.view addSubview:self.onlineMessageDataViewController.myMessageView];
-    self.onlineMessageDataViewController.myMessageView.hidden = YES;
-    self.onlineMessageDataViewController.myMessageView.delegate = self;
-    self.onlineMessageDataViewController.myMessageView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.onlineMessageDataViewController.customNavigationView,0).bottomEqualToView(self.view);
-}
 
 -(void)loadMJRefreshMethod
 {
@@ -97,7 +101,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
          
      }];
@@ -112,16 +116,14 @@
 #pragma mark - UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 1;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return self.onlineMessageDataViewController.onlineMessageModelArr.count>0?self.onlineMessageDataViewController.onlineMessageModelArr.count:0;
-    }
-    return 1;
+    
+    return self.onlineMessageDataViewController.onlineMessageModelArr.count>0?self.onlineMessageDataViewController.onlineMessageModelArr.count:0;
+    
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -133,11 +135,11 @@
         [firstCell layoutWithObject:self.onlineMessageDataViewController.onlineMessageModelArr[indexPath.row]];
         cell = firstCell;
     }
-    else if (indexPath.section == 1)
-    {
-        OnlineMessageSecondCollectionViewCell * secondCell = [OnlineMessageSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:OnlineMessageSecondCollectionViewCellId forIndexPath:indexPath];
-        cell =secondCell;
-    }
+//    else if (indexPath.section == 1)
+//    {
+//        OnlineMessageSecondCollectionViewCell * secondCell = [OnlineMessageSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:OnlineMessageSecondCollectionViewCellId forIndexPath:indexPath];
+//        cell =secondCell;
+//    }
 
     
     return cell;
@@ -176,10 +178,6 @@
         }
         
     }
-    else if (indexPath.section == 1)
-    {
-        return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.05);
-    }
 
     return CGSizeZero;
 }
@@ -190,60 +188,11 @@
     return UIEdgeInsetsMake(ScreenHeight*0.022,0,0,0);
 }
 
-#pragma mark - UICollectionViewDelegate
+#pragma mark - MyMessageSubmitButtonViewDelegate
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+-(void)didClickMyMessageSubmitButtonView:(MyMessageSubmitButtonView *)myMessageSubmitButtonView
 {
-    if (indexPath.section == 1)
-    {
-        self.onlineMessageDataViewController.collectionView.hidden = YES;
-        self.onlineMessageDataViewController.myMessageView.hidden = NO;
-    }
-    
-}
-
-#pragma mark - MyMessageViewDelegate
--(void)didSelectedSubmitButtonWithMyMessageView:(MyMessageView *)myMessageView withMessageContent:(NSString *)messageContent
-{
-    /**
-     *  去掉首尾空格/回车方法
-     */
-    messageContent = [messageContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    if (!messageContent || [messageContent isEqualToString:@""])
-    {
-        [SVProgressHUD showErrorWithStatus:@"留言不能为空"];
-    }
-    else
-    {
-        [SVProgressHUD show];
-        [self.onlineMessageDataViewController postMessageToServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                              withCommentContent:messageContent
-                                                                    withCallback:^(BOOL success, NSError *error, id result)
-         {
-             [self.view endEditing:YES];
-             if (success)
-             {
-                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                 self.onlineMessageDataViewController.collectionView.hidden = NO;
-                 self.onlineMessageDataViewController.myMessageView.hidden = YES;
-                 /**
-                  *  去掉textview内容、placehold显示
-                  */
-                 self.onlineMessageDataViewController.myMessageView.textView.text = @"";
-                 self.onlineMessageDataViewController.myMessageView.placeholderLabel.hidden = NO;
-                  self.onlineMessageDataViewController.myMessageView.wordsCountLabel.text =@"0/100";
-                 
-                 [self.onlineMessageDataViewController.collectionView.mj_header beginRefreshing];
-                 
-             }
-             else
-             {
-                 [SVProgressHUD showErrorWithStatus:result];
-             }
-         }];
-    }
-    
-    
+    MyMessageViewController* myMessageViewController = [[MyMessageViewController alloc]init];
+    [self.navigationController pushViewController:myMessageViewController animated:YES];
 }
 @end

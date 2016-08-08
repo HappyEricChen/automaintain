@@ -62,22 +62,22 @@
 {
     if ([username isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
         return;
     }
     else if ([verificationCode isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
         return;
     }
     else if ([password isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
         return;
     }
     else if (password.length<6 || password.length>12)
     {
-        [SVProgressHUD showErrorWithStatus:@"密码控制在6-12位"];
+        [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
         return;
     }
     
@@ -88,7 +88,7 @@
         /**
          *  显示错误
          */
-        [SVProgressHUD showErrorWithStatus:@"两次密码不相同"];
+        [SVProgressHUD showInfoWithStatus:@"两次密码不相同"];
     }
     else
     {
@@ -109,7 +109,7 @@
                      else
                      {
                          //注册失败
-                         [SVProgressHUD showErrorWithStatus:result];
+                         [SVProgressHUD showInfoWithStatus:result];
                      }
                  }];
                 
@@ -129,7 +129,7 @@
                      else
                      {
                          //找回密码请求失败
-                         [SVProgressHUD showErrorWithStatus:result];
+                         [SVProgressHUD showInfoWithStatus:result];
                      }
                      
                  }];
@@ -141,7 +141,7 @@
             /**
              *  显示验证码错误
              */
-            [SVProgressHUD showErrorWithStatus:@"验证码输入错误"];
+            [SVProgressHUD showInfoWithStatus:@"验证码输入错误"];
         }
     }
 }
@@ -166,7 +166,7 @@
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
         

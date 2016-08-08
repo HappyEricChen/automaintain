@@ -196,7 +196,7 @@
 {
     if (!self.commentContent || [self.commentContent isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"评论不能为空"];
+        [SVProgressHUD showInfoWithStatus:@"评论不能为空"];
     }
     else
     {
@@ -266,7 +266,7 @@
 //                 }
 //                 else
 //                 {
-//                     [SVProgressHUD showErrorWithStatus:result];
+//                     [SVProgressHUD showInfoWithStatus:result];
 //                 }
 //             }];
 //            
@@ -284,7 +284,7 @@
     
     if (!self.commentContent || [self.commentContent isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"评论不能为空"];
+        [SVProgressHUD showInfoWithStatus:@"评论不能为空"];
     }
     else
     {
@@ -297,7 +297,6 @@
                                                            withPhotoGuidList:self.photoGuidList
                                                                 withCallback:^(BOOL success, NSError *error, id result)
          {
-             [SVProgressHUD dismiss];
              if (success)
              {
                  [SVProgressHUD showSuccessWithStatus:@"评论成功"];
@@ -305,7 +304,7 @@
              }
              else
              {
-                 [SVProgressHUD showErrorWithStatus:result];
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
     }

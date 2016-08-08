@@ -73,7 +73,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:(NSString*)result];
+             [SVProgressHUD showInfoWithStatus:(NSString*)result];
          }
      }];
 }
@@ -238,7 +238,7 @@
          }
          else
          {
-             [SVProgressHUD showErrorWithStatus:result];
+             [SVProgressHUD showInfoWithStatus:result];
          }
      }];
     
@@ -246,6 +246,7 @@
 
 -(void)dealloc
 {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotify_selected_date object:nil];
 }
 @end

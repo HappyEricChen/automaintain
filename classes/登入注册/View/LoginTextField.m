@@ -48,6 +48,7 @@
         if ([type isEqualToString:@"password"])
         {
             textField.secureTextEntry = YES;
+            textField.clearsOnBeginEditing = NO;
             textField.returnKeyType = UIReturnKeyDone;
             imageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).centerYEqualToView(self).widthIs(ScreenWidth*0.053).heightIs(ScreenHeight*0.036);
         }

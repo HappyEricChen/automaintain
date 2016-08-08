@@ -199,7 +199,7 @@
     
     if (!self.feedbackContent || [self.feedbackContent isEqualToString:@""])
     {
-        [SVProgressHUD showErrorWithStatus:@"意见不能为空"];
+        [SVProgressHUD showInfoWithStatus:@"意见不能为空"];
     }
     else
     {
@@ -215,7 +215,7 @@
              }
              else
              {
-                 [SVProgressHUD  showErrorWithStatus:result];
+                 [SVProgressHUD  showInfoWithStatus:result];
              }
          }];
         

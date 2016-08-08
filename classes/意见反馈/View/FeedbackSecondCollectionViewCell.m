@@ -94,14 +94,21 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
     {
         //截取到最大位置的字符(由于超出截部分在should时被处理了所在这里这了提高效率不再判断)
         NSString *s = [nsTextContent substringToIndex:MAX_LIMIT_NUMS];
-        
+    
         [textView setText:s];
+        
+        //长度最大时显示100
+        self.wordsCountLabel.text = [NSString stringWithFormat:@"%d/%d",100,MAX_LIMIT_NUMS];
+    }
+    else
+    {
+        //不让显示负数
+        self.wordsCountLabel.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_LIMIT_NUMS];
     }
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_feedback_Content object:nil userInfo:@{@"textViewContent":nsTextContent}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_feedback_Content object:nil userInfo:@{@"textViewContent":textView.text}];
     
-    //不让显示负数
-    self.wordsCountLabel.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_LIMIT_NUMS];
+
 }
 /**
  *  中文联想字不会触发
