@@ -240,39 +240,7 @@
              
          }
     }];
-    
-//    if (self.myCommentDataViewController.imageArr.count == 0)
-//    {
-//        return;
-//    }
-//    else
-//    {
-//        for (NSInteger i=0; i<self.imageArr.count; i++)
-//        {
-//            [self.myCommentDataViewController postUploadPhotoFileWithPhoto:self.imageArr[i] withCallback:^(BOOL success, NSError *error, id result)
-//             {
-//                 if (success)
-//                 {
-//                     NSString* photoStr = (NSString*)result;
-//                     if ([self.photoGuidList isEqualToString:@""])
-//                     {
-//                         self.photoGuidList = [self.photoGuidList stringByAppendingString:photoStr];
-//                     }
-//                     else
-//                     {
-//                         self.photoGuidList = [NSString stringWithFormat:@"%@|%@",self.photoGuidList,photoStr];
-//                     }
-//                     
-//                 }
-//                 else
-//                 {
-//                     [SVProgressHUD showInfoWithStatus:result];
-//                 }
-//             }];
-//            
-//        }
-//    }
-//    
+       
 }
 #pragma mark - 调用上传评论接口
 -(void)updateCommentWithGuid

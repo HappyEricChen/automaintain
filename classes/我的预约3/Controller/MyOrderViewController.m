@@ -36,7 +36,14 @@
     [self loadMJRefreshMethod];//配置刷新
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    /**
+     *  开始刷新
+     */
+    [self.myOrderDataViewController.customTableView.mj_header beginRefreshing];
+}
 
 -(void)configureNavigationView
 {
@@ -62,7 +69,6 @@
     
     MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
     self.myOrderDataViewController.customTableView.mj_header = header;
-    [self.myOrderDataViewController.customTableView.mj_header beginRefreshing];//开始刷新
     self.myOrderDataViewController.customTableView.mj_header.automaticallyChangeAlpha = YES;
     
     MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadDataFromService:)];
