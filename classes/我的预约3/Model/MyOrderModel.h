@@ -19,7 +19,7 @@
  */
 @property (nonatomic, strong) NSString* AppointmentName;
 /**
- *  审核状态/已审核，已取消，已完成，服务中
+ *  审核状态/已审核，已取消，已完成，服务中,已拒绝
  */
 @property (nonatomic, strong) NSString* AppointmentStatus;
 /**

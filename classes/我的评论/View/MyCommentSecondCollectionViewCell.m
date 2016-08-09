@@ -63,7 +63,7 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
         
         
         textView.sd_layout.leftSpaceToView(self,ScreenWidth*0.029).rightSpaceToView(self,ScreenWidth*0.029).topEqualToView(self).heightIs(ScreenHeight*0.121);
-        placeHolderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.029).topSpaceToView(textView,ScreenWidth*0.029).rightEqualToView(textView).autoHeightRatio(0);
+        placeHolderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.01).topSpaceToView(textView,ScreenWidth*0.02).rightEqualToView(textView).autoHeightRatio(0);
         lengthLimitationLabel.sd_layout.rightEqualToView(textView).topSpaceToView(textView,ScreenHeight*0.018).leftEqualToView(textView).autoHeightRatio(0);
         
         

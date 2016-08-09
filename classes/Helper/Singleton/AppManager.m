@@ -7,6 +7,7 @@
 //
 
 #import "AppManager.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation AppManager
 
@@ -19,6 +20,23 @@
     });
     return sharedInstance;
 }
+
+/**
+ *   懒加载字典，带着时间戳
+ */
+-(NSMutableDictionary *)parameterDic
+{
+    if (!_parameterDic)
+    {
+        _parameterDic = [NSMutableDictionary dictionary];
+    }
+    NSDate* datenow = [NSDate date];
+    NSString* timeStamp = [NSString stringWithFormat:@"%ld",(long)[datenow timeIntervalSince1970]];
+    [_parameterDic setObject:timeStamp forKey:@"timestamp"];
+    
+    return _parameterDic;
+}
+
 -(NSString *)userName
 {
     return [[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
@@ -157,4 +175,86 @@
     
     return NO;
 }
+
+#pragma mark -MD5加密
+-(NSString*)generateMD5SignWithparameterDic:(NSDictionary*)parameterDic
+{
+    
+    if ([parameterDic isKindOfClass:[NSDictionary class]])
+    {
+        /**
+         *  先在字典里加上指定的秘钥 secretkey = 100
+         */
+        [parameterDic setValue:@"100" forKey:@"secretkey"];
+        
+        NSArray* keysArr = [parameterDic allKeys];
+        if (keysArr && keysArr.count>0)
+        {
+            /**
+             *  key从小到大排序
+             */
+            keysArr = [keysArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2)
+                       {
+                           return [obj1 compare:obj2];
+                       }];
+            /**
+             *  拼接字符串 "name=eric&password=qq123456&secretkey=100",
+             */
+            NSString* resultString = @"";
+            for (NSInteger i=0; i<keysArr.count; i++)
+            {
+                if (i==0)
+                {//i=0时，拼接没有&符号
+                    NSString* value = [parameterDic objectForKey:keysArr[i]];
+                    NSString* tempResultStr = [NSString stringWithFormat:@"%@=%@",keysArr[i],value];
+                    resultString = [resultString stringByAppendingString:tempResultStr];
+                }
+                else
+                {
+                    //i>0时，拼接有&符号
+                    NSString* value = [parameterDic objectForKey:keysArr[i]];
+                    NSString* tempResultStr = [NSString stringWithFormat:@"&%@=%@",keysArr[i],value];
+                    resultString = [resultString stringByAppendingString:tempResultStr];
+                }
+            }
+            
+            /**
+             *  转小写
+             */
+            resultString = [resultString lowercaseString];
+
+            /**
+             *   MD5加密
+             */
+            resultString = [AppManager md5HexDigest:resultString];
+            
+            return resultString;
+        }
+        else
+        {
+            return @"";
+        }
+    }
+    else
+    {
+        return @"";
+    }
+}
+
+/**
+ *  MD5加密
+ */
++ (NSString *)md5HexDigest:(NSString*)input
+{
+    const char* str = [input UTF8String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, strlen(str), result);
+    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH*2];//
+    
+    for(int i = 0; i<CC_MD5_DIGEST_LENGTH; i++) {
+        [ret appendFormat:@"%02x",result[i]];
+    }
+    return ret;
+}
+
 @end

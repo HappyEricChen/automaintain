@@ -67,7 +67,7 @@
         scrollView.contentSize = self.imageView.size;
         scrollView.alwaysBounceHorizontal = YES;//水平方向总能滑动
         scrollView.maximumZoomScale=2;
-        scrollView.minimumZoomScale=0.5;
+        scrollView.minimumZoomScale=1;
         
         self.scrollView=scrollView;
         [self.view addSubview:scrollView];

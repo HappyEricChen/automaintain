@@ -39,6 +39,10 @@
  *  定时器，用来防止按钮多次点击
  */
 @property (nonatomic, strong) NSTimer* timer;
+/**
+ *  提交按钮只能点击一次
+ */
+@property (nonatomic, assign) BOOL LockButton;
 @end
 
 @implementation MyCommentViewController
@@ -66,6 +70,8 @@
     self.starScore = @"5";//初始化星星为5
     
     self.photoGuidList = @"";//初始化图片字符串
+    
+    self.LockButton = YES;//初始化提交按钮，锁的状态
 }
 
 
@@ -181,13 +187,18 @@
     
     if (indexPath.section == 3)
     {
-        /**
-         *  保证短时间内点击按钮，只有最后一次有效
-         */
-        [self.timer invalidate];
-        self.timer = nil;
-        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
-        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        
+        if (self.LockButton)
+        {
+            /**
+             *  保证短时间内点击按钮，只有最后一次有效
+             */
+            [self.timer invalidate];
+            self.timer = nil;
+            self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+            [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+
+        }
         
     }
 }
@@ -201,7 +212,11 @@
     else
     {
         /**
-         *  先上传图片
+         *  先锁住按钮
+         */
+        self.LockButton = NO;
+        /**
+         *  再上传图片
          */
         [self updateCommentPhotos];
     }
@@ -215,12 +230,17 @@
     [SVProgressHUD show];
     [self.myCommentDataViewController runDispatchTestWithCallback:^(BOOL success, NSError *error, id result)
      {
-         [SVProgressHUD dismiss];
+         
          if (success)
          {
+             [SVProgressHUD dismiss];
+             
+             /**
+              *  拼接返回回来的guid字符串
+              */
              for (NSString* guidStr in self.myCommentDataViewController.imageGuidArr)
              {
-                 if ([self.photoGuidList isEqualToString:@""])
+                 if (!self.photoGuidList || [self.photoGuidList isEqualToString:@""])
                  {
                      weakSelf.photoGuidList = [weakSelf.photoGuidList stringByAppendingString:guidStr];
                  }
@@ -237,7 +257,12 @@
          }
          else
          {
-             
+             /**
+              *  解锁
+              */
+             self.LockButton = YES;
+             [self.myCommentDataViewController.imageGuidArr removeAllObjects];//清空guid数组
+             [SVProgressHUD showInfoWithStatus:@"网络不好请重试"];
          }
     }];
        
@@ -253,6 +278,10 @@
     if (!self.commentContent || [self.commentContent isEqualToString:@""])
     {
         [SVProgressHUD showInfoWithStatus:@"评论不能为空"];
+        /**
+         *  解锁
+         */
+        self.LockButton = YES;
     }
     else
     {
@@ -269,10 +298,19 @@
              {
                  [SVProgressHUD showSuccessWithStatus:@"评论成功"];
                  [self.navigationController popViewControllerAnimated:YES];
+                 /**
+                  *  解锁
+                  */
+                 self.LockButton = YES;
              }
              else
              {
                  [SVProgressHUD showInfoWithStatus:result];
+                 [self.myCommentDataViewController.imageGuidArr removeAllObjects];//清空guid数组
+                 /**
+                  *  解锁
+                  */
+                 self.LockButton = YES;
              }
          }];
     }
@@ -300,8 +338,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     
-//    UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.image = image;
     [self.myCommentDataViewController.imageArr addObject:image];
     [self dismissViewControllerAnimated:YES completion:nil];

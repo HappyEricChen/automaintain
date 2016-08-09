@@ -49,7 +49,10 @@
     [self configureHeaderView];
     [self configureCollectionView];
     [self loadMJRefreshMethod];
-    
+    /**
+     *  开始刷新数据
+     */
+    [self.maintenanceDataViewController.collectionView.mj_header beginRefreshing];
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(ReceivedCompletedTime:)
                                                 name:kNotify_myOrder_CompletedTime
@@ -61,10 +64,8 @@
     
     [super viewWillAppear:animated];
     /**
-     *  开始刷新数据
+     *  布局预约类型及预约完整时间
      */
-    [self.maintenanceDataViewController.collectionView.mj_header beginRefreshing];
-    
     [self.maintenanceDataViewController.maintenanceHeaderView layoutWithOrderTypeModel:self.orderTypeModel withCompletedTime:self.completedTime];
     
 }

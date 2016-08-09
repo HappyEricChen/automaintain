@@ -217,6 +217,12 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
             self.selectedButton.hidden = YES;
             self.timeCompleteLabel.hidden = YES;
         }
+        else if ([myOrderModel.AppointmentStatus isEqualToString:@"Refuse"])
+        {
+            self.stateTypeLabel.text = @"已取消";
+            self.selectedButton.hidden = YES;
+            self.timeCompleteLabel.hidden = YES;
+        }
         else
         {
             self.selectedButton.hidden = YES;

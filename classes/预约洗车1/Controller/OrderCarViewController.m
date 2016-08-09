@@ -49,7 +49,14 @@
     [self configureCollectionView];
     
     [self loadMJRefreshMethod];
-    
+    /**
+     *  重新获取时间预约列表
+     */
+    [self loadDataFromService];
+    /**
+     *  开始刷新
+     */
+    [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];
     self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
     AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
@@ -60,15 +67,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    /**
-     *  重新获取时间预约列表
-     */
-    [self loadDataFromService];
-    /**
-     *  开始刷新
-     */
-    [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];
+
 }
 
 -(void)notificationReceived:(NSNotification*)object
@@ -326,7 +325,7 @@
     
     return reusableView;
 }
-#pragma mark -UICollectionViewDelegate
+#pragma mark -UICollectionViewDelegate点击提交预约
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3)
@@ -363,11 +362,22 @@
                                                               withSubjectGuid:SubjectGuidWashCar
                                                                  withCallback:^(BOOL success, NSError *error, id result)
          {
+             /**
+              *  清除计时器
+              */
+             [self.timer invalidate];
+             self.timer = nil;
              if (success)
              {
+                 
                  [SVProgressHUD showSuccessWithStatus:@"提交成功"];
                  MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
                  [self.navigationController pushViewController:myOrderViewController animated:YES];
+                 
+                 /**
+                  *  重新获取时间预约列表
+                  */
+                 [self loadDataFromService];
              }
              else
              {
@@ -379,7 +389,7 @@
     
 }
 
-#pragma mark -WashCarFiveCollectionViewCellDelegate
+#pragma mark -WashCarFiveCollectionViewCellDelegate点击图片放大
 -(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
 {
     ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];

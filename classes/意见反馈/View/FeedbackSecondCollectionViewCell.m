@@ -59,7 +59,7 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         self.wordsCountLabel = wordsCountLabel;
         
         textView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.04).topEqualToView(self).bottomEqualToView(self);
-        placeHolderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.04).topSpaceToView(textView,ScreenHeight*0.024).rightEqualToView(textView).autoHeightRatio(0);
+        placeHolderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.01).topSpaceToView(textView,ScreenHeight*0.01).rightEqualToView(textView).autoHeightRatio(0);
         wordsCountLabel.sd_layout.rightSpaceToView(textView,ScreenWidth*0.04).bottomSpaceToView(textView,ScreenWidth*0.04).leftEqualToView(textView).autoHeightRatio(0);
    
     }

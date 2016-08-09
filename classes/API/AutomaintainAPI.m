@@ -24,6 +24,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #endif
 
 @implementation AutomaintainAPI
+
 #pragma mark - 获取短信验证码
 +(void)SMSVerificationCodeWithPhoneNum:(NSString *)phoneNum
                          withIsExisted:(NSString*)IsExisted
@@ -139,9 +140,14 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)loginWithUsername:(NSString *)username withpassword:(NSString *)password withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerLogin"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    /**
+     *  用带着时间戳的字典初始化新字典
+     */
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"username"]=username;
     dic[@"password"]=password;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)

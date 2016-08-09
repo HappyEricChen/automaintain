@@ -208,13 +208,20 @@
     return @"http://112.64.131.222/NoOne/api/File/UploadPhotoFile";
 }
 
-- (NSURLSessionUploadTask*)uploadTaskWithImage:(UIImage*)image completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionBlock {
+- (NSURLSessionUploadTask*)uploadTaskWithImage:(UIImage*)image
+                                    completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionBlock
+{
     // 构造 NSURLRequest
     NSError* error = NULL;
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[self uploadUrl] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData* imageData = UIImageJPEGRepresentation(image, 1.0);
-        [formData appendPartWithFileData:imageData name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
-    } error:&error];
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
+                                                                                              URLString:[self uploadUrl]
+                                                                                             parameters:nil
+                                                                              constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+                                    {
+                                        NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
+                                        [formData appendPartWithFileData:imageData name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+                                    }
+                                                                                                  error:&error];
     
     // 可在此处配置验证信息
     
@@ -231,42 +238,53 @@
     // 需要上传的数据
     NSArray* images = [self imageArr];
     
-    // 准备保存结果的数组，元素个数与上传的图片个数相同，先用 NSNull 占位
-    NSMutableArray* result = [NSMutableArray array];
-    for (UIImage* image in images) {
-        [result addObject:[NSNull null]];
-    }
     
     dispatch_group_t group = dispatch_group_create();
     
-    for (NSInteger i = 0; i < images.count; i++) {
+    for (NSInteger i = 0; i < images.count; i++)
+    {
         
         dispatch_group_enter(group);
         
-        NSURLSessionUploadTask* uploadTask = [self uploadTaskWithImage:images[i] completion:^(NSURLResponse *response, NSDictionary* responseObject, NSError *error) {
-            if (error) {
-                NSLog(@"第 %d 张图片上传失败: %@", (int)i + 1, error);
-                dispatch_group_leave(group);
-            } else {
-                NSLog(@"第 %d 张图片上传成功: %@", (int)i + 1, responseObject);
-                
-                [self.imageGuidArr addObject:[responseObject objectForKey:@"ReturnObject"]];
-                
-                @synchronized (result) { // NSMutableArray 是线程不安全的，所以加个同步锁
-                    result[i] = responseObject;
-                }
-                dispatch_group_leave(group);
-            }
-        }];
+        NSURLSessionUploadTask* uploadTask = [self uploadTaskWithImage:images[i] completion:^(NSURLResponse *response, NSDictionary* responseObject, NSError *error)
+                                              {
+                                                  if (error)
+                                                  {
+                                                      NSLog(@"第 %d 张图片上传失败: %@", (int)i + 1, error);
+                                                      dispatch_group_leave(group);
+                                                  }
+                                                  else
+                                                  {
+                                                      NSDictionary* tempDic = (NSDictionary*)responseObject;
+                                                      BOOL IsSuccessed = [[tempDic objectForKey:@"IsSuccessed"]boolValue];
+                                                      if (IsSuccessed)
+                                                      {
+                                                          NSLog(@"第 %d 张图片上传成功: %@", (int)i + 1, responseObject);
+                                                          
+                                                          @synchronized (self.imageGuidArr)
+                                                          { // NSMutableArray 是线程不安全的，所以加个同步锁
+                                                              NSString* imageGuid = [responseObject objectForKey:@"ReturnObject"];
+                                                              /**
+                                                               *  将guid添加到数组
+                                                               */
+                                                              [self.imageGuidArr addObject:imageGuid];
+                                                          }
+                                                          dispatch_group_leave(group);
+                                                      }
+                                                      else
+                                                      {
+                                                          NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
+                                                          callback(NO,nil,ResultMessage);
+                                                      }
+                                                      
+                                                  }
+                                              }];
         [uploadTask resume];
     }
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         NSLog(@"上传完成!");
-        callback(YES,nil,nil);
-        for (id response in result) {
-            NSLog(@"%@", response);
-        }
+        callback(YES,nil,self.imageGuidArr);
     });
 }
 @end

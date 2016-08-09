@@ -60,7 +60,7 @@
                        withCallback:(Callback )callback;
 
 /**
- *   图片数组
+ *   将要上传的图片数组
  */
 @property (nonatomic, strong) NSMutableArray* imageArr;
 
@@ -78,7 +78,7 @@
 #pragma mark -上传图片测试
 - (void)runDispatchTestWithCallback:(Callback )callback;;
 /**
- *  图片上传成功后，返回的guid数组
+ *  图片上传成功后，返回的guid数组 
  */
 @property (nonatomic, strong) NSMutableArray* imageGuidArr;
 @end
