@@ -299,7 +299,7 @@
     }
     else if (!self.completedTime || [self.completedTime isEqualToString:@""])
     {
-        [SVProgressHUD showInfoWithStatus:@"请选择预约的时间"];
+        [SVProgressHUD showInfoWithStatus:@"请选择预约时间"];
     }
     else
     {

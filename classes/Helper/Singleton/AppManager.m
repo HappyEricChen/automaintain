@@ -21,6 +21,19 @@
     return sharedInstance;
 }
 
+-(UIButton *)countDownButton
+{
+    if (!_countDownButton)
+    {
+        _countDownButton = [[UIButton alloc]init];
+        [_countDownButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [_countDownButton setTitleColor:UIColorFromRGB(0xbf2e0d) forState:UIControlStateNormal];
+        _countDownButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
+    return _countDownButton;
+}
+
+
 /**
  *   懒加载字典，带着时间戳
  */
@@ -177,15 +190,14 @@
 }
 
 #pragma mark -MD5加密
--(NSString*)generateMD5SignWithparameterDic:(NSDictionary*)parameterDic
+-(NSString*)generateMD5SignWithparameterDic:(NSMutableDictionary*)parameterDic
 {
-    
     if ([parameterDic isKindOfClass:[NSDictionary class]])
     {
         /**
-         *  先在字典里加上指定的秘钥 secretkey = 100
+         *  先在字典里加上指定的秘钥 secretkey = 1234567890
          */
-        [parameterDic setValue:@"100" forKey:@"secretkey"];
+        [parameterDic setValue:@"1234567890" forKey:@"secretkey"];
         
         NSArray* keysArr = [parameterDic allKeys];
         if (keysArr && keysArr.count>0)
@@ -195,7 +207,7 @@
              */
             keysArr = [keysArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2)
                        {
-                           return [obj1 compare:obj2];
+                           return [obj1 compare:obj2 options:NSCaseInsensitiveSearch];
                        }];
             /**
              *  拼接字符串 "name=eric&password=qq123456&secretkey=100",
@@ -227,6 +239,10 @@
              *   MD5加密
              */
             resultString = [AppManager md5HexDigest:resultString];
+            /**
+             *  将单例的字典里面的secretkey = 1234567890;去掉
+             */
+            [parameterDic removeObjectForKey:@"secretkey"];
             
             return resultString;
         }

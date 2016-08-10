@@ -193,7 +193,7 @@
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UICollectionViewDelegate 点击底部广告调用
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3)
@@ -202,6 +202,7 @@
         
         WebViewController* webViewController = [[WebViewController alloc]init];
         webViewController.urlStr = bottomAdsModel.Url;
+        webViewController.title = bottomAdsModel.Title;
         [self.navigationController pushViewController:webViewController animated:YES];
     }
 }

@@ -18,7 +18,7 @@
 #import "UserCommentModel.h"
 #import "MyOrderViewController.h"
 
-@interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate>
+@interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate,WashCarFourCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
 /**
  *  准备提交预约的起始时间,格式08:15:00
@@ -49,26 +49,21 @@
     [self configureCollectionView];
     
     [self loadMJRefreshMethod];
+    self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
+    AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
     /**
-     *  重新获取时间预约列表
+     *  获取时间预约列表
      */
     [self loadDataFromService];
     /**
      *  开始刷新
      */
     [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];
-    self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
-    AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
     
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-}
 
 -(void)notificationReceived:(NSNotification*)object
 {
@@ -192,6 +187,8 @@
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
+    [SVProgressHUD dismiss];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -325,19 +322,26 @@
     
     return reusableView;
 }
-#pragma mark -UICollectionViewDelegate点击提交预约
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+
+#pragma mark -WashCarFiveCollectionViewCellDelegate点击图片放大
+-(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
 {
-    if (indexPath.section == 3)
-    {
-        /**
-         *  保证短时间内点击按钮，只有最后一次有效
-         */
-        [self.timer invalidate];
-        self.timer = nil;
-        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
-        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-    }
+    ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
+    imageAmplificationViewController.image = image;
+    [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
+}
+
+#pragma mark - 点击提交预约按钮调用WashCarFourCollectionViewCellDelegate
+-(void)didClickSubmitButtonWithWashCarFourCollectionViewCell:(WashCarFourCollectionViewCell *)washCarFourCollectionViewCell
+{
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 -(void)updateTimer
@@ -388,16 +392,6 @@
     }
     
 }
-
-#pragma mark -WashCarFiveCollectionViewCellDelegate点击图片放大
--(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
-{
-    ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
-    imageAmplificationViewController.image = image;
-    [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
-}
-
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_myOrder_StartTime object:nil];

@@ -55,12 +55,12 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         wordsCountLabel.text = @"0/100";
         wordsCountLabel.textAlignment = NSTextAlignmentRight;
         wordsCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [textView addSubview:wordsCountLabel];
+        [self addSubview:wordsCountLabel];
         self.wordsCountLabel = wordsCountLabel;
         
-        textView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.04).topEqualToView(self).bottomEqualToView(self);
+        textView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.04).topEqualToView(self).bottomSpaceToView(self,ScreenHeight*0.04);
         placeHolderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.01).topSpaceToView(textView,ScreenHeight*0.01).rightEqualToView(textView).autoHeightRatio(0);
-        wordsCountLabel.sd_layout.rightSpaceToView(textView,ScreenWidth*0.04).bottomSpaceToView(textView,ScreenWidth*0.04).leftEqualToView(textView).autoHeightRatio(0);
+        wordsCountLabel.sd_layout.rightSpaceToView(self,ScreenWidth*0.04).topSpaceToView(textView,ScreenWidth*0.02).leftEqualToView(self).autoHeightRatio(0);
    
     }
     return self;

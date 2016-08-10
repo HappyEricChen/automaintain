@@ -119,6 +119,7 @@
 		078019E61D581B8B008D46FB /* MyMessageSubmitButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019E51D581B8B008D46FB /* MyMessageSubmitButtonView.m */; };
 		078058D31D5048340098185E /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D21D5048340098185E /* UUID.m */; };
 		078058D61D5048E40098185E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D51D5048E40098185E /* KeyChainStore.m */; };
+		078DF1291D5B03050031274B /* UIButton+countDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 078DF1281D5B03050031274B /* UIButton+countDown.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
@@ -369,6 +370,8 @@
 		078058D21D5048340098185E /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		078058D41D5048E40098185E /* KeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
 		078058D51D5048E40098185E /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
+		078DF1271D5B03050031274B /* UIButton+countDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+countDown.h"; sourceTree = "<group>"; };
+		078DF1281D5B03050031274B /* UIButton+countDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+countDown.m"; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
 		07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateSetting.h"; sourceTree = "<group>"; };
@@ -906,18 +909,13 @@
 		072F809D1D3490A5002CECC4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				078DF1261D5B02380031274B /* category */,
 				0702D6941D3CA9BF00447073 /* Notification */,
 				07576FD81D3734DD000D5E20 /* Singleton */,
 				078058D01D50481F0098185E /* KeyChain */,
 				072F809E1D3490A5002CECC4 /* Block.h */,
 				072F809F1D3490A5002CECC4 /* Header.h */,
-				072F80A01D3490A5002CECC4 /* NSObject+Helper.h */,
-				072F80A11D3490A5002CECC4 /* NSObject+Helper.m */,
 				072F80A21D3490A5002CECC4 /* PrefixHeader.pch */,
-				077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */,
-				077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */,
-				07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */,
-				07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1214,6 +1212,21 @@
 			path = KeyChain;
 			sourceTree = "<group>";
 		};
+		078DF1261D5B02380031274B /* category */ = {
+			isa = PBXGroup;
+			children = (
+				072F80A01D3490A5002CECC4 /* NSObject+Helper.h */,
+				072F80A11D3490A5002CECC4 /* NSObject+Helper.m */,
+				077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */,
+				077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */,
+				07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */,
+				07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */,
+				078DF1271D5B03050031274B /* UIButton+countDown.h */,
+				078DF1281D5B03050031274B /* UIButton+countDown.m */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1427,6 +1440,7 @@
 				074945D11D35E1E400A46AE6 /* LoginModel.m in Sources */,
 				07576FE31D376919000D5E20 /* WashCarCollectionView.m in Sources */,
 				072F80611D348F66002CECC4 /* FeedbackThirdCollectionViewCell.m in Sources */,
+				078DF1291D5B03050031274B /* UIButton+countDown.m in Sources */,
 				074C9F281D3DBCD600A74509 /* OrderTypeModel.m in Sources */,
 				072F807B1D348F66002CECC4 /* ModifyPasswordViewController.m in Sources */,
 				074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */,

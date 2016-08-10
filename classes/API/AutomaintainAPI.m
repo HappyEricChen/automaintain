@@ -18,7 +18,12 @@
 #import "OnlineMessageModel.h"
 
 #ifdef DEBUG
-static NSString* urlPath = @"http://112.64.131.222/NoOne";
+//static NSString* urlPath = @"http://112.64.131.222/NoOne";
+/**
+ *  内部测试地址
+ */
+static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
+
 #else
 
 #endif
@@ -31,9 +36,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                           withCallback:(Callback)callback
 {
     NSString* urlStr =[urlPath stringByAppendingString:@"/api/Sms/SendAndGetPhoneValidateCode"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"phoneNo"]=phoneNum;
     dic[@"IsExisted"]=IsExisted;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -68,9 +75,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)signupWithUsername:(NSString *)username withPassword:(NSString *)password withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerRegister"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"username"]=username;
     dic[@"password"]=password;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -104,9 +113,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)changePasswordWithUsername:(NSString *)username withNewPassword:(NSString *)newPassword withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/FindCustomerPassword"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"username"]=username;
     dic[@"password"]=newPassword;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -180,8 +191,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)logoutWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerLogout"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -213,8 +226,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)postListofAdsCarouselWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetCarousel"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
+//    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+//    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -246,8 +261,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)postListofConvenienceServiceWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetConvenienceService"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -279,8 +296,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)postListofBottomAdsWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetAds"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -317,10 +336,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                                    withCallback:(Callback )callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCarPlaceAppointmentList"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"subjectGuid"]=subjectGuid;
     dic[@"date"]=currentDate;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -359,10 +380,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode withAppointmentStartTime:(NSString *)appointmentStartTime withSubjectGuid:(NSString *)subjectGuid withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/AppointmentService"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"subjectGuid"]=subjectGuid;
     dic[@"appointmentStartTime"]=appointmentStartTime;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -399,10 +422,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                         withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCommentForAppointment"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"pageIndex"] = pageIndex;
     dic[@"pageSize"] = @"10";
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -442,8 +467,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)postOrderTypeListWithAccessCode:(NSString *)accessCode withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetMaintainSubject"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -481,10 +508,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                         withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/GetCustomerAppointmentList"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"pageIndex"]=pageIndex;
     dic[@"pageSize"]=@"10";
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -529,9 +558,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                         withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/CancelAppointment"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"appointmentGuid"]=appointmentGuid;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -568,10 +599,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                      withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/Feedback"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"type"]=type;
     dic[@"commentContent"]=commentContent;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -606,10 +639,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                               withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/GetOnlineComment"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"pageIndex"]=pageIndex;
     dic[@"pageSize"]=@"10";
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -652,9 +687,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                              withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/OnlineComment"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"commentContent"]=commentContent;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -694,13 +731,15 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                              withCallback:(Callback )callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/CommentForAppointment"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"Stars"]=stars;
     dic[@"ContentText"]=ContentText;
     dic[@"MaintainSubjectGuid"]=maintainSubjectGuid;
     dic[@"AppointmentGuid"]=appointmentGuid;
     dic[@"photoGuidList"]=photoGuidList;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -733,7 +772,6 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #pragma mark - 上传评论照片****和其他的请求方式不同
 +(void)postUploadPhotoFileWithBinaryPhoto:(UIImage *)binaryPhoto withCallback:(Callback)callback
 {
-//    NSString* urlStr = @"http://192.168.2.137/ErpWebApi/api/File/UploadPhotoFile";
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/File/UploadPhotoFile"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionary];
     dic[@"accessCode"] = AppManagerSingleton.accessCode;
@@ -782,10 +820,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                            withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/SetCustomerPassword"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"] = accessCode;
     dic[@"OldPassword"] = OldPassword;
     dic[@"NewPassword"] = NewPassword;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -819,9 +859,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 +(void)postUpdateCustomerAvatarWithAccessCode:(NSString *)accessCode withPhotoGuid:(NSString *)photoGuid withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/UpdateCustomerAvatar"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"] = accessCode;
     dic[@"photoGuid"] = photoGuid;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)

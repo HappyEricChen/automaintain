@@ -8,6 +8,13 @@
 
 #import "BaseCollectionViewCell.h"
 
+@class WashCarFourCollectionViewCell;
+@protocol WashCarFourCollectionViewCellDelegate <NSObject>
+
+@optional
+-(void)didClickSubmitButtonWithWashCarFourCollectionViewCell:(WashCarFourCollectionViewCell*)washCarFourCollectionViewCell;
+
+@end
 @interface WashCarFourCollectionViewCell : BaseCollectionViewCell
 
 /**
@@ -19,5 +26,5 @@ extern NSString* const WashCarFourCollectionViewCellId;
  */
 +(WashCarFourCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
 
-
+@property (nonatomic, weak) id <WashCarFourCollectionViewCellDelegate> delegate;
 @end

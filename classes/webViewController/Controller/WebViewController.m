@@ -50,12 +50,24 @@
 #pragma mark - webView代理方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    /**
+     *  防止方法多次调用，网页内有异步请求或者重定向时会多次调用这个方法
+     */
+    if (webView.isLoading)
+    {
+        return;
+    }
     [SVProgressHUD dismiss];
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    
-    [SVProgressHUD showInfoWithStatus:[error localizedDescription]];
+    /**
+     *  在uiwebview里，如果load一个url还没结束就立即load另一个url，那么就会callback didFailLoadWithError method，error code is -999。solution is 在didFailLoadWithError 里添加下列code
+     */
+    if ([error code] != NSURLErrorCancelled)
+    {
+         [SVProgressHUD showInfoWithStatus:@"网络请求失败"];
+    }
 }
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView

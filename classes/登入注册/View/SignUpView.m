@@ -15,6 +15,10 @@
 @property (nonatomic, weak) UITextField* textField3;//密码验证
 
 @property (nonatomic, weak) UIButton* verificationButton;//发送验证按钮
+/**
+ *  注册账号/找回密码，两种类型中的一种
+ */
+@property (nonatomic, weak) NSString* type;
 
 /**
  *  定时器，用来防止按钮多次点击
@@ -29,6 +33,8 @@
     self = [super init];
     if (self)
     {
+        
+        self.type = type;
         /**
          账号
          */
@@ -83,12 +89,10 @@
         textField1.delegate = self;
         self.textField1 = textField1;
         
-        UIButton* verificationButton = [[UIButton alloc]init];
-        [verificationButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [verificationButton setTitleColor:UIColorFromRGB(0xbf2e0d) forState:UIControlStateNormal];
+        UIButton* verificationButton = AppManagerSingleton.countDownButton;
         verificationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        verificationButton.titleLabel.font = [UIFont systemFontOfSize:12];
         verificationButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [verificationButton addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
         [baseView1 addSubview:verificationButton];
         self.verificationButton = verificationButton;
         
@@ -164,7 +168,6 @@
             textField2.placeholder = @"请设置密码";
             textField3.placeholder = @"请确认密码";
             [signupButton addTarget:self action:@selector(signupAction) forControlEvents:UIControlEventTouchUpInside];
-            [verificationButton addTarget:self action:@selector(signupClickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
         }
         else
         {
@@ -172,7 +175,7 @@
             textField2.placeholder = @"设置新密码";
             textField3.placeholder = @"确认新密码";
             [signupButton addTarget:self action:@selector(findPasswordAction) forControlEvents:UIControlEventTouchUpInside];
-            [verificationButton addTarget:self action:@selector(changePasswordClickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
+
         }
         
         
@@ -190,7 +193,7 @@
         textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.50);
         
         lineView.sd_layout.leftSpaceToView(textField1,0).topSpaceToView(baseView1,5).bottomSpaceToView(baseView1,5).widthIs(1.5);
-        verificationButton.sd_layout.leftSpaceToView(lineView,0).topEqualToView(baseView1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
+        verificationButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
         /**
          *  密码
          */
@@ -258,55 +261,54 @@
     
 }
 #pragma mark - 点击获取验证码按钮
--(void)signupClickVerificationButton
+-(void)clickVerificationButton
 {
-    [self clickVerificationButtonwithIsExisted:@"false"];
+    if ([self.type isEqualToString:@"立即注册"])
+    {
+        /**
+         *  false为注册，accessCode不存在才可以注册
+         */
+        [self clickVerificationButtonwithIsExisted:@"false"];
+    }
+    else 
+    {
+        /**
+         *  ture为找回密码，accessCode存在才可以找回密码
+         */
+        [self clickVerificationButtonwithIsExisted:@"true"];
+    }
+    
 }
--(void)changePasswordClickVerificationButton
-{
-    [self clickVerificationButtonwithIsExisted:@"true"];
-}
-
 -(void)clickVerificationButtonwithIsExisted:(NSString*)IsExisted
 {
     if ([self.delegate respondsToSelector:@selector(didClickVerificationButtonWithSignUpView:withUsername:withIsExisted:withCallback:)])
     {
-        [self.delegate didClickVerificationButtonWithSignUpView:self withUsername:self.textField.text withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
+        [self.delegate didClickVerificationButtonWithSignUpView:self
+                                                   withUsername:self.textField.text
+                                                  withIsExisted:IsExisted
+                                                   withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)
              {
-                 
-                 __block int timeout=59; //倒计时时间
-                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                 dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-                 dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-                 dispatch_source_set_event_handler(_timer, ^{
-                     if(timeout<=0){ //倒计时结束，关闭
-                         dispatch_source_cancel(_timer);
-                         dispatch_async(dispatch_get_main_queue(), ^{
-                             //设置界面的按钮显示 根据自己需求设置
-                             [self.verificationButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-                             self.verificationButton.userInteractionEnabled = YES;
-                             
-                         });
-                     }else{
-                         //                         int minutes = timeout / 60;
-                         int seconds = timeout % 60;
-                         NSString *strTime = [NSString stringWithFormat:@"%.2d秒后重新获取", seconds];
-                         dispatch_async(dispatch_get_main_queue(), ^{
-                             //设置界面的按钮显示 根据自己需求设置
-                             [self.verificationButton setTitle:strTime forState:UIControlStateNormal];
-                             self.verificationButton.userInteractionEnabled = NO;
-                         });
-                         timeout--;
-                         
-                     }
-                 });
-                 dispatch_resume(_timer);
+                 /**
+                  *  倒计时按钮
+                  *
+                  *  @param timeLine 倒计时总时间
+                  *  @param title    还没倒计时的title
+                  *  @param subTitle 倒计时中的子名字，如时、分
+                  *  @param mColor   还没倒计时的颜色
+                  *  @param color    倒计时中的颜色
+                  */
+                 [self.verificationButton startWithTime:60
+                                                  title:@"获取验证码"
+                                         countDownTitle:@"秒后获取"
+                                              mainColor:UIColorFromRGB(0xffffff)
+                                             countColor:UIColorFromRGB(0xffffff)];
+
              }
              else
              {
-                 
+                 [SVProgressHUD showInfoWithStatus:@"验证码发送失败"];
              }
              
          }];

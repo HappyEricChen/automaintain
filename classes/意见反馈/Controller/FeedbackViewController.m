@@ -139,7 +139,7 @@
     }
     else if (indexPath.section == 1)
     {
-        return CGSizeMake(ScreenWidth, ScreenHeight*0.2);
+        return CGSizeMake(ScreenWidth, ScreenHeight*0.22);
     }
     else if (indexPath.section == 2)
     {
@@ -160,7 +160,7 @@
     }
     else if (section == 2)
     {
-        return UIEdgeInsetsMake(ScreenHeight*0.042, 0, 0, 0);
+        return UIEdgeInsetsMake(ScreenHeight*0.002, 0, 0, 0);
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }

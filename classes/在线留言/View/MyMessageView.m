@@ -27,6 +27,7 @@
     if (self)
     {
         
+        
         UIView* baseView = [[UIView alloc]init];
         baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
@@ -47,7 +48,7 @@
         wordsCountLabel.text = @"0/100";
         wordsCountLabel.textAlignment = NSTextAlignmentRight;
         wordsCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [textView addSubview:wordsCountLabel];
+        [baseView addSubview:wordsCountLabel];
         self.wordsCountLabel = wordsCountLabel;
         
         UILabel* placeholderLabel = [[UILabel alloc]init];
@@ -70,7 +71,7 @@
         
         textView.sd_layout.leftEqualToView(baseView).rightEqualToView(baseView).topEqualToView(baseView).heightIs(ScreenHeight*0.2);
         submitButton.sd_layout.leftSpaceToView(baseView,3).rightSpaceToView(baseView,3).topSpaceToView(textView,ScreenHeight*0.05).heightIs(ScreenHeight*0.05);
-        wordsCountLabel.sd_layout.rightSpaceToView(textView,ScreenWidth*0.035).bottomSpaceToView(textView,ScreenWidth*0.035).leftSpaceToView(textView,ScreenWidth*0.026).autoHeightRatio(0);
+        wordsCountLabel.sd_layout.rightEqualToView(textView).topSpaceToView(textView,ScreenWidth*0.035).leftSpaceToView(baseView,ScreenWidth*0.026).autoHeightRatio(0);
         placeholderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.01).topSpaceToView(textView,ScreenHeight*0.01).rightEqualToView(textView).autoHeightRatio(0);
         
     }

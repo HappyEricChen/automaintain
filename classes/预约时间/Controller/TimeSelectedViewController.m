@@ -152,7 +152,7 @@
 {
     if (section == 1 || section == 2)
     {
-        return UIEdgeInsetsMake(0, ScreenWidth*0.04, 0, ScreenWidth*0.04);
+        return UIEdgeInsetsMake(0, ScreenWidth*0.04, ScreenWidth*0.04, ScreenWidth*0.04);
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }

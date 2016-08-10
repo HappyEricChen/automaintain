@@ -81,9 +81,13 @@
 - (BOOL) isMobile:(NSString *)mobileNumbel;
 
 #pragma mark -对请求参数进行拼接和加密
--(NSString*)generateMD5SignWithparameterDic:(NSDictionary*)parameterDic;
+-(NSString*)generateMD5SignWithparameterDic:(NSMutableDictionary*)parameterDic;
 /**
  *  返回一个初始化的字典，带着时间戳，用于网络请求
  */
 @property (nonatomic, strong) NSMutableDictionary* parameterDic;
+/**
+ *  倒计时按钮
+ */
+@property (nonatomic, strong) UIButton* countDownButton;
 @end

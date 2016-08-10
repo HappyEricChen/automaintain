@@ -58,7 +58,11 @@
 
 #pragma mark - SignUpViewDelegate
 
--(void)signUpView:(SignUpView *)signUpView withUsername:(NSString *)username withPassword:(NSString *)password withconfirmPassword:(NSString *)confirmPassword withverificationCode:(NSString *)verificationCode
+-(void)signUpView:(SignUpView *)signUpView
+     withUsername:(NSString *)username
+     withPassword:(NSString *)password
+withconfirmPassword:(NSString *)confirmPassword
+withverificationCode:(NSString *)verificationCode
 {
     if ([username isEqualToString:@""])
     {
@@ -146,7 +150,10 @@
     }
 }
 #pragma mark - 点击获取验证码
--(void)didClickVerificationButtonWithSignUpView:(SignUpView *)signUpView withUsername:(NSString *)username withIsExisted:(NSString*)IsExisted withCallback:(Callback)callback
+-(void)didClickVerificationButtonWithSignUpView:(SignUpView *)signUpView
+                                   withUsername:(NSString *)username
+                                  withIsExisted:(NSString*)IsExisted
+                                   withCallback:(Callback)callback
 {
     /**
      *  正则表达式判断是否为正确的手机号
@@ -159,8 +166,6 @@
              if (success)
              {
                  weakSelf.signUpDataViewController.verificationCode = (NSString*)result;
-#warning mark- 上线的时候去掉
-//                 [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"验证码是%@",(NSString*)result]];
                  [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
                  callback(YES,nil,nil);
              }
