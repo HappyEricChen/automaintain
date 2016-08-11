@@ -161,6 +161,6 @@
     /**
      *  选中的时间传递出去
      */
-    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_myOrder_StartTime object:nil userInfo:@{@"time":scheduleListModel1.ShopTime}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_myOrder_StartTime object:nil userInfo:@{@"time":scheduleListModel1.TimeSegment}];
 }
 @end

@@ -44,4 +44,9 @@
         return 1;
     }
 }
+#pragma mark - 转换时间为一个倒计时 eg: 8:30-9:00 -》30分钟
+- (NSString*)transferCountDownWithTimeString:(NSString *)timeString
+{
+    return @"";
+}
 @end

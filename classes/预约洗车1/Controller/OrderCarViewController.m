@@ -17,6 +17,7 @@
 #import "ImageAmplificationViewController.h"
 #import "UserCommentModel.h"
 #import "MyOrderViewController.h"
+#import "OrderConfirmViewController.h"
 
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate,WashCarFourCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
@@ -28,6 +29,10 @@
  *  准备提交预约的当前选中日期
  */
 @property (nonatomic, strong) NSString* selectedDate;
+/**
+ *  选中的时间段8：30-9：00
+ */
+@property (nonatomic, strong) NSString* timeSegment;
 /**
  *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
  */
@@ -68,15 +73,22 @@
 -(void)notificationReceived:(NSNotification*)object
 {
     /**
+     *  时间段 8：00-8：30
+     */
+    NSString* timeSegment = object.userInfo[@"time"];
+    
+    self.timeSegment = timeSegment;
+    /**
      *  选中的起始时间，格式08:15:00
      */
-  NSString* startTime = object.userInfo[@"time"];
+    NSString* startTime = [[timeSegment substringToIndex:5] stringByAppendingString:@":00"];
     /**
      *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15:00
      */
     self.selectedTime = [NSString stringWithFormat:@"%@ %@",self.selectedDate,startTime];
 }
 
+#pragma mark - 当前天数改变时调用
 -(void)currentDateNotification:(NSNotification*)object
 {
     NSString* currentDateStr = [object.userInfo objectForKey:@"currentDate"];
@@ -150,6 +162,7 @@
     /**
      *  请求当前日期下的时间列表
      */
+#pragma mark - 获取时间列表
     [self.orderCarDataViewController postListofWashCarPlaceListWithAccessCode:AppManagerSingleton.accessCode withCurrentDate:AppManagerSingleton.selectedDate withSubjectGuid:SubjectGuidWashCar withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
@@ -354,7 +367,7 @@
     }
     else if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
     {
-        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"该功能目前只对会员卡用户开放" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil message:@"该功能目前只对会员卡用户开放\n详情咨询客服：021-6547387" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         alertView.alertViewStyle = UIAlertViewStyleDefault;
         [alertView show];
         return;
@@ -374,11 +387,19 @@
              self.timer = nil;
              if (success)
              {
-                 
+                 /**
+                  *  预约成功跳转到预约确认界面
+                  */
                  [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
-                 [self.navigationController pushViewController:myOrderViewController animated:YES];
+                 OrderConfirmViewController* orderConfirmViewController = [[OrderConfirmViewController alloc]init];
+                 orderConfirmViewController.timeSegment = self.timeSegment;
                  
+                 [self.navigationController pushViewController:orderConfirmViewController animated:YES];
+                 
+                 
+//                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
+//                 [self.navigationController pushViewController:myOrderViewController animated:YES];
+//                 
                  /**
                   *  重新获取时间预约列表
                   */

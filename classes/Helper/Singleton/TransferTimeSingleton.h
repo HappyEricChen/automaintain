@@ -19,4 +19,13 @@
  *  @return 倒计时的秒数
  */
 - (NSInteger)transferTimeStringToIntervalWith:(NSString *)timeString;
+
+/**
+ *  将起始时间和结束时间的字符串传进来，转换为一个预计所需时间，用结束时间减去起始时间
+ *
+ *  @param timeString 18：00-19：00 时间段
+ *
+ *  @return 返回 1小时30分钟20秒
+ */
+- (NSString*)transferCountDownWithTimeString:(NSString *)timeString;
 @end

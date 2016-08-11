@@ -276,9 +276,8 @@
     }
     
 }
-/**
- *  点击提交预约按钮
- */
+
+#pragma mark -点击提交预约按钮
 -(void)didSelectedSubmitOrderButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
 {
     /**
@@ -341,7 +340,7 @@
     }
     
 }
-#pragma mark -WashCarFiveCollectionViewCellDelegate
+#pragma mark -点击图片放大WashCarFiveCollectionViewCellDelegate
 -(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
 {
     ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
