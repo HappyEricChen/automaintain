@@ -18,11 +18,11 @@
 #import "OnlineMessageModel.h"
 
 #ifdef DEBUG
-//static NSString* urlPath = @"http://112.64.131.222/NoOne";
+static NSString* urlPath = @"http://112.64.131.222/NoOne";
 /**
  *  内部测试地址
  */
-static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
+//static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
 
 #else
 
@@ -228,8 +228,8 @@ static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Ads/GetCarousel"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
-//    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
-//    dic[@"sign"]=resultStr;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
@@ -769,12 +769,14 @@ static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
     
 }
 
-#pragma mark - 上传评论照片****和其他的请求方式不同
+#pragma mark - 上传头像照片****和其他的请求方式不同
 +(void)postUploadPhotoFileWithBinaryPhoto:(UIImage *)binaryPhoto withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/File/UploadPhotoFile"];
-    NSMutableDictionary* dic = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"] = AppManagerSingleton.accessCode;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
     [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
@@ -892,5 +894,40 @@ static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
          callback(NO,nil,[error localizedDescription]);
      }];
 
+}
+
+#pragma mark -上传多张评论照片****和其他的请求方式不同
+
++ (NSURLSessionUploadTask*)uploadTaskWithImage:(UIImage*)image
+                                    completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionBlock
+{
+    NSString* urlStr = [urlPath stringByAppendingString:@"/api/File/UploadPhotoFile"];
+    NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
+    dic[@"accessCode"] = AppManagerSingleton.accessCode;
+    NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
+    dic[@"sign"]=resultStr;
+    
+    // 构造 NSURLRequest
+    NSError* error = NULL;
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
+                                                                                              URLString:urlStr
+                                                                                             parameters:dic
+                                                                              constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+                                    {
+                                        NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
+                                        [formData appendPartWithFileData:imageData name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+                                    }
+                                                                                                  error:&error];
+    
+    // 可在此处配置验证信息
+    
+    // 将 NSURLRequest 与 completionBlock 包装为 NSURLSessionUploadTask
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request
+                                                                       progress:^(NSProgress * _Nonnull uploadProgress) {
+                                                                       }
+                                                              completionHandler:completionBlock];
+    
+    return uploadTask;
 }
 @end

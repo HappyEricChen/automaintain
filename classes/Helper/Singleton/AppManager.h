@@ -90,4 +90,8 @@
  *  倒计时按钮
  */
 @property (nonatomic, strong) UIButton* countDownButton;
+/**
+ *  当前验证码
+ */
+@property (nonatomic, strong) NSString* verificationCode;
 @end

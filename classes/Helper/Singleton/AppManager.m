@@ -29,10 +29,20 @@
         [_countDownButton setTitle:@"获取验证码" forState:UIControlStateNormal];
         [_countDownButton setTitleColor:UIColorFromRGB(0xbf2e0d) forState:UIControlStateNormal];
         _countDownButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _countDownButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        _countDownButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [_countDownButton addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _countDownButton;
 }
 
+/**
+ *  点击发送验证码的按钮，通知传递到登录注册界面
+ */
+-(void)clickVerificationButton
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_verification_Button object:nil userInfo:nil];
+}
 
 /**
  *   懒加载字典，带着时间戳

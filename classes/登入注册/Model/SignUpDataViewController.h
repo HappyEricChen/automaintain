@@ -37,10 +37,6 @@
              withCallback:(Callback)callback;
 
 /**
- *  验证码
- */
-@property (nonatomic, strong) NSString* verificationCode;
-/**
  *  用户名
  */
 @property (nonatomic, strong) NSString* username;

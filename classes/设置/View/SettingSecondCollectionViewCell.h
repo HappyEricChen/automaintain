@@ -8,6 +8,14 @@
 
 #import "BaseCollectionViewCell.h"
 
+@class SettingSecondCollectionViewCell;
+@protocol SettingSecondCollectionViewCellDelegate <NSObject>
+
+@optional
+-(void)didClickSubmitButtonWithSettingSecondCollectionViewCell:(SettingSecondCollectionViewCell*)settingSecondCollectionViewCell;
+
+@end
+
 @interface SettingSecondCollectionViewCell : BaseCollectionViewCell
 
 /**
@@ -20,5 +28,5 @@ extern NSString* const SettingSecondCollectionViewCellId;
 +(SettingSecondCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
 
 
-
+@property (nonatomic, weak) id <SettingSecondCollectionViewCellDelegate> delegate;
 @end

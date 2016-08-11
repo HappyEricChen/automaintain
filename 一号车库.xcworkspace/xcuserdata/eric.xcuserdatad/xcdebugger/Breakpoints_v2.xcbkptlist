@@ -51,38 +51,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
-            timestampString = "492512979.040912"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
-            timestampString = "492512979.040912"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
             timestampString = "492516771.152047"
             startingColumnNumber = "9223372036854775807"
@@ -99,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "492518306.085874"
+            filePath = "classes/&#x6211;&#x7684;&#x8bc4;&#x8bba;/Controller/MyCommentViewController.m"
+            timestampString = "492575849.060056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "780"
-            endingLineNumber = "780"
-            landmarkName = "+postUploadPhotoFileWithBinaryPhoto:withCallback:"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "-updateCommentPhotos"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -115,13 +83,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/View/WashCarFourCollectionViewCell.m"
-            timestampString = "492518909.185312"
+            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
+            timestampString = "492578917.9792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-clickSubmitBtn"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "-didClickVerificationButtonWithSignUpView:withUsername:withIsExisted:withCallback:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
+            timestampString = "492590631.970113"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-signUpView:withUsername:withPassword:withconfirmPassword:withverificationCode:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

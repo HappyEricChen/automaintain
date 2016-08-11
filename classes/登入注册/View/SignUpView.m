@@ -14,7 +14,6 @@
 @property (nonatomic, weak) UITextField* textField2;//密码
 @property (nonatomic, weak) UITextField* textField3;//密码验证
 
-@property (nonatomic, weak) UIButton* verificationButton;//发送验证按钮
 /**
  *  注册账号/找回密码，两种类型中的一种
  */
@@ -33,6 +32,9 @@
     self = [super init];
     if (self)
     {
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didClickVerificationButton) name:kNotify_verification_Button object:nil];
+        
         
         self.type = type;
         /**
@@ -89,12 +91,9 @@
         textField1.delegate = self;
         self.textField1 = textField1;
         
-        UIButton* verificationButton = AppManagerSingleton.countDownButton;
-        verificationButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        verificationButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [verificationButton addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
-        [baseView1 addSubview:verificationButton];
-        self.verificationButton = verificationButton;
+
+        [baseView1 addSubview: AppManagerSingleton.countDownButton];
+
         
         
         UIView* lineView = [[UIView alloc]init];
@@ -193,7 +192,7 @@
         textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.50);
         
         lineView.sd_layout.leftSpaceToView(textField1,0).topSpaceToView(baseView1,5).bottomSpaceToView(baseView1,5).widthIs(1.5);
-        verificationButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
+        AppManagerSingleton.countDownButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
         /**
          *  密码
          */
@@ -260,8 +259,9 @@
     }
     
 }
+
 #pragma mark - 点击获取验证码按钮
--(void)clickVerificationButton
+-(void)didClickVerificationButton
 {
     if ([self.type isEqualToString:@"立即注册"])
     {
@@ -270,15 +270,15 @@
          */
         [self clickVerificationButtonwithIsExisted:@"false"];
     }
-    else 
+    else
     {
         /**
          *  ture为找回密码，accessCode存在才可以找回密码
          */
         [self clickVerificationButtonwithIsExisted:@"true"];
     }
-    
 }
+
 -(void)clickVerificationButtonwithIsExisted:(NSString*)IsExisted
 {
     if ([self.delegate respondsToSelector:@selector(didClickVerificationButtonWithSignUpView:withUsername:withIsExisted:withCallback:)])
@@ -299,7 +299,7 @@
                   *  @param mColor   还没倒计时的颜色
                   *  @param color    倒计时中的颜色
                   */
-                 [self.verificationButton startWithTime:60
+                 [AppManagerSingleton.countDownButton startWithTime:60
                                                   title:@"获取验证码"
                                          countDownTitle:@"秒后获取"
                                               mainColor:UIColorFromRGB(0xffffff)
@@ -313,5 +313,9 @@
              
          }];
     }
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_verification_Button object:nil];
 }
 @end

@@ -29,9 +29,9 @@ NSString * const MyCommentFourCollectionViewCellId = @"MyCommentFourCollectionVi
         UIButton* submitButton = [[UIButton alloc]init];
         [submitButton setTitle:@"提交评论" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        submitButton.userInteractionEnabled = NO;
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
         submitButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [submitButton addTarget:self action:@selector(clickSubmitBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:submitButton];
         
         submitButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.032).rightSpaceToView(self,ScreenWidth*0.032).topEqualToView(self).heightIs(ScreenHeight*0.049);
@@ -40,5 +40,11 @@ NSString * const MyCommentFourCollectionViewCellId = @"MyCommentFourCollectionVi
     return self;
 }
 
-
+-(void)clickSubmitBtn
+{
+    if ([self.delegate respondsToSelector:@selector(didClickSubmitButtonWithMyCommentFourCollectionViewCell:)])
+    {
+        [self.delegate didClickSubmitButtonWithMyCommentFourCollectionViewCell:self];
+    }
+}
 @end

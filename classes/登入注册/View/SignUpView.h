@@ -36,5 +36,10 @@ withverificationCode:(NSString*)verificationCode;
  */
 -(instancetype)initWithType:(NSString*)type;
 
+/**
+ *  点击获取验证码按钮
+ */
+-(void)clickVerificationButtonwithIsExisted:(NSString*)IsExisted;
+
 @property (nonatomic, weak) id <SignUpViewDelegate> delegate;
 @end

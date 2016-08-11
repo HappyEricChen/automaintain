@@ -23,4 +23,6 @@ NSString* const kNotify_comment_StarScore = @"kNotify_comment_StarScore";
 NSString* const kNotify_comment_Content = @"kNotify_comment_Content";
 
 NSString* const kNotify_cancel_Keyboard = @"kNotify_cancel_Keyboard";
+
+NSString* const kNotify_verification_Button = @"kNotify_verification_Button";
 @end

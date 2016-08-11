@@ -84,7 +84,9 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
          */
         if ([AppManagerSingleton.currentDate isEqualToString:AppManagerSingleton.selectedDate])
         {
-            
+            /**
+             *  当前时间小于预约时间，可预约
+             */
             if ([AppManagerSingleton.currentTime compare:scheduleListModel.ShopTime options:NSCaseInsensitiveSearch] == NSOrderedAscending)
             {
                 [self.timeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -101,6 +103,19 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
         {
             [self.timeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             self.timeButton.userInteractionEnabled = NO;
+        }
+        
+        /**
+         *  我预约过的时间显示蓝色，不可点击,****注意，这边是按钮=YES时不可点击，用按钮来阻止点击事件的传递****
+         */
+        if (scheduleListModel.MyAppointmentCount.integerValue>0)
+        {
+            self.timeButton.userInteractionEnabled = YES;
+            [self.timeButton setBackgroundColor:UIColorFromRGB(0x40add8)];
+        }
+        else
+        {
+
         }
         
     }

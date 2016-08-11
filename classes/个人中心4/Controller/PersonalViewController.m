@@ -202,7 +202,7 @@
     localAlbumImagePicker.allowsEditing = YES;
     [self presentViewController:localAlbumImagePicker animated:YES completion:nil];
 }
-#pragma mark - UIImagePickerControllerDelegate选择图片代理方法
+#pragma mark - 上传选中的照片，获取photoGuid
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     
@@ -218,13 +218,17 @@
          }
          else
          {
-             [SVProgressHUD showInfoWithStatus:result];
+             if (!result || [result isEqual:[NSNull null]])
+             {
+                 return;
+             }
+             [SVProgressHUD showInfoWithStatus:(NSString*)result];
          }
      }];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.personalDataViewController.collectionView reloadData];
 }
-#pragma mark - 更新用户头像请求
+#pragma mark - 得到照片上传后的guid，更新用户头像
 -(void)updateCustomerAvatorWithPhotoGuid:(NSString*)photoGuid
 {
     [self.personalDataViewController postUpdateCustomerAvatarWithAccessCode:AppManagerSingleton.accessCode

@@ -187,51 +187,6 @@
  *  @param binaryPhoto         图片的二进制文件
  *  @param callback            回调
  */
--(void)postUploadPhotoFileWithPhoto:(UIImage *)image withCallback:(Callback)callback
-{
-    
-    [AutomaintainAPI postUploadPhotoFileWithBinaryPhoto:image withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
-         {
-             callback(YES,nil,result);
-         }
-         else
-         {
-             callback(NO,nil,result);
-         }
-     }];
-}
-
--(NSString*)uploadUrl
-{
-    return @"http://112.64.131.222/NoOne/api/File/UploadPhotoFile";
-}
-
-- (NSURLSessionUploadTask*)uploadTaskWithImage:(UIImage*)image
-                                    completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionBlock
-{
-    // 构造 NSURLRequest
-    NSError* error = NULL;
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
-                                                                                              URLString:[self uploadUrl]
-                                                                                             parameters:nil
-                                                                              constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-                                    {
-                                        NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
-                                        [formData appendPartWithFileData:imageData name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
-                                    }
-                                                                                                  error:&error];
-    
-    // 可在此处配置验证信息
-    
-    // 将 NSURLRequest 与 completionBlock 包装为 NSURLSessionUploadTask
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:^(NSProgress * _Nonnull uploadProgress) {
-    } completionHandler:completionBlock];
-    
-    return uploadTask;
-}
 
 - (void)runDispatchTestWithCallback:(Callback)callback
 {
@@ -246,7 +201,7 @@
         
         dispatch_group_enter(group);
         
-        NSURLSessionUploadTask* uploadTask = [self uploadTaskWithImage:images[i] completion:^(NSURLResponse *response, NSDictionary* responseObject, NSError *error)
+        NSURLSessionUploadTask* uploadTask = [AutomaintainAPI uploadTaskWithImage:images[i] completion:^(NSURLResponse *response, NSDictionary* responseObject, NSError *error)
                                               {
                                                   if (error)
                                                   {

@@ -15,7 +15,7 @@
 #import "MyOrderModel.h"
 #import "ImageAmplificationViewController.h"
 
-@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentThirdCollectionViewCellDelegate>
+@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentThirdCollectionViewCellDelegate,MyCommentFourCollectionViewCellDelegate>
 
 @property (nonatomic, strong) MyCommentDataViewController* myCommentDataViewController;
 /**
@@ -143,6 +143,7 @@
     else if (indexPath.section == 3)
     {
         MyCommentFourCollectionViewCell * fourCell = [MyCommentFourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentFourCollectionViewCellId forIndexPath:indexPath];
+        fourCell.delegate = self;
         cell = fourCell;
     }
     
@@ -181,26 +182,22 @@
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
-#pragma mark - UICollectionViewDelegate
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (indexPath.section == 3)
-    {
-        
-        if (self.LockButton)
-        {
-            /**
-             *  保证短时间内点击按钮，只有最后一次有效
-             */
-            [self.timer invalidate];
-            self.timer = nil;
-            self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
-            [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 
-        }
+#pragma mark - 提交评论按钮点击后调用
+-(void)didClickSubmitButtonWithMyCommentFourCollectionViewCell:(MyCommentFourCollectionViewCell *)myCommentFourCollectionViewCell
+{
+    if (self.LockButton)
+    {
+        /**
+         *  保证短时间内点击按钮，只有最后一次有效
+         */
+        [self.timer invalidate];
+        self.timer = nil;
+        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
         
     }
+    
 }
 
 -(void)updateTimer

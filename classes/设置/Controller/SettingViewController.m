@@ -14,7 +14,7 @@
 #import "FeedbackViewController.h"
 #import "ModifyPasswordViewController.h"
 
-@interface SettingViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate>
+@interface SettingViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate,SettingSecondCollectionViewCellDelegate>
 
 @property (nonatomic, strong) SettingDataViewController* settingDataViewController;
 
@@ -85,6 +85,7 @@
     else if (indexPath.section == 1)
     {
         SettingSecondCollectionViewCell * secondCell = [SettingSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:SettingSecondCollectionViewCellId forIndexPath:indexPath];
+        secondCell.delegate = self;
         cell =secondCell;
     }
     
@@ -139,35 +140,13 @@
         }
         
     }
-    else if (indexPath.section == 1)
-    {
-        /**
-         *  退出登录
-         */
-        
-        //        __weak SettingViewController* weakSelf = self;
-        //        UIAlertController* logoutAlertController = [UIAlertController alertControllerWithTitle:@"确定退出?"
-        //                                                                                       message:nil
-        //                                                                                preferredStyle:UIAlertControllerStyleAlert];
-        //
-        //        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
-        //                                   {
-        //                                       /**
-        //                                        *  退出登录
-        //                                        */
-        //                                       [weakSelf logoutMethod];
-        //                                   }];
-        //        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        //
-        //        [logoutAlertController addAction:okAction];
-        //        [logoutAlertController addAction:cancelAction];
-        //
-        //        [self.navigationController presentViewController:logoutAlertController animated:YES completion:nil];
-        
-        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"确定退出?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.alertViewStyle = UIAlertViewStyleDefault;
-        [alertView show];
-    }
+}
+#pragma mark - 点击退出登录按钮调用
+-(void)didClickSubmitButtonWithSettingSecondCollectionViewCell:(SettingSecondCollectionViewCell *)settingSecondCollectionViewCell
+{
+    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"确定退出?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.alertViewStyle = UIAlertViewStyleDefault;
+    [alertView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

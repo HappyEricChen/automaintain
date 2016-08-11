@@ -96,7 +96,7 @@ withverificationCode:(NSString *)verificationCode
     }
     else
     {
-        if ([self.signUpDataViewController.verificationCode isEqualToString:verificationCode])
+        if ([AppManagerSingleton.verificationCode isEqualToString:verificationCode])
         {
             if ([self.type isEqualToString:@"立即注册"])
             {
@@ -165,7 +165,7 @@ withverificationCode:(NSString *)verificationCode
          {
              if (success)
              {
-                 weakSelf.signUpDataViewController.verificationCode = (NSString*)result;
+                 AppManagerSingleton.verificationCode = (NSString*)result;
                  [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
                  callback(YES,nil,nil);
              }

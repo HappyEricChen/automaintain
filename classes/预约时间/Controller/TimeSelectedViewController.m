@@ -176,11 +176,11 @@
         
         if (indexPath.section == 1)
         {
-            [headerView layoutWithImage:ImageNamed(@"order_choose_red") WithTitle:@"他人已预约"];
+            [headerView layoutWithImage:ImageNamed(@"order_choose_red") withTitle:@"他人已预约" withMyOrderHidden:YES];
         }
         else if (indexPath.section == 2)
         {
-            [headerView layoutWithImage:ImageNamed(@"order_choose_white") WithTitle:@"可预约"];
+            [headerView layoutWithImage:ImageNamed(@"order_choose_white") withTitle:@"可预约时间" withMyOrderHidden:NO];
         }
         
         reusableView = headerView;

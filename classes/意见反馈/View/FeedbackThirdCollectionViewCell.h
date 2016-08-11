@@ -8,6 +8,14 @@
 
 #import "BaseCollectionViewCell.h"
 
+@class FeedbackThirdCollectionViewCell;
+@protocol FeedbackThirdCollectionViewCellDelegate <NSObject>
+
+@optional
+-(void)didClickSubmitButtonWithFeedbackThirdCollectionViewCell:(FeedbackThirdCollectionViewCell*)feedbackThirdCollectionViewCell;
+
+@end
+
 @interface FeedbackThirdCollectionViewCell : BaseCollectionViewCell
 
 /**
@@ -19,5 +27,5 @@ extern NSString* const FeedbackThirdCollectionViewCellId;
  */
 +(FeedbackThirdCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
 
-
+@property (nonatomic, weak) id <FeedbackThirdCollectionViewCellDelegate> delegate;
 @end

@@ -12,7 +12,7 @@
 #import "FeedbackSecondCollectionViewCell.h"
 #import "FeedbackThirdCollectionViewCell.h"
 
-@interface FeedbackViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,FeedbackFirstCollectionViewCellDelegate,UIGestureRecognizerDelegate>
+@interface FeedbackViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,FeedbackFirstCollectionViewCellDelegate,UIGestureRecognizerDelegate,FeedbackThirdCollectionViewCellDelegate>
 
 @property (nonatomic, strong) FeedbackDataViewController* feedbackDataViewController;
 
@@ -123,6 +123,7 @@
     else if (indexPath.section == 2)
     {
         FeedbackThirdCollectionViewCell * thirdCell = [FeedbackThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackThirdCollectionViewCellId forIndexPath:indexPath];
+        thirdCell.delegate = self;
         cell =thirdCell;
     }
     
@@ -165,29 +166,25 @@
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
-#pragma mark - UICollectionViewDelegate
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - 点击提交反馈按钮调用
+-(void)didClickSubmitButtonWithFeedbackThirdCollectionViewCell:(FeedbackThirdCollectionViewCell *)feedbackThirdCollectionViewCell
 {
+    
     /**
-     *  点击提交反馈
+     *  保证短时间内点击按钮，只有最后一次有效
      */
-    if (indexPath.section == 2)
-    {
-        /**
-         *  保证短时间内点击按钮，只有最后一次有效
-         */
-        [self.timer invalidate];
-        self.timer = nil;
-        self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
-        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-        
-    }
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+    
     [self.view endEditing:YES];//回缩键盘
     if (!self.feedbackDataViewController.listTableView.isHidden)
     {
         self.feedbackDataViewController.listTableView.hidden = YES;
     }
+
 }
 
 -(void)updateTimer

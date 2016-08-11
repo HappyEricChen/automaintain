@@ -60,7 +60,7 @@
     leftArrowImageView.sd_layout.leftSpaceToView(leftBtn,ScreenWidth*0.042).topSpaceToView(leftBtn,ScreenHeight*0.1*0.496).widthIs(9).heightIs(18);
     rightBtn.sd_layout.rightEqualToView(customNavigationView).topEqualToView(customNavigationView).bottomEqualToView(customNavigationView).widthEqualToHeight();
     rightArrowImageView.sd_layout.rightSpaceToView(rightBtn,ScreenWidth*0.042).topSpaceToView(rightBtn,ScreenHeight*0.1*0.496).widthIs(16).heightIs(16);
-    titleLabel.sd_layout.spaceToSuperView(UIEdgeInsetsMake(ScreenHeight*0.1*0.55,ScreenWidth*0.096,ScreenHeight*0.1*0.29,ScreenWidth*0.096));
+    titleLabel.sd_layout.spaceToSuperView(UIEdgeInsetsMake(ScreenHeight*0.1*0.35,ScreenWidth*0.096,ScreenHeight*0.1*0.09,ScreenWidth*0.096));
     
     return customNavigationView;
 }

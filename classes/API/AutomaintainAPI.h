@@ -231,4 +231,16 @@
 +(void)postUpdateCustomerAvatarWithAccessCode:(NSString*)accessCode
                                 withPhotoGuid:(NSString*)photoGuid
                                  withCallback:(Callback )callback;
+
+
+#pragma mark - 上传多张评论照片****和其他的请求方式不同
+/**
+ *  上传多张评论照片/post请求
+ *
+ *  @param image           上传的图片
+ *  @param completionBlock 回调
+ *
+ */
++ (NSURLSessionUploadTask*)uploadTaskWithImage:(UIImage*)image
+                                    completion:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionBlock;
 @end

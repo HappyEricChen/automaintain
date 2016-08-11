@@ -17,5 +17,5 @@ extern NSString* const TimeSelectedHeaderViewId;
  */
 +(TimeSelectedHeaderView*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
 
--(void)layoutWithImage:(UIImage*)image WithTitle:(NSString*)title;
+-(void)layoutWithImage:(UIImage*)image withTitle:(NSString*)title withMyOrderHidden:(BOOL)hidden;
 @end

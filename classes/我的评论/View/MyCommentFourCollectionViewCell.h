@@ -8,6 +8,14 @@
 
 #import "BaseCollectionViewCell.h"
 
+@class MyCommentFourCollectionViewCell;
+@protocol MyCommentFourCollectionViewCellDelegate <NSObject>
+
+@optional
+-(void)didClickSubmitButtonWithMyCommentFourCollectionViewCell:(MyCommentFourCollectionViewCell*)myCommentFourCollectionViewCell;
+
+@end
+
 @interface MyCommentFourCollectionViewCell : BaseCollectionViewCell
 
 /**
@@ -18,5 +26,7 @@ extern NSString* const MyCommentFourCollectionViewCellId;
  *  cell创建方法
  */
 +(MyCommentFourCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
+
+@property (nonatomic, weak) id <MyCommentFourCollectionViewCellDelegate> delegate;
 
 @end

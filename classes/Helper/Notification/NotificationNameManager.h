@@ -37,4 +37,8 @@ extern NSString* const kNotify_comment_Content;
  *  发布评论，点击空白处取消第一响应者，键盘回收
  */
 extern NSString* const kNotify_cancel_Keyboard;
+/**
+ *  点击单例的验证码按钮，发送通知到注册页面
+ */
+extern NSString* const kNotify_verification_Button;
 @end

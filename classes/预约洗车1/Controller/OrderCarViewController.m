@@ -233,6 +233,7 @@
     else if (indexPath.section == 3)
     {
         WashCarFourCollectionViewCell * fourCell = [WashCarFourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFourCollectionViewCellId forIndexPath:indexPath];
+        fourCell.delegate = self;
         cell = fourCell;
     }
     else if (indexPath.section == 4)

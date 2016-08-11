@@ -29,7 +29,7 @@ NSString * const SettingSecondCollectionViewCellId = @"SettingSecondCollectionVi
         UIButton* submitButton = [[UIButton alloc]init];
         [submitButton setTitle:@"退出登录" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        submitButton.userInteractionEnabled = NO;
+        [submitButton addTarget:self action:@selector(clickSubmitBtn) forControlEvents:UIControlEventTouchUpInside];
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
         submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:submitButton];
@@ -39,5 +39,12 @@ NSString * const SettingSecondCollectionViewCellId = @"SettingSecondCollectionVi
     return self;
 }
 
+-(void)clickSubmitBtn
+{
+    if ([self.delegate respondsToSelector:@selector(didClickSubmitButtonWithSettingSecondCollectionViewCell:)])
+    {
+        [self.delegate didClickSubmitButtonWithSettingSecondCollectionViewCell:self];
+    }
+}
 
 @end
