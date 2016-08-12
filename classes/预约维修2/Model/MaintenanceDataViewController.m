@@ -54,22 +54,6 @@
     }
     return _collectionView;
 }
-#pragma mark - 提交预约
--(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode withAppointmentStartTime:(NSString *)appointmentStartTime withSubjectGuid:(NSString *)subjectGuid withCallback:(Callback)callback
-{
-    [AutomaintainAPI postAppointmentServiceWithAccessCode:accessCode withAppointmentStartTime:appointmentStartTime withSubjectGuid:subjectGuid withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
-         {
-             callback(YES,nil,result);
-         }
-         else
-         {
-             callback(NO,nil,result);
-         }
-     }];
-    
-}
 
 #pragma mark - 获取预约的评论列表
 /**

@@ -18,6 +18,10 @@
  *  预约完整时间 @"2016-06-01 15:00-17:00"
  */
 @property (nonatomic, weak) UILabel* contentLabel1;
+/**
+ *  定时器，用来防止按钮多次点击
+ */
+@property (nonatomic, strong) NSTimer* timer;
 @end
 @implementation MaintenanceHeaderView
 
@@ -196,6 +200,18 @@
  *  提交选择的预约
  */
 -(void)clickSubmitOrderButton
+{
+    /**
+     *  保证短时间内点击按钮，只有最后一次有效
+     */
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+}
+
+-(void)updateTimer
 {
     if ([self.delegate respondsToSelector:@selector(didSelectedSubmitOrderButtonWithMaintenanceHeaderView:)])
     {

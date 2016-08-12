@@ -27,4 +27,32 @@
     }
     return _orderConfirmView;
 }
+
+#pragma mark - 提交预约
+-(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode
+                   withAppointmentStartTime:(NSString *)appointmentStartTime
+                            withSubjectGuid:(NSString *)subjectGuid
+                                   withNote:(NSString *)note
+                               withCallback:(Callback)callback
+{
+    [AutomaintainAPI postAppointmentServiceWithAccessCode:accessCode
+                                 withAppointmentStartTime:appointmentStartTime
+                                          withSubjectGuid:subjectGuid
+                                                 withNote:note
+                                             withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             
+             //             self.washCarDateListModel = (WashCarDateListModel*)result;
+             
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
+    
+}
 @end

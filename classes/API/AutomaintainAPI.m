@@ -347,7 +347,8 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     [manager POST:urlStr parameters:dic progress:^(NSProgress * _Nonnull uploadProgress)
      {
          
-     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     }
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          NSDictionary* tempDic = (NSDictionary*)responseObject;
          BOOL IsSuccessed = [responseObject[@"IsSuccessed"] boolValue];
@@ -361,9 +362,8 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
              }];
              WashCarDateListModel* washCarDateListModel = [WashCarDateListModel mj_objectWithKeyValues:ReturnObjectDic];
              callback(YES,nil,washCarDateListModel);
-               
+             
          }
-         
          else
          {
              NSString* ResultMessage = [tempDic objectForKey:@"ResultMessage"];
@@ -377,12 +377,18 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      }];
 }
 #pragma mark - 提交预约
-+(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode withAppointmentStartTime:(NSString *)appointmentStartTime withSubjectGuid:(NSString *)subjectGuid withCallback:(Callback)callback
+
++(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode
+                   withAppointmentStartTime:(NSString *)appointmentStartTime
+                            withSubjectGuid:(NSString *)subjectGuid
+                                   withNote:(NSString *)note
+                               withCallback:(Callback)callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/AppointmentService"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"subjectGuid"]=subjectGuid;
+    dic[@"note"]=note;
     dic[@"appointmentStartTime"]=appointmentStartTime;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;

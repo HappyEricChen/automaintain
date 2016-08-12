@@ -7,6 +7,7 @@
 // 时间相关的单例类
 
 #import <Foundation/Foundation.h>
+#define AppTransferTimeSingleton [TransferTimeSingleton shareTransfer]
 
 @interface TransferTimeSingleton : NSObject
 + (TransferTimeSingleton *)shareTransfer;

@@ -122,6 +122,7 @@
 		078019E61D581B8B008D46FB /* MyMessageSubmitButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019E51D581B8B008D46FB /* MyMessageSubmitButtonView.m */; };
 		078058D31D5048340098185E /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D21D5048340098185E /* UUID.m */; };
 		078058D61D5048E40098185E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D51D5048E40098185E /* KeyChainStore.m */; };
+		078A93351D5DCAB5004E2E6B /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A93341D5DCAB5004E2E6B /* BaseTextField.m */; };
 		078DF1291D5B03050031274B /* UIButton+countDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 078DF1281D5B03050031274B /* UIButton+countDown.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */; };
@@ -379,6 +380,8 @@
 		078058D21D5048340098185E /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		078058D41D5048E40098185E /* KeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
 		078058D51D5048E40098185E /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
+		078A93331D5DCAB5004E2E6B /* BaseTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTextField.h; path = "../登入注册/View/BaseTextField.h"; sourceTree = "<group>"; };
+		078A93341D5DCAB5004E2E6B /* BaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTextField.m; path = "../登入注册/View/BaseTextField.m"; sourceTree = "<group>"; };
 		078DF1271D5B03050031274B /* UIButton+countDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+countDown.h"; sourceTree = "<group>"; };
 		078DF1281D5B03050031274B /* UIButton+countDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+countDown.m"; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
@@ -933,6 +936,8 @@
 		072F80A41D3491EA002CECC4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				078A93331D5DCAB5004E2E6B /* BaseTextField.h */,
+				078A93341D5DCAB5004E2E6B /* BaseTextField.m */,
 				072F80A51D3491EA002CECC4 /* BaseCollectionViewCell.h */,
 				072F80A61D3491EA002CECC4 /* BaseCollectionViewCell.m */,
 				072F80A71D3491EA002CECC4 /* BaseTableViewCell.h */,
@@ -1508,6 +1513,7 @@
 				074945CB1D35D6EA00A46AE6 /* FirstCollectionViewCell.m in Sources */,
 				072F80911D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m in Sources */,
 				072F80541D348F66002CECC4 /* PersonalFirstCollectionViewCell.m in Sources */,
+				078A93351D5DCAB5004E2E6B /* BaseTextField.m in Sources */,
 				074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */,
 				072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */,
 				072F807D1D348F66002CECC4 /* ModifyPasswordDataViewController.m in Sources */,

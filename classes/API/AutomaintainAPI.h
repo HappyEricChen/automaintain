@@ -82,16 +82,18 @@
                                    withCallback:(Callback )callback;
 #pragma mark - 提交预约
 /**
- *   提交预约/POST 请求
+ *  提交预约/POST 请求
  *
- *  @param accessCode   唯一标识
+ *  @param accessCode           唯一标识
  *  @param appointmentStartTime 预约开始时间
- *  @param subjectGuid 预约类型/洗车或者维修编号
- *  @param callback    回调
+ *  @param subjectGuid          预约类型/洗车或者维修编号
+ *  @param note                 预约留言内容
+ *  @param callback             回调
  */
 +(void)postAppointmentServiceWithAccessCode:(NSString*)accessCode
                    withAppointmentStartTime:(NSString*)appointmentStartTime
                             withSubjectGuid:(NSString*)subjectGuid
+                                   withNote:(NSString*)note
                                withCallback:(Callback )callback;
 
 #pragma mark - 获取评论列表

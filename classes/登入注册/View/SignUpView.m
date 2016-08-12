@@ -7,6 +7,8 @@
 //
 
 #import "SignUpView.h"
+#import "BaseTextField.h"
+
 @interface SignUpView()<UITextFieldDelegate>
 
 @property (nonatomic, weak) UITextField* textField;//账号
@@ -115,7 +117,7 @@
         passwordLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView2 addSubview:passwordLabel];
         
-        UITextField* textField2 = [[UITextField alloc]init];
+        BaseTextField* textField2 = [[BaseTextField alloc]init];
         textField2.textAlignment = NSTextAlignmentLeft;
         textField2.textColor = UIColorFromRGB(0x000000);
         textField2.font = [UIFont systemFontOfSize:14];
@@ -141,7 +143,7 @@
         passwordLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:passwordLabel1];
         
-        UITextField* textField3 = [[UITextField alloc]init];
+        BaseTextField* textField3 = [[BaseTextField alloc]init];
         textField3.textAlignment = NSTextAlignmentLeft;
         textField3.font = [UIFont systemFontOfSize:14];
         textField3.textColor = UIColorFromRGB(0x000000);

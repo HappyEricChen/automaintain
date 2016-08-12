@@ -18,6 +18,7 @@
 #import "OrderTypeModel.h"
 #import "MyOrderViewController.h"
 #import "UserCommentModel.h"
+#import "OrderConfirmViewController.h"
 
 @interface MaintenanceViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MaintenanceHeaderViewDelegate,WashCarFiveCollectionViewCellDelegate>
 
@@ -27,14 +28,13 @@
  */
 @property (nonatomic, strong) NSString* completedTime;
 /**
+ *  选中的时间段8：30-9：00
+ */
+@property (nonatomic, strong) NSString* timeSegment;
+/**
  *  刷新翻页，下拉刷新index=0，下拉刷新index+=1
  */
 @property (nonatomic, assign) NSInteger index;
-
-/**
- *  定时器，用来防止按钮多次点击
- */
-@property (nonatomic, strong) NSTimer* timer;
 
 @end
 
@@ -137,6 +137,8 @@
 -(void)ReceivedCompletedTime:(NSNotification*)object
 {
    self.completedTime = [object.userInfo objectForKey:@"completedTime"];
+    
+    self.timeSegment = [self.completedTime substringFromIndex:11];
 }
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
@@ -280,64 +282,31 @@
 #pragma mark -点击提交预约按钮
 -(void)didSelectedSubmitOrderButtonWithMaintenanceHeaderView:(MaintenanceHeaderView *)maintenanceHeaderView
 {
-    /**
-     *  保证短时间内点击按钮，只有最后一次有效
-     */
-    [self.timer invalidate];
-    self.timer = nil;
-    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-    
-}
-
--(void)updateTimer
-{
     if (!self.orderTypeModel || [self.orderTypeModel.Guid isEqualToString:@""])
     {
         [SVProgressHUD showInfoWithStatus:@"请选择预约类型"];
+        return;
     }
     else if (!self.completedTime || [self.completedTime isEqualToString:@""])
     {
         [SVProgressHUD showInfoWithStatus:@"请选择预约时间"];
+        return;
     }
-    else
-    {
-        /**
-         *  通过完整时间截取到，项目起始时间 2017-02-03 08:15
-         */
-        NSString* appointmentStartTime = [self.completedTime substringToIndex:16];
-        
-        [SVProgressHUD show];
-        [self.maintenanceDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                        withAppointmentStartTime:appointmentStartTime
-                                                                 withSubjectGuid:self.orderTypeModel.Guid
-                                                                    withCallback:^(BOOL success, NSError *error, id result)
-         {
-             /**
-              *  清除计时器
-              */
-             [self.timer invalidate];
-             self.timer = nil;
-             if (success)
-             {
-                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                 /**
-                  *  清除选中的类型和时间
-                  */
-                 self.orderTypeModel = nil;
-                 self.completedTime = @"";
-                 
-                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
-                 [self.navigationController pushViewController:myOrderViewController animated:YES];
-             }
-             else
-             {
-                 [SVProgressHUD showInfoWithStatus:result];
-                 
-             }
-         }];
-        
-    }
+    
+    /**
+     *  通过完整时间截取到，项目起始时间 2017-02-03 08:15
+     */
+    NSString* appointmentStartTime = [self.completedTime substringToIndex:16];
+    
+    
+    OrderConfirmViewController* orderConfirmViewController = [[OrderConfirmViewController alloc]init];
+    
+    orderConfirmViewController.timeSegment = [AppTransferTimeSingleton transferCountDownWithTimeString:self.timeSegment];
+    orderConfirmViewController.orderTime = appointmentStartTime;
+    orderConfirmViewController.orderProject = self.orderTypeModel.SubjectName;
+    orderConfirmViewController.subjectGuid = self.orderTypeModel.Guid;
+    orderConfirmViewController.price = self.orderTypeModel.Price;
+    [self.navigationController pushViewController:orderConfirmViewController animated:YES];
     
 }
 #pragma mark -点击图片放大WashCarFiveCollectionViewCellDelegate

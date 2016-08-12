@@ -22,7 +22,7 @@
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate,WashCarFourCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
 /**
- *  准备提交预约的起始时间,格式08:15:00
+ *  准备提交预约的起始时间,格式2016-08-12 14:31:00
  */
 @property (nonatomic, strong) NSString* selectedTime;
 /**
@@ -38,10 +38,6 @@
  */
 @property (nonatomic, assign) NSInteger index;
 
-/**
- *  定时器，用来防止按钮多次点击
- */
-@property (nonatomic, strong) NSTimer* timer;
 
 @end
 
@@ -104,7 +100,7 @@
                                                               withSubjectGuid:SubjectGuidWashCar
                                                                  withCallback:^(BOOL success, NSError *error, id result)
      {
-         [SVProgressHUD dismiss];
+         
          if (success)
          {
              [SVProgressHUD dismiss];
@@ -349,71 +345,30 @@
 #pragma mark - 点击提交预约按钮调用WashCarFourCollectionViewCellDelegate
 -(void)didClickSubmitButtonWithWashCarFourCollectionViewCell:(WashCarFourCollectionViewCell *)washCarFourCollectionViewCell
 {
-    /**
-     *  保证短时间内点击按钮，只有最后一次有效
-     */
-    [self.timer invalidate];
-    self.timer = nil;
-    self.timer =[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:NO];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-}
-
--(void)updateTimer
-{
-    if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
-    {
-        [SVProgressHUD showInfoWithStatus:@"请选择预约时间"];
-        return;
-    }
-    else if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
+    
+    if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
     {
         UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil message:@"该功能目前只对会员卡用户开放\n详情咨询客服：021-6547387" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         alertView.alertViewStyle = UIAlertViewStyleDefault;
         [alertView show];
         return;
     }
-    else
+    else if (!self.selectedTime || [self.selectedTime isEqualToString:@""])
     {
-        [SVProgressHUD show];
-        [self.orderCarDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                     withAppointmentStartTime:self.selectedTime
-                                                              withSubjectGuid:SubjectGuidWashCar
-                                                                 withCallback:^(BOOL success, NSError *error, id result)
-         {
-             /**
-              *  清除计时器
-              */
-             [self.timer invalidate];
-             self.timer = nil;
-             if (success)
-             {
-                 /**
-                  *  预约成功跳转到预约确认界面
-                  */
-                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                 OrderConfirmViewController* orderConfirmViewController = [[OrderConfirmViewController alloc]init];
-                 orderConfirmViewController.timeSegment = self.timeSegment;
-                 
-                 [self.navigationController pushViewController:orderConfirmViewController animated:YES];
-                 
-                 
-//                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
-//                 [self.navigationController pushViewController:myOrderViewController animated:YES];
-//                 
-                 /**
-                  *  重新获取时间预约列表
-                  */
-                 [self loadDataFromService];
-             }
-             else
-             {
-                 [SVProgressHUD showInfoWithStatus:result];
-             }
-         }];
-        
+        [SVProgressHUD showInfoWithStatus:@"请选择预约时间"];
+        return;
     }
+
+    OrderConfirmViewController* orderConfirmViewController = [[OrderConfirmViewController alloc]init];
+    
+    orderConfirmViewController.timeSegment = [AppTransferTimeSingleton transferCountDownWithTimeString:self.timeSegment];
+    orderConfirmViewController.orderTime = self.selectedTime;
+    orderConfirmViewController.orderProject = @"普通洗车";
+    orderConfirmViewController.price = self.orderCarDataViewController.washCarDateListModel.Pirce;
+    [self.navigationController pushViewController:orderConfirmViewController animated:YES];
     
 }
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_myOrder_StartTime object:nil];

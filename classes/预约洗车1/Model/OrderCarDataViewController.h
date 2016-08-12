@@ -42,13 +42,7 @@
  */
 @property (nonatomic, strong) WashCarDateListModel* washCarDateListModel;
 
-/**
- *  提交预约
- */
--(void)postAppointmentServiceWithAccessCode:(NSString*)accessCode
-                   withAppointmentStartTime:(NSString*)appointmentStartTime
-                            withSubjectGuid:(NSString*)subjectGuid
-                               withCallback:(Callback )callback;
+
 
 /**
  *   获取预约的评论列表/POST 请求

@@ -4,22 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/&#x6211;&#x7684;&#x9884;&#x7ea6;3/Model/MyOrderDataViewController.m"
-            timestampString = "491379166.858274"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-postMyOrderListWithAccessCode:withPageIndex:withCallback:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -36,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "492516319.630563"
+            timestampString = "492691469.421848"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "591"
-            endingLineNumber = "591"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
             landmarkName = "+postCancelOrderWithAccessCode:withAppointmentGuid:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "492516771.152047"
+            timestampString = "492691469.421848"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "673"
-            endingLineNumber = "673"
+            startingLineNumber = "679"
+            endingLineNumber = "679"
             landmarkName = "+postOnlineMessageListWithAccessCode:withPageIndex:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
@@ -115,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x7ef4;&#x4fee;2/&#x9884;&#x7ea6;&#x786e;&#x8ba4;/View/OrderConfirmView.m"
-            timestampString = "492604061.800696"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "492690028.513866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-layoutWithObject:"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "+SMSVerificationCodeWithPhoneNum:withIsExisted:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -131,61 +115,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/Controller/OrderCarViewController.m"
-            timestampString = "492605520.974057"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "492690047.914451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
-            landmarkName = "-updateTimer"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/Helper/Singleton/TransferTimeSingleton.m"
-            timestampString = "492602838.89171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-transferTimeStringToIntervalWith:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/Controller/OrderCarViewController.m"
-            timestampString = "492606249.774945"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396"
-            landmarkName = "-updateTimer"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/Controller/OrderCarViewController.m"
-            timestampString = "492606250.439015"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
-            landmarkName = "-updateTimer"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "+SMSVerificationCodeWithPhoneNum:withIsExisted:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

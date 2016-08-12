@@ -9,9 +9,11 @@
 #import "OrderConfirmViewController.h"
 #import "OrderConfirmDataViewController.h"
 #import "OrderConfirmView.h"
+#import "MyOrderViewController.h"
 
-@interface OrderConfirmViewController ()<CustomNavigationViewDelegate>
+@interface OrderConfirmViewController ()<CustomNavigationViewDelegate,OrderConfirmViewDelegate>
 @property (nonatomic, strong) OrderConfirmDataViewController* orderConfirmDataViewController;
+
 @end
 
 @implementation OrderConfirmViewController
@@ -35,12 +37,69 @@
 -(void)configureMyMessageView
 {
     [self.view addSubview:self.orderConfirmDataViewController.orderConfirmView];
-    //    self.myMessageDataViewController.myMessageView.delegate = self;
+    self.orderConfirmDataViewController.orderConfirmView.delegate = self;
+    
+    /**
+     *  日期和时间中加空格    2016-08-13 09:01
+     */
+    self.orderTime = [self.orderTime stringByReplacingOccurrencesOfString:@" " withString:@"   "];
+    /**
+     *  传值布局
+     */
+    [self.orderConfirmDataViewController.orderConfirmView layoutWithTotalTime:self.timeSegment
+                                                                withOrderTime:self.orderTime
+                                                             withOrderProject:self.orderProject
+                                                                    withPrice:self.price];
+    
     self.orderConfirmDataViewController.orderConfirmView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.orderConfirmDataViewController.customNavigationView,0).bottomEqualToView(self.view);
 }
 
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - 点击预约按钮/取消预约按钮调用 OrderConfirmViewDelegate
+/**
+ * 点击预约按钮调用
+ */
+-(void)didClickSubmitButtonWithOrderConfirmView:(OrderConfirmView *)orderConfirmView withMessageContent:(NSString *)messageContent
+{
+    
+    [SVProgressHUD show];
+    [self.orderConfirmDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                     withAppointmentStartTime:self.orderTime
+                                                              withSubjectGuid:SubjectGuidWashCar
+                                                                     withNote:messageContent
+                                                                 withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
+         {
+             /**
+              *  预约成功跳转到预约确认界面
+              */
+             [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+             
+             MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
+             [self.navigationController pushViewController:myOrderViewController animated:YES];
+             
+             /**
+              *  重新获取时间预约列表
+              */
+             //             [self loadDataFromService];
+         }
+         else
+         {
+             [SVProgressHUD showInfoWithStatus:result];
+         }
+     }];
+    
+}
+/**
+ * 点击取消预约按钮调用
+ */
+-(void)didClickCancelButtonWithOrderConfirmView:(OrderConfirmView *)orderConfirmView
 {
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -65,18 +65,22 @@
     }
     return _userCommentModelArr;
 }
+#pragma mark - 获取预约的时间列表
 -(void)postListofWashCarPlaceListWithAccessCode:(NSString*)accessCode
                                 withCurrentDate:(NSString*)currentDate
                                 withSubjectGuid:(NSString*)subjectGuid
                                    withCallback:(Callback )callback
 {
-    [AutomaintainAPI postListofWashCarPlaceListWithAccessCode:accessCode withCurrentDate:currentDate withSubjectGuid:subjectGuid withCallback:^(BOOL success, NSError *error, id result)
+    [AutomaintainAPI postListofWashCarPlaceListWithAccessCode:accessCode
+                                              withCurrentDate:currentDate
+                                              withSubjectGuid:subjectGuid
+                                                 withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
              
              self.washCarDateListModel = (WashCarDateListModel*)result;
-
+             
              callback(YES,nil,result);
          }
          else
@@ -86,25 +90,6 @@
      }];
 }
 
-#pragma mark - 提交预约
--(void)postAppointmentServiceWithAccessCode:(NSString *)accessCode withAppointmentStartTime:(NSString *)appointmentStartTime withSubjectGuid:(NSString *)subjectGuid withCallback:(Callback)callback
-{
-    [AutomaintainAPI postAppointmentServiceWithAccessCode:accessCode withAppointmentStartTime:appointmentStartTime withSubjectGuid:subjectGuid withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
-         {
-             
-//             self.washCarDateListModel = (WashCarDateListModel*)result;
-             
-             callback(YES,nil,result);
-         }
-         else
-         {
-             callback(NO,nil,result);
-         }
-     }];
-
-}
 #pragma mark - 获取预约的评论列表
 /**
  *   获取预约的评论列表/POST 请求

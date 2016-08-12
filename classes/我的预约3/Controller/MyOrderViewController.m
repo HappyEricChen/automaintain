@@ -105,8 +105,8 @@
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
 {
-//    [self.navigationController popToViewController:SharedAppDelegateHelper.homeViewController animated:YES];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToViewController:SharedAppDelegateHelper.homeViewController animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -UITableViewDataSource

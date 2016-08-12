@@ -15,4 +15,21 @@
  *  选中的时间段8：30-9：00
  */
 @property (nonatomic, strong) NSString* timeSegment;
+/**
+ *  预约时间 2016-08-11 12：00
+ */
+@property (nonatomic, strong) NSString* orderTime;
+/**
+ *  预约项目
+ */
+@property (nonatomic, strong) NSString* orderProject;
+
+/**
+ *  项目guid
+ */
+@property (nonatomic, strong) NSString* subjectGuid;
+/**
+ *  项目价格
+ */
+@property (nonatomic, strong) NSString* price;
 @end

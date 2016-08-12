@@ -7,6 +7,7 @@
 //
 
 #import "ModifyPasswordView.h"
+#import "BaseTextField.h"
 
 @interface ModifyPasswordView()
 /**
@@ -51,7 +52,7 @@
         accountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:accountLabel];
         
-        UITextField* oldPasswordField = [[UITextField alloc]init];
+        BaseTextField* oldPasswordField = [[BaseTextField alloc]init];
         oldPasswordField.placeholder = @"请输入原密码";
         oldPasswordField.keyboardType = UIKeyboardTypeASCIICapable;
         oldPasswordField.textAlignment = NSTextAlignmentLeft;
@@ -77,7 +78,7 @@
         passwordLabel.text = @"新密码";
         [baseView2 addSubview:passwordLabel];
         
-        UITextField* freshPasswordField = [[UITextField alloc]init];
+        BaseTextField* freshPasswordField = [[BaseTextField alloc]init];
         freshPasswordField.textAlignment = NSTextAlignmentLeft;
         freshPasswordField.textColor = UIColorFromRGB(0x000000);
         freshPasswordField.font = [UIFont systemFontOfSize:14];
@@ -103,7 +104,7 @@
         passwordLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:passwordLabel1];
         
-        UITextField* confirmPasswordField = [[UITextField alloc]init];
+        BaseTextField* confirmPasswordField = [[BaseTextField alloc]init];
         confirmPasswordField.textAlignment = NSTextAlignmentLeft;
         confirmPasswordField.font = [UIFont systemFontOfSize:14];
         confirmPasswordField.textColor = UIColorFromRGB(0x000000);

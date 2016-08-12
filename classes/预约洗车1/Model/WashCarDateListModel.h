@@ -16,6 +16,10 @@
 @property (nonatomic, strong) NSString* MaxPlaceNum;
 
 /**
+ *  项目的价格
+ */
+@property (nonatomic, strong) NSString* Pirce;
+/**
  *  每个时间段的模型数组
  */
 @property (nonatomic, strong) NSMutableArray* Schedule;
