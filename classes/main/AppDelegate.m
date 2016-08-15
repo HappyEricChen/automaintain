@@ -30,6 +30,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = SharedAppDelegateHelper.navigationController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

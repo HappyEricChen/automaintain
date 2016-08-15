@@ -219,7 +219,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BaseCollectionViewCell * cell = nil;
+    BaseCollectionViewCell * cell;
     id object = nil;
     if (indexPath.section == 0)
     {
@@ -245,7 +245,7 @@
         fourCell.delegate = self;
         cell = fourCell;
     }
-    else if (indexPath.section == 4)
+    else
     {
         WashCarFiveCollectionViewCell * fiveCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
         object = self.orderCarDataViewController.userCommentModelArr[indexPath.row];
@@ -320,7 +320,7 @@
 #pragma mark - headView头部的View，用户评价(288条)
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView * reusableView = nil;
+    UICollectionReusableView * reusableView;
     
     if (kind == UICollectionElementKindSectionHeader)
     {

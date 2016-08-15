@@ -160,7 +160,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BaseCollectionViewCell * cell = nil;
+    BaseCollectionViewCell * cell;
     
     if (indexPath.section == 0)
     {
@@ -220,7 +220,7 @@
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView * reusableView = nil;
+    UICollectionReusableView * reusableView;
     
     if (kind == UICollectionElementKindSectionHeader)
     {

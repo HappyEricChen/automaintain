@@ -120,7 +120,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BaseCollectionViewCell * cell = nil;
+    BaseCollectionViewCell * cell;
     id object = nil;
     if (indexPath.section == 0)
     {
@@ -140,7 +140,7 @@
         object = self.image;
         cell = thirdCell;
     }
-    else if (indexPath.section == 3)
+    else
     {
         MyCommentFourCollectionViewCell * fourCell = [MyCommentFourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:MyCommentFourCollectionViewCellId forIndexPath:indexPath];
         fourCell.delegate = self;
@@ -318,6 +318,7 @@
 {
     UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
     [imagePicker setDelegate:self];
+    imagePicker.mediaTypes = @[(NSString*)kUTTypeImage];
     [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
     [imagePicker setAllowsEditing:YES];
     [self presentViewController:imagePicker animated:YES completion:nil];

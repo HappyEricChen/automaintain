@@ -106,7 +106,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
+    UICollectionViewCell * cell;
     
     if (indexPath.section == 0)
     {

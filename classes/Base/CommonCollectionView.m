@@ -87,18 +87,15 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BaseCollectionViewCell * cell = nil;
+    
     id object = nil;
-    if (indexPath.section == 0)
-    {
-        CommonCollectionViewCell * commonCell = [CommonCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:commonCellId forIndexPath:indexPath];
-        object = self.totalArr[indexPath.row];
-        [commonCell layoutTextColorWithColor:self.textColor];
-        [commonCell layoutBackgroundColorWithColor:self.backgroundColor];
-        cell = commonCell;
-    }
-    [cell layoutWithObject:object];
-    return cell;
+    CommonCollectionViewCell * commonCell = [CommonCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:commonCellId forIndexPath:indexPath];
+    object = self.totalArr[indexPath.row];
+    [commonCell layoutTextColorWithColor:self.textColor];
+    [commonCell layoutBackgroundColorWithColor:self.backgroundColor];
+    
+    [commonCell layoutWithObject:object];
+    return commonCell;
 }
 
 #pragma mark - UICollectionViewFlowLayoutDelegate

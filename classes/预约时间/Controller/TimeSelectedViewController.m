@@ -105,7 +105,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
+    UICollectionViewCell * cell;
     
     if (indexPath.section == 0)
     {
@@ -119,7 +119,7 @@
          [secondCell layoutWithObject:self.timeSelectedDataViewController.fullOrderMaintenanceArr[indexPath.row]];
         cell =secondCell;
     }
-    else if (indexPath.section == 2)
+    else
     {
         SecondTimeCollectionViewCell * thirdCell = [SecondTimeCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:secondTimeCellId forIndexPath:indexPath];
         [thirdCell layoutWithObject:self.timeSelectedDataViewController.canOrderMaintenanceArr[indexPath.row]];
@@ -168,23 +168,19 @@
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView * reusableView = nil;
+    UICollectionReusableView * reusableView;
+    TimeSelectedHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TimeSelectedHeaderViewId forIndexPath:indexPath];
     
-    if (kind == UICollectionElementKindSectionHeader)
+    if (indexPath.section == 1)
     {
-        TimeSelectedHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TimeSelectedHeaderViewId forIndexPath:indexPath];
-        
-        if (indexPath.section == 1)
-        {
-            [headerView layoutWithImage:ImageNamed(@"order_choose_red") withTitle:@"他人已预约" withMyOrderHidden:YES];
-        }
-        else if (indexPath.section == 2)
-        {
-            [headerView layoutWithImage:ImageNamed(@"order_choose_white") withTitle:@"可预约时间" withMyOrderHidden:NO];
-        }
-        
-        reusableView = headerView;
+        [headerView layoutWithImage:ImageNamed(@"order_choose_red") withTitle:@"他人已预约" withMyOrderHidden:YES];
     }
+    else
+    {
+        [headerView layoutWithImage:ImageNamed(@"order_choose_white") withTitle:@"可预约时间" withMyOrderHidden:NO];
+    }
+    
+    reusableView = headerView;
     
     return reusableView;
 }

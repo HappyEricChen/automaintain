@@ -74,7 +74,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = nil;
+    UICollectionViewCell * cell;
     
     if (indexPath.section == 0)
     {
@@ -82,7 +82,7 @@
         [firstCell layoutWithObject:self.titleArr[indexPath.row]];
         cell = firstCell;
     }
-    else if (indexPath.section == 1)
+    else
     {
         SettingSecondCollectionViewCell * secondCell = [SettingSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:SettingSecondCollectionViewCellId forIndexPath:indexPath];
         secondCell.delegate = self;

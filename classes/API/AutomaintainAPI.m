@@ -155,6 +155,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      *  用带着时间戳的字典初始化新字典
      */
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
+    
+    NSString* password1 = [AppManagerSingleton generateAESWithSecret:password];
+    NSLog(@"++++++%@",password1);
+//    NSString* bate64 = [password1 newStringInBase64FromData];
+    NSString* password2 = [AppManagerSingleton parsingAESWithSecretAES:password1];
     dic[@"username"]=username;
     dic[@"password"]=password;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str

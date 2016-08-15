@@ -115,6 +115,8 @@
 		075EDD201D5C7528003DCE3A /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDD1F1D5C7527003DCE3A /* OrderConfirmViewController.m */; };
 		075EDD231D5C766D003DCE3A /* OrderConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDD221D5C766D003DCE3A /* OrderConfirmView.m */; };
 		075EDD261D5C7C57003DCE3A /* OrderConfirmDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDD251D5C7C57003DCE3A /* OrderConfirmDataViewController.m */; };
+		076518F51D616B82003A4AF7 /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 076518F41D616B82003A4AF7 /* NSData+Encryption.m */; };
+		076518F81D61BD17003A4AF7 /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 076518F71D61BD17003A4AF7 /* NSString+AES256.m */; };
 		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
 		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
 		078019E01D5818FD008D46FB /* MyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019DF1D5818FD008D46FB /* MyMessageViewController.m */; };
@@ -365,6 +367,10 @@
 		075EDD221D5C766D003DCE3A /* OrderConfirmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmView.m; sourceTree = "<group>"; };
 		075EDD241D5C7C57003DCE3A /* OrderConfirmDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmDataViewController.h; sourceTree = "<group>"; };
 		075EDD251D5C7C57003DCE3A /* OrderConfirmDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmDataViewController.m; sourceTree = "<group>"; };
+		076518F31D616B82003A4AF7 /* NSData+Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryption.h"; sourceTree = "<group>"; };
+		076518F41D616B82003A4AF7 /* NSData+Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryption.m"; sourceTree = "<group>"; };
+		076518F61D61BD17003A4AF7 /* NSString+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES256.h"; sourceTree = "<group>"; };
+		076518F71D61BD17003A4AF7 /* NSString+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES256.m"; sourceTree = "<group>"; };
 		077E7F871D47355000C5C8DB /* MyCommentFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentFourCollectionViewCell.h; sourceTree = "<group>"; };
 		077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentFourCollectionViewCell.m; sourceTree = "<group>"; };
 		077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JCExtension.h"; sourceTree = "<group>"; };
@@ -929,6 +935,8 @@
 				072F809E1D3490A5002CECC4 /* Block.h */,
 				072F809F1D3490A5002CECC4 /* Header.h */,
 				072F80A21D3490A5002CECC4 /* PrefixHeader.pch */,
+				076518F31D616B82003A4AF7 /* NSData+Encryption.h */,
+				076518F41D616B82003A4AF7 /* NSData+Encryption.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1261,6 +1269,8 @@
 				078058D21D5048340098185E /* UUID.m */,
 				078058D41D5048E40098185E /* KeyChainStore.h */,
 				078058D51D5048E40098185E /* KeyChainStore.m */,
+				076518F61D61BD17003A4AF7 /* NSString+AES256.h */,
+				076518F71D61BD17003A4AF7 /* NSString+AES256.m */,
 			);
 			path = KeyChain;
 			sourceTree = "<group>";
@@ -1516,6 +1526,7 @@
 				078A93351D5DCAB5004E2E6B /* BaseTextField.m in Sources */,
 				074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */,
 				072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */,
+				076518F51D616B82003A4AF7 /* NSData+Encryption.m in Sources */,
 				072F807D1D348F66002CECC4 /* ModifyPasswordDataViewController.m in Sources */,
 				072F80B81D3491EA002CECC4 /* CustomNavigationView.m in Sources */,
 				078019E61D581B8B008D46FB /* MyMessageSubmitButtonView.m in Sources */,
@@ -1534,6 +1545,7 @@
 				072F807A1D348F66002CECC4 /* UIColor+Extend.m in Sources */,
 				072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */,
 				072F80671D348F66002CECC4 /* MyCommentThirdCollectionViewCell.m in Sources */,
+				076518F81D61BD17003A4AF7 /* NSString+AES256.m in Sources */,
 				072F80841D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m in Sources */,
 				07576FD61D372319000D5E20 /* WashCarSecondCollectionViewCell.m in Sources */,
 				072F80BF1D349495002CECC4 /* AppDelegate.m in Sources */,

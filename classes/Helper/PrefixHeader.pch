@@ -32,6 +32,8 @@
 #import "UUID.h"
 #import "KeyChainStore.h"
 #import "UIButton+countDown.h"
+#import "NSData+Encryption.h"
+#import "NSString+AES256.h"
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_UUID @"com.company.app.uuid"

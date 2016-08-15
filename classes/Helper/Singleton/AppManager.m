@@ -8,6 +8,7 @@
 
 #import "AppManager.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "NSData+Encryption.h"
 
 @implementation AppManager
 
@@ -283,4 +284,40 @@
     return ret;
 }
 
+#pragma mark - 对账号密码进行加密/AES加密
+-(NSString*)generateAESWithSecret:(NSString*)secret
+{
+    NSString *key = @"12345678901234567890123456789012";
+    
+    //加密
+    
+//    NSData *plain = [secret dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *cipher = [secret aes256_encrypt:key];
+    
+//    NSLog(@"%@",[cipher newStringInBase64FromData]);
+    
+//    printf("%s\n", [[cipher description] UTF8String]);
+//    
+//    NSLog(@"%@", [[NSString alloc] initWithData:cipher encoding:NSUTF8StringEncoding]);//打印出null,这是因为没有解密。
+    
+    return cipher;
+}
+
+#pragma mark - 对AES加密后的字符串进行解密
+-(NSString*)parsingAESWithSecretAES:(NSData*)secretAES
+{
+    NSString *key = @"12345678901234567890123456789012";
+    
+    //解密
+    
+    NSData* plain = [secretAES aes256_decrypt:key];
+    
+    printf("%s\n", [[plain description] UTF8String]);
+    
+    NSLog(@"%@", [[NSString alloc] initWithData:plain encoding:NSUTF8StringEncoding]);
+    
+    //打印出secret的内容,用密码解密过了。如果使用错误的密码，则打印null
+    return [[NSString alloc] initWithData:plain encoding:NSUTF8StringEncoding];
+}
 @end
