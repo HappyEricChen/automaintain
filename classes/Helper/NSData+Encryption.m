@@ -15,11 +15,12 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
 
 @implementation NSData (Encryption)
 
-- (NSData *)aes256_encrypt:(NSString *)key   //加密
+//加密
+- (NSData *)aes256_encrypt:(NSString *)key
 {
-    char keyPtr[kCCKeySizeAES256+1];//创建一个长度为33的字节数组keyptr[32+1]
-    bzero(keyPtr, sizeof(keyPtr));//将整个字节数组清零
-     ;
+    char keyPtr[kCCKeySizeAES256+1];
+    bzero(keyPtr, sizeof(keyPtr));
+    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     NSUInteger dataLength = [self length];
     size_t bufferSize = dataLength + kCCBlockSizeAES128;
     void *buffer = malloc(bufferSize);

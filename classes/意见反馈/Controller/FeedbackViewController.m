@@ -262,6 +262,15 @@
     
     self.feedbackDataViewController.listTableView.hidden = ! self.feedbackDataViewController.listTableView.isHidden;
 }
+#pragma mark - 隐藏反馈类型列表/隐藏键盘
+-(void)hiddenListTableView
+{
+    if (!self.feedbackDataViewController.listTableView.isHidden)
+    {
+        self.feedbackDataViewController.listTableView.hidden = YES;
+    }
+    [self.view endEditing:YES];
+}
 
 -(void)dealloc
 {

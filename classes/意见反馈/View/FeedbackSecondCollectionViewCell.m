@@ -69,14 +69,6 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
 #pragma mark -UITextViewDelegate
 -(void)textViewDidChange:(UITextView *)textView
 {
-    if ([self.textView.text isEqualToString:@""])
-    {
-        self.placeHolderLabel.hidden = NO;
-    }
-    else
-    {
-        self.placeHolderLabel.hidden = YES;
-    }
     
     UITextRange *selectedRange = [textView markedTextRange];
     //获取高亮部分
@@ -189,5 +181,21 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         }
         return NO;
     }
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.placeHolderLabel.hidden = YES;
+}
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([self.textView.text isEqualToString:@""])
+    {
+        self.placeHolderLabel.hidden = NO;
+    }
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.textView endEditing:YES];
 }
 @end

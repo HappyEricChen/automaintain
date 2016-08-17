@@ -26,7 +26,6 @@
 		072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F961D348F66002CECC4 /* PersonalThirdCollectionViewCell.m */; };
 		072F80581D348F66002CECC4 /* OnlineMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F9A1D348F66002CECC4 /* OnlineMessageViewController.m */; };
 		072F80591D348F66002CECC4 /* OnlineMessageDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F9D1D348F66002CECC4 /* OnlineMessageDataViewController.m */; };
-		072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA01D348F66002CECC4 /* MyMessageView.m */; };
 		072F805B1D348F66002CECC4 /* OnlineMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA21D348F66002CECC4 /* OnlineMessageCollectionViewCell.m */; };
 		072F805D1D348F66002CECC4 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FA81D348F66002CECC4 /* FeedbackViewController.m */; };
 		072F805E1D348F66002CECC4 /* FeedbackDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7FAB1D348F66002CECC4 /* FeedbackDataViewController.m */; };
@@ -117,6 +116,7 @@
 		075EDD261D5C7C57003DCE3A /* OrderConfirmDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDD251D5C7C57003DCE3A /* OrderConfirmDataViewController.m */; };
 		076518F51D616B82003A4AF7 /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 076518F41D616B82003A4AF7 /* NSData+Encryption.m */; };
 		076518F81D61BD17003A4AF7 /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 076518F71D61BD17003A4AF7 /* NSString+AES256.m */; };
+		0768BACD1D62FEAD002C186D /* MyMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0768BACC1D62FEAD002C186D /* MyMessageView.m */; };
 		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
 		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
 		078019E01D5818FD008D46FB /* MyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078019DF1D5818FD008D46FB /* MyMessageViewController.m */; };
@@ -185,8 +185,6 @@
 		072F7F9A1D348F66002CECC4 /* OnlineMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageViewController.m; sourceTree = "<group>"; };
 		072F7F9C1D348F66002CECC4 /* OnlineMessageDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageDataViewController.h; sourceTree = "<group>"; };
 		072F7F9D1D348F66002CECC4 /* OnlineMessageDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageDataViewController.m; sourceTree = "<group>"; };
-		072F7F9F1D348F66002CECC4 /* MyMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessageView.h; path = "../../../在线留言/View/MyMessageView.h"; sourceTree = "<group>"; };
-		072F7FA01D348F66002CECC4 /* MyMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessageView.m; path = "../../../在线留言/View/MyMessageView.m"; sourceTree = "<group>"; };
 		072F7FA11D348F66002CECC4 /* OnlineMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageCollectionViewCell.h; sourceTree = "<group>"; };
 		072F7FA21D348F66002CECC4 /* OnlineMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageCollectionViewCell.m; sourceTree = "<group>"; };
 		072F7FA71D348F66002CECC4 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
@@ -371,6 +369,8 @@
 		076518F41D616B82003A4AF7 /* NSData+Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryption.m"; sourceTree = "<group>"; };
 		076518F61D61BD17003A4AF7 /* NSString+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES256.h"; sourceTree = "<group>"; };
 		076518F71D61BD17003A4AF7 /* NSString+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES256.m"; sourceTree = "<group>"; };
+		0768BACB1D62FEAD002C186D /* MyMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageView.h; sourceTree = "<group>"; };
+		0768BACC1D62FEAD002C186D /* MyMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageView.m; sourceTree = "<group>"; };
 		077E7F871D47355000C5C8DB /* MyCommentFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentFourCollectionViewCell.h; sourceTree = "<group>"; };
 		077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentFourCollectionViewCell.m; sourceTree = "<group>"; };
 		077E7F8A1D47531C00C5C8DB /* UIView+JCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JCExtension.h"; sourceTree = "<group>"; };
@@ -1231,8 +1231,7 @@
 				078019DC1D581885008D46FB /* Model */,
 				078019DD1D581885008D46FB /* View */,
 			);
-			name = "我的留言";
-			path = "个人中心4/我的留言";
+			path = "我的留言";
 			sourceTree = "<group>";
 		};
 		078019DB1D581885008D46FB /* Controller */ = {
@@ -1256,8 +1255,8 @@
 		078019DD1D581885008D46FB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				072F7F9F1D348F66002CECC4 /* MyMessageView.h */,
-				072F7FA01D348F66002CECC4 /* MyMessageView.m */,
+				0768BACB1D62FEAD002C186D /* MyMessageView.h */,
+				0768BACC1D62FEAD002C186D /* MyMessageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1543,7 +1542,6 @@
 				072F80521D348F66002CECC4 /* PersonalModel.m in Sources */,
 				072F80781D348F66002CECC4 /* LDCalendarView.m in Sources */,
 				072F807A1D348F66002CECC4 /* UIColor+Extend.m in Sources */,
-				072F805A1D348F66002CECC4 /* MyMessageView.m in Sources */,
 				072F80671D348F66002CECC4 /* MyCommentThirdCollectionViewCell.m in Sources */,
 				076518F81D61BD17003A4AF7 /* NSString+AES256.m in Sources */,
 				072F80841D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m in Sources */,
@@ -1561,6 +1559,7 @@
 				0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */,
 				072F80831D348F66002CECC4 /* TimeSelectedDataViewController.m in Sources */,
 				075EDD231D5C766D003DCE3A /* OrderConfirmView.m in Sources */,
+				0768BACD1D62FEAD002C186D /* MyMessageView.m in Sources */,
 				072F807E1D348F66002CECC4 /* SettingDataViewController.m in Sources */,
 				0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */,
 				07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */,

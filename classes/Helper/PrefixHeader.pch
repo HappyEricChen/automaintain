@@ -40,4 +40,9 @@
 #define  KEY_USERNAME @"com.company.app.username"
 #define  KEY_PASSWORD @"com.company.app.password"
 
+/**
+ *  ASE加密的key
+ */
+#define KEY_ASE @"1234567890123456" 
+
 #endif /* PrefixHeader_pch */

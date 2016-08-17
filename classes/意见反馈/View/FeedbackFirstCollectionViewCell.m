@@ -95,4 +95,14 @@ NSString * const FeedbackFirstCollectionViewCellId = @"FeedbackFirstCollectionVi
         [self.delegate didClickListButtonWithFeedbackFirstCollectionViewCell:self];
     }
 }
+/**
+ *  回缩列表tableView
+ */
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if ([self.delegate respondsToSelector:@selector(hiddenListTableView)])
+    {
+        [self.delegate hiddenListTableView];
+    }
+}
 @end

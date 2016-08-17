@@ -17,6 +17,10 @@
  */
 -(void)didClickListButtonWithFeedbackFirstCollectionViewCell:(FeedbackFirstCollectionViewCell*)feedbackFirstCollectionViewCell;
 
+/**
+ *  点击隐藏反馈类型列表
+ */
+-(void)hiddenListTableView;
 @end
 @interface FeedbackFirstCollectionViewCell : BaseCollectionViewCell
 

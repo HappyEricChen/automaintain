@@ -96,9 +96,4 @@
 @property (nonatomic, strong) NSString* verificationCode;
 
 
-#pragma mark - 对账号密码进行加密/AES加密
--(NSString*)generateAESWithSecret:(NSString*)secret;
-
-#pragma mark - 对AES加密后的字符串进行解密
--(NSString*)parsingAESWithSecretAES:(NSData*)secretAES;
 @end

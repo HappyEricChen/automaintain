@@ -17,18 +17,23 @@
     //对数据进行加密
     NSData *result = [data aes256_encrypt:key];
     
-    NSString* s = [result newStringInBase64FromData];
-    
-    
     //转换为2进制字符串
-    if (result && result.length > 0) {
-        
-        Byte *datas = (Byte*)[result bytes];
-        NSMutableString *output = [NSMutableString stringWithCapacity:result.length * 2];
-        for(int i = 0; i < result.length; i++){
-            [output appendFormat:@"%02x", datas[i]];
-        }
+    if (result && result.length > 0)
+    {
+        /**
+         *  bates64加密
+         */
+        NSString* output = [NSString stringWithFormat:@"%@==",[result newStringInBase64FromData]];
         return output;
+        
+        
+//        Byte *datas = (Byte*)[result bytes];
+//        NSMutableString *output = [NSMutableString stringWithCapacity:result.length * 2];
+//        for(int i = 0; i < result.length; i++)
+//        {
+//            [output appendFormat:@"%02x", datas[i]];
+//        }
+//        return output;
     }
     return nil;
 }

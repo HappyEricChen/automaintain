@@ -1,3 +1,4 @@
+
 //
 //  MyMessageView.m
 //  automaintain
@@ -81,14 +82,6 @@
 #pragma mark -UITextViewDelegate
 -(void)textViewDidChange:(UITextView *)textView
 {
-    if ([self.textView.text isEqualToString:@""])
-    {
-        self.placeholderLabel.hidden = NO;
-    }
-    else
-    {
-        self.placeholderLabel.hidden = YES;
-    }
     
     UITextRange *selectedRange = [textView markedTextRange];
     //获取高亮部分
@@ -221,6 +214,15 @@
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-     [self endEditing:YES];//回缩键盘
+    if ([self.textView.text isEqualToString:@""])
+    {
+        self.placeholderLabel.hidden = NO;
+    }
+    
+    [self endEditing:YES];//回缩键盘
+}
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.placeholderLabel.hidden = YES;
 }
 @end

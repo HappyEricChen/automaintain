@@ -17,12 +17,14 @@
 #import "OrderTypeModel.h"
 #import "OnlineMessageModel.h"
 
+#define ERRORINFO @"网络异常，请稍后重试"
+
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
 /**
  *  内部测试地址
  */
-//static NSString* urlPath = @"http://192.168.2.137/ErpWebApi";
+//static NSString* urlPath = @"http://192.168.2.124/ErpWebApi";
 
 #else
 
@@ -67,7 +69,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -76,6 +78,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/CustomerRegister"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
+    
+    /**
+     *  AES+Base64混合加密
+     */
+//    NSString *passwordAES = [password aes256_encrypt:KEY_ASE];
+    
     dic[@"username"]=username;
     dic[@"password"]=password;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
@@ -105,7 +113,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 
 }
@@ -114,6 +122,12 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/FindCustomerPassword"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
+    
+    /**
+     *  AES+Base64混合加密
+     */
+//    NSString *passwordAES = [newPassword aes256_encrypt:KEY_ASE];
+    
     dic[@"username"]=username;
     dic[@"password"]=newPassword;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
@@ -142,7 +156,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -156,10 +170,11 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      */
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     
-    NSString* password1 = [AppManagerSingleton generateAESWithSecret:password];
-    NSLog(@"++++++%@",password1);
-//    NSString* bate64 = [password1 newStringInBase64FromData];
-    NSString* password2 = [AppManagerSingleton parsingAESWithSecretAES:password1];
+    /**
+     *  AES+Base64混合加密
+     */
+//    NSString *passwordAES = [password aes256_encrypt:KEY_ASE];
+    
     dic[@"username"]=username;
     dic[@"password"]=password;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
@@ -188,7 +203,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -223,7 +238,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -259,7 +274,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 }
 #pragma mark - 首页免费便民服务
@@ -294,7 +309,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 }
 #pragma mark - 首页底部广告图片
@@ -329,7 +344,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 }
 
@@ -378,7 +393,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 }
 #pragma mark - 提交预约
@@ -423,7 +438,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 
 }
@@ -471,7 +486,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 }
 #pragma mark - 获取预约类型列表
@@ -508,7 +523,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 
 }
@@ -558,7 +573,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -599,7 +614,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -639,7 +654,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 
 }
@@ -688,7 +703,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -727,7 +742,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -775,7 +790,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
     
 }
@@ -822,7 +837,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 }
 
@@ -834,6 +849,14 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Customer/SetCustomerPassword"];
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
+    
+    /**
+     *  AES+Base64混合加密
+     */
+//    NSString *OldPasswordAES = [OldPassword aes256_encrypt:KEY_ASE];
+//    NSString *NewPasswordAES = [NewPassword aes256_encrypt:KEY_ASE];
+    
+    
     dic[@"accessCode"] = accessCode;
     dic[@"OldPassword"] = OldPassword;
     dic[@"NewPassword"] = NewPassword;
@@ -863,7 +886,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 
 }
@@ -902,7 +925,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
-         callback(NO,nil,[error localizedDescription]);
+         callback(NO,nil,ERRORINFO);
      }];
 
 }
