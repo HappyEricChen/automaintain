@@ -177,7 +177,7 @@
     }
     else
     {
-        [headerView layoutWithImage:ImageNamed(@"order_choose_white") withTitle:@"可预约时间" withMyOrderHidden:NO];
+        [headerView layoutWithImage:ImageNamed(@"order_choose_white") withTitle:@"可预约 " withMyOrderHidden:NO];
     }
     
     reusableView = headerView;

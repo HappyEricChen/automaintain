@@ -377,6 +377,7 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     if (defaultDay)
     {
         _selectedDay = defaultDay.copy;
+        
     }
     else
     {
