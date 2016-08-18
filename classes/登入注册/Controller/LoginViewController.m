@@ -114,10 +114,9 @@
         [SVProgressHUD showInfoWithStatus:@"请输入密码"];
         return;
     }
-#warning 上线之前打开
 //    else if (![AppManagerSingleton isMobile:username])
 //    {
-//        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
+//        [SVProgressHUD showInfoWithStatus:@"请输入11位正确的手机号"];
 //        return;
 //    }
 //    else if (password.length<6)

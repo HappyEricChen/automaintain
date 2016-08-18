@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webDataViewController = [[WebDataViewController alloc]initWithTitle:self.title];
+    self.webDataViewController = [[WebDataViewController alloc]initWithTitle:self.webTitle];
     [self configureNavigationView];
     [self configureWebView];
 }

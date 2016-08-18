@@ -82,9 +82,9 @@
              for (ScheduleListModel* scheduleListModel in washCarDateListModel.Schedule)
              {
                  /**
-                  *  预约的次数大于等于最大可预约数，放到full数组
+                  *  预约的次数大于等于最大可预约数，****并且我没有预约过的***放到full数组
                   */
-                 if ([washCarDateListModel.MaxPlaceNum isEqualToString:scheduleListModel.AppointmentCount] || scheduleListModel.AppointmentCount.integerValue>washCarDateListModel.MaxPlaceNum.integerValue)
+                 if (scheduleListModel.MyAppointmentCount.integerValue <= 0 && scheduleListModel.AppointmentCount.integerValue>=washCarDateListModel.MaxPlaceNum.integerValue)
                  {
                      [self.fullOrderMaintenanceArr addObject:scheduleListModel];
                  }

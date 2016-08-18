@@ -16,5 +16,5 @@
 /**
  *  跳转的网页title
  */
-@property (nonatomic, strong) NSString* title;
+@property (nonatomic, strong) NSString* webTitle;
 @end

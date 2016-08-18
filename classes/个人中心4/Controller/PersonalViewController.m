@@ -17,11 +17,15 @@
 #import "SettingViewController.h"
 #import "PersonalModel.h"
 
-@interface PersonalViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PersonalDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface PersonalViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PersonalDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DBCameraViewControllerDelegate>
 
 @property (nonatomic, strong) PersonalDataViewController* personalDataViewController;
 
 @property (nonatomic, strong) NSArray* contentArr;//item显示文字/图片
+/**
+ *  头像照片
+ */
+@property (nonatomic, strong) UIImage* avatorImage;
 
 @end
 
@@ -187,11 +191,17 @@
 
 -(void)didClickShowCameraMethod:(PersonalDataViewController *)personalDataViewController
 {
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
-    [imagePicker setDelegate:self];
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [imagePicker setAllowsEditing:YES];
-    [self presentViewController:imagePicker animated:YES completion:nil];
+//    UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
+//    [imagePicker setDelegate:self];
+//    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//    [imagePicker setAllowsEditing:YES];
+//    [self presentViewController:imagePicker animated:YES completion:nil];
+    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    [cameraContainer setFullScreenMode];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)didClickShowLocalAlbumMethod:(PersonalDataViewController *)personalDataViewController
@@ -202,13 +212,24 @@
     localAlbumImagePicker.allowsEditing = YES;
     [self presentViewController:localAlbumImagePicker animated:YES completion:nil];
 }
-#pragma mark - 上传选中的照片，获取photoGuid
+#pragma mark - 照片选择代理方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     
     UIImage* avatorImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    self.avatorImage = avatorImage;
+    [self updateAvatorImage];//更新头像
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.personalDataViewController.collectionView reloadData];
+    
+}
+
+#pragma mark - 上传选中的照片，获取photoGuid
+-(void)updateAvatorImage
+{
     __weak PersonalViewController* weakSelf = self;
-    [self.personalDataViewController postUploadPhotoFileWithImage:avatorImage
+    [SVProgressHUD show];
+    [self.personalDataViewController postUploadPhotoFileWithImage:self.avatorImage
                                                      withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
@@ -225,8 +246,7 @@
              [SVProgressHUD showInfoWithStatus:(NSString*)result];
          }
      }];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.personalDataViewController.collectionView reloadData];
+
 }
 #pragma mark - 得到照片上传后的guid，更新用户头像
 -(void)updateCustomerAvatorWithPhotoGuid:(NSString*)photoGuid
@@ -250,4 +270,18 @@
     
 }
 
+#pragma mark - DBCamera相机代理方法
+- (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
+{
+    [cameraViewController restoreFullScreenMode];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    self.avatorImage = image;
+    [self updateAvatorImage];//更新头像
+    [self.personalDataViewController.collectionView reloadData];
+}
+
+- (void) dismissCamera:(id)cameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [cameraViewController restoreFullScreenMode];
+}
 @end

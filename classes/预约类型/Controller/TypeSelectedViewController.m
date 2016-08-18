@@ -138,7 +138,7 @@
 {
     if (!AppManagerSingleton.CardNo || AppManagerSingleton.CardNo.integerValue == 0)
     {
-        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"该功能目前只对会员卡用户开放" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:@"该功能目前只对会员卡用户开放\n详情咨询客服：021-6547387" message:nil delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         alertView.alertViewStyle = UIAlertViewStyleDefault;
         [alertView show];
         return;

@@ -248,16 +248,26 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
                     dispatch_source_cancel(_timer);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //设置界面的按钮显示 根据自己需求设置
-                        
                     });
-                }else{
+                }
+                else
+                {
                     NSInteger hours = timeout/3600;
                     NSInteger minutes = (timeout-hours*3600)/60;
                     NSInteger seconds = timeout % 60;
                     NSString *strTime = [NSString stringWithFormat:@"距离完成时间：%.2ld:%.2ld:%.2ld",hours,minutes, seconds];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //设置界面的按钮显示 根据自己需求设置
-                        self.timeCompleteLabel.text = strTime;
+                        //最后一秒显示成00：00：00
+                        if ([strTime isEqualToString:[NSString stringWithFormat:@"距离完成时间：00:00:01"]])
+                        {
+                            self.timeCompleteLabel.text = [NSString stringWithFormat:@"距离完成时间：00:00:00"];
+                        }
+                        else
+                        {
+                            self.timeCompleteLabel.text = strTime;
+                        }
+                        
                     });
                     timeout--;
                     

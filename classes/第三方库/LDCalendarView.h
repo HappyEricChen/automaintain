@@ -28,7 +28,8 @@ typedef void(^DaysSelectedBlock)(NSNumber *result);
 - (void)clickForIndex:(NSInteger)index;
 - (void)show;
 - (void)hide;
-
+- (void)refreshDateTitle;//刷新日期
+- (void)changeYearAndMonth;
 /**
  *  点击上一天按钮调用
  */

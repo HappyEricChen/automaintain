@@ -194,7 +194,7 @@
                           withContentText:(NSString*)ContentText
                   withMaintainSubjectGuid:(NSString*)maintainSubjectGuid
                       withAppointmentGuid:(NSString*)appointmentGuid
-                        withPhotoGuidList:(NSArray*)photoGuidList
+                        withPhotoGuidList:(NSString*)photoGuidList
                              withCallback:(Callback )callback;
 #pragma mark - 上传照片
 /**

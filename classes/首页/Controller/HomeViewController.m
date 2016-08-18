@@ -202,7 +202,7 @@
         
         WebViewController* webViewController = [[WebViewController alloc]init];
         webViewController.urlStr = bottomAdsModel.Url;
-        webViewController.title = bottomAdsModel.Title;
+        webViewController.webTitle = bottomAdsModel.Title;
         [self.navigationController pushViewController:webViewController animated:YES];
     }
 }
@@ -247,7 +247,7 @@
    
     WebViewController* webViewController = [[WebViewController alloc]init];
     webViewController.urlStr = adsCarouselModel.Url;
-    webViewController.title = adsCarouselModel.Title;
+    webViewController.webTitle = adsCarouselModel.Title;
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 @end

@@ -1,4 +1,4 @@
-//
+ //
 //  OrderCarViewController.m
 //  一号车库
 //
@@ -322,13 +322,10 @@
 {
     UICollectionReusableView * reusableView;
     
-    if (kind == UICollectionElementKindSectionHeader)
-    {
-        CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        NSString* commentTotalCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"commentTotalCount"];
-        [headerView layoutWithObject:commentTotalCount.integerValue];
-        reusableView = headerView;
-    }
+    CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
+    NSString* commentTotalCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"commentTotalCount"];
+    [headerView layoutWithObject:commentTotalCount.integerValue];
+    reusableView = headerView;
     
     return reusableView;
 }
@@ -364,6 +361,7 @@
     orderConfirmViewController.timeSegment = [AppTransferTimeSingleton transferCountDownWithTimeString:self.timeSegment];
     orderConfirmViewController.orderTime = self.selectedTime;
     orderConfirmViewController.orderProject = @"普通洗车";
+    orderConfirmViewController.subjectGuid = SubjectGuidWashCar;
     orderConfirmViewController.price = self.orderCarDataViewController.washCarDateListModel.Pirce;
     [self.navigationController pushViewController:orderConfirmViewController animated:YES];
     

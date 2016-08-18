@@ -112,7 +112,8 @@ NSString* const washCarFirstId = @"washCarFirstId";
 -(void)clickDateLabel
 {
     self.calendarView.defaultDay = _seletedDay;
-    [self.calendarView.selectedButton setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
+    [self.calendarView changeYearAndMonth];
+    [self.calendarView refreshDateTitle];
     [self.calendarView show];
 }
 
@@ -134,14 +135,19 @@ NSString* const washCarFirstId = @"washCarFirstId";
     return partStr;
 }
 
-- (LDCalendarView *)calendarView {
-    if (!_calendarView) {
+- (LDCalendarView *)calendarView
+{
+    if (!_calendarView)
+    {
         _calendarView = [[LDCalendarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT)];
         [self.window addSubview:_calendarView];
-        [_calendarView hide];
+//        self.seletedDay = @([[NSDate date]timeIntervalSince1970]);
+        [_calendarView hide];//第一次点上一天下一天时隐藏界面
         __weak typeof(self) weakSelf = self;
-        _calendarView.complete = ^(NSNumber *result) {
-            if (result) {
+        _calendarView.complete = ^(NSNumber *result)
+        {
+            if (result)
+            {
                 weakSelf.seletedDay = result;
                 weakSelf.dateLabel.text = weakSelf.showStr;
             }

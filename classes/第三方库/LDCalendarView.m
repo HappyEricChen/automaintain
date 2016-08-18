@@ -187,9 +187,9 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     [self refreshDateTitle];
 
     /**
-     *  显示日期列表View
+     *  高亮选中的日期
      */
-    [self showDateView];
+//    [self refreshDateView];
 }
 #pragma mark - 点击更换月份，年份
 - (void)switchMonthTap:(UITapGestureRecognizer *)tap {
@@ -278,7 +278,6 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     btn.tag                    = kBtnStartTag + i;
     [btn setFrame:baseRect];
     btn.userInteractionEnabled = NO;
-//    btn.backgroundColor = [UIColor redColor];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:10]];
     
     NSInteger startDayIndex = [self calculateStartIndex:self.firstDay];
@@ -291,7 +290,7 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         /**
          *  选中的日期为0的时候，将今天设置为高亮
          */
-        if (!_selectedDay || [_selectedDay isEqual:@0])
+        if ([_selectedDay isEqual:@0]|| !_selectedDay)
         {
             [btn setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
             self.selectedButton = btn;
@@ -354,7 +353,7 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
         rect;
     });
     
-    for(int i = startDayIndex; i < self.kTotalNum+startDayIndex;i++) {
+    for(NSInteger i = startDayIndex; i < self.kTotalNum+startDayIndex;i++) {
         //需要换行且不在第一行
         if (i % kCol == 0 && i != 0) {
             baseRect.origin.y += (baseRect.size.height);
@@ -377,7 +376,6 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
     if (defaultDay)
     {
         _selectedDay = defaultDay.copy;
-        
     }
     else
     {
@@ -463,15 +461,12 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
 // */
 -(void)clickLastDayButton
 {
-    NSDate *selectedDate = [NSDate dateWithTimeIntervalSince1970:self.selectedDay.doubleValue];
-
     /**
-     *  防止选择月份的时候改变了当前的月和年，使选择天的时候不准
+     *  把年份和月份设置为当前选中日期的年月/防止选择月份的时候改变了当前的月和年，使选择天的时候不准
      */
-    self.year = selectedDate.year;
-    self.month = selectedDate.month;
+    [self changeYearAndMonth];
     
-    NSInteger day = selectedDate.day;
+    NSInteger day = self.day;
     
     if (day>1)
     {
@@ -518,23 +513,12 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
  */
 -(void)clickNextDayButton
 {
-    NSDate *selectedDate;
-    if (!self.selectedDay)
-    {
-        selectedDate = [NSDate date];
-    }
-    else
-    {
-        selectedDate = [NSDate dateWithTimeIntervalSince1970:self.selectedDay.doubleValue];
-    }
-    
     /**
-     *  防止选择月份的时候改变了当前的月和年，使选择天的时候不准
+     *  把年份和月份设置为当前选中日期的年月
      */
-    self.year = selectedDate.year;
-    self.month = selectedDate.month;
+    [self changeYearAndMonth];
     
-    NSInteger day = selectedDate.day;
+    NSInteger day = self.day;
     
     if (day<self.kTotalNum)
     {
@@ -569,6 +553,27 @@ static const NSInteger kBtnStartTag = 100;// 按钮的tag初始值
      *  刷新日期
      */
     [self refreshDateTitle];
+}
+
+#pragma mark -把年份和月份设置为当前选中日期的年月
+-(void)changeYearAndMonth
+{
+    NSDate *selectedDate;
+    if (!self.selectedDay)
+    {
+        selectedDate = [NSDate date];
+    }
+    else
+    {
+        selectedDate = [NSDate dateWithTimeIntervalSince1970:self.selectedDay.doubleValue];
+    }
+    
+    /**
+     *  防止选择月份的时候改变了当前的月和年，使选择天的时候不准
+     */
+    self.year = selectedDate.year;
+    self.month = selectedDate.month;
+    self.day = selectedDate.day;
 }
 
 - (void)show {

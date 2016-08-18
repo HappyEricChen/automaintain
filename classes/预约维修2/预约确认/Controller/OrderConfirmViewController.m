@@ -70,7 +70,7 @@
     [SVProgressHUD show];
     [self.orderConfirmDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
                                                      withAppointmentStartTime:self.orderTime
-                                                              withSubjectGuid:SubjectGuidWashCar
+                                                              withSubjectGuid:self.subjectGuid
                                                                      withNote:messageContent
                                                                  withCallback:^(BOOL success, NSError *error, id result)
      {

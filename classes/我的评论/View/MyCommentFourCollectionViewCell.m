@@ -30,7 +30,6 @@ NSString * const MyCommentFourCollectionViewCellId = @"MyCommentFourCollectionVi
         [submitButton setTitle:@"提交评论" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [submitButton addTarget:self action:@selector(clickSubmitBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:submitButton];
         

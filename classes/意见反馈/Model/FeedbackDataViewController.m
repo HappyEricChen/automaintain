@@ -45,8 +45,6 @@
     if (!_listTableView)
     {
         _listTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _listTableView.layer.borderColor = [UIColor blackColor].CGColor;
-        _listTableView.layer.borderWidth = 1;
         
     }
     return _listTableView;

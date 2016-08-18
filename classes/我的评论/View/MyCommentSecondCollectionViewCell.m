@@ -40,7 +40,6 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
         textView.backgroundColor = UIColorFromRGB(0xf1eee7);
         textView.layer.borderWidth = 1.0f;
         textView.layer.borderColor = UIColorFromRGB(0x000000).CGColor;
-        textView.translatesAutoresizingMaskIntoConstraints = NO;
         textView.delegate = self;
         [self addSubview:textView];
         self.textView = textView;
@@ -49,7 +48,6 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
         placeHolderLabel.font = [UIFont systemFontOfSize:11];
         placeHolderLabel.textColor = UIColorFromRGB(0xc0c0c0);
         placeHolderLabel.text = @"写下服务体会，可以给其他小伙伴提供参考~";
-        placeHolderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [textView addSubview:placeHolderLabel];
         self.placeholderLabel = placeHolderLabel;
         
@@ -58,7 +56,6 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
         lengthLimitationLabel.textColor = UIColorFromRGB(0xc0c0c0);
         lengthLimitationLabel.text = @"长度在1~150字中间";
         lengthLimitationLabel.textAlignment = NSTextAlignmentRight;
-        lengthLimitationLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:lengthLimitationLabel];
         
         
@@ -74,15 +71,7 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
 #pragma mark -UITextViewDelegate
 -(void)textViewDidChange:(UITextView *)textView
 {
-    if ([self.textView.text isEqualToString:@""])
-    {
-        self.placeholderLabel.hidden = NO;
-    }
-    else
-    {
-        self.placeholderLabel.hidden = YES;
-    }
-    
+
     UITextRange *selectedRange = [textView markedTextRange];
     //获取高亮部分
     UITextPosition *pos = [textView positionFromPosition:selectedRange.start offset:0];
@@ -190,10 +179,7 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
     
 }
 
--(void)layoutWithObject:(id)object
-{
 
-}
 
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
@@ -202,7 +188,17 @@ NSString * const MyCommentSecondCollectionViewCellId = @"MyCommentSecondCollecti
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     [textView resignFirstResponder];
+    
+    if ([self.textView.text isEqualToString:@""])
+    {
+        self.placeholderLabel.hidden = NO;
+    }
 }
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.placeholderLabel.hidden = YES;
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [[NSNotificationCenter defaultCenter]postNotificationName:kNotify_cancel_Keyboard object:nil];

@@ -125,7 +125,6 @@ NSString * const MyCommentThirdCollectionViewCellId = @"MyCommentThirdCollection
     /**
      ios7 后动画效果
      */
-    __weak MyCommentThirdCollectionViewCell* weakSelf = self;
     [UIView animateWithDuration:1.0//动画时长
                           delay:0.0//动画延迟
          usingSpringWithDamping:0.0//弹簧效果0~1

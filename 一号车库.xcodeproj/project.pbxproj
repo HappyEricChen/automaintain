@@ -1376,7 +1376,7 @@
 				TargetAttributes = {
 					070F74561D1A7F5F0041F293 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = RE5479Z76Q;
+						DevelopmentTeam = YVNM4HM6XS;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1749,7 +1749,7 @@
 					"-framework",
 					"\"ImageIO\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1779,7 +1779,7 @@
 					"-framework",
 					"\"ImageIO\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";

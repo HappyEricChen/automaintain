@@ -59,7 +59,6 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         UILabel* titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"预约类型：";
         titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:titleLabel];
         
         CGFloat titleLabelWidth = [titleLabel calculateWidthWithLabelContent:titleLabel.text
@@ -70,7 +69,6 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         UILabel* scoreLabel = [[UILabel alloc]init];
         scoreLabel.text = @"评分：";
         scoreLabel.font = [UIFont boldSystemFontOfSize:14];
-        scoreLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:scoreLabel];
         
         CGFloat scoreLabelWidth = [scoreLabel calculateWidthWithLabelContent:scoreLabel.text
@@ -79,7 +77,6 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
                                                                     WithBold:YES];
         
         UIView *baseView1 = [[UIView alloc]init];
-        baseView1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView1];
         self.baseView1 = baseView1;
         
@@ -100,7 +97,6 @@ NSString * const MyCommentFirstCollectionViewCellId = @"MyCommentFirstCollection
         
         contentLabel.font = [UIFont systemFontOfSize:14];
         contentLabel.textColor = UIColorFromRGB(0x929292);
-        contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:contentLabel];
         self.contentLabel = contentLabel;
         

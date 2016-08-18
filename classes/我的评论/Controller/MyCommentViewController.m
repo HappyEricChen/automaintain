@@ -15,7 +15,7 @@
 #import "MyOrderModel.h"
 #import "ImageAmplificationViewController.h"
 
-@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentThirdCollectionViewCellDelegate,MyCommentFourCollectionViewCellDelegate>
+@interface MyCommentViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MyCommentDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MyCommentThirdCollectionViewCellDelegate,MyCommentFourCollectionViewCellDelegate,DBCameraViewControllerDelegate>
 
 @property (nonatomic, strong) MyCommentDataViewController* myCommentDataViewController;
 /**
@@ -313,17 +313,25 @@
     }
 }
 #pragma mark - MyCommentDataViewControllerDelegate
-
+/**
+ *  点击选择相机
+ */
 -(void)didClickShowCameraMethod:(MyCommentViewController *)personalDataViewController
 {
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
-    [imagePicker setDelegate:self];
-    imagePicker.mediaTypes = @[(NSString*)kUTTypeImage];
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [imagePicker setAllowsEditing:YES];
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
+    [cameraController setUseCameraSegue:NO];
+    
+    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    [container setCameraViewController:cameraController];
+    [container setFullScreenMode];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
+    [nav setNavigationBarHidden:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
-
+/**
+ *  点击选择相册
+ */
 -(void)didClickShowLocalAlbumMethod:(MyCommentViewController *)personalDataViewController
 {
     UIImagePickerController* localAlbumImagePicker = [[UIImagePickerController alloc]init];
@@ -331,11 +339,12 @@
     [localAlbumImagePicker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     [localAlbumImagePicker setAllowsEditing:YES];
     [self presentViewController:localAlbumImagePicker animated:YES completion:nil];
+    
 }
+
 #pragma mark - UIImagePickerControllerDelegate选择图片代理方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    
     UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     self.image = image;
     [self.myCommentDataViewController.imageArr addObject:image];
@@ -346,7 +355,11 @@
 #pragma mark - 点击相机按钮，选择照片或拍照
 -(void)didSelectedCameraWithMyCommentThirdCollectionViewCell:(MyCommentThirdCollectionViewCell *)myCommentThirdCollectionViewCell
 {
+    /**
+     *  代理方法在DataViewController里面实现
+     */
     [self.myCommentDataViewController.actionSheet showInView:self.view];
+    
 }
 #pragma mark - 点击对应的照片放大
 -(void)didClickImageViewWithMyCommentSecondCollectionViewCell:(MyCommentSecondCollectionViewCell *)myCommentSecondCollectionViewCell withImage:(UIImage *)image
@@ -375,5 +388,20 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_comment_StarScore object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_comment_Content object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_cancel_Keyboard object:nil];
+}
+
+#pragma mark - DBCamera相机代理方法
+- (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
+{
+    [cameraViewController restoreFullScreenMode];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.myCommentDataViewController.imageArr addObject:image];
+    self.image = image;
+    [self.myCommentDataViewController.collectionView reloadData];
+}
+
+- (void) dismissCamera:(id)cameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [cameraViewController restoreFullScreenMode];
 }
 @end

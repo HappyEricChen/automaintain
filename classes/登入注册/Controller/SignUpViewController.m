@@ -160,7 +160,6 @@ withverificationCode:(NSString *)verificationCode
      */
     if ([AppManagerSingleton isMobile:username])
     {
-        __weak SignUpViewController* weakSelf = self;
         [AutomaintainAPI SMSVerificationCodeWithPhoneNum:username withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
          {
              if (success)

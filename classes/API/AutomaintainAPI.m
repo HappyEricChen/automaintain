@@ -82,10 +82,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     /**
      *  AES+Base64混合加密
      */
-//    NSString *passwordAES = [password aes256_encrypt:KEY_ASE];
+    NSString *passwordAES = [password aes256_encrypt:KEY_ASE];
     
     dic[@"username"]=username;
-    dic[@"password"]=password;
+    dic[@"password"]=passwordAES;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
@@ -126,10 +126,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     /**
      *  AES+Base64混合加密
      */
-//    NSString *passwordAES = [newPassword aes256_encrypt:KEY_ASE];
+    NSString *passwordAES = [newPassword aes256_encrypt:KEY_ASE];
     
     dic[@"username"]=username;
-    dic[@"password"]=newPassword;
+    dic[@"password"]=passwordAES;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
@@ -173,10 +173,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     /**
      *  AES+Base64混合加密
      */
-//    NSString *passwordAES = [password aes256_encrypt:KEY_ASE];
+    NSString *passwordAES = [password aes256_encrypt:KEY_ASE];
     
     dic[@"username"]=username;
-    dic[@"password"]=password;
+    dic[@"password"]=passwordAES;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
@@ -753,7 +753,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                           withContentText:(NSString*)ContentText
                   withMaintainSubjectGuid:(NSString*)maintainSubjectGuid
                       withAppointmentGuid:(NSString*)appointmentGuid
-                        withPhotoGuidList:(NSArray*)photoGuidList
+                        withPhotoGuidList:(NSString*)photoGuidList
                              withCallback:(Callback )callback
 {
     NSString* urlStr = [urlPath stringByAppendingString:@"/api/Appointment/CommentForAppointment"];
@@ -853,13 +853,13 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     /**
      *  AES+Base64混合加密
      */
-//    NSString *OldPasswordAES = [OldPassword aes256_encrypt:KEY_ASE];
-//    NSString *NewPasswordAES = [NewPassword aes256_encrypt:KEY_ASE];
+    NSString *OldPasswordAES = [OldPassword aes256_encrypt:KEY_ASE];
+    NSString *NewPasswordAES = [NewPassword aes256_encrypt:KEY_ASE];
     
     
     dic[@"accessCode"] = accessCode;
-    dic[@"OldPassword"] = OldPassword;
-    dic[@"NewPassword"] = NewPassword;
+    dic[@"OldPassword"] = OldPasswordAES;
+    dic[@"NewPassword"] = NewPasswordAES;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];

@@ -23,7 +23,6 @@
  */
 @property (nonatomic, getter=isBigImage) BOOL bigImage;
 
--(BOOL)bigImage;
 @end
 
 @implementation ImageAmplificationViewController
@@ -60,7 +59,8 @@
     
     self.imageView = imageView;
     
-    if (self.scrollView==nil) {
+    if (self.scrollView==nil)
+    {
         UIScrollView *scrollView =[[UIScrollView alloc]initWithFrame:CGRectMake(0, ScreenHeight*0.2, ScreenWidth, ScreenHeight*0.5)];
         [scrollView addSubview:imageView];
         scrollView.delegate=self;
@@ -71,7 +71,7 @@
         
         self.scrollView=scrollView;
         [self.view addSubview:scrollView];
-    } 
+    }
     
 }
 

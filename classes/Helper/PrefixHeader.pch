@@ -34,6 +34,11 @@
 #import "UIButton+countDown.h"
 #import "NSData+Encryption.h"
 #import "NSString+AES256.h"
+/**
+ *  DB相机类
+ */
+#import <DBCameraViewController.h>
+#import <DBCameraContainerViewController.h>
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_UUID @"com.company.app.uuid"
