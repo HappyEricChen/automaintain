@@ -27,7 +27,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 //static NSString* urlPath = @"http://192.168.2.124/ErpWebApi";
 
 #else
-
+static NSString* urlPath = @"http://112.64.131.222/NoOne";
 #endif
 
 @implementation AutomaintainAPI

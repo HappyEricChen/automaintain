@@ -17,7 +17,7 @@
 {
     if (!_customNavigationView)
     {
-        _customNavigationView = [CustomNavigationView customNavigationViewWithLeftBtnImage:ImageNamed(@"register_back")  withRightBtnImage:nil withTitle:@"维修保养"];
+        _customNavigationView = [CustomNavigationView customNavigationViewWithLeftBtnImage:ImageNamed(@"register_back")  withRightBtnImage:nil withTitle:@"美容维修"];
     }
     return _customNavigationView;
 }

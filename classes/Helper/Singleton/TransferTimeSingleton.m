@@ -20,9 +20,11 @@
     return transfer;
 }
 
+#pragma mark - 计算倒计时的秒数，必须是今天以后的日期才计算，昨天的全部为0s
 - (NSInteger)transferTimeStringToIntervalWith:(NSString *)timeString
 {
-    if(!timeString||timeString.length==0){
+    if(!timeString||timeString.length==0)
+    {
         return 0;
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -42,7 +44,7 @@
     }
     else
     {
-        return 1;
+        return 0;
     }
 }
 #pragma mark - 转换时间为一个倒计时 eg: 8:30-9:00 -》30分钟

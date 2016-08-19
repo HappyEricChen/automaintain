@@ -1662,7 +1662,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIA SHI (4HP83BB4YL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIA SHI (4HP83BB4YL)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1684,6 +1685,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
+				PROVISIONING_PROFILE = "78593594-1067-49be-9450-8d7c0f63090c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1706,7 +1709,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1721,6 +1725,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
+				PROVISIONING_PROFILE = "7c9ccab6-27a3-40a9-aa5b-f8214b6f81e7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1733,8 +1739,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = "一号车库.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XIA SHI (4HP83BB4YL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIA SHI (4HP83BB4YL)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
@@ -1751,7 +1757,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "78593594-1067-49be-9450-8d7c0f63090c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1763,8 +1769,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = "一号车库.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
@@ -1781,7 +1787,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7c9ccab6-27a3-40a9-aa5b-f8214b6f81e7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
