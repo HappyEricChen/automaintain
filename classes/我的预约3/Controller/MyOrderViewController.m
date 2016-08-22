@@ -21,6 +21,8 @@
  */
 @property (nonatomic, assign) NSInteger index;
 
+
+@property (nonatomic, strong) NSTimer        *m_timer;
 @end
 
 @implementation MyOrderViewController
@@ -34,7 +36,47 @@
     [self configureTableView];
 
     [self loadMJRefreshMethod];//配置刷新
+    
 }
+
+- (void)createTimer
+{
+    
+    self.m_timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerEvent) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_m_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)timerEvent
+{
+    
+    for (int count = 0; count < self.myOrderDataViewController.myOrderModelArr.count; count++)
+    {
+        
+        MyOrderModel *myOrderModel = self.myOrderDataViewController.myOrderModelArr[count];
+        
+        if ([myOrderModel.AppointmentStatus isEqualToString:@"InService"])
+        {
+            /**
+             *  把服务器传回来的时间中的T去掉
+             */
+            NSString* endTimeFormate = [myOrderModel.EndTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+            ;
+            //倒计时时间
+            myOrderModel.m_countNum=[TransferTimeSingleton.shareTransfer transferTimeStringToIntervalWith:endTimeFormate];
+            
+            [myOrderModel countDown];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotify_CountDown_Time object:nil];
+        }
+        else
+        {
+            myOrderModel.m_countNum = 0;
+        }
+       
+    }
+    
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -93,6 +135,13 @@
      {
          if (success)
          {
+             /**
+              *  创建倒计时的计时器
+              */
+             if (self.index == 0)
+             {
+                 [self createTimer];
+             }
              
          }
          else
@@ -100,7 +149,7 @@
              [SVProgressHUD showInfoWithStatus:result];
          }
      }];
-   }
+}
 
 #pragma mark - CustomNavigationViewDelegate
 -(void)didSelectedLeftButtonAtCustomNavigationView:(CustomNavigationView *)customNavigationView
@@ -125,11 +174,27 @@
     
     MyOrderTableViewCell* myOrderTableViewCell = [MyOrderTableViewCell tableView:tableView dequeueReusableCellWithReuseIdentifier:MyOrderTableViewCellId forIndexPath:indexPath];
     myOrderTableViewCell.delegate = self;
-    [myOrderTableViewCell layoutWithObject:self.myOrderDataViewController.myOrderModelArr[indexPath.row]];
+    [myOrderTableViewCell layoutWithObject:self.myOrderDataViewController.myOrderModelArr[indexPath.row] indexPath:indexPath];
     cell = myOrderTableViewCell;
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    BaseTableViewCell *tmpCell = (BaseTableViewCell *)cell;
+    tmpCell.m_isDisplayed            = YES;
+    
+    [tmpCell layoutWithObject:self.myOrderDataViewController.myOrderModelArr[indexPath.row] indexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+    
+    BaseTableViewCell *tmpCell = (BaseTableViewCell *)cell;
+    
+    tmpCell.m_isDisplayed = NO;
+}
+
 #pragma mark -UITableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

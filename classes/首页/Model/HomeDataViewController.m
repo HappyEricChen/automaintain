@@ -30,6 +30,7 @@
     {
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor clearColor];
         
         [_collectionView registerClass:[FirstCollectionViewCell class] forCellWithReuseIdentifier:firstCellId];

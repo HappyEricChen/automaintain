@@ -10,9 +10,21 @@
 
 @interface BaseTableViewCell : UITableViewCell
 
+
+/**
+ *  我的预约倒计时用的布尔值
+ */
+@property (nonatomic)       BOOL         m_isDisplayed;
+
+
 /**
  *  cell数据传递时用
  */
 -(void)layoutWithObject:(id)object;
 
+
+/**
+ *  cell数据传递时用
+ */
+-(void)layoutWithObject:(id)object indexPath:(NSIndexPath*)indexPath;
 @end

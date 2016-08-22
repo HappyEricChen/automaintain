@@ -22,7 +22,13 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    /**
+     *  清除图片缓存
+     */
+    [[SDWebImageManager sharedManager]cancelAll];
+    
+    [[SDImageCache sharedImageCache]cleanDisk];
 }
 
 @end

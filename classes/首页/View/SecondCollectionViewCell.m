@@ -41,7 +41,7 @@ NSString* const secondCellId = @"secondCellId";
         button3.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button3];
         
-        CustomButton* button4 = [[CustomButton alloc]initWithImage:ImageNamed(@"home_icon_personal") WithTitle:@"个人中心"];
+        CustomButton* button4 = [[CustomButton alloc]initWithImage:[[UIImage alloc]initWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"home_icon_personal" ofType:@"png"]] WithTitle:@"个人中心"];
         [button4 addTarget:self action:@selector(clickPersonalButton) forControlEvents:UIControlEventTouchUpInside];
         button4.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button4];

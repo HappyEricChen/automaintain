@@ -35,4 +35,20 @@
  */
 @property (nonatomic, strong) NSString* HasComment;
 
+
+/**
+ *  倒计时的总时间
+ */
+@property (nonatomic, assign) NSInteger m_countNum;
+
+/**
+ *  计数减1(countdownTime - 1)
+ */
+- (void)countDown;
+
+/**
+ *  将当前的countdownTime信息转换成字符串
+ */
+- (NSString *)currentTimeString;
+
 @end

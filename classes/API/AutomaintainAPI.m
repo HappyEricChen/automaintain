@@ -440,7 +440,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
      {
          callback(NO,nil,ERRORINFO);
      }];
-
+    
 }
 #pragma mark - 获取预约的评论列表
 +(void)postCommentListWithAccessCode:(NSString *)accessCode
@@ -808,7 +808,10 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     [manager POST:urlStr parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
      
      {
-         NSData *imageData = UIImageJPEGRepresentation(binaryPhoto, 0.5);
+         /**
+          *  压缩图片上传
+          */
+         NSData *imageData = UIImageJPEGRepresentation(binaryPhoto, 0.3);
          if (imageData != nil)
          {
              
@@ -948,7 +951,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                                                                                              parameters:dic
                                                                               constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
                                     {
-                                        NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
+                                        NSData* imageData = UIImageJPEGRepresentation(image, 0.3);
                                         [formData appendPartWithFileData:imageData name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
                                     }
                                                                                                   error:&error];

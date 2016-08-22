@@ -15,4 +15,9 @@
     
 }
 
+-(void)layoutWithObject:(id)object indexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 @end

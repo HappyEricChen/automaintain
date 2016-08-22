@@ -41,4 +41,9 @@ extern NSString* const kNotify_cancel_Keyboard;
  *  点击单例的验证码按钮，发送通知到注册页面
  */
 extern NSString* const kNotify_verification_Button;
+
+/**
+ *  我的预约服务中的倒计时/
+ */
+extern NSString* const kNotify_CountDown_Time;
 @end

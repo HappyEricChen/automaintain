@@ -30,6 +30,13 @@
  *  预约类型
  */
 @property (nonatomic, weak) UILabel* typeContentLabel;
+
+/**
+ *  倒计时的对象和indexpath
+ */
+@property (nonatomic, weak)   id           object;
+@property (nonatomic, weak)   NSIndexPath *m_tmpIndexPath;
+
 @end
 @implementation MyOrderTableViewCell
 
@@ -49,6 +56,11 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        /**
+         注册倒计时的通知
+         */
+        [self registerNSNotificationCenter];
+        
         /**
          预约时间
          */
@@ -157,7 +169,7 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
     return self;
 }
 
--(void)layoutWithObject:(id)object
+-(void)layoutWithObject:(id)object indexPath:(NSIndexPath *)indexPath
 {
     
     if ([object isKindOfClass:[MyOrderModel class]])
@@ -197,6 +209,7 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
             self.stateTypeLabel.text = @"服务中";
             self.selectedButton.hidden = YES;
             self.timeCompleteLabel.hidden = NO;
+            self.timeCompleteLabel.text = [NSString stringWithFormat:@"距离完成时间：%@",[myOrderModel currentTimeString]];
         }
         else if (![myOrderModel.HasComment isEqualToString:@"1"] && [myOrderModel.AppointmentStatus isEqualToString:@"Completed"])
         {
@@ -229,57 +242,23 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
             self.timeCompleteLabel.hidden = YES;
         }
         
+        self.object         = object;
+        self.m_tmpIndexPath = indexPath;
         
-        
-        
-        if ([self.stateTypeLabel.text isEqualToString:@"服务中"])
-        {
-            /**
-             *  把服务器传回来的时间中的T去掉
-             */
-            NSString* endTimeFormate = [myOrderModel.EndTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
-            ;
-            __block NSInteger timeout=[TransferTimeSingleton.shareTransfer transferTimeStringToIntervalWith:endTimeFormate]; //倒计时时间
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-            dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-            dispatch_source_set_event_handler(_timer, ^{
-                if(timeout<=0)
-                { //倒计时结束，关闭
-                    dispatch_source_cancel(_timer);
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //设置界面的按钮显示 根据自己需求设置
-                    });
-                }
-                else
-                {
-                    NSInteger hours = timeout/3600;
-                    NSInteger minutes = (timeout-hours*3600)/60;
-                    NSInteger seconds = timeout % 60;
-                    NSString *strTime = [NSString stringWithFormat:@"距离完成时间：%.2ld:%.2ld:%.2ld",hours,minutes, seconds];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //设置界面的按钮显示 根据自己需求设置
-                        //最后一秒显示成00：00：00
-                        if ([strTime isEqualToString:[NSString stringWithFormat:@"距离完成时间：00:00:01"]])
-                        {
-                            self.timeCompleteLabel.text = [NSString stringWithFormat:@"距离完成时间：00:00:00"];
-                        }
-                        else
-                        {
-                            self.timeCompleteLabel.text = strTime;
-                        }
-                        
-                    });
-                    timeout--;
-                    
-                }
-            });
-            dispatch_resume(_timer);
-        }
-        else
-        {
-           
-        }
+//        
+//        if ([self.stateTypeLabel.text isEqualToString:@"服务中"])
+//        {
+//            
+//            self.timeCompleteLabel.text = [NSString stringWithFormat:@"距离完成时间：%@",[myOrderModel currentTimeString]];
+//            
+//            self.object         = object;
+//            self.m_tmpIndexPath = indexPath;
+//            
+//        }
+//        else
+//        {
+//            self.timeCompleteLabel.hidden = YES;
+//        }
         
     }
 }
@@ -304,5 +283,30 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
 }
 #pragma mark -countDownTimer
 
+- (void)dealloc {
+    
+    [self removeNSNotificationCenter];
+}
+
+#pragma mark - 通知中心
+- (void)registerNSNotificationCenter {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(notificationCenterEvent:)
+                                                 name:kNotify_CountDown_Time
+                                               object:nil];
+}
+
+- (void)removeNSNotificationCenter {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotify_CountDown_Time object:nil];
+}
+- (void)notificationCenterEvent:(id)sender
+{
+    if (self.m_isDisplayed)
+    {
+        [self layoutWithObject:self.object indexPath:self.m_tmpIndexPath];
+    }
+}
 
 @end

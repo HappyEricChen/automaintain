@@ -34,4 +34,9 @@ extern NSString* const MyOrderTableViewCellId;
 
 @property (nonatomic, weak) id <MyOrderTableViewCellDelegate> delegate;
 
+
+/**
+ *  布局方法
+ */
+- (void)layoutWithObject:(id)object indexPath:(NSIndexPath *)indexPath;
 @end
