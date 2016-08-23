@@ -47,16 +47,7 @@
                        withPageIndex:(NSString*)pageIndex
                         withCallback:(Callback)callback
 {
-    if ([pageIndex isEqualToString:@"0"])
-    {
-        [self.myOrderModelArr removeAllObjects];
-    }
-    else
-    {
-        
-    }
-    
-    
+ 
     [AutomaintainAPI postMyOrderListWithAccessCode:accessCode withPageIndex:pageIndex withCallback:^(BOOL success, NSError *error, id result)
      {
          [self.customTableView.mj_header endRefreshing];
@@ -64,7 +55,7 @@
          {
              callback(YES,nil,result);
              NSArray * tempModelArr = (NSArray*)result;
-             if (tempModelArr.count<10)
+             if (tempModelArr.count<PAGE_SIZE.integerValue)
              {
                  [self.customTableView.mj_footer endRefreshingWithNoMoreData];
              }
@@ -73,6 +64,13 @@
                  [self.customTableView.mj_footer endRefreshing];
              }
              
+             /**
+              *  上拉刷新清除数组
+              */
+             if ([pageIndex isEqualToString:@"0"])
+             {
+                 [self.myOrderModelArr removeAllObjects];
+             }
              
              [self.myOrderModelArr addObjectsFromArray:tempModelArr];
              [self.customTableView reloadData];

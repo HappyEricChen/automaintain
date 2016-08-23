@@ -85,10 +85,6 @@
     {
         self.index = 0;
     }
-    else
-    {
-        self.index += 1;
-    }
     
     NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
     [self.onlineMessageDataViewController postOnlineMessageListWithAccessCode:AppManagerSingleton.accessCode
@@ -98,6 +94,11 @@
          if (success)
          {
              [self.onlineMessageDataViewController.collectionView reloadData];
+             
+             /**
+              *  前一次请求成功后，index再+1
+              */
+             self.index += 1;
          }
          else
          {

@@ -112,6 +112,7 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
         {
             self.timeButton.userInteractionEnabled = YES;
             [self.timeButton setBackgroundColor:UIColorFromRGB(0x40add8)];
+            [self.timeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         }
         else
         {

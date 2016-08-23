@@ -132,17 +132,16 @@
     {
         self.index = 0;
     }
-    else
-    {
-        self.index += 1;
-    }
     
     NSString* indexStr = [NSString stringWithFormat:@"%ld",self.index];
     [self.orderCarDataViewController postCommentListWithAccessCode:AppManagerSingleton.accessCode withPageIndex:indexStr withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
          {
-    
+             /**
+              *  前一次请求成功后，index再+1
+              */
+             self.index += 1;
          }
          else
          {
@@ -355,7 +354,7 @@
         [SVProgressHUD showInfoWithStatus:@"请选择预约时间"];
         return;
     }
-
+    
     OrderConfirmViewController* orderConfirmViewController = [[OrderConfirmViewController alloc]init];
     
     orderConfirmViewController.timeSegment = [AppTransferTimeSingleton transferCountDownWithTimeString:self.timeSegment];

@@ -41,14 +41,17 @@ NSString* const fourCellId = @"fourCellId";
 
 -(void)layoutWithObject:(id)object
 {
+    NSURL* completedImageUrl;
     if ([object isKindOfClass:[BottomAdsModel class]])
     {
         BottomAdsModel* bottomAdsModel = (BottomAdsModel*)object;
         
         NSString* completedImageStr = bottomAdsModel.PicUrl;
-        NSURL* completedImageUrl = [NSURL URLWithString:completedImageStr];
-        [self.imageView sd_setImageWithURL:completedImageUrl placeholderImage:ImageNamed(@"home_buttom_img0")];
-        
+        completedImageUrl = [NSURL URLWithString:completedImageStr];
     }
+    /**
+     *  设置启动时的背景图
+     */
+    [self.imageView sd_setImageWithURL:completedImageUrl placeholderImage:ImageNamed(@"home_buttom_img0")];
 }
 @end

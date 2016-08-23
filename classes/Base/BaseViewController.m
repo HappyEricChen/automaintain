@@ -26,9 +26,14 @@
     /**
      *  清除图片缓存
      */
-    [[SDWebImageManager sharedManager]cancelAll];
     
-    [[SDImageCache sharedImageCache]cleanDisk];
+    [[SDImageCache sharedImageCache]clearMemory];//清除内存图片
+    
+    [[SDImageCache sharedImageCache]cleanDisk];///清空磁盘图片
+    
+    [[SDImageCache sharedImageCache]clearDisk];//清除物理缓存
+    
+    
 }
 
 @end

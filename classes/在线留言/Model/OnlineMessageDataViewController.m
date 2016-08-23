@@ -61,15 +61,6 @@
                              withPageIndex:(NSString *)pageIndex
                               withCallback:(Callback)callback
 {
-    if ([pageIndex isEqualToString:@"0"])
-    {
-        [self.onlineMessageModelArr removeAllObjects];
-    }
-    else
-    {
-        
-    }
-    
     
     [AutomaintainAPI postOnlineMessageListWithAccessCode:accessCode
                                            withPageIndex:pageIndex
@@ -80,7 +71,7 @@
          if (success)
          {
              NSArray * tempModelArr = (NSArray*)result;
-             if (tempModelArr.count<10)
+             if (tempModelArr.count<MESSAGE_PAGE_SIZE.integerValue)
              {
                  [self.collectionView.mj_footer endRefreshingWithNoMoreData];
              }
@@ -89,6 +80,10 @@
                  [self.collectionView.mj_footer endRefreshing];
              }
              
+             if ([pageIndex isEqualToString:@"0"])
+             {
+                 [self.onlineMessageModelArr removeAllObjects];
+             }
              
              [self.onlineMessageModelArr addObjectsFromArray:tempModelArr];
              [self.collectionView reloadData];

@@ -102,14 +102,6 @@
                        withPageIndex:(NSString*)pageIndex
                         withCallback:(Callback )callback
 {
-    if ([pageIndex isEqualToString:@"0"])
-    {
-        [self.userCommentModelArr removeAllObjects];
-    }
-    else
-    {
-        
-    }
     
     [AutomaintainAPI postCommentListWithAccessCode:accessCode withPageIndex:pageIndex withCallback:^(BOOL success, NSError *error, id result)
      {
@@ -117,13 +109,18 @@
          if (success)
          {
              NSArray * tempModelArr = (NSArray*)result;
-             if (tempModelArr.count<10)
+             if (tempModelArr.count<PAGE_SIZE.integerValue)
              {
                  [self.collectionView.mj_footer endRefreshingWithNoMoreData];
              }
              else
              {
                  [self.collectionView.mj_footer endRefreshing];
+             }
+             
+             if ([pageIndex isEqualToString:@"0"])
+             {
+                 [self.userCommentModelArr removeAllObjects];
              }
              
              [self.userCommentModelArr addObjectsFromArray:tempModelArr];

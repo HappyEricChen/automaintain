@@ -43,3 +43,12 @@
 #define FONT_FZZYJW(s) [UIFont fontWithName:@"FZZYJW--GB1-0" size:s]
 
 #define SubjectGuidWashCar @"00000000-0000-0000-0000-000000000001"
+
+/**
+ *  预约评论，每次请求5条
+ */
+#define PAGE_SIZE @"5"
+/**
+ *  在线留言，每次请求10条
+ */
+#define MESSAGE_PAGE_SIZE @"10"

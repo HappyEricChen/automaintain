@@ -56,13 +56,14 @@ NSString * const firstCellId = @"firstCellId";
             NSString* completeUrl = adsCarousel.PicUrl;
             [imageArr addObject:completeUrl];
         }
-        /**
-         *  设置轮播占位图
-         */
-        [self.cycleScrollView setPlaceholderImage:ImageNamed(@"home_banner_img0")];
+       
         [self.cycleScrollView setImageURLStringsGroup:imageArr];
         
     }
+    /**
+     *  设置轮播占位图
+     */
+    [self.cycleScrollView setPlaceholderImage:ImageNamed(@"home_banner_img0")];
 }
 #pragma mark - 点击轮播图调用
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
