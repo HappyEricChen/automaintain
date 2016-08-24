@@ -81,6 +81,15 @@
 		072F810A1D3499FF002CECC4 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81021D3499FF002CECC4 /* LoginView.m */; };
 		072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F81041D3499FF002CECC4 /* SignUpView.m */; };
 		0747CA611D41C6F200241ACC /* OnlineMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0747CA601D41C6F200241ACC /* OnlineMessageModel.m */; };
+		0748FAEA1D6C530C00FD602E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAE91D6C530C00FD602E /* UIKit.framework */; };
+		0748FAEC1D6C538A00FD602E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAEB1D6C538A00FD602E /* CoreFoundation.framework */; };
+		0748FAEE1D6C53AB00FD602E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAED1D6C53AB00FD602E /* QuartzCore.framework */; };
+		0748FAF01D6C53B900FD602E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAEF1D6C53B900FD602E /* AssetsLibrary.framework */; };
+		0748FAF21D6C53C500FD602E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAF11D6C53C500FD602E /* ImageIO.framework */; };
+		0748FAF41D6C53D000FD602E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAF31D6C53D000FD602E /* Accelerate.framework */; };
+		0748FAF61D6C53DC00FD602E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAF51D6C53DC00FD602E /* MobileCoreServices.framework */; };
+		0748FAF81D6C53EC00FD602E /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAF71D6C53EC00FD602E /* libsqlite3.0.tbd */; };
+		0748FAFA1D6C53F800FD602E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0748FAF91D6C53F800FD602E /* libz.tbd */; };
 		074945C81D35D6EA00A46AE6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945B91D35D6EA00A46AE6 /* HomeViewController.m */; };
 		074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945BC1D35D6EA00A46AE6 /* HomeDataViewController.m */; };
 		074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 074945BF1D35D6EA00A46AE6 /* CustomButton.m */; };
@@ -300,6 +309,15 @@
 		072F81041D3499FF002CECC4 /* SignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpView.m; sourceTree = "<group>"; };
 		0747CA5F1D41C6F200241ACC /* OnlineMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMessageModel.h; sourceTree = "<group>"; };
 		0747CA601D41C6F200241ACC /* OnlineMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMessageModel.m; sourceTree = "<group>"; };
+		0748FAE91D6C530C00FD602E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0748FAEB1D6C538A00FD602E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		0748FAED1D6C53AB00FD602E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0748FAEF1D6C53B900FD602E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		0748FAF11D6C53C500FD602E /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		0748FAF31D6C53D000FD602E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		0748FAF51D6C53DC00FD602E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0748FAF71D6C53EC00FD602E /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		0748FAF91D6C53F800FD602E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		074945B81D35D6EA00A46AE6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		074945B91D35D6EA00A46AE6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		074945BB1D35D6EA00A46AE6 /* HomeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDataViewController.h; sourceTree = "<group>"; };
@@ -407,6 +425,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0748FAFA1D6C53F800FD602E /* libz.tbd in Frameworks */,
+				0748FAF81D6C53EC00FD602E /* libsqlite3.0.tbd in Frameworks */,
+				0748FAF61D6C53DC00FD602E /* MobileCoreServices.framework in Frameworks */,
+				0748FAF41D6C53D000FD602E /* Accelerate.framework in Frameworks */,
+				0748FAF21D6C53C500FD602E /* ImageIO.framework in Frameworks */,
+				0748FAF01D6C53B900FD602E /* AssetsLibrary.framework in Frameworks */,
+				0748FAEE1D6C53AB00FD602E /* QuartzCore.framework in Frameworks */,
+				0748FAEC1D6C538A00FD602E /* CoreFoundation.framework in Frameworks */,
+				0748FAEA1D6C530C00FD602E /* UIKit.framework in Frameworks */,
 				0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1305,6 +1332,15 @@
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0748FAF91D6C53F800FD602E /* libz.tbd */,
+				0748FAF71D6C53EC00FD602E /* libsqlite3.0.tbd */,
+				0748FAF51D6C53DC00FD602E /* MobileCoreServices.framework */,
+				0748FAF31D6C53D000FD602E /* Accelerate.framework */,
+				0748FAF11D6C53C500FD602E /* ImageIO.framework */,
+				0748FAEF1D6C53B900FD602E /* AssetsLibrary.framework */,
+				0748FAED1D6C53AB00FD602E /* QuartzCore.framework */,
+				0748FAEB1D6C538A00FD602E /* CoreFoundation.framework */,
+				0748FAE91D6C530C00FD602E /* UIKit.framework */,
 				830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */,
 			);
 			name = Frameworks;
@@ -1700,7 +1736,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
-				PROVISIONING_PROFILE = "78593594-1067-49be-9450-8d7c0f63090c";
+				PROVISIONING_PROFILE = "dfa6f54a-ea6b-45f2-bbe2-dd1f296e946f";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1771,7 +1807,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "78593594-1067-49be-9450-8d7c0f63090c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1801,7 +1836,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "7c9ccab6-27a3-40a9-aa5b-f8214b6f81e7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

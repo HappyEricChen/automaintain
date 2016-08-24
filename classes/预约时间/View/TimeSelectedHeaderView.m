@@ -61,7 +61,7 @@ NSString* const TimeSelectedHeaderViewId = @"TimeSelectedHeaderViewId";
          */
         UILabel* myOrderLabel = [[UILabel alloc]init];
         myOrderLabel.font = [UIFont systemFontOfSize:11];
-        myOrderLabel.text = @"我的预约";
+        myOrderLabel.text = @"您的预约";
         myOrderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:myOrderLabel];
         self.myOrderLabel = myOrderLabel;

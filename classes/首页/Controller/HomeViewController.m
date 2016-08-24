@@ -22,6 +22,7 @@
 
 @interface HomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SecondCollectionViewCellDelegate,FirstCollectionViewCellDelegate>
 @property (nonatomic, strong) HomeDataViewController* homeDataViewController;
+
 @end
 
 @implementation HomeViewController

@@ -33,6 +33,7 @@
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
+        _collectionView.showsVerticalScrollIndicator = NO;
         
         [_collectionView registerClass:[WashCarFirstCollectionViewCell class] forCellWithReuseIdentifier:washCarFirstId];
         [_collectionView registerClass:[WashCarSecondCollectionViewCell class] forCellWithReuseIdentifier:WashCarSecondId];
@@ -109,7 +110,7 @@
          if (success)
          {
              NSArray * tempModelArr = (NSArray*)result;
-             if (tempModelArr.count<PAGE_SIZE.integerValue)
+             if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
              {
                  [self.collectionView.mj_footer endRefreshingWithNoMoreData];
              }

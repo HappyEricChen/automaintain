@@ -55,7 +55,7 @@
          {
              callback(YES,nil,result);
              NSArray * tempModelArr = (NSArray*)result;
-             if (tempModelArr.count<PAGE_SIZE.integerValue)
+             if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
              {
                  [self.customTableView.mj_footer endRefreshingWithNoMoreData];
              }

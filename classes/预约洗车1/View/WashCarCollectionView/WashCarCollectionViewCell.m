@@ -91,6 +91,7 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
     else if ([self.appointmentCount isEqualToString:@"full"])
     {
         [self.button setBackgroundImage:ImageNamed(@"order_choose_red") forState:UIControlStateNormal];
+        [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.userInteractionEnabled = NO;
     }
     else if ([self.appointmentCount isEqualToString:@"myTempOrder"])

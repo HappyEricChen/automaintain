@@ -11,4 +11,5 @@ target:'一号车库' do
 	pod 'AFNetworking', '~> 3.0'
 	pod 'MJRefresh'
 	pod 'DBCamera', '~> 2.4'
+	pod 'YYWebImage'
 end

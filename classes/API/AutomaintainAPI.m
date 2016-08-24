@@ -24,7 +24,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
 /**
  *  内部测试地址
  */
-//static NSString* urlPath = @"http://192.168.2.124/ErpWebApi";
+//static NSString* urlPath = @"http://192.168.2.161/ErpWebApi/";
 
 #else
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
@@ -451,7 +451,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"pageIndex"] = pageIndex;
-    dic[@"pageSize"] = PAGE_SIZE;
+    dic[@"pageSize"] = COMMENT_PAGE_SIZE;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
@@ -537,7 +537,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
     NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:AppManagerSingleton.parameterDic];
     dic[@"accessCode"]=accessCode;
     dic[@"pageIndex"]=pageIndex;
-    dic[@"pageSize"]=PAGE_SIZE;
+    dic[@"pageSize"]=COMMENT_PAGE_SIZE;
     NSString* resultStr = [AppManagerSingleton generateMD5SignWithparameterDic:dic];//调用MD5加密方法，返回加密后的Str
     dic[@"sign"]=resultStr;
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];

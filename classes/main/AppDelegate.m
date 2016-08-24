@@ -33,7 +33,7 @@
 //    // 设置最多缓存7天时间
 //    [[SDImageCache sharedImageCache] setMaxCacheAge:7 * 24 * 60 * 60];
 //    // 设置磁盘最多缓存20M
-    [[SDImageCache sharedImageCache] setMaxCacheSize:20 * 1024 * 1024];
+//    [[SDImageCache sharedImageCache] setMaxCacheSize:20 * 1024 * 1024];
     // 内存最多缓存10张100x100像素的图片（可根据情况自己调整）
 //    [[SDImageCache sharedImageCache] setMaxMemoryCost:10 * 100 * 100];
 //    [[SDImageCache sharedImageCache] setShouldDecompressImages:NO];

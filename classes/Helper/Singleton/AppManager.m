@@ -245,7 +245,7 @@
              *  转小写
              */
             resultString = [resultString lowercaseString];
-
+            
             /**
              *   MD5加密
              */
@@ -282,5 +282,13 @@
         [ret appendFormat:@"%02x",result[i]];
     }
     return ret;
+}
+#pragma mark - 对评论照片的Url进行拼接/小图+_1
+-(NSString*)appndingImageUrlWithString:(NSString*)bigImageUrl
+{
+    NSString* tempStr = [bigImageUrl substringToIndex:bigImageUrl.length-4];
+    tempStr = [NSString stringWithFormat:@"%@_1.jpg",tempStr];
+    
+    return tempStr;
 }
 @end

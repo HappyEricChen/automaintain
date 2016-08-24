@@ -35,13 +35,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/Controller/SignUpViewController.m"
-            timestampString = "493118531.188256"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "493713422.30448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "-didClickVerificationButtonWithSignUpView:withUsername:withIsExisted:withCallback:"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "+SMSVerificationCodeWithPhoneNum:withIsExisted:withCallback:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/API/AutomaintainAPI.m"
+            timestampString = "493713549.876077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "+SMSVerificationCodeWithPhoneNum:withIsExisted:withCallback:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -303,7 +303,7 @@
                   */
                  [AppManagerSingleton.countDownButton startWithTime:60
                                                   title:@"获取验证码"
-                                         countDownTitle:@"秒后获取"
+                                         countDownTitle:@"秒后重新获取"
                                               mainColor:UIColorFromRGB(0xffffff)
                                              countColor:UIColorFromRGB(0xffffff)];
 

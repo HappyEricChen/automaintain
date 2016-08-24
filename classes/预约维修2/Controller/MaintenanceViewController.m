@@ -125,7 +125,8 @@
               *  前一次请求成功后，index再+1
               */
              self.index += 1;
-             
+             //每次请求清除一次缓存
+             [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
          }
          else
          {

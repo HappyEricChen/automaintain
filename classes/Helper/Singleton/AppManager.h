@@ -96,4 +96,6 @@
 @property (nonatomic, strong) NSString* verificationCode;
 
 
+#pragma mark - 对评论照片的Url进行拼接/小图+_1
+-(NSString*)appndingImageUrlWithString:(NSString*)bigImageUrl;
 @end

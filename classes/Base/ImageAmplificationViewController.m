@@ -68,6 +68,8 @@
         scrollView.alwaysBounceHorizontal = YES;//水平方向总能滑动
         scrollView.maximumZoomScale=2;
         scrollView.minimumZoomScale=1;
+        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.showsVerticalScrollIndicator = NO;
         
         self.scrollView=scrollView;
         [self.view addSubview:scrollView];

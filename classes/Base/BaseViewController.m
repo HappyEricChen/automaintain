@@ -27,13 +27,16 @@
      *  清除图片缓存
      */
     
-    [[SDImageCache sharedImageCache]clearMemory];//清除内存图片
+//    [[SDImageCache sharedImageCache]clearMemory];//清除内存图片
+//    
+//    [[SDImageCache sharedImageCache]cleanDisk];///清空磁盘图片
+//    
+//    [[SDImageCache sharedImageCache]clearDisk];//清除物理缓存
     
-    [[SDImageCache sharedImageCache]cleanDisk];///清空磁盘图片
-    
-    [[SDImageCache sharedImageCache]clearDisk];//清除物理缓存
-    
-    
+    [[YYImageCache sharedCache].memoryCache removeAllObjects];
+    [[YYImageCache sharedCache].diskCache removeAllObjectsWithBlock:^{
+        
+    }];
 }
 
 @end

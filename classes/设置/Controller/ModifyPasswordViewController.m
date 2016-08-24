@@ -73,9 +73,14 @@
         [SVProgressHUD showInfoWithStatus:@"新旧密码不能一样"];
         return;
     }
+    else if (oldPassword.length<6 || oldPassword.length>12)
+    {
+        [SVProgressHUD showInfoWithStatus:@"原密码控制在6-12位"];
+        return;
+    }
     else if (newPassword.length<6 || newPassword.length>12)
     {
-        [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
+        [SVProgressHUD showInfoWithStatus:@"新密码控制在6-12位"];
         return;
     }
     

@@ -69,7 +69,6 @@ CGFloat userNameWidth;
          头像／用户名／星星／时间///基础的View
          */
         UIView* baseView = [[UIView alloc]init];
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
         /**
          头像
@@ -77,7 +76,6 @@ CGFloat userNameWidth;
         UIImageView* iconImageView = [[UIImageView alloc]init];
         iconImageView.layer.masksToBounds = YES;
         iconImageView.layer.cornerRadius = 26*0.5;//宽度的一半为圆形
-        iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         
         [baseView addSubview:iconImageView];
         self.iconImageView = iconImageView;
@@ -87,7 +85,6 @@ CGFloat userNameWidth;
         UILabel* userName = [[UILabel alloc]init];
         userName.font = [UIFont systemFontOfSize:11];
         userName.textColor = UIColorFromRGB(0x4a4a4a);
-        userName.translatesAutoresizingMaskIntoConstraints = NO;
         userName.textAlignment = NSTextAlignmentLeft;
         [baseView addSubview:userName];
         self.userName = userName;
@@ -100,7 +97,6 @@ CGFloat userNameWidth;
         projectType.font = [UIFont systemFontOfSize:11];
         projectType.textColor = UIColorFromRGB(0x4a4a4a);
         projectType.textAlignment = NSTextAlignmentLeft;
-        projectType.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:projectType];
         self.projectType = projectType;
         
@@ -108,7 +104,6 @@ CGFloat userNameWidth;
          星星底部的View
          */
         UIView *baseView1 = [[UIView alloc]init];
-        baseView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:baseView1];
         
         for (NSInteger i=0; i<5; i++)
@@ -124,7 +119,6 @@ CGFloat userNameWidth;
          */
         UILabel* timeLabel = [[UILabel alloc]init];
         timeLabel.font = [UIFont systemFontOfSize:11];
-        timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:timeLabel];
         self.timeLabel = timeLabel;
         
@@ -135,7 +129,6 @@ CGFloat userNameWidth;
         UILabel* contentLabel = [[UILabel alloc]init];
         contentLabel.font = [UIFont systemFontOfSize:11];
         contentLabel.textColor = UIColorFromRGB(0x4a4a4a);
-        contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:contentLabel];
         self.contentLabel = contentLabel;
 
@@ -143,7 +136,6 @@ CGFloat userNameWidth;
          评论图片显示的View
          */
         UIView * commentImageView = [[UIView alloc]init];
-        commentImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:commentImageView];
         self.commentImageView = commentImageView;
         
@@ -224,10 +216,9 @@ CGFloat userNameWidth;
         while (self.commentImageView.subviews.count<3)//限制最多三张图片
         {
             UIButton* imageButton = [[UIButton alloc]init];
-            
+            imageButton.adjustsImageWhenHighlighted = NO;
             [imageButton addTarget:self action:@selector(tapImageAction:) forControlEvents:UIControlEventTouchUpInside];
             [self.commentImageView addSubview:imageButton];
-            
             self.imageButton = imageButton;
             [tempArr addObject:imageButton];
             
@@ -240,9 +231,13 @@ CGFloat userNameWidth;
             UIButton* button = self.commentImageView.subviews[i];
             if (i<photoUrlsArr.count)
             {
+//                /**
+//                 *  把url变成压缩后的+_1
+//                 */
+//                NSString* imageUrlStr = [AppManagerSingleton appndingImageUrlWithString:photoUrlsArr[i]];
                 NSString* imageUrlStr = photoUrlsArr[i];
                 button.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
-                [button sd_setImageWithURL:[NSURL URLWithString:imageUrlStr] forState:UIControlStateNormal placeholderImage:ImageNamed(@"personal_img0")];
+                [button yy_setImageWithURL:[NSURL URLWithString:imageUrlStr] forState:UIControlStateNormal placeholder:ImageNamed(@"personal_img0")];
                 
                 button.hidden = NO;
             }

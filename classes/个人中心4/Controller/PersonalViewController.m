@@ -187,19 +187,18 @@
     }
 }
 
-#pragma mark - PersonalDataViewControllerDelegate
+#pragma mark - 点击选择相机PersonalDataViewControllerDelegate
 
 -(void)didClickShowCameraMethod:(PersonalDataViewController *)personalDataViewController
 {
-//    UIImagePickerController* imagePicker = [[UIImagePickerController alloc]init];
-//    [imagePicker setDelegate:self];
-//    [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-//    [imagePicker setAllowsEditing:YES];
-//    [self presentViewController:imagePicker animated:YES completion:nil];
-    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
-    [cameraContainer setFullScreenMode];
+    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
+    [cameraController setUseCameraSegue:NO];
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    [container setCameraViewController:cameraController];
+    [container setFullScreenMode];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];
 }

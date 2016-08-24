@@ -84,7 +84,7 @@
              [self.userCommentModelArr addObjectsFromArray:tempModelArr];
              [self.collectionView reloadData];
              
-             if (tempModelArr.count<PAGE_SIZE.integerValue)
+             if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
              {
                  [self.collectionView.mj_footer endRefreshingWithNoMoreData];
              }
