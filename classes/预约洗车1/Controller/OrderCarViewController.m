@@ -14,10 +14,10 @@
 #import "WashCarFourCollectionViewCell.h"
 #import "WashCarFiveCollectionViewCell.h"
 #import "CommentHeaderView.h"
-#import "ImageAmplificationViewController.h"
 #import "UserCommentModel.h"
 #import "MyOrderViewController.h"
 #import "OrderConfirmViewController.h"
+#import "ImageAmplificationViewController.h"
 
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate,WashCarFourCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
@@ -330,10 +330,10 @@
 }
 
 #pragma mark -WashCarFiveCollectionViewCellDelegate点击图片放大
--(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
+-(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImageUrl:(NSString *)imageUrl
 {
     ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
-    imageAmplificationViewController.image = image;
+    imageAmplificationViewController.imageUrl = imageUrl;
     [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
 }

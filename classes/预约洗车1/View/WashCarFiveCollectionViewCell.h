@@ -13,7 +13,7 @@
 @protocol WashCarFiveCollectionViewCellDelegate <NSObject>
 
 @optional
--(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell*)washCarFiveCollectionViewCell withImage:(UIImage*)image;
+-(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell*)washCarFiveCollectionViewCell withImageUrl:(NSString*)imageUrl;
 @end
 @interface WashCarFiveCollectionViewCell : BaseCollectionViewCell
 

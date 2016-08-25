@@ -120,7 +120,7 @@
         FeedbackSecondCollectionViewCell * secondCell = [FeedbackSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackSecondCollectionViewCellId forIndexPath:indexPath];
         cell =secondCell;
     }
-    else if (indexPath.section == 2)
+    else
     {
         FeedbackThirdCollectionViewCell * thirdCell = [FeedbackThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:FeedbackThirdCollectionViewCellId forIndexPath:indexPath];
         thirdCell.delegate = self;

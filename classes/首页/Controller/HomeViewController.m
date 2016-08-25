@@ -148,7 +148,7 @@
         object = self.homeDataViewController.convenienceServiceArr;
         cell = thirdCell;
     }
-    else if (indexPath.section == 3)
+    else
     {
         FourCollectionViewCell * fourCell = [FourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:fourCellId forIndexPath:indexPath];
         object = self.homeDataViewController.bottomAdsArr[indexPath.row];

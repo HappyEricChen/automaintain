@@ -35,6 +35,7 @@
 #import "NSData+Encryption.h"
 #import "NSString+AES256.h"
 #import <YYWebImage/YYWebImage.h>
+#import <YYImage/YYImage.h>
 
 /**
  *  DB相机类

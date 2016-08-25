@@ -130,18 +130,9 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell * cell;
-    if (indexPath.section == 0)
-    {
-        OnlineMessageCollectionViewCell * firstCell = [OnlineMessageCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:OnlineMessageCollectionViewCellId forIndexPath:indexPath];
-        [firstCell layoutWithObject:self.onlineMessageDataViewController.onlineMessageModelArr[indexPath.row]];
-        cell = firstCell;
-    }
-//    else if (indexPath.section == 1)
-//    {
-//        OnlineMessageSecondCollectionViewCell * secondCell = [OnlineMessageSecondCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:OnlineMessageSecondCollectionViewCellId forIndexPath:indexPath];
-//        cell =secondCell;
-//    }
-
+    OnlineMessageCollectionViewCell * firstCell = [OnlineMessageCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:OnlineMessageCollectionViewCellId forIndexPath:indexPath];
+    [firstCell layoutWithObject:self.onlineMessageDataViewController.onlineMessageModelArr[indexPath.row]];
+    cell = firstCell;
     
     return cell;
 }

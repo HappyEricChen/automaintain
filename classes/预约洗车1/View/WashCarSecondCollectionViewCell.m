@@ -42,9 +42,8 @@ NSString* const WashCarSecondId = @"WashCarSecondId";
         [button1 setImage:ImageNamed(@"order_choose_white") forState:UIControlStateNormal];
         button1.titleLabel.font = [UIFont systemFontOfSize:12];
         button1.clipsToBounds = YES;
-        [button1 setTitleColor:UIColorFromRGB(0x4a4a4a) forState:UIControlStateNormal];
+        [button1 setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
         [button1 setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-        button1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button1];
         
         UIButton* button2 = [[UIButton alloc]init];
@@ -52,9 +51,8 @@ NSString* const WashCarSecondId = @"WashCarSecondId";
         [button2 setImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
         button2.titleLabel.font = [UIFont systemFontOfSize:12];
         button2.clipsToBounds = YES;
-        [button2 setTitleColor:UIColorFromRGB(0x4a4a4a) forState:UIControlStateNormal];
+        [button2 setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
         [button2 setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-        button2.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button2];
         
         UIButton* button3 = [[UIButton alloc]init];
@@ -62,9 +60,8 @@ NSString* const WashCarSecondId = @"WashCarSecondId";
         [button3 setImage:ImageNamed(@"order_choose_red") forState:UIControlStateNormal];
         button3.titleLabel.font = [UIFont systemFontOfSize:12];
         button3.clipsToBounds = YES;
-        [button3 setTitleColor:UIColorFromRGB(0x4a4a4a) forState:UIControlStateNormal];
+        [button3 setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
         [button3 setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-        button3.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button3];
         
                 

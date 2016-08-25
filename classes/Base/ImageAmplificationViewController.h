@@ -10,7 +10,7 @@
 @interface ImageAmplificationViewController : BaseViewController
 
 /**
- *  要放大的图片
+ *  要放大的图片Url
  */
-@property (nonatomic, strong) UIImage* image;
+@property (nonatomic, strong) NSString* imageUrl;
 @end

@@ -62,8 +62,8 @@ NSString* const personalFirstId = @"personalFirstId";
                                                              WithBold:NO];
         
         iconImageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.021).centerYEqualToView(self).heightIs(60).widthEqualToHeight();
-        nameLabel.sd_layout.leftSpaceToView(iconImageView,ScreenWidth*0.0267).topSpaceToView(self,ScreenHeight*0.022).rightSpaceToView(self,ScreenWidth*0.0267).autoHeightRatio(0);
-        licensePlateNumberLabel.sd_layout.leftEqualToView(nameLabel).topSpaceToView(nameLabel,5).widthIs(licensePlateNumberWidth).autoHeightRatio(0);
+        nameLabel.sd_layout.leftSpaceToView(iconImageView,ScreenWidth*0.0267).topSpaceToView(self,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.0267).autoHeightRatio(0);
+        licensePlateNumberLabel.sd_layout.leftEqualToView(nameLabel).topSpaceToView(nameLabel,ScreenHeight*0.015).widthIs(licensePlateNumberWidth).autoHeightRatio(0);
         
     }
     return self;

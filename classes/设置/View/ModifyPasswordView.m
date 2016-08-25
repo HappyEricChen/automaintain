@@ -82,7 +82,7 @@
         freshPasswordField.textAlignment = NSTextAlignmentLeft;
         freshPasswordField.textColor = UIColorFromRGB(0x000000);
         freshPasswordField.font = [UIFont systemFontOfSize:14];
-        freshPasswordField.placeholder = @"设置新密码";
+        freshPasswordField.placeholder = @"请设置新密码";
         freshPasswordField.keyboardType = UIKeyboardTypeASCIICapable;
         freshPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView2 addSubview:freshPasswordField];
@@ -108,7 +108,7 @@
         confirmPasswordField.textAlignment = NSTextAlignmentLeft;
         confirmPasswordField.font = [UIFont systemFontOfSize:14];
         confirmPasswordField.textColor = UIColorFromRGB(0x000000);
-        confirmPasswordField.placeholder = @"确认新密码";
+        confirmPasswordField.placeholder = @"请确认新密码";
         confirmPasswordField.keyboardType = UIKeyboardTypeASCIICapable;
         confirmPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:confirmPasswordField];

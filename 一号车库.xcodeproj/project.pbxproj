@@ -135,6 +135,8 @@
 		078058D31D5048340098185E /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D21D5048340098185E /* UUID.m */; };
 		078058D61D5048E40098185E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 078058D51D5048E40098185E /* KeyChainStore.m */; };
 		078A93351D5DCAB5004E2E6B /* BaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A93341D5DCAB5004E2E6B /* BaseTextField.m */; };
+		078AF2DA1D6EA20B00B49342 /* CommentImageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 078AF2D91D6EA20B00B49342 /* CommentImageCollectionView.m */; };
+		078AF2DD1D6EA2A000B49342 /* CommentImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 078AF2DC1D6EA2A000B49342 /* CommentImageCollectionViewCell.m */; };
 		078DF1291D5B03050031274B /* UIButton+countDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 078DF1281D5B03050031274B /* UIButton+countDown.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
 		07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */; };
@@ -409,6 +411,10 @@
 		078058D51D5048E40098185E /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
 		078A93331D5DCAB5004E2E6B /* BaseTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTextField.h; path = "../登入注册/View/BaseTextField.h"; sourceTree = "<group>"; };
 		078A93341D5DCAB5004E2E6B /* BaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTextField.m; path = "../登入注册/View/BaseTextField.m"; sourceTree = "<group>"; };
+		078AF2D81D6EA20B00B49342 /* CommentImageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentImageCollectionView.h; sourceTree = "<group>"; };
+		078AF2D91D6EA20B00B49342 /* CommentImageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentImageCollectionView.m; sourceTree = "<group>"; };
+		078AF2DB1D6EA2A000B49342 /* CommentImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentImageCollectionViewCell.h; sourceTree = "<group>"; };
+		078AF2DC1D6EA2A000B49342 /* CommentImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentImageCollectionViewCell.m; sourceTree = "<group>"; };
 		078DF1271D5B03050031274B /* UIButton+countDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+countDown.h"; sourceTree = "<group>"; };
 		078DF1281D5B03050031274B /* UIButton+countDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+countDown.m"; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
@@ -1109,6 +1115,7 @@
 		07576FBC1D372319000D5E20 /* 预约洗车1 */ = {
 			isa = PBXGroup;
 			children = (
+				078AF2D71D6EA09000B49342 /* 评论图片Helper */,
 				07576FBD1D372319000D5E20 /* Controller */,
 				07576FC01D372319000D5E20 /* Model */,
 				07576FC31D372319000D5E20 /* View */,
@@ -1312,6 +1319,17 @@
 				076518F71D61BD17003A4AF7 /* NSString+AES256.m */,
 			);
 			path = KeyChain;
+			sourceTree = "<group>";
+		};
+		078AF2D71D6EA09000B49342 /* 评论图片Helper */ = {
+			isa = PBXGroup;
+			children = (
+				078AF2D81D6EA20B00B49342 /* CommentImageCollectionView.h */,
+				078AF2D91D6EA20B00B49342 /* CommentImageCollectionView.m */,
+				078AF2DB1D6EA2A000B49342 /* CommentImageCollectionViewCell.h */,
+				078AF2DC1D6EA2A000B49342 /* CommentImageCollectionViewCell.m */,
+			);
+			path = "评论图片Helper";
 			sourceTree = "<group>";
 		};
 		078DF1261D5B02380031274B /* category */ = {
@@ -1654,8 +1672,10 @@
 				072F810B1D3499FF002CECC4 /* SignUpView.m in Sources */,
 				072F80B41D3491EA002CECC4 /* BaseTableViewCell.m in Sources */,
 				072F80591D348F66002CECC4 /* OnlineMessageDataViewController.m in Sources */,
+				078AF2DA1D6EA20B00B49342 /* CommentImageCollectionView.m in Sources */,
 				072F805D1D348F66002CECC4 /* FeedbackViewController.m in Sources */,
 				074945D41D35E87200A46AE6 /* AdsCarouselModel.m in Sources */,
+				078AF2DD1D6EA2A000B49342 /* CommentImageCollectionViewCell.m in Sources */,
 				07576FE61D376931000D5E20 /* WashCarCollectionViewCell.m in Sources */,
 				074945C81D35D6EA00A46AE6 /* HomeViewController.m in Sources */,
 				07576FDB1D373527000D5E20 /* AppManager.m in Sources */,
@@ -1794,7 +1814,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1823,7 +1843,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

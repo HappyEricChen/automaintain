@@ -64,15 +64,14 @@
 {
     BaseCollectionViewCell * cell;
     id object = nil;
-    if (indexPath.section == 0)
-    {
-        WashCarCollectionViewCell * commonCell = [WashCarCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarCollectionViewCell1Id forIndexPath:indexPath];
-        object = self.washCarDateListModel.Schedule[indexPath.row];
-        commonCell.delegate = self;
-        
-        
-        cell = commonCell;
-    }
+    
+    WashCarCollectionViewCell * commonCell = [WashCarCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarCollectionViewCell1Id forIndexPath:indexPath];
+    object = self.washCarDateListModel.Schedule[indexPath.row];
+    commonCell.delegate = self;
+    
+    
+    cell = commonCell;
+    
     [cell layoutWithObject:object];
     return cell;
 }

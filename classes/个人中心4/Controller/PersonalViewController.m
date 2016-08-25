@@ -105,7 +105,7 @@
         object = self.contentArr[indexPath.row];
         cell = thirdCell;
     }
-    else if (indexPath.section == 3)
+    else
     {
         PersonalFourCollectionViewCell * fourCell = [PersonalFourCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:personalFourId forIndexPath:indexPath];
         cell = fourCell;

@@ -164,14 +164,11 @@
 {
     BaseCollectionViewCell * cell;
     
-    if (indexPath.section == 0)
-    {
-        WashCarFiveCollectionViewCell * thirdCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
-        thirdCell.delegate = self;
-        
-        [thirdCell layoutWithObject:self.maintenanceDataViewController.userCommentModelArr[indexPath.row]];
-        cell = thirdCell;
-    }
+    WashCarFiveCollectionViewCell * thirdCell = [WashCarFiveCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:WashCarFiveCollectionViewCellId forIndexPath:indexPath];
+    thirdCell.delegate = self;
+    
+    [thirdCell layoutWithObject:self.maintenanceDataViewController.userCommentModelArr[indexPath.row]];
+    cell = thirdCell;
     
     return cell;
 }
@@ -223,14 +220,10 @@
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView * reusableView;
-    
-    if (kind == UICollectionElementKindSectionHeader)
-    {
-        CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
-        NSString* commentTotalCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"commentTotalCount"];
-        [headerView layoutWithObject:commentTotalCount.integerValue];
-        reusableView = headerView;
-    }
+    CommentHeaderView* headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId forIndexPath:indexPath];
+    NSString* commentTotalCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"commentTotalCount"];
+    [headerView layoutWithObject:commentTotalCount.integerValue];
+    reusableView = headerView;
     
     return reusableView;
 }
@@ -312,10 +305,10 @@
     
 }
 #pragma mark -点击图片放大WashCarFiveCollectionViewCellDelegate
--(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImage:(UIImage *)image
+-(void)didClickCarImageWithWashCarFiveCollectionViewCell:(WashCarFiveCollectionViewCell *)washCarFiveCollectionViewCell withImageUrl:(NSString *)imageUrl
 {
     ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
-    imageAmplificationViewController.image = image;
+    imageAmplificationViewController.imageUrl = imageUrl;
     [imageAmplificationViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:imageAmplificationViewController animated:YES completion:nil];
 }

@@ -8,7 +8,9 @@
 
 #import "WashCarFiveCollectionViewCell.h"
 #import "UserCommentModel.h"
-@interface WashCarFiveCollectionViewCell()
+#import "CommentImageCollectionView.h"
+
+@interface WashCarFiveCollectionViewCell()<CommentImageCollectionViewDelegate>
 /**
  *  评论的图片 按钮
  */
@@ -39,7 +41,7 @@
 /**
  *  评论图片所在的底部View
  */
-@property (nonatomic, weak) UIView* commentImageView;
+@property (nonatomic, weak) CommentImageCollectionView* commentImageCollectionView;
 /**
  *  评论的项目类型
  */
@@ -73,7 +75,7 @@ CGFloat userNameWidth;
         /**
          头像
          */
-        UIImageView* iconImageView = [[UIImageView alloc]init];
+        UIImageView* iconImageView = [[YYAnimatedImageView alloc]init];
         iconImageView.layer.masksToBounds = YES;
         iconImageView.layer.cornerRadius = 26*0.5;//宽度的一半为圆形
         
@@ -108,7 +110,7 @@ CGFloat userNameWidth;
         
         for (NSInteger i=0; i<5; i++)
         {
-            UIImageView* starImageView = [[UIImageView alloc]init];
+            UIImageView* starImageView = [[YYAnimatedImageView alloc]init];
             starImageView.frame = CGRectMake(5+13*i, 6, 13, 13);
             [self.starImageViewArr addObject:starImageView];
             [baseView1 addSubview:starImageView];
@@ -135,9 +137,10 @@ CGFloat userNameWidth;
         /**
          评论图片显示的View
          */
-        UIView * commentImageView = [[UIView alloc]init];
-        [self addSubview:commentImageView];
-        self.commentImageView = commentImageView;
+        CommentImageCollectionView* commentImageCollectionView = [[CommentImageCollectionView alloc]init];
+        [self addSubview:commentImageCollectionView];
+        commentImageCollectionView.delegate = self;
+        self.commentImageCollectionView = commentImageCollectionView;
         
 
         
@@ -148,7 +151,7 @@ CGFloat userNameWidth;
         timeLabel.sd_layout.centerYEqualToView(userName).rightEqualToView(baseView).topEqualToView(userName).bottomEqualToView(userName).widthIs(ScreenWidth*0.24);
         projectType.sd_layout.leftSpaceToView(self,26+ScreenWidth*0.026+10).topSpaceToView(baseView,10).rightSpaceToView(self,10).autoHeightRatio(0);
         contentLabel.sd_layout.leftEqualToView(projectType).topSpaceToView(projectType,13).rightSpaceToView(self,10).autoHeightRatio(0);
-        commentImageView.sd_layout.leftEqualToView(contentLabel).topSpaceToView(contentLabel,10).bottomEqualToView(self).rightSpaceToView(self,10);
+        commentImageCollectionView.sd_layout.leftEqualToView(contentLabel).topSpaceToView(contentLabel,10).bottomEqualToView(self).rightSpaceToView(self,10);
         
         
         
@@ -200,54 +203,15 @@ CGFloat userNameWidth;
     /**
      *  评论图片
      */
-    NSArray* photoUrlsArr = userCommentModel.PhotoUrls;
     
-    if (photoUrlsArr.count == 0)
+    if (userCommentModel.PhotoUrls.count == 0)
     {
-        self.commentImageView.hidden = YES;
+        self.commentImageCollectionView.hidden = YES;
     }
     else
     {
-        
-        NSMutableArray* tempArr = [NSMutableArray array];
-        /**
-         *  当subviews.count<photoUrlsArr.count造新的按钮，直到达到photoUrlsArr.count
-         */
-        while (self.commentImageView.subviews.count<3)//限制最多三张图片
-        {
-            UIButton* imageButton = [[UIButton alloc]init];
-            imageButton.adjustsImageWhenHighlighted = NO;
-            [imageButton addTarget:self action:@selector(tapImageAction:) forControlEvents:UIControlEventTouchUpInside];
-            [self.commentImageView addSubview:imageButton];
-            self.imageButton = imageButton;
-            [tempArr addObject:imageButton];
-            
-        }
-        /**
-         *  赋值
-         */
-        for (NSInteger i=0; i<self.commentImageView.subviews.count; i++)
-        {
-            UIButton* button = self.commentImageView.subviews[i];
-            if (i<photoUrlsArr.count)
-            {
-//                /**
-//                 *  把url变成压缩后的+_1
-//                 */
-//                NSString* imageUrlStr = [AppManagerSingleton appndingImageUrlWithString:photoUrlsArr[i]];
-                NSString* imageUrlStr = photoUrlsArr[i];
-                button.frame = CGRectMake((5+ScreenWidth*0.27)*i, 0, ScreenWidth*0.27, ScreenWidth*0.27);
-                [button yy_setImageWithURL:[NSURL URLWithString:imageUrlStr] forState:UIControlStateNormal placeholder:ImageNamed(@"personal_img0")];
-                
-                button.hidden = NO;
-            }
-            else
-            {
-                button.hidden = YES;
-            }
-        }
-        
-        self.commentImageView.hidden = NO;
+        self.commentImageCollectionView.userCommentModel = userCommentModel;
+        self.commentImageCollectionView.hidden = NO;
     }
 }
 
@@ -261,14 +225,14 @@ CGFloat userNameWidth;
     return _starImageViewArr;
 }
 
--(void)tapImageAction:(UIButton*)sender
+
+#pragma mark - 点击评论图片调用的方法
+-(void)didClickCommentImageWithCommentImageCollectionView:(CommentImageCollectionView *)commentImageCollectionView withImageUrl:(NSString *)imageUrl
 {
-    
-    if ([self.delegate respondsToSelector:@selector(didClickCarImageWithWashCarFiveCollectionViewCell:withImage:)])
+    if ([self.delegate respondsToSelector:@selector(didClickCarImageWithWashCarFiveCollectionViewCell:withImageUrl:)])
     {
-        [self.delegate didClickCarImageWithWashCarFiveCollectionViewCell:self withImage:sender.currentImage];
+        [self.delegate didClickCarImageWithWashCarFiveCollectionViewCell:self withImageUrl:imageUrl];
     }
-    
 }
 
 @end

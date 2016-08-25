@@ -173,8 +173,8 @@
         else
         {
             passwordLabel.text = @"新密码";
-            textField2.placeholder = @"设置新密码";
-            textField3.placeholder = @"确认新密码";
+            textField2.placeholder = @"请设置新密码";
+            textField3.placeholder = @"请确认新密码";
             [signupButton addTarget:self action:@selector(findPasswordAction) forControlEvents:UIControlEventTouchUpInside];
 
         }

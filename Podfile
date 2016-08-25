@@ -12,4 +12,5 @@ target:'一号车库' do
 	pod 'MJRefresh'
 	pod 'DBCamera', '~> 2.4'
 	pod 'YYWebImage'
+	pod 'YYImage'
 end

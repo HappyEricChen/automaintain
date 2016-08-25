@@ -35,7 +35,15 @@
 
 -(void)configureImageView
 {
-    UIImageView* imageView = [[UIImageView alloc]initWithImage:self.image];
+    UIImageView* imageView = [[UIImageView alloc]init];
+    
+    [imageView yy_setImageWithURL:[NSURL URLWithString:self.imageUrl]
+                           placeholder:ImageNamed(@"personal_img0")
+                               options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
+                            completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
+     {
+         
+     }];
     imageView.frame = CGRectMake(0, 0, ScreenWidth, ScreenWidth);
     
         /**
