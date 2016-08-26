@@ -19,6 +19,7 @@
 #import "OrderConfirmViewController.h"
 #import "ImageAmplificationViewController.h"
 
+
 @interface OrderCarViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WashCarFiveCollectionViewCellDelegate,WashCarFourCollectionViewCellDelegate>
 @property (nonatomic, strong) OrderCarDataViewController* orderCarDataViewController;
 /**
@@ -43,6 +44,9 @@
 
 @implementation OrderCarViewController
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.orderCarDataViewController = [[OrderCarDataViewController alloc]init];
@@ -62,7 +66,6 @@
      *  开始刷新
      */
     [self.orderCarDataViewController.collectionView.mj_header beginRefreshing];
-    
 }
 
 
@@ -104,7 +107,7 @@
          if (success)
          {
              [SVProgressHUD dismiss];
-             [self.orderCarDataViewController.collectionView reloadData];
+             [self.orderCarDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
          }
          else
          {
@@ -126,6 +129,8 @@
     self.orderCarDataViewController.collectionView.mj_footer = footer;
     
 }
+
+#pragma - mark 请求评论列表数据
 -(void)loadDataFromService:(MJRefreshComponent*)headerFooterView
 {
     if ([headerFooterView isKindOfClass:[MJRefreshNormalHeader class]])

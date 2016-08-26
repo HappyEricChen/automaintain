@@ -55,7 +55,7 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadData];
+//                 [self.homeDataViewController.collectionView reloadData];
              }
              else
              {
@@ -69,7 +69,7 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadData];
+                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
              }
              else
              {
@@ -83,7 +83,7 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadData];
+                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:3]];
              }
              else
              {

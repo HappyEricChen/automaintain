@@ -106,7 +106,7 @@
 {
     if ([username isEqualToString:@""])
     {
-        [SVProgressHUD showInfoWithStatus:@"请输入11位正确的手机号码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
         return;
     }
     else if ([password isEqualToString:@""])
@@ -116,7 +116,7 @@
     }
 //    else if (![AppManagerSingleton isMobile:username])
 //    {
-//        [SVProgressHUD showInfoWithStatus:@"请输入11位正确的手机号"];
+//        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
 //        return;
 //    }
 //    else if (password.length<6)

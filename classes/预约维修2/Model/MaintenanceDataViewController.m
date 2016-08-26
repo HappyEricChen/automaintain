@@ -47,6 +47,7 @@
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor clearColor];
+        _collectionView.showsVerticalScrollIndicator = NO;
         
         [_collectionView registerClass:[WashCarFiveCollectionViewCell class] forCellWithReuseIdentifier:WashCarFiveCollectionViewCellId];
         
@@ -75,27 +76,34 @@
          
          if (success)
          {
-             if ([pageIndex isEqualToString:@"0"])
-             {
-                 [self.userCommentModelArr removeAllObjects];
-             }
              
-             NSArray * tempModelArr = (NSArray*)result;
-             [self.userCommentModelArr addObjectsFromArray:tempModelArr];
-             [self.collectionView reloadData];
-             
-             if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
-             {
-                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-             }
-             else
-             {
-                 [self.collectionView.mj_footer endRefreshing];
-             }
-             
-             
-             
-             callback(YES,nil,result);
+             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                 
+                 if ([pageIndex isEqualToString:@"0"])
+                 {
+                     [self.userCommentModelArr removeAllObjects];
+                 }
+                 
+                 NSArray * tempModelArr = (NSArray*)result;
+                 [self.userCommentModelArr addObjectsFromArray:tempModelArr];
+                 
+                 if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
+                 {
+                     [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+                 }
+                 else
+                 {
+                     [self.collectionView.mj_footer endRefreshing];
+                 }
+                 
+                 
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     
+                     [self.collectionView reloadData];
+                     callback(YES,nil,result);
+                 });
+                 
+             });
          }
          else
          {

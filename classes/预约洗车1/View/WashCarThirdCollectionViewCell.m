@@ -53,9 +53,16 @@ NSString* const WashCarThirdCollectionViewCellId = @"WashCarThirdCollectionViewC
 {
     if ([object isKindOfClass:[WashCarDateListModel class]])
     {
-        self.washCarCollectionView.washCarDateListModel = (WashCarDateListModel*)object;
-        [self.washCarCollectionView parseWashCarDateListModel];//解析模型
-        [self.washCarCollectionView.collectionView reloadData];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            self.washCarCollectionView.washCarDateListModel = (WashCarDateListModel*)object;
+            [self.washCarCollectionView parseWashCarDateListModel];//解析模型
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.washCarCollectionView.collectionView reloadData];
+            });
+        });
+        
     }
 }
 @end

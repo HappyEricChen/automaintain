@@ -47,7 +47,7 @@
 /**
  *  预约评论，每次请求5条
  */
-#define COMMENT_PAGE_SIZE @"5"
+#define COMMENT_PAGE_SIZE @"10"
 /**
  *  在线留言，每次请求10条
  */

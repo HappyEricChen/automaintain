@@ -10,7 +10,7 @@
 
 @interface CommentImageCollectionViewCell()
 
-@property (nonatomic, weak) YYAnimatedImageView* imageView;
+@property (nonatomic, weak) UIImageView* imageView;
 @end
 
 @implementation CommentImageCollectionViewCell
@@ -29,7 +29,7 @@ NSString* const CommentImageCollectionViewCellId = @"CommentImageCollectionViewC
     self = [super initWithFrame:frame];
     if (self)
     {
-        YYAnimatedImageView* imageView = [[YYAnimatedImageView alloc]init];
+        UIImageView* imageView = [[YYAnimatedImageView alloc]init];
         self.imageView = imageView;
         [self.contentView addSubview:imageView];
         
@@ -48,13 +48,23 @@ NSString* const CommentImageCollectionViewCellId = @"CommentImageCollectionViewC
     /**
      *  高性能设置
      */
-    [self.imageView yy_setImageWithURL:[NSURL URLWithString:imageUrlStr]
-                           placeholder:ImageNamed(@"personal_img0")
-                               options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
-                            completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
-     {
-         
-     }];
+//    [self.imageView yy_setImageWithURL:[NSURL URLWithString:imageUrlStr]
+//                           placeholder:ImageNamed(@"personal_img0")
+//                               options:YYWebImageOptionIgnoreAnimatedImage |YYWebImageOptionIgnoreImageDecoding
+//                            completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
+//     {
+//         
+//     }];
+    
+    //SDWebImageRetryFailed ：下载失败后,会重新下载
+    //SDWebImageLowPriority ：在用户正在进行用户操作的时候，SDWebImage停止下载图片
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]
+                      placeholderImage:ImageNamed(@"personal_img0")
+                               options:SDWebImageLowPriority | SDWebImageRetryFailed
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    {
+        
+    }];
 }
 
 @end

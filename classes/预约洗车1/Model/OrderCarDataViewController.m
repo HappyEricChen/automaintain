@@ -109,25 +109,35 @@
          [self.collectionView.mj_header endRefreshing];
          if (success)
          {
-             NSArray * tempModelArr = (NSArray*)result;
-             if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
-             {
-                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-             }
-             else
-             {
-                 [self.collectionView.mj_footer endRefreshing];
-             }
+             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                 
+                 NSArray * tempModelArr = (NSArray*)result;
+                 
+                 if ([pageIndex isEqualToString:@"0"])
+                 {
+                     [self.userCommentModelArr removeAllObjects];
+                 }
+                 [self.userCommentModelArr addObjectsFromArray:tempModelArr];
+                 
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     /**
+                      *  刷新index=4的那个section
+                      */
+                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:4]];
+                     
+                     if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
+                     {
+                         [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+                     }
+                     else
+                     {
+                         [self.collectionView.mj_footer endRefreshing];
+                     }
+                     callback(YES,nil,result);
+                 });
+                 
+             });
              
-             if ([pageIndex isEqualToString:@"0"])
-             {
-                 [self.userCommentModelArr removeAllObjects];
-             }
-             
-             [self.userCommentModelArr addObjectsFromArray:tempModelArr];
-             [self.collectionView reloadData];
-             
-             callback(YES,nil,result);
          }
          else
          {

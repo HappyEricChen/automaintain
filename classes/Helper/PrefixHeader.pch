@@ -34,8 +34,8 @@
 #import "UIButton+countDown.h"
 #import "NSData+Encryption.h"
 #import "NSString+AES256.h"
-#import <YYWebImage/YYWebImage.h>
-#import <YYImage/YYImage.h>
+#import <YYKit/YYKit.h>
+
 
 /**
  *  DB相机类

@@ -164,10 +164,19 @@ CGFloat userNameWidth;
     UserCommentModel* userCommentModel = (UserCommentModel*)object;
     self.contentLabel.text = userCommentModel.CommentContent;
     self.timeLabel.text = [userCommentModel.CreateTime substringToIndex:10];
-    self.projectType.text = [NSString stringWithFormat:@"项目类型：%@",userCommentModel.MaintainSubjectName];
+    self.projectType.text = [NSString stringWithFormat:@"服务项目：%@",userCommentModel.MaintainSubjectName];
     
     NSString* iconImageUrlStr = userCommentModel.AvatarUrl;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:iconImageUrlStr] placeholderImage:ImageNamed(@"order_user")];
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:iconImageUrlStr]
+                          placeholderImage:ImageNamed(@"order_user")
+                                   options:SDWebImageRetryFailed | SDWebImageLowPriority
+                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+     {
+        
+    }];
+    
+    
     /**
      *  根据名字长度布局
      */
@@ -176,7 +185,8 @@ CGFloat userNameWidth;
                                                      WithFontName:nil
                                                      WithFontSize:11
                                                          WithBold:NO];
-    self.userName.sd_layout.centerYEqualToView(self.iconImageView).leftSpaceToView(self.iconImageView,ScreenWidth*0.026).widthIs(userNameWidth).topEqualToView(self.iconImageView).bottomEqualToView(self.iconImageView);
+     self.userName.sd_layout.centerYEqualToView(self.iconImageView).leftSpaceToView(self.iconImageView,ScreenWidth*0.026).widthIs(userNameWidth).topEqualToView(self.iconImageView).bottomEqualToView(self.iconImageView);
+    
     
     /**
      *  星星数量展示

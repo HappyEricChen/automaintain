@@ -21,6 +21,7 @@
 
 #ifdef DEBUG
 static NSString* urlPath = @"http://112.64.131.222/NoOne";
+
 /**
  *  内部测试地址
  */

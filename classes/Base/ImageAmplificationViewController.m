@@ -37,13 +37,14 @@
 {
     UIImageView* imageView = [[UIImageView alloc]init];
     
-    [imageView yy_setImageWithURL:[NSURL URLWithString:self.imageUrl]
-                           placeholder:ImageNamed(@"personal_img0")
-                               options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation
-                            completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
+    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl]
+                          placeholderImage:ImageNamed(@"personal_img0")
+                                   options:SDWebImageRetryFailed | SDWebImageLowPriority
+                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
          
      }];
+    
     imageView.frame = CGRectMake(0, 0, ScreenWidth, ScreenWidth);
     
         /**
