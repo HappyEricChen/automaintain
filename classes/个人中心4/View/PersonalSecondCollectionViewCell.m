@@ -29,7 +29,6 @@ NSString* const personalSecondId = @"personalSecondId";
         self.backgroundView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_k")];
         
         UIImageView* iconImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"register_Location")];
-        iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:iconImageView];
         /**
          欢迎进入凯旋花苑一号车库社区汽车服务站
@@ -38,17 +37,11 @@ NSString* const personalSecondId = @"personalSecondId";
         nameLabel.font = [UIFont boldSystemFontOfSize:12];
         nameLabel.text = AppManagerSingleton.welcomeStr;
         nameLabel.textColor = UIColorFromRGB(0x9c9c9c);
-        nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        nameLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:nameLabel];
         
-        CGFloat nameWidth = [nameLabel calculateWidthWithLabelContent:nameLabel.text
-                                                         WithFontName:nil
-                                                         WithFontSize:12
-                                                             WithBold:NO];
-        
-        
         iconImageView.sd_layout.centerYEqualToView(self).leftSpaceToView(self,ScreenWidth*0.045).widthIs(13).heightIs(16);
-        nameLabel.sd_layout.centerYEqualToView(iconImageView).leftSpaceToView(iconImageView,9).widthIs(nameWidth).autoHeightRatio(0);
+        nameLabel.sd_layout.centerYEqualToView(iconImageView).leftSpaceToView(iconImageView,ScreenWidth*0.026).rightSpaceToView(self,ScreenWidth*0.026).autoHeightRatio(0);
        
         
     }

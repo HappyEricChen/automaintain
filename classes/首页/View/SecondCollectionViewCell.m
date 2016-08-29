@@ -26,6 +26,7 @@ NSString* const secondCellId = @"secondCellId";
     if (self)
     {
         self.backgroundColor = [UIColor whiteColor];
+        
         CustomButton* button1 = [[CustomButton alloc]initWithImage:ImageNamed(@"home_icon_cleancar") WithTitle:@"预约洗车"];
         [button1 addTarget:self action:@selector(clickOrderCarButton) forControlEvents:UIControlEventTouchUpInside];
         button1.translatesAutoresizingMaskIntoConstraints = NO;
@@ -46,10 +47,10 @@ NSString* const secondCellId = @"secondCellId";
         button4.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button4];
         
-        button1.sd_layout.leftSpaceToView(self,(ScreenWidth-200)*0.2).topEqualToView(self).bottomEqualToView(self).widthIs(50);
-        button2.sd_layout.leftSpaceToView(button1,(ScreenWidth-200)*0.2).topEqualToView(self).bottomEqualToView(self).widthIs(50);
-        button3.sd_layout.leftSpaceToView(button2,(ScreenWidth-200)*0.2).topEqualToView(self).bottomEqualToView(self).widthIs(50);
-        button4.sd_layout.leftSpaceToView(button3,(ScreenWidth-200)*0.2).topEqualToView(self).bottomEqualToView(self).widthIs(50);
+        button1.sd_layout.leftSpaceToView(self,(ScreenWidth-200)*0.2).heightIs(50+20).widthIs(50).centerYEqualToView(self);
+        button2.sd_layout.leftSpaceToView(button1,(ScreenWidth-200)*0.2).heightIs(50+20).widthIs(50).centerYEqualToView(self);
+        button3.sd_layout.leftSpaceToView(button2,(ScreenWidth-200)*0.2).heightIs(50+20).widthIs(50).centerYEqualToView(self);
+        button4.sd_layout.leftSpaceToView(button3,(ScreenWidth-200)*0.2).heightIs(50+20).widthIs(50).centerYEqualToView(self);
         
     }
     return self;

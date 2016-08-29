@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0701647D1D73E541005C35E2 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701647C1D73E541005C35E2 /* UIImage+Orientation.m */; };
 		0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0702D6961D3CA9F000447073 /* NotificationNameManager.m */; };
 		070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */; };
 		070F74751D1A7F5F0041F293 /* automaintainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F74741D1A7F5F0041F293 /* automaintainTests.m */; };
@@ -161,6 +162,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0701647B1D73E541005C35E2 /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
+		0701647C1D73E541005C35E2 /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		0702D6951D3CA9F000447073 /* NotificationNameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationNameManager.h; sourceTree = "<group>"; };
 		0702D6961D3CA9F000447073 /* NotificationNameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationNameManager.m; sourceTree = "<group>"; };
 		070A8CD21D36409300D81463 /* BaseCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -1343,6 +1346,8 @@
 				07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */,
 				078DF1271D5B03050031274B /* UIButton+countDown.h */,
 				078DF1281D5B03050031274B /* UIButton+countDown.m */,
+				0701647B1D73E541005C35E2 /* UIImage+Orientation.h */,
+				0701647C1D73E541005C35E2 /* UIImage+Orientation.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -1599,6 +1604,7 @@
 				072F80B61D3491EA002CECC4 /* CommonCollectionView.m in Sources */,
 				072F80791D348F66002CECC4 /* NSDate+Extend.m in Sources */,
 				072F81091D3499FF002CECC4 /* LoginTextField.m in Sources */,
+				0701647D1D73E541005C35E2 /* UIImage+Orientation.m in Sources */,
 				074945C91D35D6EA00A46AE6 /* HomeDataViewController.m in Sources */,
 				072F810A1D3499FF002CECC4 /* LoginView.m in Sources */,
 				070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */,

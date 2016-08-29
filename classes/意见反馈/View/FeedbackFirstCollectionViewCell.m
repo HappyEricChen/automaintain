@@ -68,7 +68,7 @@ NSString * const FeedbackFirstCollectionViewCellId = @"FeedbackFirstCollectionVi
         
         
         titleLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).topSpaceToView(self,ScreenHeight*0.027).widthIs(titleLabelWidth).autoHeightRatio(0);
-        baseView.sd_layout.leftSpaceToView(titleLabel,ScreenWidth*0.042).centerYEqualToView(titleLabel).widthIs(ScreenWidth*0.538).heightIs(ScreenHeight*0.034);
+        baseView.sd_layout.centerYEqualToView(titleLabel).centerXEqualToView(self).widthIs(ScreenWidth*0.538).heightIs(ScreenHeight*0.034);
         contentLabel.sd_layout.leftSpaceToView(baseView,ScreenWidth*0.048).topEqualToView(baseView).bottomEqualToView(baseView).widthIs(ScreenWidth*0.4);
         arrowImgeView.sd_layout.rightSpaceToView(baseView,5).centerYEqualToView(baseView).widthIs(7).heightIs(4);
         

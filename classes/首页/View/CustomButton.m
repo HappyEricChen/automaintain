@@ -26,7 +26,7 @@
         titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:titleLabel];
         
-        imageView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(self,20).heightIs(50);
+        imageView.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).heightIs(50);
         titleLabel.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(imageView,7).autoHeightRatio(0);
         
     }

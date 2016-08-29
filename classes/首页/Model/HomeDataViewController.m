@@ -57,7 +57,6 @@
             if ([result isKindOfClass:[NSArray class]])
             {
                 self.adsCarouselArr = (NSArray*)result;
-                [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
             }
             
              callback(YES,nil,result);

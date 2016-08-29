@@ -108,6 +108,11 @@
          {
              [SVProgressHUD dismiss];
              [self.orderCarDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
+             
+             /**
+              *  时间列表刷新时，清除选中的日期，以免点击“提交预约”按钮传值
+              */
+             self.selectedTime = nil;
          }
          else
          {

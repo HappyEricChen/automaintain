@@ -48,23 +48,16 @@ NSString* const CommentImageCollectionViewCellId = @"CommentImageCollectionViewC
     /**
      *  高性能设置
      */
-//    [self.imageView yy_setImageWithURL:[NSURL URLWithString:imageUrlStr]
-//                           placeholder:ImageNamed(@"personal_img0")
-//                               options:YYWebImageOptionIgnoreAnimatedImage |YYWebImageOptionIgnoreImageDecoding
-//                            completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
-//     {
-//         
-//     }];
+    NSString* imageUrl_1 = [AppManagerSingleton appndingImageUrlWithString:imageUrlStr];
     
-    //SDWebImageRetryFailed ：下载失败后,会重新下载
-    //SDWebImageLowPriority ：在用户正在进行用户操作的时候，SDWebImage停止下载图片
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrlStr]
-                      placeholderImage:ImageNamed(@"personal_img0")
-                               options:SDWebImageLowPriority | SDWebImageRetryFailed
-                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
-    {
-        
-    }];
+    [self.imageView setImageWithURL:[NSURL URLWithString:imageUrl_1]
+                        placeholder:ImageNamed(@"personal_img0")
+                            options:YYWebImageOptionIgnoreAnimatedImage |YYWebImageOptionIgnoreImageDecoding
+                         completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
+     {
+         
+     }];
+    
 }
 
 @end

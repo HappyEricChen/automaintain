@@ -34,7 +34,9 @@
 #import "UIButton+countDown.h"
 #import "NSData+Encryption.h"
 #import "NSString+AES256.h"
+#import "UIImage+Orientation.h"
 #import <YYKit/YYKit.h>
+#import <UIImageView+YYWebImage.h>
 
 
 /**

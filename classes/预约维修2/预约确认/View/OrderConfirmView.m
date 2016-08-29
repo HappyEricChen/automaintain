@@ -156,7 +156,7 @@
         projectLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(timeLabel,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.027).autoHeightRatio(0);
         needTimeLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(projectLabel,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.027).autoHeightRatio(0);
         priceLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(needTimeLabel,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.027).autoHeightRatio(0);
-        leaveMessageLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(priceLabel,ScreenHeight*0.03).widthIs(ScreenWidth*0.14).autoHeightRatio(0);
+        leaveMessageLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(priceLabel,ScreenHeight*0.03).widthIs(ScreenWidth*0.16).autoHeightRatio(0);
         textView.sd_layout.leftSpaceToView(leaveMessageLabel,0).topEqualToView(leaveMessageLabel).rightSpaceToView(self,ScreenWidth*0.1).heightIs(ScreenHeight*0.2);
         placeholderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.013).topSpaceToView(textView,ScreenWidth*0.013).rightEqualToView(textView).autoHeightRatio(0);
         

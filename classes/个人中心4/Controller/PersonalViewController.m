@@ -274,7 +274,7 @@
 {
     [cameraViewController restoreFullScreenMode];
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    self.avatorImage = image;
+    self.avatorImage = [image normalizedImage];//图片调整方向为正向;
     [self updateAvatorImage];//更新头像
     [self.personalDataViewController.collectionView reloadData];
 }

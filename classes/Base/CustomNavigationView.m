@@ -91,7 +91,7 @@
         
         leftImageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.042).topSpaceToView(self,ScreenHeight*0.1*0.496).widthIs(13).heightIs(16);
         
-        titleLabel.sd_layout.spaceToSuperView(UIEdgeInsetsMake(ScreenHeight*0.1*0.55,ScreenWidth*0.096,ScreenHeight*0.1*0.29,ScreenWidth*0.096));
+        titleLabel.sd_layout.spaceToSuperView(UIEdgeInsetsMake(ScreenHeight*0.1*0.55,ScreenWidth*0.096,ScreenHeight*0.1*0.29,ScreenWidth*0.01));
     }
     
     return self;

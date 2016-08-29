@@ -55,7 +55,7 @@
          {
              if (success)
              {
-//                 [self.homeDataViewController.collectionView reloadData];
+                 [self.homeDataViewController.collectionView reloadData];
              }
              else
              {
@@ -69,7 +69,8 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
+//                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
+                 [self.homeDataViewController.collectionView reloadData];
              }
              else
              {
@@ -83,7 +84,7 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:3]];
+                 [self.homeDataViewController.collectionView reloadData];
              }
              else
              {

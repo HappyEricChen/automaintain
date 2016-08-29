@@ -26,6 +26,8 @@
  */
 @property (nonatomic, strong) NSTimer* timer;
 
+@property (nonatomic, assign) BOOL lockButton;
+
 @end
 @implementation SignUpView
 
@@ -34,6 +36,7 @@
     self = [super init];
     if (self)
     {
+        self.lockButton = NO;
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didClickVerificationButton) name:kNotify_verification_Button object:nil];
         
@@ -191,7 +194,7 @@
          */
         baseView1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseView,12).heightIs(ScreenHeight*0.05);
         verificationLabel.sd_layout.leftSpaceToView(baseView1,ScreenWidth*0.037).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.15);
-        textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.50);
+        textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.4);
         
         lineView.sd_layout.leftSpaceToView(textField1,0).topSpaceToView(baseView1,5).bottomSpaceToView(baseView1,5).widthIs(1.5);
         AppManagerSingleton.countDownButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
@@ -265,19 +268,25 @@
 #pragma mark - 点击获取验证码按钮
 -(void)didClickVerificationButton
 {
-    if ([self.type isEqualToString:@"立即注册"])
+    if (!self.lockButton)
     {
-        /**
-         *  false为注册，accessCode不存在才可以注册
-         */
-        [self clickVerificationButtonwithIsExisted:@"false"];
-    }
-    else
-    {
-        /**
-         *  ture为找回密码，accessCode存在才可以找回密码
-         */
-        [self clickVerificationButtonwithIsExisted:@"true"];
+        self.lockButton = YES;
+        
+        if ([self.type isEqualToString:@"立即注册"])
+        {
+            /**
+             *  false为注册，accessCode不存在才可以注册
+             */
+            [self clickVerificationButtonwithIsExisted:@"false"];
+        }
+        else
+        {
+            /**
+             *  ture为找回密码，accessCode存在才可以找回密码
+             */
+            [self clickVerificationButtonwithIsExisted:@"true"];
+        }
+        
     }
 }
 
@@ -290,6 +299,8 @@
                                                   withIsExisted:IsExisted
                                                    withCallback:^(BOOL success, NSError *error, id result)
          {
+             
+             
              if (success)
              {
                  /**
@@ -312,6 +323,11 @@
              {
                  [SVProgressHUD showInfoWithStatus:@"验证码发送失败"];
              }
+             
+             /**
+              *  解锁
+              */
+             self.lockButton = NO;
              
          }];
     }

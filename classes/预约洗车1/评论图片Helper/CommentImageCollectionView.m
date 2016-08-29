@@ -22,7 +22,7 @@
     {
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        flowLayout.minimumInteritemSpacing = 20.0;
+        flowLayout.minimumLineSpacing = 5.0;
         UICollectionView* collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         collectionView.delegate = self;
         collectionView.dataSource = self;
@@ -104,5 +104,9 @@
         [self.delegate didClickCommentImageWithCommentImageCollectionView:self withImageUrl:imageUrl];
     }
 }
-
+////每个item之间的间距
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0.5f;
+}
 @end

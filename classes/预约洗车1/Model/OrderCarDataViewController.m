@@ -116,6 +116,7 @@
                  if ([pageIndex isEqualToString:@"0"])
                  {
                      [self.userCommentModelArr removeAllObjects];
+                     [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
                  }
                  [self.userCommentModelArr addObjectsFromArray:tempModelArr];
                  
@@ -123,7 +124,8 @@
                      /**
                       *  刷新index=4的那个section
                       */
-                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:4]];
+//                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:4]];
+                     [self.collectionView reloadData];
                      
                      if (tempModelArr.count<COMMENT_PAGE_SIZE.integerValue)
                      {

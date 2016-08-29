@@ -41,7 +41,7 @@
 //    [[SDImageCache sharedImageCache] setMaxMemoryCost:5 * 100 * 100];
 //    [[SDImageCache sharedImageCache] setShouldDecompressImages:NO];
 //    [[SDWebImageDownloader sharedDownloader] setShouldDecompressImages:NO];
-    [[SDImageCache sharedImageCache] setShouldCacheImagesInMemory:NO];
+//    [[SDImageCache sharedImageCache] setShouldCacheImagesInMemory:NO];
     
     
     
