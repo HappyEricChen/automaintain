@@ -45,4 +45,9 @@
  *
  */
 @property (nonatomic, strong) NSString* Url;
+
+/**
+ *  广告图的高度
+ */
+@property (nonatomic, strong) NSString* PicHeight;
 @end

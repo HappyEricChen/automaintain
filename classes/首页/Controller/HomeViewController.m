@@ -55,11 +55,11 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadData];
+                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
              }
              else
              {
-                 
+                 [SVProgressHUD showInfoWithStatus:result];
              }
         }];
         /**
@@ -69,12 +69,11 @@
          {
              if (success)
              {
-//                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
-                 [self.homeDataViewController.collectionView reloadData];
+                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
              }
              else
              {
-                 
+                 [SVProgressHUD showInfoWithStatus:result];
              }
          }];
         /**
@@ -178,7 +177,10 @@
     }
     else if (indexPath.section == 3)
     {
-        return CGSizeMake(ScreenWidth, ScreenHeight*0.2);
+        
+        BottomAdsModel* bottomAdsModel = self.homeDataViewController.bottomAdsArr[indexPath.row];
+        
+        return CGSizeMake(ScreenWidth, bottomAdsModel.PicHeight.floatValue);
     }
     return CGSizeZero;
 }

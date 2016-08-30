@@ -22,7 +22,7 @@
     {
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        flowLayout.minimumLineSpacing = 5.0;
+        flowLayout.minimumLineSpacing = 3.0;
         UICollectionView* collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         collectionView.delegate = self;
         collectionView.dataSource = self;
@@ -62,7 +62,6 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"%ld",self.userCommentModel.PhotoUrls.count);
     
     if (self.userCommentModel.PhotoUrls.count >3)
     {

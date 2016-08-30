@@ -73,7 +73,10 @@ NSString* const personalFirstId = @"personalFirstId";
 {
     if ([object isKindOfClass:[NSString class]])
     {
-        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:object] placeholderImage:ImageNamed(@"personal_img0")];
+        [self.iconImageView setImageWithURL:[NSURL URLWithString:object] placeholder:ImageNamed(@"personal_img0") options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
+         {
+             
+         }];
     }
     
     if (!AppManagerSingleton.CarBrand)

@@ -148,13 +148,13 @@
 {
     if ([orderTypeModel isKindOfClass:[OrderTypeModel class]])
     {
-        if ([orderTypeModel.Type isEqualToString:@"美容洗护"])
+        if ([orderTypeModel.Type isEqualToString:@"保养"])
         {
-            self.contentLabel.text = [NSString stringWithFormat:@"保养/%@",orderTypeModel.SubjectName];
+            self.contentLabel.text = [NSString stringWithFormat:@"%@/%@",orderTypeModel.Type,orderTypeModel.SubjectName];
         }
-        else if ([orderTypeModel.Type isEqualToString:@"维修保养"])
+        else if ([orderTypeModel.Type isEqualToString:@"维修"])
         {
-            self.contentLabel.text = [NSString stringWithFormat:@"维修/%@",orderTypeModel.SubjectName];
+            self.contentLabel.text = [NSString stringWithFormat:@"%@/%@",orderTypeModel.Type,orderTypeModel.SubjectName];
         }
         self.contentLabel.textColor = UIColorFromRGB(0x000000);
         

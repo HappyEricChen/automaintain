@@ -318,6 +318,16 @@
  */
 -(void)didClickShowCameraMethod:(MyCommentViewController *)personalDataViewController
 {
+    //    iOS 判断应用是否有使用相机的权限
+    
+    NSString *mediaType = AVMediaTypeVideo;//读取媒体类型
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
+    if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请在iPhone的\"设置-隐私-相机\"中允许访问相机"];
+        return;
+    }
+    
     DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
     [cameraController setUseCameraSegue:NO];
     
@@ -398,11 +408,14 @@
     self.image = [image normalizedImage];//图片调整方向为正向
     [self.myCommentDataViewController.imageArr addObject:self.image];
     [self.myCommentDataViewController.collectionView reloadData];
+    
 }
 
 - (void) dismissCamera:(id)cameraViewController{
     [self dismissViewControllerAnimated:YES completion:nil];
     [cameraViewController restoreFullScreenMode];
 }
+
+
 
 @end

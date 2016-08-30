@@ -78,11 +78,11 @@
              
              for (OrderTypeModel* orderTypeModel in tempModelArr)
              {
-                 if ([orderTypeModel.Type isEqualToString:@"美容洗护"])
+                 if ([orderTypeModel.Type isEqualToString:@"保养"])
                  {
                      [self.beautyServiceArr addObject:orderTypeModel];
                  }
-                 else if ([orderTypeModel.Type isEqualToString:@"维修保养"])
+                 else if ([orderTypeModel.Type isEqualToString:@"维修"])
                  {
                      [self.maintenanceArr addObject:orderTypeModel];
                  }

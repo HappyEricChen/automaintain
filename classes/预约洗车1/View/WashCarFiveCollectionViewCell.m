@@ -168,14 +168,13 @@ CGFloat userNameWidth;
     
     NSString* iconImageUrlStr = userCommentModel.AvatarUrl;
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:iconImageUrlStr]
-                          placeholderImage:ImageNamed(@"order_user")
-                                   options:SDWebImageRetryFailed | SDWebImageLowPriority
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    [self.iconImageView setImageWithURL:[NSURL URLWithString:iconImageUrlStr]
+                            placeholder:ImageNamed(@"order_user")
+                                options:YYWebImageOptionShowNetworkActivity
+                             completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
      {
-        
-    }];
-    
+         
+     }];
     
     /**
      *  根据名字长度布局

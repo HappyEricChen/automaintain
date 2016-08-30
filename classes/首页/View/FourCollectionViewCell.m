@@ -53,7 +53,10 @@ NSString* const fourCellId = @"fourCellId";
      *  设置启动时的背景图
      */
     
-    [self.imageView sd_setImageWithURL:completedImageUrl placeholderImage:ImageNamed(@"home_buttom_img0") options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    [self.imageView setImageWithURL:completedImageUrl
+                        placeholder:ImageNamed(@"home_buttom_img0")
+                            options:YYWebImageOptionShowNetworkActivity
+                         completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
     {
         /**
          *  回调刷新cell高度

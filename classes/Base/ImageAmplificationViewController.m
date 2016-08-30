@@ -37,18 +37,18 @@
 {
     UIImageView* imageView = [[UIImageView alloc]init];
     
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl]
-                          placeholderImage:ImageNamed(@"personal_img0")
-                                   options:SDWebImageRetryFailed | SDWebImageLowPriority
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    [imageView setImageWithURL:[NSURL URLWithString:self.imageUrl]
+                   placeholder:ImageNamed(@"personal_img0")
+                       options:YYWebImageOptionProgressiveBlur
+                    completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error)
      {
          
      }];
     
     imageView.frame = CGRectMake(0, 0, ScreenWidth, ScreenWidth);
     
-        /**
-         添加单机手势，点击返回
+    /**
+     添加单机手势，点击返回
          */
         UITapGestureRecognizer* singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTap:)];
         imageView.userInteractionEnabled = YES;

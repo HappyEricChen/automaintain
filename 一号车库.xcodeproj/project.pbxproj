@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0701647D1D73E541005C35E2 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701647C1D73E541005C35E2 /* UIImage+Orientation.m */; };
 		0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0702D6961D3CA9F000447073 /* NotificationNameManager.m */; };
+		0709C20F1D752999009D036D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0709C20E1D752999009D036D /* AVFoundation.framework */; };
 		070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */; };
 		070F74751D1A7F5F0041F293 /* automaintainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F74741D1A7F5F0041F293 /* automaintainTests.m */; };
 		070F74801D1A7F5F0041F293 /* automaintainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F747F1D1A7F5F0041F293 /* automaintainUITests.m */; };
@@ -166,6 +167,7 @@
 		0701647C1D73E541005C35E2 /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		0702D6951D3CA9F000447073 /* NotificationNameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationNameManager.h; sourceTree = "<group>"; };
 		0702D6961D3CA9F000447073 /* NotificationNameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationNameManager.m; sourceTree = "<group>"; };
+		0709C20E1D752999009D036D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		070A8CD21D36409300D81463 /* BaseCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		070F74571D1A7F5F0041F293 /* 一号车库.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "一号车库.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -434,6 +436,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0709C20F1D752999009D036D /* AVFoundation.framework in Frameworks */,
 				0748FAFA1D6C53F800FD602E /* libz.tbd in Frameworks */,
 				0748FAF81D6C53EC00FD602E /* libsqlite3.0.tbd in Frameworks */,
 				0748FAF61D6C53DC00FD602E /* MobileCoreServices.framework in Frameworks */,
@@ -1355,6 +1358,7 @@
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0709C20E1D752999009D036D /* AVFoundation.framework */,
 				0748FAF91D6C53F800FD602E /* libz.tbd */,
 				0748FAF71D6C53EC00FD602E /* libsqlite3.0.tbd */,
 				0748FAF51D6C53DC00FD602E /* MobileCoreServices.framework */,
