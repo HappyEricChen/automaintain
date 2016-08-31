@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Bugly (2.3.1)
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
   - GPUImage (0.1.7)
@@ -33,18 +34,19 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - Bugly
   - DBCamera (~> 2.4)
   - MJExtension
   - MJRefresh
   - PLeakSniffer
   - SDAutoLayout (~> 2.1.1)
   - SDCycleScrollView (~> 1.64)
-  - SDWebImage (~> 3.8)
   - SVProgressHUD
   - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Bugly: c8ece2fa5bdcb404abdd0e07131e8129f580d893
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   MJExtension: f9ae6ddc0f1c482c3c9af750280ccebd14381958
@@ -56,6 +58,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   YYKit: 843d1b26e20b82c695790c9a89907eaa1e99907f
 
-PODFILE CHECKSUM: f14f2b436b15f6931386b6121b077bf0a8d992bf
+PODFILE CHECKSUM: b5e51bfb2340c36136d65fc6e0672f04eb6e5464
 
 COCOAPODS: 1.0.1

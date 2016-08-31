@@ -16,7 +16,7 @@
  */
 @property (nonatomic, strong) NSString* timeSegment;
 /**
- *  预约时间 2016-08-11 12：00
+ *  预约时间 2016-08-11 12:00:00
  */
 @property (nonatomic, strong) NSString* orderTime;
 /**

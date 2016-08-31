@@ -99,20 +99,20 @@
                             withCallback:(Callback )callback
 {
     [AutomaintainAPI postListofBottomAdsWithAccessCode:accessCode withCallback:^(BOOL success, NSError *error, id result)
-    {
-        if (success)
-        {
-            callback(YES,nil,result);
-            
-            if ([result isKindOfClass:[NSArray class]])
-            {
-                self.bottomAdsArr = (NSArray*)result;
-            }
-        }
-        else
-        {
-            callback(NO,nil,result);
-        }
-    }];
+     {
+         if (success)
+         {
+             
+             if ([result isKindOfClass:[NSArray class]])
+             {
+                 self.bottomAdsArr = (NSArray*)result;
+             }
+             callback(YES,nil,result);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
 }
 @end

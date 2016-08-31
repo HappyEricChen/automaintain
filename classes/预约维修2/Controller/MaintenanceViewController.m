@@ -289,10 +289,10 @@
     }
     
     /**
-     *  通过完整时间截取到，项目起始时间 2017-02-03 08:15
+     *  通过完整时间截取到，项目起始时间 2017-02-03 08:15:00
      */
     NSString* appointmentStartTime = [self.completedTime substringToIndex:16];
-    
+    appointmentStartTime = [appointmentStartTime stringByAppendingString:@":00"];
     
     OrderConfirmViewController* orderConfirmViewController = [[OrderConfirmViewController alloc]init];
     
