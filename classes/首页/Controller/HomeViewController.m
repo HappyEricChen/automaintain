@@ -180,7 +180,12 @@
         
         BottomAdsModel* bottomAdsModel = self.homeDataViewController.bottomAdsArr[indexPath.row];
         
-        return CGSizeMake(ScreenWidth, bottomAdsModel.PicHeight.floatValue);
+        if (bottomAdsModel.PicHeight.floatValue>0 && bottomAdsModel.PicWidth.floatValue)
+        {
+            return CGSizeMake(ScreenWidth, bottomAdsModel.PicHeight.floatValue*ScreenWidth/bottomAdsModel.PicWidth.floatValue);
+        }
+        
+        return CGSizeMake(ScreenWidth, 0);
     }
     return CGSizeZero;
 }

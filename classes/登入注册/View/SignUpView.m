@@ -194,7 +194,7 @@
          */
         baseView1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseView,12).heightIs(ScreenHeight*0.05);
         verificationLabel.sd_layout.leftSpaceToView(baseView1,ScreenWidth*0.037).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.15);
-        textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.4);
+        textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.45);
         
         lineView.sd_layout.leftSpaceToView(textField1,0).topSpaceToView(baseView1,5).bottomSpaceToView(baseView1,5).widthIs(1.5);
         AppManagerSingleton.countDownButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);

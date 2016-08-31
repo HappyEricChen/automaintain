@@ -144,7 +144,7 @@ CGFloat userNameWidth;
         
 
         
-        baseView.sd_layout.leftSpaceToView(self,10).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.03);
+        baseView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.03);
         iconImageView.sd_layout.leftEqualToView(baseView).topEqualToView(baseView).widthIs(26).heightIs(26);
         
         baseView1.sd_layout.centerYEqualToView(userName).leftSpaceToView(userName,ScreenWidth*0.026).heightRatioToView(userName,1).widthIs(ScreenWidth*0.26);

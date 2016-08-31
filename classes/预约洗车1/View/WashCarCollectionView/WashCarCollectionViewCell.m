@@ -61,7 +61,9 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
     
     if ([AppManagerSingleton.currentDate isEqualToString:AppManagerSingleton.selectedDate])
     {
-        
+        /**
+         *  时间比较，当前时间和初始时间比较，初始时间小于当前时间变灰色
+         */
         if ([AppManagerSingleton.currentTime compare:scheduleListModel.ShopTime options:NSCaseInsensitiveSearch] == NSOrderedAscending)
         {
             [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

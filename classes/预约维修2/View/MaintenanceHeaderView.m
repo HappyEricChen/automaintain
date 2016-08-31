@@ -65,15 +65,17 @@
         UIImageView* rightImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"order_wx_right")];
         rightImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:rightImageView];
-        
+        /**
+         底部的线条
+         */
         UIView* lineView = [[UIView alloc]init];
         lineView.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"order_wx_line")];
         lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:lineView];
         
-        baseViewButton.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.076);
-        typeLabel.sd_layout.leftSpaceToView(baseViewButton,ScreenWidth*0.037).topSpaceToView(baseViewButton,ScreenHeight*0.036).widthIs(typeLabelWidth).autoHeightRatio(0);
-        rightImageView.sd_layout.rightSpaceToView(baseViewButton,ScreenWidth*0.053).centerYEqualToView(typeLabel).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
+        baseViewButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.053).topEqualToView(self).heightIs(ScreenHeight*0.076);
+        typeLabel.sd_layout.leftEqualToView(baseViewButton).topSpaceToView(baseViewButton,ScreenHeight*0.036).widthIs(typeLabelWidth).autoHeightRatio(0);
+        rightImageView.sd_layout.rightEqualToView(baseViewButton).centerYEqualToView(typeLabel).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
         contentLabel.sd_layout.leftSpaceToView(typeLabel,ScreenWidth*0.12).topSpaceToView(baseViewButton,ScreenHeight*0.036).rightSpaceToView(rightImageView,0).autoHeightRatio(0);
         
         lineView.sd_layout.leftEqualToView(baseViewButton).rightEqualToView(baseViewButton).heightIs(2).bottomSpaceToView(baseViewButton,0);
@@ -119,9 +121,9 @@
         lineView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:lineView1];
         
-        baseViewButton1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseViewButton,0).heightIs(ScreenHeight*0.076);
-        typeLabel1.sd_layout.leftSpaceToView(baseViewButton1,ScreenWidth*0.037).topSpaceToView(baseViewButton1,ScreenHeight*0.036).widthIs(typeLabelWidth1).autoHeightRatio(0);
-        rightImageView1.sd_layout.rightSpaceToView(baseViewButton1,ScreenWidth*0.053).centerYEqualToView(typeLabel1).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
+        baseViewButton1.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.053).topSpaceToView(baseViewButton,0).heightIs(ScreenHeight*0.076);
+        typeLabel1.sd_layout.leftEqualToView(baseViewButton1).topSpaceToView(baseViewButton1,ScreenHeight*0.036).widthIs(typeLabelWidth1).autoHeightRatio(0);
+        rightImageView1.sd_layout.rightEqualToView(baseViewButton1).centerYEqualToView(typeLabel1).widthIs(ScreenWidth*0.024).heightIs(ScreenHeight*0.027);
         contentLabel1.sd_layout.leftSpaceToView(typeLabel1,ScreenWidth*0.12).topSpaceToView(baseViewButton1,ScreenHeight*0.036).rightSpaceToView(rightImageView1,0).autoHeightRatio(0);
         
         lineView1.sd_layout.leftEqualToView(baseViewButton1).rightEqualToView(baseViewButton1).heightIs(2).bottomSpaceToView(baseViewButton1,0);
@@ -171,6 +173,13 @@
     }
     else
     {
+        /**
+         *  给完整的日期+时间中间添加空格适配PLUS 2017-02-03 08:15-08:30
+         */
+        NSString* data = [completedTime substringToIndex:10];
+        NSString* time = [completedTime substringFromIndex:10];
+        data = [data stringByAppendingString:@"  "];
+        completedTime = [data stringByAppendingString:time];
         self.contentLabel1.text = completedTime;
         self.contentLabel1.textColor = UIColorFromRGB(0x000000);
     }

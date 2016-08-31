@@ -61,21 +61,18 @@
          *  预约时间
          */
         UILabel* timeLabel = [[UILabel alloc]init];
-        timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.timeLabel = timeLabel;
         [self addSubview:timeLabel];
         /**
          *  预约项目
          */
         UILabel* projectLabel = [[UILabel alloc]init];
-        projectLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.projectLabel = projectLabel;
         [self addSubview:projectLabel];
         /**
          *  预计所需时间
          */
         UILabel* needTimeLabel = [[UILabel alloc]init];
-        needTimeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.needTimeLabel = needTimeLabel;
         [self addSubview:needTimeLabel];
         
@@ -83,7 +80,6 @@
          *  项目价格
          */
         UILabel* priceLabel = [[UILabel alloc]init];
-        priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.priceLabel = priceLabel;
         [self addSubview:priceLabel];
         
@@ -91,10 +87,15 @@
          *  留言
          */
         UILabel* leaveMessageLabel = [[UILabel alloc]init];
-        leaveMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        leaveMessageLabel.text = @"留言：";
+        leaveMessageLabel.text = @"留言：  ";
+        leaveMessageLabel.font = [UIFont systemFontOfSize:16];
         self.leaveMessageLabel = leaveMessageLabel;
         [self addSubview:leaveMessageLabel];
+        
+        CGFloat leaveMessageLabelWidth = [leaveMessageLabel calculateWidthWithLabelContent:leaveMessageLabel.text
+                                                                              WithFontName:nil
+                                                                              WithFontSize:16
+                                                                                  WithBold:NO];
         /**
          留言框
          */
@@ -102,7 +103,6 @@
         textView.backgroundColor = [UIColor whiteColor];
         textView.layer.borderWidth = 1;
         textView.layer.borderColor = UIColorFromRGB(0x929292).CGColor;
-        textView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:textView];
         self.textView = textView;
         textView.delegate = self;
@@ -115,7 +115,6 @@
         wordsCountLabel.font = [UIFont systemFontOfSize:11];
         wordsCountLabel.text = @"0/100";
         wordsCountLabel.textAlignment = NSTextAlignmentRight;
-        wordsCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:wordsCountLabel];
         self.wordsCountLabel = wordsCountLabel;
         /**
@@ -125,7 +124,6 @@
         placeholderLabel.text = @"对本次预约的说明(最多100个字)";
         placeholderLabel.font = [UIFont systemFontOfSize:11];
         placeholderLabel.textColor = UIColorFromRGB(0xc0c0c0);
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [textView addSubview:placeholderLabel];
         self.placeholderLabel = placeholderLabel;
         /**
@@ -136,7 +134,6 @@
         [submitButton setTitle:@"确认预约" forState:UIControlStateNormal];
         [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:submitButton];
         
         /**
@@ -148,7 +145,6 @@
         [cancelButton setTitleColor:UIColorFromRGB(0xc0c0c0) forState:UIControlStateNormal];
         [cancelButton addTarget:self action:@selector(clickCancelButton) forControlEvents:UIControlEventTouchUpInside];
         cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-        cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:cancelButton];
         
         
@@ -156,7 +152,7 @@
         projectLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(timeLabel,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.027).autoHeightRatio(0);
         needTimeLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(projectLabel,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.027).autoHeightRatio(0);
         priceLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(needTimeLabel,ScreenHeight*0.03).rightSpaceToView(self,ScreenWidth*0.027).autoHeightRatio(0);
-        leaveMessageLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(priceLabel,ScreenHeight*0.03).widthIs(ScreenWidth*0.16).autoHeightRatio(0);
+        leaveMessageLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.027).topSpaceToView(priceLabel,ScreenHeight*0.03).widthIs(leaveMessageLabelWidth).autoHeightRatio(0);
         textView.sd_layout.leftSpaceToView(leaveMessageLabel,0).topEqualToView(leaveMessageLabel).rightSpaceToView(self,ScreenWidth*0.1).heightIs(ScreenHeight*0.2);
         placeholderLabel.sd_layout.leftSpaceToView(textView,ScreenWidth*0.013).topSpaceToView(textView,ScreenWidth*0.013).rightEqualToView(textView).autoHeightRatio(0);
         

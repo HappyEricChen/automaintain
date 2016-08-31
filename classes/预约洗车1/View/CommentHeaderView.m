@@ -37,7 +37,7 @@ NSString* const headerId = @"headerId";
         label.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label];
         self.label = label;
-        label.sd_layout.leftSpaceToView(self,10).topEqualToView(self).bottomEqualToView(self).widthIs(ScreenWidth*0.5);
+        label.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).topEqualToView(self).bottomEqualToView(self).widthIs(ScreenWidth*0.5);
     }
     return self;
 }

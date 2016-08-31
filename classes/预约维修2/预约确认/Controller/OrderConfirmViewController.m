@@ -66,6 +66,17 @@
  */
 -(void)didClickSubmitButtonWithOrderConfirmView:(OrderConfirmView *)orderConfirmView withMessageContent:(NSString *)messageContent
 {
+   
+    NSString* subTimeStr = [self.orderTime substringFromIndex:13];
+    /**
+     *  时间比较，当前时间和初始时间比较，选中的时间小于当前时间不能提交预约
+     */
+    if ([AppManagerSingleton.currentTime compare:subTimeStr options:NSCaseInsensitiveSearch] == NSOrderedDescending)
+    {
+        [SVProgressHUD showInfoWithStatus:@"已超过可预约时间"];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
     
     [SVProgressHUD show];
     [self.orderConfirmDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode

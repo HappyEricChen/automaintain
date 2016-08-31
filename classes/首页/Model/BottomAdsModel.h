@@ -50,4 +50,8 @@
  *  广告图的高度
  */
 @property (nonatomic, strong) NSString* PicHeight;
+/**
+ *  广告图的宽度
+ */
+@property (nonatomic, strong) NSString* PicWidth;
 @end
