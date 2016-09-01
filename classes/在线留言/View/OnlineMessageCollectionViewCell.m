@@ -42,14 +42,12 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
         
         UILabel* questionLabel = [[UILabel alloc]init];
         questionLabel.font = [UIFont boldSystemFontOfSize:12];
-        questionLabel.translatesAutoresizingMaskIntoConstraints = NO;
         questionLabel.numberOfLines = 0;
         [self addSubview:questionLabel];
         self.questionLabel = questionLabel;
         
         
         UILabel* answerLabel = [[UILabel alloc]init];
-        answerLabel.translatesAutoresizingMaskIntoConstraints = NO;
         answerLabel.font = [UIFont systemFontOfSize:10];
         answerLabel.textColor = UIColorFromRGB(0x223daa);
         answerLabel.numberOfLines = 0;
@@ -58,7 +56,6 @@ NSString* const OnlineMessageCollectionViewCellId = @"OnlineMessageCollectionVie
         
         
         UILabel* stateLabel = [[UILabel alloc]init];
-        stateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         stateLabel.font = [UIFont systemFontOfSize:12];
         stateLabel.textColor = UIColorFromRGB(0xe71a39);
         stateLabel.textAlignment = NSTextAlignmentRight;

@@ -39,7 +39,6 @@ NSString* const WashCarThirdCollectionViewCellId = @"WashCarThirdCollectionViewC
         self.backgroundColor = UIColorFromRGB(0xf6f6f6);
         
         WashCarCollectionView* collectionView = [[WashCarCollectionView alloc]init];
-        collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:collectionView];
         self.washCarCollectionView = collectionView;
         

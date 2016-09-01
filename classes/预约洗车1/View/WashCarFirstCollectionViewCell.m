@@ -44,7 +44,6 @@ NSString* const washCarFirstId = @"washCarFirstId";
         [lastDayButton addTarget:self action:@selector(clickYesterdayButton) forControlEvents:UIControlEventTouchUpInside];
         lastDayButton.titleLabel.font = [UIFont systemFontOfSize:11];
         [lastDayButton setTitleColor:UIColorFromRGB(0x40add8) forState:UIControlStateNormal];
-        lastDayButton.translatesAutoresizingMaskIntoConstraints = NO;
         lastDayButton.hidden = YES;
         [self addSubview:lastDayButton];
         self.lastDayButton = lastDayButton;
@@ -56,7 +55,6 @@ NSString* const washCarFirstId = @"washCarFirstId";
         
         UILabel* dateLabel = [[UILabel alloc]init];
         dateLabel.font = [UIFont boldSystemFontOfSize:12];
-        dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
         dateLabel.text = [NSDate stringWithTimestamp:[NSDate date].timeIntervalSince1970 format:@"yyyy年MM月dd日"];
         [self addSubview:dateLabel];
         CGFloat dateLabelWidth = [dateLabel calculateWidthWithLabelContent:@"2016年06月30日"
@@ -76,7 +74,6 @@ NSString* const washCarFirstId = @"washCarFirstId";
         nextDayButton.titleLabel.font = [UIFont systemFontOfSize:11];
         [nextDayButton addTarget:self action:@selector(clickTomorrowButton) forControlEvents:UIControlEventTouchUpInside];
         [nextDayButton setTitleColor:UIColorFromRGB(0x40add8) forState:UIControlStateNormal];
-        nextDayButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:nextDayButton];
         
         dateLabel.sd_layout.centerXEqualToView(self).centerYEqualToView(self).heightRatioToView(self,1).widthIs(dateLabelWidth+5);

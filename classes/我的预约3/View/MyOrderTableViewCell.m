@@ -67,7 +67,6 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         UILabel* timeLabel = [[UILabel alloc]init];
         timeLabel.font = [UIFont systemFontOfSize:14];
         timeLabel.text = @"预约时间:";
-        timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:timeLabel];
         CGFloat timeLabelWidth = [timeLabel calculateWidthWithLabelContent:timeLabel.text
                                                                       WithFontName:nil
@@ -79,7 +78,6 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         UILabel* typeLabel = [[UILabel alloc]init];
         typeLabel.font = [UIFont systemFontOfSize:14];
         typeLabel.text = @"预约类型:";
-        typeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:typeLabel];
         CGFloat typeLabelWidth = [typeLabel calculateWidthWithLabelContent:typeLabel.text
                                                                      WithFontName:nil
@@ -92,7 +90,6 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         timeContentLabel.font = [UIFont systemFontOfSize:14];
         timeContentLabel.text = @"2016-05-28 17:00-17:30";
         timeContentLabel.textColor = UIColorFromRGB(0x929292);
-        timeContentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:timeContentLabel];
         self.timeContentLabel = timeContentLabel;
         
@@ -103,7 +100,6 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         typeContentLabel.font = [UIFont systemFontOfSize:14];
         typeContentLabel.text = @"洗车/维修/更换轮胎";
         typeContentLabel.textColor = UIColorFromRGB(0x929292);
-        typeContentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:typeContentLabel];
         self.typeContentLabel = typeContentLabel;
         CGFloat typeContentLabelWidth = [typeContentLabel calculateWidthWithLabelContent:typeContentLabel.text
@@ -117,7 +113,6 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         stateTypeLabel.font = [UIFont systemFontOfSize:11];
         stateTypeLabel.textColor = UIColorFromRGB(0xe71a39);
         stateTypeLabel.textAlignment = NSTextAlignmentRight;
-        stateTypeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:stateTypeLabel];
         self.stateTypeLabel = stateTypeLabel;
         
@@ -129,12 +124,10 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         [selectedButton setTitleColor:UIColorFromRGB(0xff7e31) forState:UIControlStateNormal];
         [selectedButton setBackgroundImage:ImageNamed(@"order_myorder_k") forState:UIControlStateNormal];
         [selectedButton addTarget:self action:@selector(clickSelectedButton:) forControlEvents:UIControlEventTouchUpInside];
-        selectedButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:selectedButton];
         self.selectedButton = selectedButton;
         
         UIImageView* lineView = [[UIImageView alloc]initWithImage:ImageNamed(@"order_type_line")];
-        lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:lineView];
         
         /**
@@ -143,7 +136,6 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
         UILabel* timeCompleteLabel = [[UILabel alloc]init];
         timeCompleteLabel.font = [UIFont systemFontOfSize:11];
         timeCompleteLabel.textColor = UIColorFromRGB(0xe71a39);
-        timeCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
         timeCompleteLabel.hidden = YES;
         [self addSubview:timeCompleteLabel];
         self.timeCompleteLabel = timeCompleteLabel;

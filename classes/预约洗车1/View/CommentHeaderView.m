@@ -34,7 +34,6 @@ NSString* const headerId = @"headerId";
          */
         UILabel* label = [[UILabel alloc]init];
         label.font = [UIFont systemFontOfSize:11];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label];
         self.label = label;
         label.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).topEqualToView(self).bottomEqualToView(self).widthIs(ScreenWidth*0.5);

@@ -30,7 +30,6 @@ NSString* const fourCellId = @"fourCellId";
     if (self)
     {
         UIImageView* imageView = [[UIImageView alloc]init];
-        imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView];
         self.imageView = imageView;
         

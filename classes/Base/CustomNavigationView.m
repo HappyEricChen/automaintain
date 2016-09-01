@@ -27,24 +27,20 @@
     [leftBtn addTarget:customNavigationView
                 action:@selector(leftBtnAction:)
       forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [customNavigationView addSubview:leftBtn];
     
     UIImageView* leftArrowImageView = [[UIImageView alloc]initWithImage:leftImage];
     leftArrowImageView.userInteractionEnabled = NO;
-    leftArrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [leftBtn addSubview:leftArrowImageView];
     
     UIButton* rightBtn = [[UIButton alloc]init];
     [rightBtn addTarget:customNavigationView
                  action:@selector(rightBtnAction:)
        forControlEvents:UIControlEventTouchUpInside];
-    rightBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [customNavigationView addSubview:rightBtn];
     
     UIImageView* rightArrowImageView = [[UIImageView alloc]initWithImage:rightImage];
     rightArrowImageView.userInteractionEnabled = NO;
-    rightArrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [rightBtn addSubview:rightArrowImageView];
     
     UILabel* titleLabel = [[UILabel alloc]init];
@@ -52,7 +48,6 @@
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text = title;
-    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [customNavigationView addSubview:titleLabel];
     
     
@@ -84,7 +79,6 @@
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.text = title;
-        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.titleLabel = titleLabel;
         [self addSubview:titleLabel];
         

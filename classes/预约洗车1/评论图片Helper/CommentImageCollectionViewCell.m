@@ -46,7 +46,7 @@ NSString* const CommentImageCollectionViewCellId = @"CommentImageCollectionViewC
     NSString* imageUrlStr = (NSString*)object;
     
     /**
-     *  高性能设置
+     *  图片url变成缩略图
      */
     NSString* imageUrl_1 = [AppManagerSingleton appndingImageUrlWithString:imageUrlStr];
     

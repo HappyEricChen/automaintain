@@ -34,18 +34,15 @@ NSString * const SettingFirstCollectionViewCellId = @"SettingFirstCollectionView
         self.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"set_k")];
         
         UIImageView* iconImageView = [[UIImageView alloc]init];
-        iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:iconImageView];
         self.iconImageView = iconImageView;
         
         UILabel* contentLabel = [[UILabel alloc]init];
         contentLabel.font = [UIFont boldSystemFontOfSize:12];
-        contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:contentLabel];
         self.contentLabel = contentLabel;
         
         UIImageView* arrowImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"set_arrow_right")];
-        arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:arrowImageView];
         
         iconImageView.sd_layout.leftSpaceToView(self,ScreenWidth*0.032).centerYEqualToView(self).widthIs(21).heightIs(22);

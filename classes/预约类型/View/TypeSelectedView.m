@@ -18,7 +18,6 @@
         self.backgroundColor = [UIColor whiteColor];
         
         UIView* baseView = [[UIView alloc]init];
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
         
         UISegmentedControl* segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"美容洗护服务",@"维修服务"]];
@@ -31,7 +30,6 @@
         [segmentedControl setTitleTextAttributes:attributeDic forState:UIControlStateNormal];
         
         [baseView addSubview:segmentedControl];
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
         
         baseView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
         segmentedControl.sd_layout.leftSpaceToView(baseView,ScreenWidth*0.2).rightSpaceToView(baseView,ScreenWidth*0.2).topSpaceToView(baseView,6).bottomSpaceToView(baseView,6);

@@ -37,14 +37,12 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
         UILabel* typeNameLabel = [[UILabel alloc]init];
         typeNameLabel.font = [UIFont systemFontOfSize:14];
         typeNameLabel.textColor = UIColorFromRGB(0x000000);
-        typeNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:typeNameLabel];
         self.typeNameLabel = typeNameLabel;
         
         UILabel* contentLabel = [[UILabel alloc]init];
          contentLabel.font = [UIFont systemFontOfSize:11];
         contentLabel.textColor = UIColorFromRGB(0x000000);
-        contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:contentLabel];
         self.contentLabel = contentLabel;
         
@@ -52,7 +50,6 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
         priceLabel.font = [UIFont systemFontOfSize:13];
         priceLabel.textColor = UIColorFromRGB(0xff7e31);
         priceLabel.textAlignment = NSTextAlignmentRight;
-        priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:priceLabel];
         self.priceLabel = priceLabel;
         
@@ -61,13 +58,11 @@ NSString* const CustomTypeSelectedTableViewCellId = @"CustomTypeSelectedTableVie
         selectedButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [selectedButton setTitleColor:UIColorFromRGB(0xff7e31) forState:UIControlStateNormal];
         [selectedButton setBackgroundImage:ImageNamed(@"order_type_choose") forState:UIControlStateNormal];
-        selectedButton.translatesAutoresizingMaskIntoConstraints = NO;
         [selectedButton addTarget:self action:@selector(clickSelectedButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:selectedButton];
         self.selectedButton = selectedButton;
         
         UIImageView* lineView = [[UIImageView alloc]initWithImage:ImageNamed(@"order_type_line")];
-        lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:lineView];
         
         typeNameLabel.sd_layout.leftSpaceToView(self,ScreenWidth*0.037).topSpaceToView(self,ScreenHeight*0.03).widthIs(ScreenWidth*0.6).autoHeightRatio(0);

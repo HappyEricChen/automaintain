@@ -33,7 +33,6 @@ NSString* const commonCellId = @"commonCellId";
         label.layer.borderColor = UIColorFromRGB(0x7b7b7b).CGColor;
         label.layer.borderWidth = 0.5f;
         label.layer.cornerRadius = 2;
-        label.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label];
         self.label = label;
         

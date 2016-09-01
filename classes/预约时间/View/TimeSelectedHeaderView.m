@@ -47,12 +47,10 @@ NSString* const TimeSelectedHeaderViewId = @"TimeSelectedHeaderViewId";
          */
         UILabel* label = [[UILabel alloc]init];
         label.font = [UIFont systemFontOfSize:11];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label];
         self.label = label;
         
         UIImageView* imageView = [[UIImageView alloc]init];
-        imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView];
         self.imageView = imageView;
         
@@ -62,13 +60,11 @@ NSString* const TimeSelectedHeaderViewId = @"TimeSelectedHeaderViewId";
         UILabel* myOrderLabel = [[UILabel alloc]init];
         myOrderLabel.font = [UIFont systemFontOfSize:11];
         myOrderLabel.text = @"您的预约";
-        myOrderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:myOrderLabel];
         self.myOrderLabel = myOrderLabel;
         
         UIImageView* myOrderImageView = [[UIImageView alloc]init];
         myOrderImageView.image = ImageNamed(@"order_choose_blue");
-        myOrderImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:myOrderImageView];
         self.myOrderImageView = myOrderImageView;
         

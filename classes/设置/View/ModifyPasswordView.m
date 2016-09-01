@@ -40,7 +40,6 @@
          原密码
          */
         UIView* baseView = [[UIView alloc]init];
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         baseView.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView];
         
@@ -49,7 +48,6 @@
         accountLabel.font = [UIFont systemFontOfSize:14];
         accountLabel.textColor = [UIColor blackColor];
         accountLabel.textAlignment = NSTextAlignmentCenter;
-        accountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:accountLabel];
         
         BaseTextField* oldPasswordField = [[BaseTextField alloc]init];
@@ -58,7 +56,6 @@
         oldPasswordField.textAlignment = NSTextAlignmentLeft;
         oldPasswordField.textColor = UIColorFromRGB(0x000000);
         oldPasswordField.font = [UIFont systemFontOfSize:14];
-        oldPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:oldPasswordField];
         oldPasswordField.secureTextEntry = YES;
         self.oldPasswordField = oldPasswordField;
@@ -67,14 +64,12 @@
          新密码
          */
         UIView* baseView2 = [[UIView alloc]init];
-        baseView2.translatesAutoresizingMaskIntoConstraints = NO;
         baseView2.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView2];
         
         UILabel* passwordLabel = [[UILabel alloc]init];
         passwordLabel.font = [UIFont systemFontOfSize:14];
         passwordLabel.textAlignment = NSTextAlignmentCenter;
-        passwordLabel.translatesAutoresizingMaskIntoConstraints = NO;
         passwordLabel.text = @"新密码";
         [baseView2 addSubview:passwordLabel];
         
@@ -84,7 +79,6 @@
         freshPasswordField.font = [UIFont systemFontOfSize:14];
         freshPasswordField.placeholder = @"请设置新密码";
         freshPasswordField.keyboardType = UIKeyboardTypeASCIICapable;
-        freshPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView2 addSubview:freshPasswordField];
         freshPasswordField.secureTextEntry = YES;
         self.freshPasswordField = freshPasswordField;
@@ -93,7 +87,6 @@
          密码确认
          */
         UIView* baseView3 = [[UIView alloc]init];
-        baseView3.translatesAutoresizingMaskIntoConstraints = NO;
         baseView3.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView3];
         
@@ -101,7 +94,6 @@
         passwordLabel1.text = @"确   认";
         passwordLabel1.font = [UIFont systemFontOfSize:14];
         passwordLabel1.textAlignment = NSTextAlignmentCenter;
-        passwordLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:passwordLabel1];
         
         BaseTextField* confirmPasswordField = [[BaseTextField alloc]init];
@@ -110,7 +102,6 @@
         confirmPasswordField.textColor = UIColorFromRGB(0x000000);
         confirmPasswordField.placeholder = @"请确认新密码";
         confirmPasswordField.keyboardType = UIKeyboardTypeASCIICapable;
-        confirmPasswordField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:confirmPasswordField];
         confirmPasswordField.secureTextEntry = YES;
         self.confirmPasswordField = confirmPasswordField;
@@ -121,7 +112,6 @@
         [changePasswordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [changePasswordButton setTitle:@"提交" forState:UIControlStateNormal];
         changePasswordButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        changePasswordButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:changePasswordButton];
         
         

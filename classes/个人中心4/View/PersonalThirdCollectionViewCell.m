@@ -32,7 +32,6 @@ NSString* const personalThirdId = @"personalThirdId";
         self.backgroundView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_k")];
         
         UIImageView* iconImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_order")];
-        iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:iconImageView];
         self.iconImageView = iconImageView;
         /**
@@ -42,7 +41,6 @@ NSString* const personalThirdId = @"personalThirdId";
         nameLabel.font = [UIFont boldSystemFontOfSize:15];
         nameLabel.text = @"我的预约";
         nameLabel.textColor = UIColorFromRGB(0x000000);
-        nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:nameLabel];
         self.nameLabel = nameLabel;
         
@@ -53,7 +51,6 @@ NSString* const personalThirdId = @"personalThirdId";
         
         UIButton* rightButton = [[UIButton alloc]init];
         [rightButton setImage:ImageNamed(@"register_arrow_right") forState:UIControlStateNormal];
-        rightButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:rightButton];
        
         

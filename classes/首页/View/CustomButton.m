@@ -16,14 +16,12 @@
     if (self)
     {
         UIImageView* imageView = [[UIImageView alloc]initWithImage:image];
-        imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView];
         
         UILabel* titleLabel = [[UILabel alloc]init];
         titleLabel.text = title;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:10];
-        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:titleLabel];
         
         imageView.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).heightIs(50);

@@ -43,7 +43,6 @@ NSString* const firstTimeCellId = @"firstTimeCellId";
         timeButton.clipsToBounds = YES;
         timeButton.layer.borderWidth = 0.5f;
         timeButton.layer.cornerRadius = 2;
-        timeButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:timeButton];
         self.timeButton = timeButton;
         

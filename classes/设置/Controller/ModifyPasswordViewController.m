@@ -28,7 +28,6 @@
 {
     [self.view addSubview:self.modifyPasswordDataViewController.customNavigationView];
     self.modifyPasswordDataViewController.customNavigationView.delegate = self;
-    self.modifyPasswordDataViewController.customNavigationView.translatesAutoresizingMaskIntoConstraints = NO;
     self.modifyPasswordDataViewController.customNavigationView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topEqualToView(self.view).heightIs(ScreenHeight*0.1);
     
 }

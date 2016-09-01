@@ -1766,7 +1766,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
-				PROVISIONING_PROFILE = "dfa6f54a-ea6b-45f2-bbe2-dd1f296e946f";
+				PROVISIONING_PROFILE = "13acfadd-2eea-4cff-916c-d62a8a7b227b";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1866,6 +1866,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
+				PROVISIONING_PROFILE = "7c9ccab6-27a3-40a9-aa5b-f8214b6f81e7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

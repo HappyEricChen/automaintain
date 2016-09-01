@@ -39,7 +39,6 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         button.layer.borderWidth = 0.5f;
         button.layer.cornerRadius = 2;
         button.clipsToBounds = YES;
-        button.translatesAutoresizingMaskIntoConstraints = NO;
         [button addTarget:self action:@selector(clickCurrentButton:) forControlEvents:UIControlEventTouchUpInside];
 //        [button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateSelected];
         button.userInteractionEnabled = NO;

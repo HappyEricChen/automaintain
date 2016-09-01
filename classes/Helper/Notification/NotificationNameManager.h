@@ -46,4 +46,8 @@ extern NSString* const kNotify_verification_Button;
  *  我的预约服务中的倒计时/
  */
 extern NSString* const kNotify_CountDown_Time;
+/**
+ *  AccessCode过期后通知退出登录
+ */
+extern NSString* const kNotify_AccessCode_Overdue;
 @end

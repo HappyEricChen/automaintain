@@ -41,7 +41,6 @@
         collectionView.showsVerticalScrollIndicator = NO;
         [collectionView registerClass:[CommonCollectionViewCell class] forCellWithReuseIdentifier:commonCellId];
         collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:collectionView];
         self.collectionView = collectionView;
         

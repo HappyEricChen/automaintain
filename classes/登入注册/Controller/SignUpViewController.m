@@ -30,7 +30,6 @@
 {
     [self.view addSubview:self.signUpDataViewController.customNavigationView];
     self.signUpDataViewController.customNavigationView.delegate = self;
-    self.signUpDataViewController.customNavigationView.translatesAutoresizingMaskIntoConstraints = NO;
     self.signUpDataViewController.customNavigationView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topEqualToView(self.view).heightIs(ScreenHeight*0.1);
     
     
@@ -40,7 +39,6 @@
 {
     [self.view addSubview:self.signUpDataViewController.signUpView];
     self.signUpDataViewController.signUpView.delegate = self;
-    self.signUpDataViewController.signUpView.translatesAutoresizingMaskIntoConstraints = NO;
     self.signUpDataViewController.signUpView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topSpaceToView(self.signUpDataViewController.customNavigationView,0).bottomEqualToView(self.view);
     
     

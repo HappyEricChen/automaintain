@@ -29,7 +29,6 @@ NSString* const personalFourId = @"personalFourId";
         self.backgroundView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_k")];
         
         UIImageView* iconImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"personal_contect")];
-        iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:iconImageView];
        
         /**
@@ -39,7 +38,6 @@ NSString* const personalFourId = @"personalFourId";
         nameLabel.font = [UIFont boldSystemFontOfSize:15];
         nameLabel.text = @"联系我们";
         nameLabel.textColor = UIColorFromRGB(0x000000);
-        nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:nameLabel];
        
         
@@ -52,7 +50,6 @@ NSString* const personalFourId = @"personalFourId";
         rightLabel.text = @"4002-9889-888";
         rightLabel.textColor = UIColorFromRGB(0xc64e35);
         rightLabel.font = [UIFont boldSystemFontOfSize:12];
-        rightLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:rightLabel];
         
         CGFloat rightLabelWidth = [rightLabel calculateWidthWithLabelContent:rightLabel.text

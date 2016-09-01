@@ -56,18 +56,20 @@
 
 -(void)loadDataFromService
 {
+    [SVProgressHUD show];
     [self.typeSelectedDataViewController postOrderTypeListWithAccessCode:AppManagerSingleton.accessCode withCallback:^(BOOL success, NSError *error, id result)
-    {
-        if (success)
-        {
-            [self findSelectedOrderTypeModel];//遍历数组寻找已选择的按钮
-            [self.typeSelectedDataViewController.customTableView reloadData];
-        }
-        else
-        {
-            [SVProgressHUD showInfoWithStatus:result];
-        }
-    }];
+     {
+         if (success)
+         {
+             [SVProgressHUD dismiss];
+             [self findSelectedOrderTypeModel];//遍历数组寻找已选择的按钮
+             [self.typeSelectedDataViewController.customTableView reloadData];
+         }
+         else
+         {
+             [SVProgressHUD showInfoWithStatus:result];
+         }
+     }];
 }
 
 -(void)findSelectedOrderTypeModel

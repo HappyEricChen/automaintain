@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/API/AutomaintainAPI.m"
-            timestampString = "493880967.62648"
+            filePath = "classes/main/AppDelegate.m"
+            timestampString = "494417183.913442"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "698"
-            endingLineNumber = "698"
-            landmarkName = "+postOnlineMessageListWithAccessCode:withPageIndex:withCallback:"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

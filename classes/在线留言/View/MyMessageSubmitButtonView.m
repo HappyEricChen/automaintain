@@ -20,7 +20,6 @@
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
         [submitButton setTitle:@"我要留言" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [submitButton addTarget:self action:@selector(clickSubmitButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:submitButton];
         

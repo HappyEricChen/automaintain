@@ -37,7 +37,6 @@
         collectionView.showsVerticalScrollIndicator = NO;
         [collectionView registerClass:[WashCarCollectionViewCell class] forCellWithReuseIdentifier:WashCarCollectionViewCell1Id];
         collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:collectionView];
         self.collectionView = collectionView;
         

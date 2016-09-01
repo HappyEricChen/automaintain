@@ -26,7 +26,6 @@
     if (!_modifyPasswordView)
     {
         _modifyPasswordView = [[ModifyPasswordView alloc]init];
-        _modifyPasswordView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _modifyPasswordView;
 }

@@ -35,7 +35,6 @@ NSString* const WashCarFourCollectionViewCellId = @"WashCarFourCollectionViewCel
         [submitButton setTitle:@"提交预约" forState:UIControlStateNormal];
         submitButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [submitButton setBackgroundImage:ImageNamed(@"order_wx_commit") forState:UIControlStateNormal];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [submitButton addTarget:self action:@selector(clickSubmitBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:submitButton];
         submitButton.sd_layout.centerXEqualToView(self).topSpaceToView(self,ScreenHeight*0.027).widthIs(ScreenWidth*0.917).heightIs(ScreenHeight*0.05);

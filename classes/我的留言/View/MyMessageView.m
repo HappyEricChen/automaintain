@@ -30,14 +30,12 @@
         
         
         UIView* baseView = [[UIView alloc]init];
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
         
         UITextView* textView = [[UITextView alloc]init];
         textView.backgroundColor = [UIColor whiteColor];
         textView.layer.borderWidth = 1;
         textView.layer.borderColor = UIColorFromRGB(0x929292).CGColor;
-        textView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:textView];
         self.textView = textView;
         textView.delegate = self;
@@ -48,7 +46,6 @@
         wordsCountLabel.font = [UIFont systemFontOfSize:11];
         wordsCountLabel.text = @"0/100";
         wordsCountLabel.textAlignment = NSTextAlignmentRight;
-        wordsCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:wordsCountLabel];
         self.wordsCountLabel = wordsCountLabel;
         
@@ -56,7 +53,6 @@
         placeholderLabel.text = @"请在这里写下您的留言......";
         placeholderLabel.font = [UIFont systemFontOfSize:11];
         placeholderLabel.textColor = UIColorFromRGB(0xc0c0c0);
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [textView addSubview:placeholderLabel];
         self.placeholderLabel = placeholderLabel;
         
@@ -65,7 +61,6 @@
         [submitButton setTitle:@"提交" forState:UIControlStateNormal];
         [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
         submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:submitButton];
         
         baseView.sd_layout.leftSpaceToView(self,ScreenWidth*0.035).rightSpaceToView(self,ScreenWidth*0.035).topSpaceToView(self,ScreenHeight*0.022).heightIs(ScreenHeight*0.425);

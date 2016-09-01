@@ -1,4 +1,4 @@
-//
+ //
 //  OrderConfirmViewController.m
 //  一号车库
 //
@@ -66,45 +66,69 @@
  */
 -(void)didClickSubmitButtonWithOrderConfirmView:(OrderConfirmView *)orderConfirmView withMessageContent:(NSString *)messageContent
 {
-   
+    
     NSString* subTimeStr = [self.orderTime substringFromIndex:13];
     /**
-     *  时间比较，当前时间和初始时间比较，选中的时间小于当前时间不能提交预约
+     *  当天/时间比较，当前时间和初始时间比较，选中的时间小于当前时间不能提交预约
      */
-    if ([AppManagerSingleton.currentTime compare:subTimeStr options:NSCaseInsensitiveSearch] == NSOrderedDescending)
+    if ([AppManagerSingleton.currentDate isEqualToString:AppManagerSingleton.selectedDate] && [AppManagerSingleton.currentTime compare:subTimeStr options:NSCaseInsensitiveSearch] == NSOrderedDescending)
     {
-        [SVProgressHUD showInfoWithStatus:@"已超过可预约时间"];
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"该时间段已不可预约，换个时间吧" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                                 {
+                                     /**
+                                      *  确定后返回上一页
+                                      */
+                                     [self.navigationController popViewControllerAnimated:YES];
+                                 }];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action)
+                                       {
+                                           /**
+                                            *  点击取消
+                                            */
+                                           return ;
+                                       }];
+        
+        [alertController addAction:action];
+        [alertController addAction:cancelAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         
     }
-    
-    [SVProgressHUD show];
-    [self.orderConfirmDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
-                                                     withAppointmentStartTime:self.orderTime
-                                                              withSubjectGuid:self.subjectGuid
-                                                                     withNote:messageContent
-                                                                 withCallback:^(BOOL success, NSError *error, id result)
-     {
-         if (success)
+    else
+    {
+        [SVProgressHUD show];
+        [self.orderConfirmDataViewController postAppointmentServiceWithAccessCode:AppManagerSingleton.accessCode
+                                                         withAppointmentStartTime:self.orderTime
+                                                                  withSubjectGuid:self.subjectGuid
+                                                                         withNote:messageContent
+                                                                     withCallback:^(BOOL success, NSError *error, id result)
          {
-             /**
-              *  预约成功跳转到预约确认界面
-              */
-             [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-             
-             MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
-             [self.navigationController pushViewController:myOrderViewController animated:YES];
-             
-             /**
-              *  重新获取时间预约列表
-              */
-             //             [self loadDataFromService];
-         }
-         else
-         {
-             [SVProgressHUD showInfoWithStatus:result];
-         }
-     }];
+             if (success)
+             {
+                 /**
+                  *  预约成功跳转到预约确认界面
+                  */
+                 [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                 
+                 MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
+                 [self.navigationController pushViewController:myOrderViewController animated:YES];
+                 
+                 /**
+                  *  重新获取时间预约列表
+                  */
+                 //             [self loadDataFromService];
+             }
+             else
+             {
+                 [SVProgressHUD showInfoWithStatus:result];
+             }
+         }];
+        
+    }
     
 }
 /**

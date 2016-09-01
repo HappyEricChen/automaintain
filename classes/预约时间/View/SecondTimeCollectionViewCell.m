@@ -41,7 +41,6 @@ NSString* const secondTimeCellId = @"secondTimeCellId";
         timeButton.layer.borderColor = UIColorFromRGB(0x7b7b7b).CGColor;
         timeButton.layer.borderWidth = 0.5f;
         timeButton.layer.cornerRadius = 2;
-        timeButton.translatesAutoresizingMaskIntoConstraints = NO;
         timeButton.userInteractionEnabled = NO;
         [self addSubview:timeButton];
         self.timeButton = timeButton;

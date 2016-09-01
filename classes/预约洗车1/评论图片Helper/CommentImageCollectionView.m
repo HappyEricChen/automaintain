@@ -30,7 +30,6 @@
         collectionView.scrollEnabled = NO;
         [collectionView registerClass:[CommentImageCollectionViewCell class] forCellWithReuseIdentifier:CommentImageCollectionViewCellId];
         collectionView.backgroundColor = [UIColor clearColor];
-        collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         collectionView.showsHorizontalScrollIndicator = NO;
         [self addSubview:collectionView];
         self.collectionView = collectionView;

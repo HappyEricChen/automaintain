@@ -43,7 +43,6 @@
 {
     [self.view addSubview:self.onlineMessageDataViewController.customNavigationView];
     self.onlineMessageDataViewController.customNavigationView.delegate = self;
-    self.onlineMessageDataViewController.customNavigationView.translatesAutoresizingMaskIntoConstraints = NO;
     self.onlineMessageDataViewController.customNavigationView.sd_layout.leftEqualToView(self.view).rightEqualToView(self.view).topEqualToView(self.view).heightIs(ScreenHeight*0.1);
 }
 
@@ -51,7 +50,6 @@
 {
     [self.view addSubview:self.onlineMessageDataViewController.myMessageSubmitButtonView];
     self.onlineMessageDataViewController.myMessageSubmitButtonView.delegate = self;
-    self.onlineMessageDataViewController.myMessageSubmitButtonView.translatesAutoresizingMaskIntoConstraints = NO;
     self.onlineMessageDataViewController.myMessageSubmitButtonView.sd_layout.leftSpaceToView(self.view,ScreenWidth*0.04).rightSpaceToView(self.view,ScreenWidth*0.04).bottomSpaceToView(self.view,ScreenHeight*0.015).heightIs(ScreenHeight*0.065);
 }
 
@@ -166,7 +164,7 @@
                                                                  WithFontSize:10
                                                                     WithWidth:ScreenWidth*0.855
                                                                      WithBold:NO];
-            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.065+textHeight+replyContentHeight);
+            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.08+textHeight+replyContentHeight);
         }
         
     }

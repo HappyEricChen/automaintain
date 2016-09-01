@@ -35,16 +35,13 @@ NSString* const thirdCellId = @"thirdCellId";
         label1.text = @"免费便民服务区";
         label1.textAlignment = NSTextAlignmentCenter;
         label1.font = FONT_FZZYJW(12);
-        label1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:label1];
         
         UIView* baseView = [[UIView alloc]init];
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
         
         UIImageView * imageView1 = [[UIImageView alloc]initWithImage:ImageNamed(@"home_line")];
         imageView1.clipsToBounds = YES;
-        imageView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:imageView1];
         
         UILabel* label2 = [[UILabel alloc]init];
@@ -52,16 +49,13 @@ NSString* const thirdCellId = @"thirdCellId";
         label2.textAlignment = NSTextAlignmentCenter;
         label2.font = FONT_Aparajita(12);
         
-        label2.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:label2];
         
         UIImageView * imageView2 = [[UIImageView alloc]initWithImage:ImageNamed(@"home_line")];
-        imageView2.translatesAutoresizingMaskIntoConstraints = NO;
         imageView2.clipsToBounds = YES;
         [baseView addSubview:imageView2];
         
         CommonCollectionView* collectionView = [[CommonCollectionView alloc]init];
-        collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         collectionView.fontSize = 10;
         collectionView.pageName = @"home";
         collectionView.textColor = UIColorFromRGB(0x7b7b7b);

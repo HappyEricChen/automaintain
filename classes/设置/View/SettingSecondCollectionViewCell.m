@@ -31,7 +31,6 @@ NSString * const SettingSecondCollectionViewCellId = @"SettingSecondCollectionVi
         submitButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [submitButton addTarget:self action:@selector(clickSubmitBtn) forControlEvents:UIControlEventTouchUpInside];
         [submitButton setBackgroundImage:ImageNamed(@"register_commit") forState:UIControlStateNormal];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:submitButton];
         
         submitButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.032).rightSpaceToView(self,ScreenWidth*0.032).topEqualToView(self).heightIs(ScreenHeight*0.049);

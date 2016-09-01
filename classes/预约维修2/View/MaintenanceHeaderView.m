@@ -33,7 +33,6 @@
 #pragma mark - 预约类型
         UIButton* baseViewButton = [[UIButton alloc]init];
         [baseViewButton addTarget:self action:@selector(clickTypeChangeButton) forControlEvents:UIControlEventTouchUpInside];
-        baseViewButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseViewButton];
         
         /**
@@ -42,7 +41,6 @@
         UILabel* typeLabel = [[UILabel alloc]init];
         typeLabel.text = @"预约类型:";
         typeLabel.font = [UIFont systemFontOfSize:14];
-        typeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:typeLabel];
         
         CGFloat typeLabelWidth = [typeLabel calculateWidthWithLabelContent:typeLabel.text
@@ -54,7 +52,6 @@
          */
         UILabel* contentLabel = [[UILabel alloc]init];
         contentLabel.font = [UIFont systemFontOfSize:14];
-        contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
 //        contentLabel.userInteractionEnabled = NO;
         [baseViewButton addSubview:contentLabel];
         self.contentLabel = contentLabel;
@@ -63,14 +60,12 @@
          右边箭头
          */
         UIImageView* rightImageView = [[UIImageView alloc]initWithImage:ImageNamed(@"order_wx_right")];
-        rightImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:rightImageView];
         /**
          底部的线条
          */
         UIView* lineView = [[UIView alloc]init];
         lineView.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"order_wx_line")];
-        lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton addSubview:lineView];
         
         baseViewButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.053).topEqualToView(self).heightIs(ScreenHeight*0.076);
@@ -83,7 +78,6 @@
         
 #pragma mark - 预约时间
         UIButton* baseViewButton1 = [[UIButton alloc]init];
-        baseViewButton1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addTarget:self action:@selector(clickTimeChangeButton) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:baseViewButton1];
         
@@ -93,7 +87,6 @@
         UILabel* typeLabel1 = [[UILabel alloc]init];
         typeLabel1.text = @"预约时间:";
         typeLabel1.font = [UIFont systemFontOfSize:14];
-        typeLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:typeLabel1];
         
         CGFloat typeLabelWidth1 = [typeLabel calculateWidthWithLabelContent:typeLabel1.text
@@ -105,7 +98,6 @@
          */
         UILabel* contentLabel1 = [[UILabel alloc]init];
         contentLabel1.font = [UIFont systemFontOfSize:14];
-        contentLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:contentLabel1];
         self.contentLabel1 = contentLabel1;
         
@@ -113,12 +105,10 @@
          右边箭头
          */
         UIImageView* rightImageView1 = [[UIImageView alloc]initWithImage:ImageNamed(@"order_wx_right")];
-        rightImageView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:rightImageView1];
         
         UIView* lineView1 = [[UIView alloc]init];
         lineView1.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"order_wx_line")];
-        lineView1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseViewButton1 addSubview:lineView1];
         
         baseViewButton1.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.053).topSpaceToView(baseViewButton,0).heightIs(ScreenHeight*0.076);
@@ -136,7 +126,6 @@
         submitButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [submitButton setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
         [submitButton addTarget:self action:@selector(clickSubmitOrderButton) forControlEvents:UIControlEventTouchUpInside];
-        submitButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:submitButton];
         
         submitButton.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightSpaceToView(self,ScreenWidth*0.04).topSpaceToView(baseViewButton1,ScreenHeight*0.067).heightIs(ScreenHeight*0.05);

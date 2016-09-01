@@ -37,14 +37,12 @@ NSString* const personalFirstId = @"personalFirstId";
         
         
         UIImageView* iconImageView = [[UIImageView alloc]init];
-        iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:iconImageView];
         self.iconImageView = iconImageView;
         
         UILabel* nameLabel = [[UILabel alloc]init];
         nameLabel.font = [UIFont boldSystemFontOfSize:17];
         
-        nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:nameLabel];
         self.nameLabel = nameLabel;
         
@@ -53,7 +51,6 @@ NSString* const personalFirstId = @"personalFirstId";
         licensePlateNumberLabel.font = [UIFont systemFontOfSize:12];
         licensePlateNumberLabel.textAlignment = NSTextAlignmentLeft;
         licensePlateNumberLabel.text = AppManagerSingleton.CarNo;
-        licensePlateNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:licensePlateNumberLabel];
         
         CGFloat licensePlateNumberWidth = [nameLabel calculateWidthWithLabelContent:licensePlateNumberLabel.text

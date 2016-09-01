@@ -17,7 +17,6 @@
     if (!_loginView)
     {
         _loginView = [[LoginView alloc]init];
-        _loginView.translatesAutoresizingMaskIntoConstraints = NO;
         
     }
     return _loginView;

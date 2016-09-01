@@ -33,14 +33,12 @@ static CGFloat baseViewY = 0;
          欢迎来到一号车库文字
          */
         UIImageView* imageView1 = [[UIImageView alloc]initWithImage:ImageNamed(@"welcome_chinese")];
-        imageView1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView1];
         
         /**
          welcome-to-No.1-garage
          */
         UIImageView* imageView2 = [[UIImageView alloc]initWithImage:ImageNamed(@"welcome-to-No.1-garage")];
-        imageView2.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView2];
         
         /**
@@ -59,7 +57,6 @@ static CGFloat baseViewY = 0;
                                                                    withType:@"account"];
     
         accountField.delegate = self;
-        accountField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:accountField];
         self.accountField = accountField;
         
@@ -71,7 +68,6 @@ static CGFloat baseViewY = 0;
                                                             withPlaceHolder:@"请输入密码"
                                                                    withType:@"password"];
         passwordField.delegate = self;
-        passwordField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:passwordField];
         self.passwordField = passwordField;
         /**
@@ -81,7 +77,6 @@ static CGFloat baseViewY = 0;
         [loginButton setBackgroundImage:ImageNamed(@"login_k2") forState:UIControlStateNormal];
         [loginButton setTitle:@"登录" forState:UIControlStateNormal];
         [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
-        loginButton.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:loginButton];
         /**
          注册按钮
@@ -93,7 +88,6 @@ static CGFloat baseViewY = 0;
         [signupButton setTitleColor:UIColorFromRGB(0xcec8fb) forState:UIControlStateNormal];
         signupButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [signupButton addTarget:self action:@selector(clickSignupButton) forControlEvents:UIControlEventTouchUpInside];
-        signupButton.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:signupButton];
         /**
          忘记密码按钮
@@ -105,7 +99,6 @@ static CGFloat baseViewY = 0;
         forgetPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         forgetPasswordButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [forgetPasswordButton addTarget:self action:@selector(clickForgetPasswordButton) forControlEvents:UIControlEventTouchUpInside];
-        forgetPasswordButton.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:forgetPasswordButton];
         
         imageView1.sd_layout.centerXEqualToView(self).topSpaceToView(self,ScreenHeight*0.115).widthIs(ScreenWidth*0.65).heightIs(ScreenHeight*0.045);

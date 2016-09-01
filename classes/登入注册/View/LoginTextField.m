@@ -24,7 +24,6 @@
         self.layer.cornerRadius = 5.5;
         
         UIImageView* imageView = [[UIImageView alloc]initWithImage:image];
-        imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:imageView];
         
         if ([type isEqualToString:@"password"])
@@ -39,7 +38,6 @@
              *  设置textfield光标为白色
              */
             textField.tintColor = [UIColor whiteColor];;
-            textField.translatesAutoresizingMaskIntoConstraints = NO;
             textField.textAlignment = NSTextAlignmentLeft;
             textField.textColor = [UIColor whiteColor];
             [self addSubview:textField];
@@ -64,7 +62,6 @@
              *  设置textfield光标为白色
              */
             textField.tintColor = [UIColor whiteColor];;
-            textField.translatesAutoresizingMaskIntoConstraints = NO;
             textField.textAlignment = NSTextAlignmentLeft;
             textField.textColor = [UIColor whiteColor];
             [self addSubview:textField];

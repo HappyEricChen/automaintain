@@ -26,6 +26,10 @@
  */
 @property (nonatomic, weak) UILabel* timeLabel;
 /**
+ *  baseview
+ */
+@property (nonatomic, weak) UIView* baseView;
+/**
  *  用户名
  */
 @property (nonatomic, weak) UILabel* userName;
@@ -71,6 +75,7 @@ CGFloat userNameWidth;
          头像／用户名／星星／时间///基础的View
          */
         UIView* baseView = [[UIView alloc]init];
+        self.baseView = baseView;
         [self addSubview:baseView];
         /**
          头像
@@ -146,13 +151,12 @@ CGFloat userNameWidth;
         
         baseView.sd_layout.leftSpaceToView(self,ScreenWidth*0.04).rightEqualToView(self).topEqualToView(self).heightIs(ScreenHeight*0.03);
         iconImageView.sd_layout.leftEqualToView(baseView).topEqualToView(baseView).widthIs(26).heightIs(26);
-        
         baseView1.sd_layout.centerYEqualToView(userName).leftSpaceToView(userName,ScreenWidth*0.026).heightRatioToView(userName,1).widthIs(ScreenWidth*0.26);
         timeLabel.sd_layout.centerYEqualToView(userName).rightEqualToView(baseView).topEqualToView(userName).bottomEqualToView(userName).widthIs(ScreenWidth*0.24);
-        projectType.sd_layout.leftSpaceToView(self,26+ScreenWidth*0.026+10).topSpaceToView(baseView,10).rightSpaceToView(self,10).autoHeightRatio(0);
-        contentLabel.sd_layout.leftEqualToView(projectType).topSpaceToView(projectType,13).rightSpaceToView(self,10).autoHeightRatio(0);
-        commentImageCollectionView.sd_layout.leftEqualToView(contentLabel).topSpaceToView(contentLabel,10).bottomEqualToView(self).rightSpaceToView(self,10);
         
+        projectType.sd_layout.leftSpaceToView(self.iconImageView,ScreenWidth*0.04+10).topSpaceToView(self.baseView,10).rightSpaceToView(self,10).autoHeightRatio(0);
+        contentLabel.sd_layout.leftEqualToView(self.projectType).topSpaceToView(self.projectType,13).rightSpaceToView(self,10).autoHeightRatio(0);
+        commentImageCollectionView.sd_layout.leftEqualToView(self.contentLabel).topSpaceToView(self.contentLabel,10).bottomEqualToView(self).rightSpaceToView(self,10);
         
         
     }
@@ -184,8 +188,7 @@ CGFloat userNameWidth;
                                                      WithFontName:nil
                                                      WithFontSize:11
                                                          WithBold:NO];
-     self.userName.sd_layout.centerYEqualToView(self.iconImageView).leftSpaceToView(self.iconImageView,ScreenWidth*0.026).widthIs(userNameWidth).topEqualToView(self.iconImageView).bottomEqualToView(self.iconImageView);
-    
+    self.userName.sd_layout.centerYEqualToView(self.iconImageView).leftSpaceToView(self.iconImageView,ScreenWidth*0.026).widthIs(userNameWidth).topEqualToView(self.iconImageView).bottomEqualToView(self.iconImageView);
     
     /**
      *  星星数量展示

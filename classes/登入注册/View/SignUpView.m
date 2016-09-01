@@ -46,7 +46,6 @@
          账号
          */
         UIView* baseView = [[UIView alloc]init];
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         baseView.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView];
         
@@ -55,7 +54,6 @@
         accountLabel.font = [UIFont systemFontOfSize:14];
         accountLabel.textColor = [UIColor blackColor];
         accountLabel.textAlignment = NSTextAlignmentCenter;
-        accountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:accountLabel];
         
         UITextField* textField = [[UITextField alloc]init];
@@ -64,7 +62,6 @@
         textField.textAlignment = NSTextAlignmentLeft;
         textField.textColor = UIColorFromRGB(0x000000);
         textField.font = [UIFont systemFontOfSize:14];
-        textField.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:textField];
         textField.delegate = self;
         self.textField = textField;
@@ -74,7 +71,6 @@
          验证码
          */
         UIView* baseView1 = [[UIView alloc]init];
-        baseView1.translatesAutoresizingMaskIntoConstraints = NO;
         baseView1.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView1];
         
@@ -82,7 +78,6 @@
         verificationLabel.text = @"验证码";
         verificationLabel.font = [UIFont systemFontOfSize:14];
         verificationLabel.textAlignment = NSTextAlignmentCenter;
-        verificationLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView1 addSubview:verificationLabel];
         
         UITextField* textField1 = [[UITextField alloc]init];
@@ -91,7 +86,6 @@
         textField1.keyboardType = UIKeyboardTypeNumberPad;
         textField1.textColor = UIColorFromRGB(0x000000);
         textField1.font = [UIFont systemFontOfSize:14];
-        textField1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView1 addSubview:textField1];
         textField1.delegate = self;
         self.textField1 = textField1;
@@ -103,21 +97,18 @@
         
         UIView* lineView = [[UIView alloc]init];
         lineView.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_verline")];
-        lineView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView1 addSubview:lineView];
         
         /**
          密码
          */
         UIView* baseView2 = [[UIView alloc]init];
-        baseView2.translatesAutoresizingMaskIntoConstraints = NO;
         baseView2.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView2];
         
         UILabel* passwordLabel = [[UILabel alloc]init];
         passwordLabel.font = [UIFont systemFontOfSize:14];
         passwordLabel.textAlignment = NSTextAlignmentCenter;
-        passwordLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView2 addSubview:passwordLabel];
         
         BaseTextField* textField2 = [[BaseTextField alloc]init];
@@ -125,7 +116,6 @@
         textField2.textColor = UIColorFromRGB(0x000000);
         textField2.font = [UIFont systemFontOfSize:14];
         textField2.keyboardType = UIKeyboardTypeASCIICapable;
-        textField2.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView2 addSubview:textField2];
         textField2.secureTextEntry = YES;
         textField2.delegate = self;
@@ -135,7 +125,6 @@
          密码确认
          */
         UIView* baseView3 = [[UIView alloc]init];
-        baseView3.translatesAutoresizingMaskIntoConstraints = NO;
         baseView3.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_textarea")];
         [self addSubview:baseView3];
         
@@ -143,7 +132,6 @@
         passwordLabel1.text = @"确   认";
         passwordLabel1.font = [UIFont systemFontOfSize:14];
         passwordLabel1.textAlignment = NSTextAlignmentCenter;
-        passwordLabel1.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:passwordLabel1];
         
         BaseTextField* textField3 = [[BaseTextField alloc]init];
@@ -151,7 +139,6 @@
         textField3.font = [UIFont systemFontOfSize:14];
         textField3.textColor = UIColorFromRGB(0x000000);
         textField3.keyboardType = UIKeyboardTypeASCIICapable;
-        textField3.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView3 addSubview:textField3];
         textField3.secureTextEntry = YES;
         textField3.delegate = self;
@@ -163,7 +150,6 @@
         [signupButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [signupButton setTitle:type forState:UIControlStateNormal];
         signupButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        signupButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:signupButton];
         
         if ([type isEqualToString:@"立即注册"])

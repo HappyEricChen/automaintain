@@ -23,7 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     /**
-     *  //设置弹出的HUD时间，单例
+     *  设置弹出的HUD时间，单例
      */
     [SVProgressHUD setMinimumDismissTimeInterval:1];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
@@ -33,6 +33,8 @@
 #pragma mark - 初始化腾讯Bugly
     [Bugly startWithAppId:APPID];
     
+#pragma mark - AccessCode过期后退出到登录界面
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(accessCodeOverdue) name:kNotify_AccessCode_Overdue object:nil];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -40,6 +42,30 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+-(void)accessCodeOverdue
+{
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"登录已过期，请重新登录！" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                             {
+                                 /**
+                                  *  返回登录界面
+                                  */
+                                 [SharedAppDelegateHelper.navigationController popToViewController:SharedAppDelegateHelper.loginViewController animated:YES];
+                             }];
+    
+    [alertController addAction:action];
+    
+    
+    [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kNotify_AccessCode_Overdue object:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

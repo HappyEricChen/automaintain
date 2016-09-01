@@ -37,7 +37,6 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         textView.layer.borderWidth = 1;
         textView.delegate = self;
         textView.layer.borderColor = UIColorFromRGBWithAlpha(0x000000, 0.3).CGColor;
-        textView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:textView];
         self.textView = textView;
         
@@ -45,7 +44,6 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         placeHolderLabel.text = @"请留下您的建议，我们会不断优化......";
         placeHolderLabel.font = [UIFont systemFontOfSize:11];
         placeHolderLabel.textColor = UIColorFromRGB(0x9c9c9c);
-        placeHolderLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [textView addSubview:placeHolderLabel];
         self.placeHolderLabel = placeHolderLabel;
         
@@ -54,7 +52,6 @@ NSString * const FeedbackSecondCollectionViewCellId = @"FeedbackSecondCollection
         wordsCountLabel.font = [UIFont systemFontOfSize:11];
         wordsCountLabel.text = @"0/100";
         wordsCountLabel.textAlignment = NSTextAlignmentRight;
-        wordsCountLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:wordsCountLabel];
         self.wordsCountLabel = wordsCountLabel;
         

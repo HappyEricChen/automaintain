@@ -29,22 +29,18 @@ NSString* const secondCellId = @"secondCellId";
         
         CustomButton* button1 = [[CustomButton alloc]initWithImage:ImageNamed(@"home_icon_cleancar") WithTitle:@"预约洗车"];
         [button1 addTarget:self action:@selector(clickOrderCarButton) forControlEvents:UIControlEventTouchUpInside];
-        button1.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button1];
         
         CustomButton* button2 = [[CustomButton alloc]initWithImage:ImageNamed(@"home_icon_check") WithTitle:@"美容维修"];
         [button2 addTarget:self action:@selector(clickMaintenanceButton) forControlEvents:UIControlEventTouchUpInside];
-        button2.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button2];
         
         CustomButton* button3 = [[CustomButton alloc]initWithImage:ImageNamed(@"home_icon_order") WithTitle:@"我的预约"];
         [button3 addTarget:self action:@selector(clickMyOrderButton) forControlEvents:UIControlEventTouchUpInside];
-        button3.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button3];
         
         CustomButton* button4 = [[CustomButton alloc]initWithImage:ImageNamed(@"home_icon_personal") WithTitle:@"个人中心"];
         [button4 addTarget:self action:@selector(clickPersonalButton) forControlEvents:UIControlEventTouchUpInside];
-        button4.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:button4];
         
         button1.sd_layout.leftSpaceToView(self,(ScreenWidth-200)*0.2).heightIs(50+20).widthIs(50).centerYEqualToView(self);

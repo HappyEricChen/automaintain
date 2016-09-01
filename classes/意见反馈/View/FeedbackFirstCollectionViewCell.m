@@ -33,7 +33,6 @@ NSString * const FeedbackFirstCollectionViewCellId = @"FeedbackFirstCollectionVi
         UILabel* titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"反馈类型";
         titleLabel.font = [UIFont systemFontOfSize:14];
-        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:titleLabel];
         
         CGFloat titleLabelWidth = [titleLabel calculateWidthWithLabelContent:titleLabel.text
@@ -45,7 +44,6 @@ NSString * const FeedbackFirstCollectionViewCellId = @"FeedbackFirstCollectionVi
         baseView.backgroundColor = [UIColor whiteColor];
         baseView.layer.borderWidth = 1;
         baseView.layer.borderColor = UIColorFromRGBWithAlpha(0x000000, 0.3).CGColor;
-        baseView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:baseView];
         
         UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickBaseView)];
@@ -54,7 +52,6 @@ NSString * const FeedbackFirstCollectionViewCellId = @"FeedbackFirstCollectionVi
         
         UILabel* contentLabel = [[UILabel alloc]init];
         contentLabel.font = [UIFont systemFontOfSize:11];
-        contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:contentLabel];
         self.contentLabel = contentLabel;
         
@@ -63,7 +60,6 @@ NSString * const FeedbackFirstCollectionViewCellId = @"FeedbackFirstCollectionVi
         UIImageView* arrowImgeView= [[UIImageView alloc]init];
         arrowImgeView.image = ImageNamed(@"suggestion_down");
         
-        arrowImgeView.translatesAutoresizingMaskIntoConstraints = NO;
         [baseView addSubview:arrowImgeView];
         
         

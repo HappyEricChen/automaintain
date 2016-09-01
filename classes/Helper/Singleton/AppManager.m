@@ -31,7 +31,6 @@
         [_countDownButton setTitleColor:UIColorFromRGB(0xbf2e0d) forState:UIControlStateNormal];
         _countDownButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _countDownButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        _countDownButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_countDownButton addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _countDownButton;
@@ -287,7 +286,9 @@
 -(NSString*)appndingImageUrlWithString:(NSString*)bigImageUrl
 {
     NSString* tempStr = [bigImageUrl substringToIndex:bigImageUrl.length-4];
-    tempStr = [NSString stringWithFormat:@"%@_1.jpg",tempStr];
+    NSString* jpgStr = [bigImageUrl substringFromIndex:bigImageUrl.length-4];//获取图片的格式，jpg或者png
+    
+    tempStr = [NSString stringWithFormat:@"%@_1%@",tempStr,jpgStr];
     
     return tempStr;
 }
