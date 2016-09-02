@@ -371,13 +371,7 @@
     [self.myCommentDataViewController.actionSheet showInView:self.view];
     
 }
-//#pragma mark - 点击对应的照片放大
-//-(void)didClickImageViewWithMyCommentSecondCollectionViewCell:(MyCommentSecondCollectionViewCell *)myCommentSecondCollectionViewCell withImage:(UIImage *)image
-//{
-//    ImageAmplificationViewController* imageAmplificationViewController = [[ImageAmplificationViewController alloc]init];
-//    imageAmplificationViewController.image = image;
-//    [self.navigationController pushViewController:imageAmplificationViewController animated:YES];
-//}
+
 #pragma mark - 取消第一响应者
 -(void)receiveCancelKeyboard:(NSNotification*)object
 {

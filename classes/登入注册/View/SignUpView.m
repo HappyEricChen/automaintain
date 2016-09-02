@@ -25,7 +25,9 @@
  *  定时器，用来防止按钮多次点击
  */
 @property (nonatomic, strong) NSTimer* timer;
-
+/**
+ *  锁住“获取验证码”按钮，防止多次点击
+ */
 @property (nonatomic, assign) BOOL lockButton;
 
 @end
@@ -254,24 +256,39 @@
 #pragma mark - 点击获取验证码按钮
 -(void)didClickVerificationButton
 {
-    if (!self.lockButton)
+    /**
+     *  正则表达式判断是否为正确的手机号
+     */
+    if ([AppManagerSingleton isMobile:self.textField.text])
     {
-        self.lockButton = YES;
         
-        if ([self.type isEqualToString:@"立即注册"])
+        if (!self.lockButton)
         {
-            /**
-             *  false为注册，accessCode不存在才可以注册
-             */
-            [self clickVerificationButtonwithIsExisted:@"false"];
+            self.lockButton = YES;
+            
+            if ([self.type isEqualToString:@"立即注册"])
+            {
+                /**
+                 *  false为注册，accessCode不存在才可以注册
+                 */
+                [self clickVerificationButtonwithIsExisted:@"false"];
+            }
+            else
+            {
+                /**
+                 *  ture为找回密码，accessCode存在才可以找回密码
+                 */
+                [self clickVerificationButtonwithIsExisted:@"true"];
+            }
+            
         }
-        else
-        {
-            /**
-             *  ture为找回密码，accessCode存在才可以找回密码
-             */
-            [self clickVerificationButtonwithIsExisted:@"true"];
-        }
+    }
+    else
+    {
+        /**
+         *  请输入正确的手机号
+         */
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
         
     }
 }
@@ -299,21 +316,33 @@
                   *  @param color    倒计时中的颜色
                   */
                  [AppManagerSingleton.countDownButton startWithTime:60
-                                                  title:@"获取验证码"
-                                         countDownTitle:@"秒后重新获取"
-                                              mainColor:UIColorFromRGB(0xffffff)
-                                             countColor:UIColorFromRGB(0xffffff)];
-
+                                                              title:@"获取验证码"
+                                                     countDownTitle:@"秒后重新获取"
+                                                          mainColor:UIColorFromRGB(0xffffff)
+                                                         countColor:UIColorFromRGB(0xffffff)];
+                 
+                 /**
+                  *  发送成功延时解锁防止多次点击，发送多条验证码
+                  */
+                 [NSTimer scheduledTimerWithTimeInterval:10 block:^(NSTimer * _Nonnull timer)
+                  {
+                      /**
+                       
+                       *  解锁
+                       */
+                      self.lockButton = NO;
+                  }
+                                                 repeats:NO];
+                 
              }
              else
              {
-                 [SVProgressHUD showInfoWithStatus:@"验证码发送失败"];
+                 [SVProgressHUD showInfoWithStatus:result];
+                 /**
+                  *  发送失败解锁
+                  */
+                 self.lockButton = NO;
              }
-             
-             /**
-              *  解锁
-              */
-             self.lockButton = NO;
              
          }];
     }

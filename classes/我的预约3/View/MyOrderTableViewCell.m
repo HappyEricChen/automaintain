@@ -201,7 +201,11 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
             self.stateTypeLabel.text = @"服务中";
             self.selectedButton.hidden = YES;
             self.timeCompleteLabel.hidden = NO;
-            self.timeCompleteLabel.text = [NSString stringWithFormat:@"距离完成时间：%@",[myOrderModel currentTimeString]];
+            if (![myOrderModel.currentTimeString containsString:@"00:00:00"])
+            {
+                self.timeCompleteLabel.text = [NSString stringWithFormat:@"距离完成时间：%@",[myOrderModel currentTimeString]];
+            }
+            
         }
         else if (![myOrderModel.HasComment isEqualToString:@"1"] && [myOrderModel.AppointmentStatus isEqualToString:@"Completed"])
         {
@@ -280,7 +284,7 @@ NSString* const MyOrderTableViewCellId = @"MyOrderTableViewCellId";
     [self removeNSNotificationCenter];
 }
 
-#pragma mark - 通知中心
+#pragma mark - 注册倒计时的通知
 - (void)registerNSNotificationCenter {
     
     [[NSNotificationCenter defaultCenter] addObserver:self

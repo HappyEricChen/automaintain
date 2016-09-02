@@ -114,16 +114,16 @@
         [SVProgressHUD showInfoWithStatus:@"请输入密码"];
         return;
     }
-//    else if (![AppManagerSingleton isMobile:username])
-//    {
-//        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
-//        return;
-//    }
-//    else if (password.length<6)
-//    {
-//        [SVProgressHUD showInfoWithStatus:@"密码不能少于6位"];
-//        return;
-//    }
+    else if (![AppManagerSingleton isMobile:username])
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
+        return;
+    }
+    else if (password.length<6 || password.length>12)
+    {
+        [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
+        return;
+    }
     
     
     [SVProgressHUD show];

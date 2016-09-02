@@ -77,12 +77,16 @@ withverificationCode:(NSString *)verificationCode
         [SVProgressHUD showInfoWithStatus:@"请输入密码"];
         return;
     }
+    else if ([confirmPassword isEqualToString:@""])
+    {
+        [SVProgressHUD showInfoWithStatus:@"请再次输入密码"];
+        return;
+    }
     else if (password.length<6 || password.length>12)
     {
         [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
         return;
     }
-    
     
     if (![password isEqualToString:confirmPassword])
     {
@@ -153,34 +157,20 @@ withverificationCode:(NSString *)verificationCode
                                   withIsExisted:(NSString*)IsExisted
                                    withCallback:(Callback)callback
 {
-    /**
-     *  正则表达式判断是否为正确的手机号
-     */
-    if ([AppManagerSingleton isMobile:username])
-    {
-        [AutomaintainAPI SMSVerificationCodeWithPhoneNum:username withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
+    
+    [AutomaintainAPI SMSVerificationCodeWithPhoneNum:username withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
+     {
+         if (success)
          {
-             if (success)
-             {
-                 AppManagerSingleton.verificationCode = (NSString*)result;
-                 [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
-                 callback(YES,nil,nil);
-             }
-             else
-             {
-                 [SVProgressHUD showInfoWithStatus:result];
-             }
-         }];
-        
-    }
-    else
-    {
-        /**
-         *  请输入正确的手机号
-         */
-        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    }
+             AppManagerSingleton.verificationCode = (NSString*)result;
+             [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
+             callback(YES,nil,nil);
+         }
+         else
+         {
+             callback(NO,nil,result);
+         }
+     }];
     
 }
 

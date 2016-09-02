@@ -58,7 +58,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          }
          else
          {
-             callback(NO,nil,@"短信平台网络忙，请稍后再试");
+             callback(NO,nil,result);
          }
          
      }];
@@ -92,7 +92,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          }
          else
          {
-             callback(NO,nil,@"短信平台网络忙，请稍后再试");
+             callback(NO,nil,result);
          }
          
      }];
@@ -125,7 +125,7 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
          }
          else
          {
-             callback(NO,nil,@"短信平台网络忙，请稍后再试");
+             callback(NO,nil,result);
          }
          
      }];
@@ -760,18 +760,28 @@ static NSString* urlPath = @"http://112.64.131.222/NoOne";
                                                                                              parameters:dic
                                                                               constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
                                     {
-                                        NSData* imageData = UIImageJPEGRepresentation(image, 0.1);
-                                        [formData appendPartWithFileData:imageData name:@"file" fileName:@"test.jpg" mimeType:@"image/jpeg"];
+                                        /**
+                                         *  将图片尺寸压缩成（屏幕宽度*屏幕宽度）
+                                         */
+                                        UIImage* tempImage = [image imageByScalingAndCroppingForSize:CGSizeMake(ScreenWidth, ScreenWidth)];
+                                        /**
+                                         *  将图片容量大小压缩
+                                         */
+                                        NSData* imageData = UIImageJPEGRepresentation(tempImage, 0.8);
+                                        [formData appendPartWithFileData:imageData
+                                                                    name:@"file"
+                                                                fileName:@"test.jpg"
+                                                                mimeType:@"image/jpeg"];
                                     }
                                                                                                   error:&error];
     
     // 可在此处配置验证信息
-    
     // 将 NSURLRequest 与 completionBlock 包装为 NSURLSessionUploadTask
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request
-                                                                       progress:^(NSProgress * _Nonnull uploadProgress) {
-                                                                       }
+                                                                       progress:^(NSProgress * _Nonnull uploadProgress)
+                                          {
+                                          }
                                                               completionHandler:completionBlock];
     
     return uploadTask;

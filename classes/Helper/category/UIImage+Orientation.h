@@ -15,4 +15,6 @@
  */
 - (UIImage *)normalizedImage;
 
+//图片压缩到指定大小
+- (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize;
 @end

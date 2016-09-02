@@ -27,6 +27,7 @@
      */
     [SVProgressHUD setMinimumDismissTimeInterval:1];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithPatternImage:ImageNamed(@"tip_bg")]];
     
     

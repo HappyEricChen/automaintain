@@ -155,7 +155,7 @@
     {
         if (!onlineMessageModel.ReplyContent || [onlineMessageModel.ReplyContent  isEqualToString:@""])
         {
-            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.05+textHeight);
+            return CGSizeMake(ScreenWidth*0.925, ScreenHeight*0.08+textHeight);
         }
         else
         {
