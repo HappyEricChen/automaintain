@@ -106,7 +106,7 @@
 {
     if ([username isEqualToString:@""])
     {
-        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号"];
+        [SVProgressHUD showInfoWithStatus:@"请输入手机号"];
         return;
     }
     else if ([password isEqualToString:@""])

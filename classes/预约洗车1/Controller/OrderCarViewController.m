@@ -52,16 +52,15 @@
     self.orderCarDataViewController = [[OrderCarDataViewController alloc]init];
     [self configureNavigationView];
     [self configureCollectionView];
-    
+    /**
+     *  添加刷新
+     */
     [self loadMJRefreshMethod];
     self.selectedDate = AppManagerSingleton.currentDate;//日期初始为今天
     AppManagerSingleton.selectedDate = AppManagerSingleton.currentDate;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationReceived:) name:kNotify_myOrder_StartTime object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(currentDateNotification:) name:kNotify_selected_date object:nil];
-    /**
-     *  获取时间预约列表
-     */
-    [self loadDataFromService];
+ 
     /**
      *  开始刷新
      */
@@ -109,10 +108,10 @@
              [SVProgressHUD dismiss];
              [self.orderCarDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
              
-             /**
-              *  时间列表刷新时，清除选中的日期，以免点击“提交预约”按钮传值
-              */
-             self.selectedTime = nil;
+//             /**
+//              *  时间列表刷新时，清除选中的日期，以免点击“提交预约”按钮传值
+//              */
+//             self.selectedTime = nil;
          }
          else
          {
@@ -159,10 +158,7 @@
          }
          
      }];
-}
-
--(void)loadDataFromService
-{
+    
     [SVProgressHUD show];
     /**
      *  请求当前日期下的时间列表
@@ -180,7 +176,6 @@
              [SVProgressHUD showInfoWithStatus:result];
          }
      }];
-    
 }
 
 -(void)configureNavigationView
@@ -208,6 +203,8 @@
     [SVProgressHUD dismiss];
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+    AppManagerSingleton.selectedTime = nil;//返回清除选中时间
 }
 
 #pragma mark - UICollectionViewDataSource

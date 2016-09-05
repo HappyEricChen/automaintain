@@ -1766,7 +1766,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
-				PROVISIONING_PROFILE = "13acfadd-2eea-4cff-916c-d62a8a7b227b";
+				PROVISIONING_PROFILE = "5cda444b-c225-4418-99df-6d1ca8caabaf";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1806,7 +1806,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
-				PROVISIONING_PROFILE = "7c9ccab6-27a3-40a9-aa5b-f8214b6f81e7";
+				PROVISIONING_PROFILE = "997a4af4-d205-4d1e-878b-c0578cb1639a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1824,7 +1824,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1837,6 +1837,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
+				PROVISIONING_PROFILE = "5cda444b-c225-4418-99df-6d1ca8caabaf";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1853,7 +1854,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1866,7 +1867,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "7c9ccab6-27a3-40a9-aa5b-f8214b6f81e7";
+				PROVISIONING_PROFILE = "997a4af4-d205-4d1e-878b-c0578cb1639a";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

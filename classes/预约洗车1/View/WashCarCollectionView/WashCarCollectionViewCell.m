@@ -58,6 +58,7 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
     [self.button setTitle:scheduleListModel.TimeSegment forState:UIControlStateNormal];
     self.appointmentCount = scheduleListModel.AppointmentCount;
     
+    
     if ([AppManagerSingleton.currentDate isEqualToString:AppManagerSingleton.selectedDate])
     {
         /**
@@ -82,6 +83,9 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
     }
     
     
+    /**
+     *  红色是他人已预约，蓝色是我预约过，白色是没预约过
+     */
     if ([self.appointmentCount isEqualToString:@"myOrder"])
     {
         
@@ -95,20 +99,43 @@ NSString* const WashCarCollectionViewCell1Id = @"WashCarCollectionViewCell1Id";
         [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.userInteractionEnabled = NO;
     }
-    else if ([self.appointmentCount isEqualToString:@"myTempOrder"])
-    {
-        [self.button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
-        [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        self.userInteractionEnabled = NO;
-    }
+    //    else if ([self.appointmentCount isEqualToString:@"myTempOrder"])
+    //    {
+    //        [self.button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
+    //        [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    //        self.userInteractionEnabled = NO;
+    //    }
     else
     {
         [self.button setBackgroundImage:ImageNamed(@"register_k2") forState:UIControlStateNormal];
         self.userInteractionEnabled = YES;
     }
     
-
     
+    /**
+     *  时间选中，选中的日期对应的时间背景颜色变蓝色
+     */
+    if ([AppManagerSingleton.selectedOrderDate isEqualToString:AppManagerSingleton.selectedDate])
+    {
+        if ([AppManagerSingleton.selectedTime isEqualToString:scheduleListModel.TimeSegment])
+        {
+            
+            [self.button setBackgroundImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
+            [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            self.userInteractionEnabled = NO;
+            
+        }
+        else
+        {
+//            [self.button setBackgroundColor:[UIColor whiteColor]];
+        }
+    }
+    else
+    {
+//        [self.button setBackgroundColor:[UIColor whiteColor]];
+    }
+    
+
 }
 
 

@@ -192,6 +192,9 @@
         
         ScheduleListModel* scheduleListModel =self.timeSelectedDataViewController.canOrderMaintenanceArr[indexPath.row];
         
+        /**
+         *  选中的时间段保存起来，每次刷新都能保存状态
+         */
        AppManagerSingleton.selectedTime = scheduleListModel.TimeSegment;
         /**
          *  拼接完整的日期+时间，提交预约的完整格式 2017-02-03 08:15-08:30

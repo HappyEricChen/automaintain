@@ -117,6 +117,7 @@
                  MyOrderViewController* myOrderViewController = [[MyOrderViewController alloc]init];
                  [self.navigationController pushViewController:myOrderViewController animated:YES];
                  
+                 AppManagerSingleton.selectedTime = nil;//返回清除选中时间
                  /**
                   *  重新获取时间预约列表
                   */

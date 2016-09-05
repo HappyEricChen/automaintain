@@ -134,7 +134,7 @@
             
             ScheduleListModel* scheduleListModel = self.washCarDateListModel.Schedule[self.currentIndex];
             /**
-             *  之前选中的按钮不是，我的预约和他人已预约时，改变颜色
+             *  之前选中的按钮不是我的预约和他人已预约时，改变颜色
              */
             if (![scheduleListModel.AppointmentCount isEqualToString:@"myOrder"] && ![scheduleListModel.AppointmentCount isEqualToString:@"full"])
             {
@@ -153,6 +153,11 @@
     
     ScheduleListModel* scheduleListModel1 = self.washCarDateListModel.Schedule[self.currentIndex];
     scheduleListModel1.AppointmentCount = @"myTempOrder";
+    AppManagerSingleton.selectedTime = scheduleListModel1.TimeSegment;
+    /**
+     *  将选中的日期保存起来，用来下次布局使用
+     */
+    AppManagerSingleton.selectedOrderDate = AppManagerSingleton.selectedDate;
     
     [collectionView reloadData];//刷新界面
     
