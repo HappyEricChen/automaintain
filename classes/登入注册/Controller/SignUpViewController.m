@@ -87,6 +87,16 @@ withverificationCode:(NSString *)verificationCode
         [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
         return;
     }
+    else if ([AppManagerSingleton.verificationCode isEqualToString:verificationCode] && ![AppManagerSingleton.phoneNumber isEqualToString:username])
+    {
+        [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
+        return;
+    }
+    else if (![AppManagerSingleton.verificationCode isEqualToString:verificationCode])
+    {
+        [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
+        return;
+    }
     
     if (![password isEqualToString:confirmPassword])
     {
@@ -163,6 +173,7 @@ withverificationCode:(NSString *)verificationCode
          if (success)
          {
              AppManagerSingleton.verificationCode = (NSString*)result;
+             AppManagerSingleton.phoneNumber = username;
              [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
              callback(YES,nil,nil);
          }

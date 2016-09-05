@@ -90,10 +90,15 @@
  *  倒计时按钮
  */
 @property (nonatomic, strong) UIButton* countDownButton;
+#pragma mark - 最新的验证码和最新的手机匹配
 /**
  *  当前验证码
  */
 @property (nonatomic, strong) NSString* verificationCode;
+/**
+ *  当前获取验证码的手机号
+ */
+@property (nonatomic, strong) NSString* phoneNumber;
 
 
 #pragma mark - 对评论照片的Url进行拼接/小图+_1
