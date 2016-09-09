@@ -87,18 +87,30 @@
  */
 @property (nonatomic, strong) NSMutableDictionary* parameterDic;
 /**
- *  倒计时按钮
+ *  注册页倒计时按钮
  */
 @property (nonatomic, strong) UIButton* countDownButton;
+/**
+ *  找回密码倒计时按钮
+ */
+@property (nonatomic, strong) UIButton* countDownButton1;
 #pragma mark - 最新的验证码和最新的手机匹配
 /**
- *  当前验证码
+ *  注册，返回的验证码
  */
 @property (nonatomic, strong) NSString* verificationCode;
 /**
- *  当前获取验证码的手机号
+ *  注册，当前获取验证码的手机号
  */
 @property (nonatomic, strong) NSString* phoneNumber;
+/**
+ *  找回密码，服务器返回的验证码
+ */
+@property (nonatomic, strong) NSString* verificationCode1;
+/**
+ *  找回密码，当前获取验证码的手机号
+ */
+@property (nonatomic, strong) NSString* phoneNumber1;
 
 
 #pragma mark - 对评论照片的Url进行拼接/小图+_1

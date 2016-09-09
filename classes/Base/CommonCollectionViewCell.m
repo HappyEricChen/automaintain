@@ -19,6 +19,12 @@ NSString* const commonCellId = @"commonCellId";
 {
     CommonCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
+    cell.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    cell.layer.shadowOffset = CGSizeMake(5, 2.5);//阴影偏移位置
+    cell.layer.shadowRadius = 4.0f;
+    cell.layer.shadowOpacity = 0.5f;
+    cell.layer.masksToBounds = NO;
+    cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
     return cell;
 }
 
@@ -29,14 +35,14 @@ NSString* const commonCellId = @"commonCellId";
     {
         UILabel* label = [[UILabel alloc]init];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:10];
-        label.layer.borderColor = UIColorFromRGB(0x7b7b7b).CGColor;
-        label.layer.borderWidth = 0.5f;
-        label.layer.cornerRadius = 2;
-        [self addSubview:label];
+        label.font = FONT_KAITI(13);
+        label.textColor = UIColorFromRGB(0x423d3d);
+        label.backgroundColor = [UIColor whiteColor];
+        label.layer.masksToBounds = YES;
+        [self.contentView addSubview:label];
         self.label = label;
         
-        label.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+        label.sd_layout.leftSpaceToView(self.contentView,0).rightSpaceToView(self.contentView,0).topSpaceToView(self.contentView,0).bottomSpaceToView(self.contentView,0);
     }
     return self;
 }
@@ -48,19 +54,5 @@ NSString* const commonCellId = @"commonCellId";
         self.label.text = (NSString*)object;
     }
 }
--(void)layoutTextColorWithColor:(UIColor *)textColor
-{
-    if ([textColor isKindOfClass:[UIColor class]])
-    {
-        self.label.textColor = textColor;
-    }
-}
 
--(void)layoutBackgroundColorWithColor:(UIColor *)Color
-{
-    if ([Color isKindOfClass:[UIColor class]])
-    {
-        self.label.backgroundColor = Color;
-    }
-}
 @end

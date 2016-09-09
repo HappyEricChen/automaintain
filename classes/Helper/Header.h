@@ -41,6 +41,7 @@
  */
 #define FONT_Aparajita(s) [UIFont fontWithName:@"Aparajita" size:s]
 #define FONT_FZZYJW(s) [UIFont fontWithName:@"FZZYJW--GB1-0" size:s]
+#define FONT_KAITI(s) [UIFont fontWithName:@"迷你简楷体" size:s]
 
 #define SubjectGuidWashCar @"00000000-0000-0000-0000-000000000001"
 
@@ -52,3 +53,11 @@
  *  在线留言，每次请求10条
  */
 #define MESSAGE_PAGE_SIZE @"10"
+
+/**
+ *  定义给获取验证码时使用
+ */
+#define TRUE_VALIDATION @"true"
+
+#define FALSE_VALIDATION @"false"
+

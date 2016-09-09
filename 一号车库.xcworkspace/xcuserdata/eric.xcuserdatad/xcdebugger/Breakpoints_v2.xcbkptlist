@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x65f6;&#x95f4;/Controller/TimeSelectedViewController.m"
-            timestampString = "494747386.247739"
+            filePath = "classes/&#x6211;&#x7684;&#x8bc4;&#x8bba;/Controller/MyCommentViewController.m"
+            timestampString = "494835434.827383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "-camera:didFinishWithImage:withMetadata:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x65f6;&#x95f4;/View/SecondTimeCollectionViewCell.m"
-            timestampString = "494745745.059143"
+            filePath = "classes/Helper/category/UIImage+Orientation.m"
+            timestampString = "494835740.253838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-layoutWithObject:"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "-normalizedImage"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +67,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "classes/&#x9884;&#x7ea6;&#x65f6;&#x95f4;/Controller/TimeSelectedViewController.m"
-            timestampString = "494747386.247739"
+            filePath = "classes/Helper/category/UIImage+Orientation.m"
+            timestampString = "494835741.061921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "-normalizedImage"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/&#x9884;&#x7ea6;&#x6d17;&#x8f66;1/View/CommentHeaderView.m"
+            timestampString = "494928496.603808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "+collectionView:dequeueReusableCellWithReuseIdentifier:forIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/View/SignUpView.m"
+            timestampString = "495020970.369615"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "-clickVerificationButtonwithIsExisted:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "classes/&#x767b;&#x5165;&#x6ce8;&#x518c;/View/SignUpView.m"
+            timestampString = "495020970.369615"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "-clickVerificationButtonwithIsExisted:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

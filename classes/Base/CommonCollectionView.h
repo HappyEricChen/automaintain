@@ -15,26 +15,6 @@
  */
 @property (nonatomic, strong) NSMutableArray* totalArr;
 
-/**
- *  label上文字的字体大小
- */
-@property (nonatomic, assign) NSInteger fontSize;
-
-/**
- *  判断是洗车界面还是首页
- */
-@property (nonatomic, strong) NSString* pageName;
-
-/**
- *  文字的颜色
- */
-@property (nonatomic, strong) UIColor* textColor;
-
-/**
- *  框框的颜色
- */
-@property (nonatomic, strong) UIColor* backgroundColor;
-
 
 @property (nonatomic, weak) UICollectionView* collectionView;
 

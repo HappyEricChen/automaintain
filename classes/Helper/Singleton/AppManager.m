@@ -21,7 +21,9 @@
     });
     return sharedInstance;
 }
-
+/**
+ *  注册页倒计时按钮
+ */
 -(UIButton *)countDownButton
 {
     if (!_countDownButton)
@@ -34,6 +36,23 @@
         [_countDownButton addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _countDownButton;
+}
+
+/**
+ *  找回密码倒计时按钮
+ */
+-(UIButton *)countDownButton1
+{
+    if (!_countDownButton1)
+    {
+        _countDownButton1 = [[UIButton alloc]init];
+        [_countDownButton1 setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [_countDownButton1 setTitleColor:UIColorFromRGB(0xbf2e0d) forState:UIControlStateNormal];
+        _countDownButton1.titleLabel.font = [UIFont systemFontOfSize:12];
+        _countDownButton1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [_countDownButton1 addTarget:self action:@selector(clickVerificationButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _countDownButton1;
 }
 
 /**

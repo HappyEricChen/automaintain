@@ -12,6 +12,7 @@
 #import "ThirdCollectionViewCell.h"
 #import "FourCollectionViewCell.h"
 #import "AdsCarouselModel.h"
+#import "FreeHeadView.h"
 
 @implementation HomeDataViewController
 
@@ -39,6 +40,7 @@
         [_collectionView registerClass:[FourCollectionViewCell class] forCellWithReuseIdentifier:fourCellId];
         
         
+        [_collectionView registerClass:[FreeHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:freeHeaderId];
     }
     return _collectionView;
 }

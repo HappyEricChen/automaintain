@@ -42,6 +42,7 @@ NSString* const WashCarSecondId = @"WashCarSecondId";
         [button1 setImage:ImageNamed(@"order_choose_white") forState:UIControlStateNormal];
         button1.titleLabel.font = [UIFont systemFontOfSize:12];
         button1.clipsToBounds = YES;
+        button1.userInteractionEnabled = NO;
         button1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [button1 setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
         button1.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);//拉开图片和文字间距
@@ -52,6 +53,7 @@ NSString* const WashCarSecondId = @"WashCarSecondId";
         [button2 setImage:ImageNamed(@"order_choose_blue") forState:UIControlStateNormal];
         button2.titleLabel.font = [UIFont systemFontOfSize:12];
         button2.clipsToBounds = YES;
+        button2.userInteractionEnabled = NO;
         button2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [button2 setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
         button2.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);//拉开图片和文字间距
@@ -62,6 +64,7 @@ NSString* const WashCarSecondId = @"WashCarSecondId";
         [button3 setImage:ImageNamed(@"order_choose_red") forState:UIControlStateNormal];
         button3.titleLabel.font = [UIFont systemFontOfSize:12];
         button3.clipsToBounds = YES;
+        button3.userInteractionEnabled = NO;
         button3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [button3 setTitleColor:UIColorFromRGB(0x000000) forState:UIControlStateNormal];
         button3.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);//拉开图片和文字间距

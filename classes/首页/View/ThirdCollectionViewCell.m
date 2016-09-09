@@ -12,6 +12,10 @@
 
 @interface ThirdCollectionViewCell()
 @property (nonatomic, weak) CommonCollectionView* commonCollectionView;
+/**
+ *  免费便民服务区label
+ */
+@property (nonatomic, weak) UILabel* label;
 @end
 @implementation ThirdCollectionViewCell
 
@@ -29,53 +33,21 @@ NSString* const thirdCellId = @"thirdCellId";
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         
-        UILabel* label1 = [[UILabel alloc]init];
-        label1.text = @"免费便民服务区";
-        label1.textAlignment = NSTextAlignmentCenter;
-        label1.font = FONT_FZZYJW(12);
-        [self addSubview:label1];
+        CommonCollectionView* commonCollectionView = [[CommonCollectionView alloc]init];
+        self.commonCollectionView = commonCollectionView;
+        [self.contentView addSubview:commonCollectionView];
         
-        UIView* baseView = [[UIView alloc]init];
-        [self addSubview:baseView];
-        
-        UIImageView * imageView1 = [[UIImageView alloc]initWithImage:ImageNamed(@"home_line")];
-        imageView1.clipsToBounds = YES;
-        [baseView addSubview:imageView1];
-        
-        UILabel* label2 = [[UILabel alloc]init];
-        label2.text = @"Convenience service";
-        label2.textAlignment = NSTextAlignmentCenter;
-        label2.font = FONT_Aparajita(12);
-        
-        [baseView addSubview:label2];
-        
-        UIImageView * imageView2 = [[UIImageView alloc]initWithImage:ImageNamed(@"home_line")];
-        imageView2.clipsToBounds = YES;
-        [baseView addSubview:imageView2];
-        
-        CommonCollectionView* collectionView = [[CommonCollectionView alloc]init];
-        collectionView.fontSize = 10;
-        collectionView.pageName = @"home";
-        collectionView.textColor = UIColorFromRGB(0x7b7b7b);
-        [self addSubview:collectionView];
-        self.commonCollectionView = collectionView;
-        
-        label1.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(self,11).autoHeightRatio(0);
-        baseView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(label1,7).heightIs(ScreenHeight*0.017);
-        label2.sd_layout.centerXEqualToView(baseView).centerYEqualToView(baseView).heightRatioToView(baseView,1).widthIs(ScreenWidth*0.3);
-        imageView1.sd_layout.leftSpaceToView(baseView,ScreenWidth*0.048).centerYEqualToView(label2).widthIs((ScreenWidth-36-label2.width-20)*0.5).heightIs(0.5);
-        imageView2.sd_layout.rightSpaceToView(baseView,ScreenWidth*0.048).centerYEqualToView(label2).widthIs((ScreenWidth-36-label2.width-20)*0.5).heightIs(0.5);
-        
-        collectionView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(baseView,ScreenHeight*0.22*0.1).bottomSpaceToView(self,0);
-        
+        commonCollectionView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+
     }
     return self;
 }
 
 -(void)layoutWithObject:(id)object
 {
+    
     if ([object isKindOfClass:[NSArray class]])
     {
         NSMutableArray* totalArr = [NSMutableArray array];

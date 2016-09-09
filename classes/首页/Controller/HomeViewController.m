@@ -19,6 +19,8 @@
 #import "AdsCarouselModel.h"
 #import "WebViewController.h"
 #import "BottomAdsModel.h"
+#import "FreeHeadView.h"
+
 
 @interface HomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SecondCollectionViewCellDelegate,FirstCollectionViewCellDelegate>
 @property (nonatomic, strong) HomeDataViewController* homeDataViewController;
@@ -69,7 +71,7 @@
          {
              if (success)
              {
-                 [self.homeDataViewController.collectionView reloadSections:[NSIndexSet indexSetWithIndex:2]];
+                 [self.homeDataViewController.collectionView reloadData];
              }
              else
              {
@@ -88,7 +90,7 @@
              else
              {
                  [SVProgressHUD showInfoWithStatus:result];
-             }
+             } 
          }];
     }
 }
@@ -118,7 +120,11 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 3)
+    if (section == 2)
+    {
+        return self.homeDataViewController.convenienceServiceArr.count>0?1:0;
+    }
+    else if (section == 3)
     {
         return self.homeDataViewController.bottomAdsArr.count>0?self.homeDataViewController.bottomAdsArr.count:1;
     }
@@ -144,6 +150,7 @@
     }
     else if (indexPath.section == 2)
     {
+        
         ThirdCollectionViewCell * thirdCell = [ThirdCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:thirdCellId forIndexPath:indexPath];
         object = self.homeDataViewController.convenienceServiceArr;
         cell = thirdCell;
@@ -173,7 +180,9 @@
     }
     else if (indexPath.section == 2)
     {
-        return CGSizeMake(ScreenWidth, ScreenHeight*0.223);
+        
+        return CGSizeMake(ScreenWidth, (ScreenHeight*0.048+ScreenWidth*0.026)*(self.homeDataViewController.convenienceServiceArr.count%2+self.homeDataViewController.convenienceServiceArr.count/2)+ScreenWidth*0.042);
+        
     }
     else if (indexPath.section == 3)
     {
@@ -192,9 +201,13 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    if (section == 2)
+    if (section == 1)
     {
-        return UIEdgeInsetsMake(ScreenHeight*0.015, 0, 0, 0);
+        return UIEdgeInsetsMake(0, 0, ScreenWidth*0.042, 0);
+    }
+    else if (section == 2)
+    {
+        return UIEdgeInsetsMake(0, ScreenWidth*0.042, 0, ScreenWidth*0.042);
     }
     else if (section == 3)
     {
@@ -202,6 +215,28 @@
     }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
+
+
+#pragma mark - 免费便民服务区headView
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if (section == 2)
+    {
+        return CGSizeMake(ScreenWidth,45);
+    }
+    return CGSizeZero;
+}
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView * reusableView;
+    
+    FreeHeadView* headerView = [FreeHeadView collectionView:collectionView dequeueReusableCellWithReuseIdentifier:freeHeaderId forIndexPath:indexPath];
+    reusableView = headerView;
+    
+    return reusableView;
+}
+
 #pragma mark - UICollectionViewDelegate 点击底部广告调用
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

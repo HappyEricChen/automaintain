@@ -10,7 +10,7 @@
 #import "CommonCollectionViewCell.h"
 #import "BaseCollectionViewFlowLayout.h"
 
-@interface CommonCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource,BaseCollectionViewFlowLayoutDelegate>
+@interface CommonCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @end
 @implementation CommonCollectionView
@@ -31,16 +31,16 @@
     if (self)
     {
         
-        BaseCollectionViewFlowLayout* flowLayout = [[BaseCollectionViewFlowLayout alloc]init];
-        flowLayout.delegate = self;
-        
-        
+        UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
+//        flowLayout.delegate = self;
+        flowLayout.minimumLineSpacing = ScreenWidth*0.026;
         UICollectionView* collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         collectionView.delegate = self;
         collectionView.dataSource = self;
+        collectionView.scrollEnabled = NO;
         collectionView.showsVerticalScrollIndicator = NO;
         [collectionView registerClass:[CommonCollectionViewCell class] forCellWithReuseIdentifier:commonCellId];
-        collectionView.backgroundColor = [UIColor clearColor];
+        collectionView.backgroundColor = [UIColor whiteColor];
         [self addSubview:collectionView];
         self.collectionView = collectionView;
         
@@ -90,8 +90,6 @@
     id object = nil;
     CommonCollectionViewCell * commonCell = [CommonCollectionViewCell collectionView:collectionView dequeueReusableCellWithReuseIdentifier:commonCellId forIndexPath:indexPath];
     object = self.totalArr[indexPath.row];
-    [commonCell layoutTextColorWithColor:self.textColor];
-    [commonCell layoutBackgroundColorWithColor:self.backgroundColor];
     
     [commonCell layoutWithObject:object];
     return commonCell;
@@ -101,19 +99,13 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if ([self.pageName isEqualToString:@"home"])
-    {
-        CGSize size = [self calculateSizeWithLabelContent:self.totalArr[indexPath.row]
-                                             WithFontName:nil
-                                             WithFontSize:self.fontSize];
-        
-        return CGSizeMake(size.width+ScreenWidth*0.053, size.height+ScreenWidth*0.04);
-    }
-    
-    return CGSizeMake(ScreenWidth*0.27, ScreenHeight*0.037);
-    
+    return CGSizeMake(ScreenWidth*0.42, ScreenHeight*0.048);
 }
 
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    
+    return UIEdgeInsetsMake(ScreenWidth*0.042, ScreenWidth*0.042, 0, ScreenWidth*0.042);
+}
 
 @end

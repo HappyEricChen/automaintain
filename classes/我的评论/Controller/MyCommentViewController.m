@@ -399,7 +399,7 @@
 {
     [cameraViewController restoreFullScreenMode];
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    self.image = [image normalizedImage];//图片调整方向为正向
+    self.image = [image fixOrientation];//图片调整方向为正向
     [self.myCommentDataViewController.imageArr addObject:self.image];
     [self.myCommentDataViewController.collectionView reloadData];
     

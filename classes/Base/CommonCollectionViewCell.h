@@ -19,7 +19,4 @@ extern NSString* const commonCellId;
  */
 +(CommonCollectionViewCell*)collectionView:(UICollectionView*)collectionView dequeueReusableCellWithReuseIdentifier:(NSString*)reuseIdentifier forIndexPath:(NSIndexPath*)indexPath;
 
--(void)layoutTextColorWithColor:(UIColor*)textColor;
-
--(void)layoutBackgroundColorWithColor:(UIColor*)Color;
 @end

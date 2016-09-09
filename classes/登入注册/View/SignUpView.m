@@ -92,14 +92,18 @@
         textField1.delegate = self;
         self.textField1 = textField1;
         
-
-        [baseView1 addSubview: AppManagerSingleton.countDownButton];
-
-        
-        
         UIView* lineView = [[UIView alloc]init];
         lineView.backgroundColor = [UIColor colorWithPatternImage:ImageNamed(@"register_verline")];
         [baseView1 addSubview:lineView];
+        
+        if ([type isEqualToString:@"立即注册"])
+        {
+            [baseView1 addSubview: AppManagerSingleton.countDownButton];
+        }
+        else
+        {
+            [baseView1 addSubview: AppManagerSingleton.countDownButton1];
+        }
         
         /**
          密码
@@ -160,6 +164,7 @@
             textField2.placeholder = @"请设置密码";
             textField3.placeholder = @"请确认密码";
             [signupButton addTarget:self action:@selector(signupAction) forControlEvents:UIControlEventTouchUpInside];
+            [baseView1 addSubview: AppManagerSingleton.countDownButton];
         }
         else
         {
@@ -167,6 +172,7 @@
             textField2.placeholder = @"请设置新密码";
             textField3.placeholder = @"请确认新密码";
             [signupButton addTarget:self action:@selector(findPasswordAction) forControlEvents:UIControlEventTouchUpInside];
+            [baseView1 addSubview: AppManagerSingleton.countDownButton1];
 
         }
         
@@ -185,7 +191,16 @@
         textField1.sd_layout.leftSpaceToView(verificationLabel,12).topEqualToView(baseView1).bottomEqualToView(baseView1).widthIs(ScreenWidth*0.45);
         
         lineView.sd_layout.leftSpaceToView(textField1,0).topSpaceToView(baseView1,5).bottomSpaceToView(baseView1,5).widthIs(1.5);
-        AppManagerSingleton.countDownButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
+        
+        if ([type isEqualToString:@"立即注册"])
+        {
+            AppManagerSingleton.countDownButton.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
+        }
+        else
+        {
+            AppManagerSingleton.countDownButton1.sd_layout.leftSpaceToView(lineView,0).topSpaceToView(baseView1,1).bottomEqualToView(baseView1).rightEqualToView(baseView1);
+        }
+        
         /**
          *  密码
          */
@@ -271,14 +286,14 @@
                 /**
                  *  false为注册，accessCode不存在才可以注册
                  */
-                [self clickVerificationButtonwithIsExisted:@"false"];
+                [self clickVerificationButtonwithIsExisted:FALSE_VALIDATION];
             }
             else
             {
                 /**
                  *  ture为找回密码，accessCode存在才可以找回密码
                  */
-                [self clickVerificationButtonwithIsExisted:@"true"];
+                [self clickVerificationButtonwithIsExisted:TRUE_VALIDATION];
             }
             
         }
@@ -315,11 +330,30 @@
                   *  @param mColor   还没倒计时的颜色
                   *  @param color    倒计时中的颜色
                   */
-                 [AppManagerSingleton.countDownButton startWithTime:60
-                                                              title:@"获取验证码"
-                                                     countDownTitle:@"秒后重新获取"
-                                                          mainColor:UIColorFromRGB(0xffffff)
-                                                         countColor:UIColorFromRGB(0xffffff)];
+                 
+                 if ([IsExisted isEqualToString:TRUE_VALIDATION])
+                 {
+                     /**
+                      *  ture为找回密码，accessCode存在才可以找回密码
+                      */
+                     [AppManagerSingleton.countDownButton1 startWithTime:60
+                                                                   title:@"获取验证码"
+                                                          countDownTitle:@"秒后重新获取"
+                                                               mainColor:UIColorFromRGB(0xffffff)
+                                                              countColor:UIColorFromRGB(0xffffff)];
+                 }
+                 else
+                 {
+                     /**
+                      *  false为注册，accessCode不存在才可以注册
+                      */
+                     [AppManagerSingleton.countDownButton startWithTime:60
+                                                                  title:@"获取验证码"
+                                                         countDownTitle:@"秒后重新获取"
+                                                              mainColor:UIColorFromRGB(0xffffff)
+                                                             countColor:UIColorFromRGB(0xffffff)];
+                 }
+                 
                  
                  /**
                   *  发送成功延时解锁防止多次点击，发送多条验证码

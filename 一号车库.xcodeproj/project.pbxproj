@@ -106,6 +106,7 @@
 		074C9F281D3DBCD600A74509 /* OrderTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F271D3DBCD600A74509 /* OrderTypeModel.m */; };
 		074C9F2B1D3DC51000A74509 /* MyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F2A1D3DC51000A74509 /* MyOrderModel.m */; };
 		074C9F2E1D3E182F00A74509 /* TransferTimeSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C9F2D1D3E182F00A74509 /* TransferTimeSingleton.m */; };
+		074F19211D812FB40072B460 /* kaiti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 074F19201D812FB40072B460 /* kaiti.ttf */; };
 		07576FD01D372319000D5E20 /* OrderCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FBF1D372319000D5E20 /* OrderCarViewController.m */; };
 		07576FD11D372319000D5E20 /* OrderCarDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC21D372319000D5E20 /* OrderCarDataViewController.m */; };
 		07576FD21D372319000D5E20 /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07576FC51D372319000D5E20 /* CommentHeaderView.m */; };
@@ -128,6 +129,7 @@
 		076518F51D616B82003A4AF7 /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 076518F41D616B82003A4AF7 /* NSData+Encryption.m */; };
 		076518F81D61BD17003A4AF7 /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 076518F71D61BD17003A4AF7 /* NSString+AES256.m */; };
 		0768BACD1D62FEAD002C186D /* MyMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0768BACC1D62FEAD002C186D /* MyMessageView.m */; };
+		07797FA41D7FF34B00FFD540 /* FreeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07797FA31D7FF34B00FFD540 /* FreeHeadView.m */; };
 		077A8CA51D6AAA2900C3C000 /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 077A8CA41D6AAA2900C3C000 /* TimeModel.m */; };
 		077E7F891D47355000C5C8DB /* MyCommentFourCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F881D47355000C5C8DB /* MyCommentFourCollectionViewCell.m */; };
 		077E7F8C1D47531C00C5C8DB /* UIView+JCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 077E7F8B1D47531C00C5C8DB /* UIView+JCExtension.m */; };
@@ -353,6 +355,7 @@
 		074C9F2A1D3DC51000A74509 /* MyOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderModel.m; sourceTree = "<group>"; };
 		074C9F2C1D3E182F00A74509 /* TransferTimeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTimeSingleton.h; sourceTree = "<group>"; };
 		074C9F2D1D3E182F00A74509 /* TransferTimeSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTimeSingleton.m; sourceTree = "<group>"; };
+		074F19201D812FB40072B460 /* kaiti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kaiti.ttf; sourceTree = "<group>"; };
 		07576FBE1D372319000D5E20 /* OrderCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarViewController.h; sourceTree = "<group>"; };
 		07576FBF1D372319000D5E20 /* OrderCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCarViewController.m; sourceTree = "<group>"; };
 		07576FC11D372319000D5E20 /* OrderCarDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCarDataViewController.h; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 		076518F71D61BD17003A4AF7 /* NSString+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES256.m"; sourceTree = "<group>"; };
 		0768BACB1D62FEAD002C186D /* MyMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessageView.h; sourceTree = "<group>"; };
 		0768BACC1D62FEAD002C186D /* MyMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessageView.m; sourceTree = "<group>"; };
+		07797FA21D7FF34B00FFD540 /* FreeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeHeadView.h; sourceTree = "<group>"; };
+		07797FA31D7FF34B00FFD540 /* FreeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeHeadView.m; sourceTree = "<group>"; };
 		077A8CA31D6AAA2900C3C000 /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
 		077A8CA41D6AAA2900C3C000 /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
 		077E7F871D47355000C5C8DB /* MyCommentFourCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentFourCollectionViewCell.h; sourceTree = "<group>"; };
@@ -570,6 +575,7 @@
 		072F7F801D348F66002CECC4 /* font */ = {
 			isa = PBXGroup;
 			children = (
+				074F19201D812FB40072B460 /* kaiti.ttf */,
 				072F7F811D348F66002CECC4 /* Aparajita.ttf */,
 				072F7F821D348F66002CECC4 /* FZZYJW.ttf */,
 			);
@@ -1114,6 +1120,8 @@
 				074945C51D35D6EA00A46AE6 /* SecondCollectionViewCell.m */,
 				074945C61D35D6EA00A46AE6 /* ThirdCollectionViewCell.h */,
 				074945C71D35D6EA00A46AE6 /* ThirdCollectionViewCell.m */,
+				07797FA21D7FF34B00FFD540 /* FreeHeadView.h */,
+				07797FA31D7FF34B00FFD540 /* FreeHeadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1495,6 +1503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				072F804E1D348F66002CECC4 /* Aparajita.ttf in Resources */,
+				074F19211D812FB40072B460 /* kaiti.ttf in Resources */,
 				072F804C1D348F66002CECC4 /* Info.plist in Resources */,
 				072F804F1D348F66002CECC4 /* FZZYJW.ttf in Resources */,
 				072F80491D348F66002CECC4 /* Assets.xcassets in Resources */,
@@ -1642,6 +1651,7 @@
 				07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */,
 				072F81071D3499FF002CECC4 /* LoginDataViewController.m in Sources */,
 				072F807F1D348F66002CECC4 /* ModifyPasswordView.m in Sources */,
+				07797FA41D7FF34B00FFD540 /* FreeHeadView.m in Sources */,
 				07576FD41D372319000D5E20 /* WashCarFiveCollectionViewCell.m in Sources */,
 				072F80551D348F66002CECC4 /* PersonalFourCollectionViewCell.m in Sources */,
 				074945CD1D35D6EA00A46AE6 /* SecondCollectionViewCell.m in Sources */,

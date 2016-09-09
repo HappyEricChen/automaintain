@@ -18,7 +18,7 @@
  */
 @property (nonatomic, strong) NSString* Id;
 /**
- *
+ *  便民服务项目名称
  */
 @property (nonatomic, strong) NSString* ServiceName;
 /**

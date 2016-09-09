@@ -12,6 +12,10 @@
 
 @interface SignUpViewController ()<CustomNavigationViewDelegate,SignUpViewDelegate>
 @property (nonatomic, strong) SignUpDataViewController* signUpDataViewController;
+/**
+ *  区分是注册还是找回密码
+ */
+@property (nonatomic, strong) NSString* IsExisted;
 @end
 
 @implementation SignUpViewController
@@ -87,15 +91,40 @@ withverificationCode:(NSString *)verificationCode
         [SVProgressHUD showInfoWithStatus:@"密码控制在6-12位"];
         return;
     }
-    else if ([AppManagerSingleton.verificationCode isEqualToString:verificationCode] && ![AppManagerSingleton.phoneNumber isEqualToString:username])
+    
+    if (![self.IsExisted isEqualToString:TRUE_VALIDATION])
     {
-        [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
-        return;
+        /**
+         *  注册时，验证码的确认
+         */
+        if ([AppManagerSingleton.verificationCode isEqualToString:verificationCode] && ![AppManagerSingleton.phoneNumber isEqualToString:username])
+        {
+            [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
+            return;
+        }
+        else if (![AppManagerSingleton.verificationCode isEqualToString:verificationCode])
+        {
+            [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
+            return;
+        }
+        
     }
-    else if (![AppManagerSingleton.verificationCode isEqualToString:verificationCode])
+    else
     {
-        [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
-        return;
+        /**
+         *  找回密码，验证码的确认
+         */
+        if ([AppManagerSingleton.verificationCode1 isEqualToString:verificationCode] && ![AppManagerSingleton.phoneNumber1 isEqualToString:username])
+        {
+            [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
+            return;
+        }
+        else if (![AppManagerSingleton.verificationCode1 isEqualToString:verificationCode])
+        {
+            [SVProgressHUD showInfoWithStatus:@"验证码不匹配"];
+            return;
+        }
+        
     }
     
     if (![password isEqualToString:confirmPassword])
@@ -108,8 +137,7 @@ withverificationCode:(NSString *)verificationCode
     }
     else
     {
-        if ([AppManagerSingleton.verificationCode isEqualToString:verificationCode])
-        {
+     
             if ([self.type isEqualToString:@"立即注册"])
             {
                 [SVProgressHUD show];
@@ -121,6 +149,11 @@ withverificationCode:(NSString *)verificationCode
                          //注册成功
                          [SVProgressHUD showSuccessWithStatus:@"注册成功"];
                          [self.navigationController pushViewController:SharedAppDelegateHelper.homeViewController animated:YES];
+                         /**
+                          *  清空验证码和注册手机号
+                          */
+                         AppManagerSingleton.verificationCode = @"";
+                         AppManagerSingleton.phoneNumber = @"";
                      }
                      else
                      {
@@ -140,6 +173,11 @@ withverificationCode:(NSString *)verificationCode
                          //找回密码请求成功
                          [SVProgressHUD showSuccessWithStatus:@"密码修改成功"];
                          [self.navigationController popViewControllerAnimated:YES] ;
+                         /**
+                          *  清空验证码和手机号
+                          */
+                         AppManagerSingleton.verificationCode1 = @"";
+                         AppManagerSingleton.phoneNumber1 = @"";
                          
                      }
                      else
@@ -150,15 +188,7 @@ withverificationCode:(NSString *)verificationCode
                      
                  }];
             }
-            
-        }
-        else
-        {
-            /**
-             *  显示验证码错误
-             */
-            [SVProgressHUD showInfoWithStatus:@"验证码输入错误"];
-        }
+        
     }
 }
 #pragma mark - 点击获取验证码
@@ -172,8 +202,22 @@ withverificationCode:(NSString *)verificationCode
      {
          if (success)
          {
-             AppManagerSingleton.verificationCode = (NSString*)result;
-             AppManagerSingleton.phoneNumber = username;
+             
+             self.IsExisted = IsExisted;
+             /**
+              *  ture为找回密码，accessCode存在才可以找回密码
+              */
+             if ([IsExisted isEqualToString:TRUE_VALIDATION])
+             {
+                 AppManagerSingleton.verificationCode1 = (NSString*)result;
+                 AppManagerSingleton.phoneNumber1 = username;
+             }
+             else
+             {
+                 AppManagerSingleton.verificationCode = (NSString*)result;
+                 AppManagerSingleton.phoneNumber = username;
+             }
+             
              [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
              callback(YES,nil,nil);
          }

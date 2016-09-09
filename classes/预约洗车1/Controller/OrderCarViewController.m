@@ -315,6 +315,7 @@
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
+#pragma mark - headView头部的View，用户评价(288条)
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if (section == 4)
@@ -323,7 +324,7 @@
     }
     return CGSizeZero;
 }
-#pragma mark - headView头部的View，用户评价(288条)
+
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView * reusableView;
