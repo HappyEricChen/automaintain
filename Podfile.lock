@@ -15,8 +15,6 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - Bugly (2.3.1)
-  - DBCamera (2.4.1):
-    - GPUImage (~> 0.1)
   - GPUImage (0.1.7)
   - MJExtension (3.0.11)
   - MJRefresh (3.1.10)
@@ -28,6 +26,14 @@ PODS:
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
   - SVProgressHUD (2.0.3)
+  - TuSDK (2.5.0):
+    - TuSDK/Core (= 2.5.0)
+    - TuSDK/GPUImage (= 2.5.0)
+    - TuSDK/Image (= 2.5.0)
+  - TuSDK/Core (2.5.0)
+  - TuSDK/GPUImage (2.5.0):
+    - GPUImage (~> 0.1.6)
+  - TuSDK/Image (2.5.0)
   - YYKit (1.0.7):
     - YYKit/no-arc (= 1.0.7)
   - YYKit/no-arc (1.0.7)
@@ -35,19 +41,18 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - Bugly
-  - DBCamera (~> 2.4)
   - MJExtension
   - MJRefresh
   - PLeakSniffer
   - SDAutoLayout (~> 2.1.1)
   - SDCycleScrollView (~> 1.64)
   - SVProgressHUD
+  - TuSDK (~> 2.5.0)
   - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bugly: c8ece2fa5bdcb404abdd0e07131e8129f580d893
-  DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   MJExtension: f9ae6ddc0f1c482c3c9af750280ccebd14381958
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
@@ -56,8 +61,9 @@ SPEC CHECKSUMS:
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  TuSDK: 0e5361164d7122ccbcb6fa14de234b9177039ef2
   YYKit: 843d1b26e20b82c695790c9a89907eaa1e99907f
 
-PODFILE CHECKSUM: b5e51bfb2340c36136d65fc6e0672f04eb6e5464
+PODFILE CHECKSUM: 4c9de32d92c30f00c2e04ebf10181a46258c221e
 
 COCOAPODS: 1.0.1

@@ -13,6 +13,7 @@
 		070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */; };
 		070F74751D1A7F5F0041F293 /* automaintainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F74741D1A7F5F0041F293 /* automaintainTests.m */; };
 		070F74801D1A7F5F0041F293 /* automaintainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F747F1D1A7F5F0041F293 /* automaintainUITests.m */; };
+		07115F0E1D82949700FF3826 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07115F0D1D82949700FF3826 /* TuSDK.bundle */; };
 		072F80481D348F66002CECC4 /* AutomaintainAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F731D348F66002CECC4 /* AutomaintainAPI.m */; };
 		072F80491D348F66002CECC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F741D348F66002CECC4 /* Assets.xcassets */; };
 		072F804C1D348F66002CECC4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F7C1D348F66002CECC4 /* Info.plist */; };
@@ -179,6 +180,7 @@
 		070F747B1D1A7F5F0041F293 /* 一号车库.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "一号车库.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070F747F1D1A7F5F0041F293 /* automaintainUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = automaintainUITests.m; sourceTree = "<group>"; };
 		070F74811D1A7F5F0041F293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07115F0D1D82949700FF3826 /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TuSDK.bundle; path = "../../Documents/TuSDK-for-iOS-demo-2.5.0/TuSDKDemo/Resources/TuSDK.bundle"; sourceTree = "<group>"; };
 		072F7F721D348F66002CECC4 /* AutomaintainAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutomaintainAPI.h; sourceTree = "<group>"; };
 		072F7F731D348F66002CECC4 /* AutomaintainAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutomaintainAPI.m; sourceTree = "<group>"; };
 		072F7F741D348F66002CECC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -1366,6 +1368,7 @@
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07115F0D1D82949700FF3826 /* TuSDK.bundle */,
 				0709C20E1D752999009D036D /* AVFoundation.framework */,
 				0748FAF91D6C53F800FD602E /* libz.tbd */,
 				0748FAF71D6C53EC00FD602E /* libsqlite3.0.tbd */,
@@ -1505,6 +1508,7 @@
 				072F804E1D348F66002CECC4 /* Aparajita.ttf in Resources */,
 				074F19211D812FB40072B460 /* kaiti.ttf in Resources */,
 				072F804C1D348F66002CECC4 /* Info.plist in Resources */,
+				07115F0E1D82949700FF3826 /* TuSDK.bundle in Resources */,
 				072F804F1D348F66002CECC4 /* FZZYJW.ttf in Resources */,
 				072F80491D348F66002CECC4 /* Assets.xcassets in Resources */,
 			);

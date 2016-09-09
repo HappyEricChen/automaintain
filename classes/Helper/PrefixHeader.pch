@@ -37,13 +37,8 @@
 #import "UIImage+Orientation.h"
 #import <YYKit/YYKit.h>
 #import <UIImageView+YYWebImage.h>
+#import <TuSDKGeeV1/TuSDKGeeV1.h>//TuSDK
 
-
-/**
- *  DB相机类
- */
-#import <DBCameraViewController.h>
-#import <DBCameraContainerViewController.h>
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"
 #define  KEY_UUID @"com.company.app.uuid"

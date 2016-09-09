@@ -22,6 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // 初始化SDK (请前往 http://tusdk.com 获取您的 APP 开发密钥)
+    [TuSDK initSdkWithAppKey:@"d671ce9624ea7205-00-hg1xp1"];
+    
+    
     /**
      *  设置弹出的HUD时间，单例
      */

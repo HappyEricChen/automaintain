@@ -17,7 +17,7 @@
 #import "SettingViewController.h"
 #import "PersonalModel.h"
 
-@interface PersonalViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PersonalDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,DBCameraViewControllerDelegate>
+@interface PersonalViewController ()<CustomNavigationViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PersonalDataViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) PersonalDataViewController* personalDataViewController;
 
@@ -191,18 +191,72 @@
 
 -(void)didClickShowCameraMethod:(PersonalDataViewController *)personalDataViewController
 {
-    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
-    [cameraController setUseCameraSegue:NO];
+    //    iOS 判断应用是否有使用相机的权限
     
-    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
-    [container setCameraViewController:cameraController];
-    [container setFullScreenMode];
+    NSString *mediaType = AVMediaTypeVideo;//读取媒体类型
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];//读取设备授权状态
+    if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请在iPhone的\"设置-隐私-相机\"中允许访问相机"];
+        return;
+    }
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
-    [nav setNavigationBarHidden:YES];
-    [self presentViewController:nav animated:YES completion:nil];
+    [TuSDKTSDeviceSettings checkAllowWithController:self
+                                               type:lsqDeviceSettingsCamera
+                                          completed:^(lsqDeviceSettingsType type, BOOL openSetting)
+     {
+         if (openSetting)
+         {
+             lsqLError(@"Can not open camera");
+             return;
+         }
+         [self showCameraController];
+     }];
 }
 
+- (void)showCameraController;
+{
+    
+    TuSDKPFCameraOptions *opt = [TuSDKPFCameraOptions build];
+    /* 这里是 option 配置功能选项，配置相机的功能，请以 TuSDK 官方 demo 为准 */
+    TuSDKPFCameraViewController *controller = opt.viewController;
+    controller.delegate = self;
+    [self presentModalNavigationController:controller animated:YES];
+    
+}
+#pragma mark - TuSDKPFCameraDelegate
+/**
+ *  获取一个拍摄结果
+ *
+ *  @param controller 默认相机视图控制器
+ *  @param result     拍摄结果
+ */
+- (void)onTuSDKPFCamera:(TuSDKPFCameraViewController *)controller captureResult:(TuSDKResult *)result;
+{
+    
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    self.avatorImage = result.image;
+    [self updateAvatorImage];//更新头像
+    [self.personalDataViewController.collectionView reloadData];
+    
+}
+
+#pragma mark - TuSDKCPComponentErrorDelegate
+/**
+ *  获取组件返回错误信息
+ *
+ *  @param controller 控制器
+ *  @param result     返回结果
+ *  @param error      异常信息
+ */
+- (void)onComponent:(TuSDKCPViewController *)controller result:(TuSDKResult *)result error:(NSError *)error;
+{
+    lsqLDebug(@"onComponent: controller - %@, result - %@, error - %@", controller, result, error);
+}
+
+/**
+ *  打开本地相册
+ */
 -(void)didClickShowLocalAlbumMethod:(PersonalDataViewController *)personalDataViewController
 {
     UIImagePickerController* localAlbumImagePicker = [[UIImagePickerController alloc]init];
@@ -267,20 +321,5 @@
          }
      }];
     
-}
-
-#pragma mark - DBCamera相机代理方法
-- (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
-{
-    [cameraViewController restoreFullScreenMode];
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    self.avatorImage = [image normalizedImage];//图片调整方向为正向;
-    [self updateAvatorImage];//更新头像
-    [self.personalDataViewController.collectionView reloadData];
-}
-
-- (void) dismissCamera:(id)cameraViewController{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [cameraViewController restoreFullScreenMode];
 }
 @end

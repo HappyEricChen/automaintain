@@ -80,15 +80,6 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "DBCamera/DBCamera/Resources/DBCameraImages.xcassets"
-  install_resource "DBCamera/DBCamera/Localizations/DBCamera.bundle"
-  install_resource "DBCamera/DBCamera/Filters/1977.acv"
-  install_resource "DBCamera/DBCamera/Filters/amaro.acv"
-  install_resource "DBCamera/DBCamera/Filters/Hudson.acv"
-  install_resource "DBCamera/DBCamera/Filters/mayfair.acv"
-  install_resource "DBCamera/DBCamera/Filters/Nashville.acv"
-  install_resource "DBCamera/DBCamera/Filters/Valencia.acv"
-  install_resource "DBCamera/DBCamera/Filters/Vignette.acv"
   install_resource "GPUImage/framework/Resources/lookup.png"
   install_resource "GPUImage/framework/Resources/lookup_amatorka.png"
   install_resource "GPUImage/framework/Resources/lookup_miss_etikate.png"
@@ -96,17 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+  install_resource "TuSDK/Localization/Base.lproj"
+  install_resource "TuSDK/Localization/En.lproj"
+  install_resource "TuSDK/Localization/zh-Hant.lproj"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "DBCamera/DBCamera/Resources/DBCameraImages.xcassets"
-  install_resource "DBCamera/DBCamera/Localizations/DBCamera.bundle"
-  install_resource "DBCamera/DBCamera/Filters/1977.acv"
-  install_resource "DBCamera/DBCamera/Filters/amaro.acv"
-  install_resource "DBCamera/DBCamera/Filters/Hudson.acv"
-  install_resource "DBCamera/DBCamera/Filters/mayfair.acv"
-  install_resource "DBCamera/DBCamera/Filters/Nashville.acv"
-  install_resource "DBCamera/DBCamera/Filters/Valencia.acv"
-  install_resource "DBCamera/DBCamera/Filters/Vignette.acv"
   install_resource "GPUImage/framework/Resources/lookup.png"
   install_resource "GPUImage/framework/Resources/lookup_amatorka.png"
   install_resource "GPUImage/framework/Resources/lookup_miss_etikate.png"
@@ -114,6 +99,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+  install_resource "TuSDK/Localization/Base.lproj"
+  install_resource "TuSDK/Localization/En.lproj"
+  install_resource "TuSDK/Localization/zh-Hant.lproj"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
