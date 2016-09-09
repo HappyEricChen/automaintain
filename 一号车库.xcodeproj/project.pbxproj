@@ -13,7 +13,7 @@
 		070A8CD41D36409300D81463 /* BaseCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A8CD31D36409300D81463 /* BaseCollectionViewFlowLayout.m */; };
 		070F74751D1A7F5F0041F293 /* automaintainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F74741D1A7F5F0041F293 /* automaintainTests.m */; };
 		070F74801D1A7F5F0041F293 /* automaintainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F747F1D1A7F5F0041F293 /* automaintainUITests.m */; };
-		07115F0E1D82949700FF3826 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07115F0D1D82949700FF3826 /* TuSDK.bundle */; };
+		07115F101D82B0D000FF3826 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07115F0F1D82B0D000FF3826 /* TuSDK.bundle */; };
 		072F80481D348F66002CECC4 /* AutomaintainAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F731D348F66002CECC4 /* AutomaintainAPI.m */; };
 		072F80491D348F66002CECC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F741D348F66002CECC4 /* Assets.xcassets */; };
 		072F804C1D348F66002CECC4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F7C1D348F66002CECC4 /* Info.plist */; };
@@ -144,6 +144,8 @@
 		078AF2DD1D6EA2A000B49342 /* CommentImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 078AF2DC1D6EA2A000B49342 /* CommentImageCollectionViewCell.m */; };
 		078DF1291D5B03050031274B /* UIButton+countDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 078DF1281D5B03050031274B /* UIButton+countDown.m */; };
 		0798F1C91D34E79A003F1234 /* SubSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */; };
+		07CA56D61D82BF93009BCB85 /* CustomizedEditAndCutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CA56D31D82BF93009BCB85 /* CustomizedEditAndCutComponent.m */; };
+		07CA56D71D82BF93009BCB85 /* SampleBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CA56D51D82BF93009BCB85 /* SampleBase.m */; };
 		07FC33411D4F31E200B93258 /* NSDate+DateSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */; };
 		0FD4C27F3ACBBA6063C93479 /* libPods-一号车库.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */; };
 /* End PBXBuildFile section */
@@ -180,7 +182,7 @@
 		070F747B1D1A7F5F0041F293 /* 一号车库.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "一号车库.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070F747F1D1A7F5F0041F293 /* automaintainUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = automaintainUITests.m; sourceTree = "<group>"; };
 		070F74811D1A7F5F0041F293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07115F0D1D82949700FF3826 /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TuSDK.bundle; path = "../../Documents/TuSDK-for-iOS-demo-2.5.0/TuSDKDemo/Resources/TuSDK.bundle"; sourceTree = "<group>"; };
+		07115F0F1D82B0D000FF3826 /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TuSDK.bundle; sourceTree = "<group>"; };
 		072F7F721D348F66002CECC4 /* AutomaintainAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutomaintainAPI.h; sourceTree = "<group>"; };
 		072F7F731D348F66002CECC4 /* AutomaintainAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutomaintainAPI.m; sourceTree = "<group>"; };
 		072F7F741D348F66002CECC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
@@ -431,6 +433,10 @@
 		078DF1281D5B03050031274B /* UIButton+countDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+countDown.m"; sourceTree = "<group>"; };
 		0798F1C71D34E79A003F1234 /* SubSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSVProgressHUD.h; sourceTree = "<group>"; };
 		0798F1C81D34E79A003F1234 /* SubSVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSVProgressHUD.m; sourceTree = "<group>"; };
+		07CA56D21D82BF93009BCB85 /* CustomizedEditAndCutComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedEditAndCutComponent.h; sourceTree = "<group>"; };
+		07CA56D31D82BF93009BCB85 /* CustomizedEditAndCutComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedEditAndCutComponent.m; sourceTree = "<group>"; };
+		07CA56D41D82BF93009BCB85 /* SampleBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleBase.h; sourceTree = "<group>"; };
+		07CA56D51D82BF93009BCB85 /* SampleBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleBase.m; sourceTree = "<group>"; };
 		07FC333F1D4F31E200B93258 /* NSDate+DateSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateSetting.h"; sourceTree = "<group>"; };
 		07FC33401D4F31E200B93258 /* NSDate+DateSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateSetting.m"; sourceTree = "<group>"; };
 		830E809D644B0DDCA6DC4C33 /* libPods-一号车库.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-一号车库.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -978,6 +984,7 @@
 		072F809D1D3490A5002CECC4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				07CA56D11D82BF93009BCB85 /* TUSDK相机类 */,
 				077A8CA21D6AA9BC00C3C000 /* 倒计时 */,
 				078DF1261D5B02380031274B /* category */,
 				0702D6941D3CA9BF00447073 /* Notification */,
@@ -1365,10 +1372,21 @@
 			path = category;
 			sourceTree = "<group>";
 		};
+		07CA56D11D82BF93009BCB85 /* TUSDK相机类 */ = {
+			isa = PBXGroup;
+			children = (
+				07CA56D21D82BF93009BCB85 /* CustomizedEditAndCutComponent.h */,
+				07CA56D31D82BF93009BCB85 /* CustomizedEditAndCutComponent.m */,
+				07CA56D41D82BF93009BCB85 /* SampleBase.h */,
+				07CA56D51D82BF93009BCB85 /* SampleBase.m */,
+			);
+			path = "TUSDK相机类";
+			sourceTree = "<group>";
+		};
 		4811C7185C5A019ED7DB205D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07115F0D1D82949700FF3826 /* TuSDK.bundle */,
+				07115F0F1D82B0D000FF3826 /* TuSDK.bundle */,
 				0709C20E1D752999009D036D /* AVFoundation.framework */,
 				0748FAF91D6C53F800FD602E /* libz.tbd */,
 				0748FAF71D6C53EC00FD602E /* libsqlite3.0.tbd */,
@@ -1508,7 +1526,7 @@
 				072F804E1D348F66002CECC4 /* Aparajita.ttf in Resources */,
 				074F19211D812FB40072B460 /* kaiti.ttf in Resources */,
 				072F804C1D348F66002CECC4 /* Info.plist in Resources */,
-				07115F0E1D82949700FF3826 /* TuSDK.bundle in Resources */,
+				07115F101D82B0D000FF3826 /* TuSDK.bundle in Resources */,
 				072F804F1D348F66002CECC4 /* FZZYJW.ttf in Resources */,
 				072F80491D348F66002CECC4 /* Assets.xcassets in Resources */,
 			);
@@ -1593,6 +1611,7 @@
 				072F80611D348F66002CECC4 /* FeedbackThirdCollectionViewCell.m in Sources */,
 				078DF1291D5B03050031274B /* UIButton+countDown.m in Sources */,
 				074C9F281D3DBCD600A74509 /* OrderTypeModel.m in Sources */,
+				07CA56D61D82BF93009BCB85 /* CustomizedEditAndCutComponent.m in Sources */,
 				072F807B1D348F66002CECC4 /* ModifyPasswordViewController.m in Sources */,
 				074945CE1D35D6EA00A46AE6 /* ThirdCollectionViewCell.m in Sources */,
 				0757A3181D4B4DBE006E5C2C /* WebViewController.m in Sources */,
@@ -1612,6 +1631,7 @@
 				072F80911D348F66002CECC4 /* CustomTypeSelectedTableViewCell.m in Sources */,
 				072F80541D348F66002CECC4 /* PersonalFirstCollectionViewCell.m in Sources */,
 				078A93351D5DCAB5004E2E6B /* BaseTextField.m in Sources */,
+				07CA56D71D82BF93009BCB85 /* SampleBase.m in Sources */,
 				074945CA1D35D6EA00A46AE6 /* CustomButton.m in Sources */,
 				072F80571D348F66002CECC4 /* PersonalThirdCollectionViewCell.m in Sources */,
 				076518F51D616B82003A4AF7 /* NSData+Encryption.m in Sources */,
