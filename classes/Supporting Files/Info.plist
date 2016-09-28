@@ -5,19 +5,13 @@
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
 	<string>一号车库</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string></string>
-	</array>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -48,10 +42,6 @@
 		<string>FZZYJW.ttf</string>
 		<string>Aparajita.ttf</string>
 		<string>kaiti.ttf</string>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>autio</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

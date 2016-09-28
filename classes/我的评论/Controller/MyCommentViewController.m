@@ -258,6 +258,7 @@
               *  解锁
               */
              self.LockButton = YES;
+             self.photoGuidList = @"";//清空guid字符串
              [self.myCommentDataViewController.imageGuidArr removeAllObjects];//清空guid数组
              [SVProgressHUD showInfoWithStatus:@"网络不好请重试"];
          }
@@ -303,6 +304,7 @@
              else
              {
                  [SVProgressHUD showInfoWithStatus:result];
+                  self.photoGuidList = @"";//清空guid字符串
                  [self.myCommentDataViewController.imageGuidArr removeAllObjects];//清空guid数组
                  /**
                   *  解锁

@@ -13,4 +13,5 @@ target:'一号车库' do
 	pod 'YYKit'
 	pod 'Bugly'
 	pod 'TuSDK', '~> 2.5.0'
+	pod 'MBProgressHUD', '~> 1.0.0'
 end

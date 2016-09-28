@@ -107,6 +107,8 @@
     if ([username isEqualToString:@""])
     {
         [SVProgressHUD showInfoWithStatus:@"请输入手机号"];
+//        [ModeHUD sharedHUD].md_show();
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         return;
     }
     else if ([password isEqualToString:@""])

@@ -48,7 +48,7 @@ NSString* const freeHeaderId = @"freeHeaderId";
         UILabel* label2 = [[UILabel alloc]init];
         label2.text = @"Free Convenience service";
         label2.textAlignment = NSTextAlignmentCenter;
-        label2.font = FONT_Aparajita(12);
+        label2.font = FONT_Aparajita(10);
         
         [baseView addSubview:label2];
         

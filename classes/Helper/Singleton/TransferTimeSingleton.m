@@ -21,20 +21,21 @@
 }
 
 #pragma mark - 计算倒计时的秒数，必须是今天以后的日期才计算，昨天的全部为0s
-- (NSInteger)transferTimeStringToIntervalWith:(NSString *)timeString
+-(NSInteger)transferTimeStringToIntervalWith:(NSString *)endTimeString
 {
-    if(!timeString||timeString.length==0)
+    if (!endTimeString || [endTimeString isEqualToString:@""])
     {
         return 0;
     }
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSTimeZone *tZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
     [formatter setTimeZone:tZone];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     //字符串转换为时间
-    NSDate *postDate = [formatter dateFromString:timeString];
+    NSDate *endDate = [formatter dateFromString:endTimeString];
     NSDate *currentDate = [NSDate date];
-    NSTimeInterval countDown = [postDate timeIntervalSinceDate:currentDate];
+    NSTimeInterval countDown = [endDate timeIntervalSinceDate:currentDate];
     NSInteger countDownTime = round(countDown);
     
     

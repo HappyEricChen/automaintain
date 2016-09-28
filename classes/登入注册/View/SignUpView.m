@@ -312,6 +312,7 @@
 {
     if ([self.delegate respondsToSelector:@selector(didClickVerificationButtonWithSignUpView:withUsername:withIsExisted:withCallback:)])
     {
+        
         [self.delegate didClickVerificationButtonWithSignUpView:self
                                                    withUsername:self.textField.text
                                                   withIsExisted:IsExisted
@@ -327,6 +328,15 @@
                   *  @param timeLine 倒计时总时间
                   *  @param title    还没倒计时的title
                   *  @param subTitle 倒计时中的子名字，如时、分
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                   *  @param mColor   还没倒计时的颜色
                   *  @param color    倒计时中的颜色
                   */

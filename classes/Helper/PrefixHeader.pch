@@ -38,6 +38,7 @@
 #import <YYKit/YYKit.h>
 #import <UIImageView+YYWebImage.h>
 #import <TuSDKGeeV1/TuSDKGeeV1.h>//TuSDK
+#import "ModeHUD.h"
 
 
 #define  KEY_USERNAME_PASSWORD @"com.company.app.usernamepassword"

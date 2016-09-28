@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - Bugly (2.3.1)
   - GPUImage (0.1.7)
+  - MBProgressHUD (1.0.0)
   - MJExtension (3.0.11)
   - MJRefresh (3.1.10)
   - PLeakSniffer (0.1.0)
@@ -41,6 +42,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - Bugly
+  - MBProgressHUD (~> 1.0.0)
   - MJExtension
   - MJRefresh
   - PLeakSniffer
@@ -54,6 +56,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bugly: c8ece2fa5bdcb404abdd0e07131e8129f580d893
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: f9ae6ddc0f1c482c3c9af750280ccebd14381958
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
   PLeakSniffer: f7eb13cd3a36150e0a2fd5fe8a33ca83bd2646d4
@@ -64,6 +67,6 @@ SPEC CHECKSUMS:
   TuSDK: 0e5361164d7122ccbcb6fa14de234b9177039ef2
   YYKit: 843d1b26e20b82c695790c9a89907eaa1e99907f
 
-PODFILE CHECKSUM: 4c9de32d92c30f00c2e04ebf10181a46258c221e
+PODFILE CHECKSUM: 37a835a4355bba2e98cc88ae2b0c0dd2e322eca3
 
 COCOAPODS: 1.0.1

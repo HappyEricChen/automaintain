@@ -59,6 +59,7 @@
             /**
              *  把服务器传回来的时间中的T去掉
              */
+//            NSString* startTimeFormate = [myOrderModel.StartTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
             NSString* endTimeFormate = [myOrderModel.EndTime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
             ;
             //倒计时时间

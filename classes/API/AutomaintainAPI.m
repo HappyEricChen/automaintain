@@ -20,15 +20,16 @@
 #define ERRORINFO @"网络异常，请稍后重试"
 
 #ifdef DEBUG
-static NSString* urlPath = @"http://112.64.131.222/NoOne";
-
+//static NSString* urlPath = @"http://112.64.131.222/NoOne";
+static NSString* urlPath = @"http://112.64.131.222/NoOnecar";
 /**
  *  内部测试地址
  */
-//static NSString* urlPath = @"http://192.168.2.138/ErpWebApi";
+//static NSString* urlPath = @"http://192.168.2.135";
 
 #else
-static NSString* urlPath = @"http://112.64.131.222/NoOne";
+//static NSString* urlPath = @"http://112.64.131.222/NoOne";
+static NSString* urlPath = @"http://112.64.131.222/NoOnecar";
 #endif
 
 @implementation AutomaintainAPI

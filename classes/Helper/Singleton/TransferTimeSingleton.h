@@ -15,12 +15,14 @@
 /**
  *  正在服务中的项目倒计时时间计算，通过传人项目结束时间和当前时间比较
  *
- *  @param timeString 项目结束时间
+ *  @param startTimeString 项目开始时间
+ *  @param endTimeString 项目结束时间
  *
  *  @return 倒计时的秒数
  */
-- (NSInteger)transferTimeStringToIntervalWith:(NSString *)timeString;
+//- (NSInteger)transferTimeStringToIntervalWith:(NSString *)startTimeString withEndTime:(NSString*)endTimeString;
 
+- (NSInteger)transferTimeStringToIntervalWith:(NSString *)endTimeString;
 /**
  *  将起始时间和结束时间的字符串传进来，转换为一个预计所需时间，用结束时间减去起始时间
  *

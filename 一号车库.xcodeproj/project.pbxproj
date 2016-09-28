@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0700E2501D91408D00A29885 /* ModeHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0700E24F1D91408D00A29885 /* ModeHUD.m */; };
 		0701647D1D73E541005C35E2 /* UIImage+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0701647C1D73E541005C35E2 /* UIImage+Orientation.m */; };
 		0702D6971D3CA9F000447073 /* NotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0702D6961D3CA9F000447073 /* NotificationNameManager.m */; };
 		0709C20F1D752999009D036D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0709C20E1D752999009D036D /* AVFoundation.framework */; };
@@ -16,7 +17,6 @@
 		07115F101D82B0D000FF3826 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07115F0F1D82B0D000FF3826 /* TuSDK.bundle */; };
 		072F80481D348F66002CECC4 /* AutomaintainAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F731D348F66002CECC4 /* AutomaintainAPI.m */; };
 		072F80491D348F66002CECC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F741D348F66002CECC4 /* Assets.xcassets */; };
-		072F804C1D348F66002CECC4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F7C1D348F66002CECC4 /* Info.plist */; };
 		072F804D1D348F66002CECC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 072F7F7E1D348F66002CECC4 /* main.m */; };
 		072F804E1D348F66002CECC4 /* Aparajita.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F811D348F66002CECC4 /* Aparajita.ttf */; };
 		072F804F1D348F66002CECC4 /* FZZYJW.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 072F7F821D348F66002CECC4 /* FZZYJW.ttf */; };
@@ -168,6 +168,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0700E24E1D91408900A29885 /* ModeHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeHUD.h; sourceTree = "<group>"; };
+		0700E24F1D91408D00A29885 /* ModeHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeHUD.m; sourceTree = "<group>"; };
 		0701647B1D73E541005C35E2 /* UIImage+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Orientation.h"; sourceTree = "<group>"; };
 		0701647C1D73E541005C35E2 /* UIImage+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Orientation.m"; sourceTree = "<group>"; };
 		0702D6951D3CA9F000447073 /* NotificationNameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationNameManager.h; sourceTree = "<group>"; };
@@ -1193,6 +1195,8 @@
 		07576FD81D3734DD000D5E20 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
+				0700E24E1D91408900A29885 /* ModeHUD.h */,
+				0700E24F1D91408D00A29885 /* ModeHUD.m */,
 				07576FD91D373527000D5E20 /* AppManager.h */,
 				07576FDA1D373527000D5E20 /* AppManager.m */,
 				074C9F2C1D3E182F00A74509 /* TransferTimeSingleton.h */,
@@ -1481,7 +1485,7 @@
 				TargetAttributes = {
 					070F74561D1A7F5F0041F293 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YVNM4HM6XS;
+						DevelopmentTeam = MB393HBHG6;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1525,7 +1529,6 @@
 			files = (
 				072F804E1D348F66002CECC4 /* Aparajita.ttf in Resources */,
 				074F19211D812FB40072B460 /* kaiti.ttf in Resources */,
-				072F804C1D348F66002CECC4 /* Info.plist in Resources */,
 				07115F101D82B0D000FF3826 /* TuSDK.bundle in Resources */,
 				072F804F1D348F66002CECC4 /* FZZYJW.ttf in Resources */,
 				072F80491D348F66002CECC4 /* Assets.xcassets in Resources */,
@@ -1652,6 +1655,7 @@
 				072F80521D348F66002CECC4 /* PersonalModel.m in Sources */,
 				072F80781D348F66002CECC4 /* LDCalendarView.m in Sources */,
 				072F807A1D348F66002CECC4 /* UIColor+Extend.m in Sources */,
+				0700E2501D91408D00A29885 /* ModeHUD.m in Sources */,
 				072F80671D348F66002CECC4 /* MyCommentThirdCollectionViewCell.m in Sources */,
 				076518F81D61BD17003A4AF7 /* NSString+AES256.m in Sources */,
 				072F80841D348F66002CECC4 /* FirstTimeSelecetdCollectionViewCell.m in Sources */,
@@ -1776,8 +1780,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: XIA SHI (4HP83BB4YL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIA SHI (4HP83BB4YL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: luo zhenye (8GG44BALSB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: luo zhenye (8GG44BALSB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1800,7 +1804,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
-				PROVISIONING_PROFILE = "5cda444b-c225-4418-99df-6d1ca8caabaf";
+				PROVISIONING_PROFILE = "e21aa535-195a-4464-ad97-8a7bb57029f6";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1823,8 +1827,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai YiChi Auto Service Co., Ltd. (MB393HBHG6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai YiChi Auto Service Co., Ltd. (MB393HBHG6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1840,7 +1844,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
-				PROVISIONING_PROFILE = "997a4af4-d205-4d1e-878b-c0578cb1639a";
+				PROVISIONING_PROFILE = "555a0912-8a05-44de-91e8-e4984c1c0f26";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1853,13 +1857,46 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = "一号车库.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: XIA SHI (4HP83BB4YL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XIA SHI (4HP83BB4YL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: luo zhenye (8GG44BALSB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: luo zhenye (8GG44BALSB)";
+				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Bugly\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GPUImage\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/PLeakSniffer\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SDAutoLayout\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SDCycleScrollView\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/TuSDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/YYKit\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1871,7 +1908,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "5cda444b-c225-4418-99df-6d1ca8caabaf";
+				PROVISIONING_PROFILE = "e21aa535-195a-4464-ad97-8a7bb57029f6";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1883,13 +1920,46 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = "一号车库.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Ingpal Network Technology Co., Ltd. (YVNM4HM6XS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai YiChi Auto Service Co., Ltd. (MB393HBHG6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai YiChi Auto Service Co., Ltd. (MB393HBHG6)";
+				ENABLE_BITCODE = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = classes/Helper/PrefixHeader.pch;
 				INFOPLIST_FILE = "classes/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Bugly\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GPUImage\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/MJExtension\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/PLeakSniffer\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SDAutoLayout\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SDCycleScrollView\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/TuSDK\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/YYKit\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1901,7 +1971,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingpal.automaintain;
 				PRODUCT_NAME = "一号车库";
-				PROVISIONING_PROFILE = "997a4af4-d205-4d1e-878b-c0578cb1639a";
+				PROVISIONING_PROFILE = "555a0912-8a05-44de-91e8-e4984c1c0f26";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

@@ -197,7 +197,7 @@ withverificationCode:(NSString *)verificationCode
                                   withIsExisted:(NSString*)IsExisted
                                    withCallback:(Callback)callback
 {
-    
+    [SVProgressHUD show];
     [AutomaintainAPI SMSVerificationCodeWithPhoneNum:username withIsExisted:IsExisted withCallback:^(BOOL success, NSError *error, id result)
      {
          if (success)
@@ -223,6 +223,7 @@ withverificationCode:(NSString *)verificationCode
          }
          else
          {
+             [SVProgressHUD dismiss];
              callback(NO,nil,result);
          }
      }];
